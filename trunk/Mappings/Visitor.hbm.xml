@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+						 assembly="App_Code" 
+						 namespace="MTBScout.Entities">
+	
+	<class name="Visitor" table="Visitors" lazy="false">
+        <id name="Host" column="Host" type="System.String"/>
+		<property name="Visits" column="Visits" type="System.Int64"/>
+	</class>
+</hibernate-mapping>
