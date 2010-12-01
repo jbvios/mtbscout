@@ -35,6 +35,9 @@ namespace MTBScout
                     zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(gpxFile, ".zip"));
                     if (!File.Exists(zippedFile))
                     {
+                        string folder = Path.GetDirectoryName(zippedFile);
+                        if (!Directory.Exists(folder))
+                            Directory.CreateDirectory(folder);
                         using (FileStream fs = new FileStream(zippedFile, FileMode.Create))
                         {
                             using (ZipOutputStream stream = new ZipOutputStream(fs))
