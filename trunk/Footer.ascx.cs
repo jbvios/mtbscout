@@ -28,19 +28,19 @@ public partial class Footer : System.Web.UI.UserControl
 		MainFooterPanel.Style[HtmlTextWriterStyle.Top] = Top.ToString();
     }
 
-	protected int GetVisitorNumber()
+	protected long GetVisitorNumber()
 	{
-		return (int)Session["HostCount"];
+		return (long)Session[DBHelper.HostCount];
 	}
 
-	protected int GetSessionNumber()
+    protected long GetSessionNumber()
 	{
-		return (int)Session["SessionCount"];
+        return (long)Session[DBHelper.SessionCount];
 	}
 
-	protected int GetVisitorSessionNumber()
+    protected long GetVisitorSessionNumber()
 	{
-		return (int)Session["VisitorSessionCount"];
+        return (long)Session[DBHelper.VisitorSessionCount];
 	}
 	
 	
