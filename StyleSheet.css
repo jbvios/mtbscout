@@ -1,0 +1,194 @@
+﻿body
+{
+	font-family: Verdana;
+	color: #0000FF;
+	text-align: center;
+	height: 970px;
+	background-position: center center;
+	background-image: url('images/frameroundedhole.png');
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	background-color: #FFFFCC;
+}
+h1
+{
+	font-family: Verdana;
+	color: #0000FF;
+	text-align: center;
+}
+h2
+{
+	font-family: Verdana;
+	color: #0000FF;
+	text-align: center;
+}
+h3
+{
+	font-family: Verdana;
+	color: #0000FF;
+	text-align: center;
+}
+p
+{
+	margin-left: 20px;
+	margin-right: 20px;
+	color: Black;
+	text-align: justify;
+}
+
+td.ImageCell
+{
+	vertical-align: top;
+}
+td.ImageCell div
+{
+	border: solid 3px;
+	
+	vertical-align: top;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+}
+
+table.RouteData
+{
+	table-layout: auto;
+	text-align: left;
+	margin-left: auto;
+	margin-right:auto;
+	position:relative;
+	
+}
+div.HeaderContainer
+{
+	text-align: center;
+	height: 220px;
+	width: 770px;
+	margin-left: auto;
+	margin-right: auto;
+}
+div.ContentPanel
+{
+	height: 580px;
+	width: 768px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px 10px 0px 10px;
+	font-family: Verdana;
+	font-size: small;
+	color: #0000FF;
+	overflow: auto;
+	background-color: #FFFFCC;
+	position: relative;
+	top: -10px;
+}
+div.ImageAndDesc
+{
+	padding-bottom: 20px;
+}
+div.ImageAndDesc img
+{
+	border: solid 1px blue;
+}
+.ImageWithBorder
+{
+	border: solid 1px blue;
+	}
+div.FooterContainer
+{
+	width: 790px;
+	height: 52px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Verdana;
+	font-size: x-small;
+	font-weight: bold;
+	position: relative;
+	top: -10px;
+}
+div.Horiz li
+{
+	display: inline;
+	text-align: center;
+}
+div.Horiz
+{
+	left: 0px;
+}
+div.Horiz img
+{
+	border-style: none;
+	width: 120px;
+	height: 40px;
+	z-index: 10;
+}
+
+div.Vert
+{
+	text-align: left;
+}
+div.Vert ul
+{
+	padding: 0px;
+	margin:0px;
+}
+div.Vert li
+{
+	text-align: left;
+	list-style-type: none;
+	display: inline;
+}
+div.Vert img
+{
+	border-style: none;
+	width: 240px;
+	height: 80px;
+}
+
+.MenuButton
+{
+	vertical-align: middle;
+	border-color: inherit;
+	border-width: thin;
+	border-style: none;
+	overflow: hidden;
+}
+
+
+.HoverMenuImage
+{
+	background-color: #B6E2FD;
+	overflow: hidden;
+	left:1px;
+	top:1px;
+}
+div.NewsBanner
+{
+	visibility: hidden;
+	display: none;
+	border: medium outset #FFFFFF;
+	padding: 30px;
+	background-color: #FFFFCC;
+	left: 20%;
+	width: 60%;
+	background-color: #6699FF;
+}
+
+div.MainCenter
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+}
+
+.ImageDiv
+{
+	margin: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+.CenterUrl
+{
+	text-align: center;
+}

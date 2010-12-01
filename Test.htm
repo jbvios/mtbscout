@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        .pippo
+        {
+            height: 521px;
+            background-color: #00FF00;
+            width: 781px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+
+    <script>
+        function CalcDeltaX(deltaY, radius) {
+            var angle = Math.asin(deltaY / radius);
+
+            return radius * Math.cos(angle);
+        }
+        function Round(id, radius, step) {
+            var el = document.getElementById(id);
+            var w = el.offsetWidth;
+            var currEl = el;
+            var deltay = 1;
+            var deltax = true;
+            while (deltay <= radius) {
+                deltax = CalcDeltaX(deltay, radius);
+                deltay += step;
+
+                var divDown = document.createElement("div");
+                divDown.className = el.className;
+                divDown.style.height = step + "px";
+                divDown.style.width = (w - Math.round(((radius - deltax) * 2))) + "px";
+                el.parentNode.appendChild(divDown);
+
+                var divUp = divDown.cloneNode(true);
+                currEl.parentNode.insertBefore(divUp, currEl);
+                currEl = divUp;
+
+            }
+        }
+    </script>
+
+    <style type="text/css">
+        #Button1
+        {
+            height: 36px;
+            width: 74px;
+        }
+        div.autosize
+        {
+            display: table;
+            width: 1px;
+        }
+        div.autosize > div
+        {
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+    <table style="border-style: dotted; width: 800px">
+        <tr>
+            <td style="border-style: double; width: 33.3333%;" class="ImageCell">
+                <div class="autosize">
+                    <div style="border: solid 1px red; position: relative; margin-left: auto; margin-right: auto">
+                        <a href="/public/WorkingData/Routes/Portofino/Thumbs/100_1417.JPG" title="000" rel="lightbox[roadtrip]"
+                            style="display: inline; height: 60px;" />
+                        <img style="position: absolute; display: inline; border-width: 1px; border-style: solid;
+                            padding: 10px; background-color: white;" alt="Clicca per ingrandire" src="public/WorkingData/Routes/Portofino/Thumbs/100_1417.JPG"
+                            title="Clicca per ingrandire" />
+                        <img style="position: absolute; height: 30px; width: 30px; border-width: 0px; background-color: transparent;
+                            display: inline; cursor: pointer;" alt="Clicca per scaricare la versione originale"
+                            src="Images/download.png" onclick="window.open('http%3a%2f%2flocalhost%3a50059%2fMTBScout%2fRoutes%2fPortofino%2fImages%2f100_1417.JPG')"
+                            onmouseover="hoverImage(this);" onmouseout="normalImage(this);" title="Clicca per scaricare la versione originale"
+                            class="" />
+                    </div>
+                </div>
+                </a><span style="display: block;">000</span>
+            </td>
+            <td style="width: 33.3333%;" class="ImageCell">
+                <div>
+                    <a href="/public/WorkingData/Routes/Portofino/Thumbs/100_1417.JPG" title="000" rel="lightbox[roadtrip]"
+                        style="display: inline; height: 60px;">
+                        <img style="position: absolute; display: inline; border-width: 1px; border-style: solid;
+                            padding: 10px; background-color: white;" alt="Clicca per ingrandire" src="public/WorkingData/Routes/Portofino/Thumbs/100_1417.JPG"
+                            title="Clicca per ingrandire" />
+                        <img style="position: absolute; height: 30px; width: 30px; border-width: 0px; background-color: transparent;
+                            display: inline; cursor: pointer;" alt="Clicca per scaricare la versione originale"
+                            src="Images/download.png" onclick="window.open('http%3a%2f%2flocalhost%3a50059%2fMTBScout%2fRoutes%2fPortofino%2fImages%2f100_1417.JPG')"
+                            onmouseover="hoverImage(this);" onmouseout="normalImage(this);" title="Clicca per scaricare la versione originale"
+                            class="" />
+                </div>
+                </a><span style="display: block;">000</span>
+            </td>
+            <td style="width: 33.3333%;" class="ImageCell">
+                <div>
+                    <a href="/public/WorkingData/Routes/Portofino/Thumbs/100_1417.JPG" title="000" rel="lightbox[roadtrip]"
+                        style="display: inline; height: 60px;">
+                        <img style="position: absolute; display: inline; border-width: 1px; border-style: solid;
+                            padding: 10px; background-color: white;" alt="Clicca per ingrandire" src="public/WorkingData/Routes/Portofino/Thumbs/100_1417.JPG"
+                            title="Clicca per ingrandire" />
+                        <img style="position: absolute; height: 30px; width: 30px; border-width: 0px; background-color: transparent;
+                            display: inline; cursor: pointer;" alt="Clicca per scaricare la versione originale"
+                            src="Images/download.png" onclick="window.open('http%3a%2f%2flocalhost%3a50059%2fMTBScout%2fRoutes%2fPortofino%2fImages%2f100_1417.JPG')"
+                            onmouseover="hoverImage(this);" onmouseout="normalImage(this);" title="Clicca per scaricare la versione originale"
+                            class="" />
+                </div>
+                </a><span style="display: block;">000</span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
