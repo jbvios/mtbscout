@@ -1,8 +1,6 @@
 ﻿<%@ Application Language="C#" %>
 
 <script runat="server">
-	static string dbPath;
-	
     void Application_Start(object sender, EventArgs e) 
     {
         this.EndRequest += new EventHandler(global_asax_EndRequest);
@@ -30,10 +28,7 @@
 
     void Session_Start(object sender, EventArgs e) 
     {
-		if (dbPath == null)
-			dbPath = DBHelper.GetDBPath(Request);
-		
-		DBHelper.CountVisitor(Request, Session, dbPath);
+		DBHelper.CountVisitor(Request, Session);
 
 		Helper.IncreaseSessions();
     }	
