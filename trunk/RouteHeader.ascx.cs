@@ -8,6 +8,7 @@ using System.IO;
 using System.Xml;
 using MTBScout;
 using System.Globalization;
+using MTBScout.Entities;
 
 public partial class RouteHeader : System.Web.UI.UserControl
 {
@@ -76,15 +77,15 @@ public partial class RouteHeader : System.Web.UI.UserControl
 
     public bool HideTitle { get; set; }
 
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(RouteName))
+            RouteName = Path.GetFileName(Page.MapPath("."));
         if (!Page.IsPostBack)
         {
-            string routeFolder = string.IsNullOrEmpty(RouteName)
-            ? Page.MapPath(".")
-            : PathFunctions.GetRoutePathFromName(RouteName);
+            string routeFolder = PathFunctions.GetRoutePathFromName(RouteName);
 
-            string routeFile = Path.Combine(routeFolder, "route.xml");
             string gpxFile = Path.Combine(routeFolder, "track.gpx");
 
             GpxParser parser = Helper.GetGpxParser(gpxFile);
@@ -92,12 +93,10 @@ public partial class RouteHeader : System.Web.UI.UserControl
             RouteTotalHeight = Convert.ToInt32(parser.TotalClimb).ToString();
             RouteMaxHeight = Convert.ToInt32(parser.MaxElevation).ToString();
             RouteMinHeight = Convert.ToInt32(parser.MinElevation).ToString();
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(routeFile);
-            RouteTitle = doc.DocumentElement.GetAttribute("title");
-            RouteCycle = doc.DocumentElement.GetAttribute("cycle");
-            RouteDifficulty = doc.DocumentElement.GetAttribute("difficulty");
+            Route r = DBHelper.GetRoute(RouteName);
+            RouteTitle = r.Title;
+            RouteCycle = r.Cycling.ToString();
+            RouteDifficulty = r.Difficulty;
         }
 
         Page.Header.Title = RouteTitle;

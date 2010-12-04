@@ -19,30 +19,11 @@ using NHibernate.Criterion;
 //================================================================================
 public class DBHelper
 {
-
-
-    //--------------------------------------------------------------------------------
-    public static string GetDBPath(HttpRequest req)
-    {
-        return Helper.IsDevelopment()
-                ? HttpContext.Current.Server.MapPath("~/mdb-database/DebugMtbScout.mdb")
-                : HttpContext.Current.Server.MapPath("~/mdb-database/MtbScout.mdb");
-    }
-
-    //--------------------------------------------------------------------------------
-    public static OleDbConnection OpenConnection(HttpRequest req)
-    {
-        OleDbConnection conn = new OleDbConnection(
-                    string.Format("Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; User Id=admin; Password=", GetDBPath(req))
-                    );
-        conn.Open();
-        return conn;
-    }
     public const string VisitorSessionCount = "VisitorSessionCount";
     public const string SessionCount = "SessionCount";
     public const string HostCount = "HostCount";
     //--------------------------------------------------------------------------------
-    public static void CountVisitor(HttpRequest request, HttpSessionState session, string mdbPath)
+    public static void CountVisitor(HttpRequest request, HttpSessionState session)
     {
         string host = request["REMOTE_HOST"];
         long visitorSessionCount;
@@ -69,10 +50,29 @@ public class DBHelper
             session[HostCount] = Convert.ToInt64(result[1]);
         }
     }
+
+    public static IList<Route> GetRoutes()
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            ICriteria criteria = iSession.CreateCriteria<Route>();
+            return criteria.List<Route>();
+        }
+    }
+
+    public static Route GetRoute(string RouteName)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            ICriteria criteria = iSession.CreateCriteria<Route>();
+            criteria.Add(Restrictions.Eq("Name", RouteName));
+            return criteria.UniqueResult<Route>();
+        }
+    }
 }
 
 
-class NHSessionManager
+public class NHSessionManager
 {
 
     private static ISessionFactory factory;

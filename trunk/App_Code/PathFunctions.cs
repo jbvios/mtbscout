@@ -106,5 +106,6 @@ namespace MTBScout
         {
             return Path.Combine(RootPath, "Mappings");
         }
+
     }
 }
