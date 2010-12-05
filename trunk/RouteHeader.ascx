@@ -8,7 +8,7 @@
 			Lunghezza:
 		</td>
 		<td id="Lenght" runat="server">
-			16 Km
+			
 		</td>
 	</tr>
 	<tr>
@@ -16,7 +16,7 @@
 			Dislivello totale:
 		</td>
 		<td id="TotalHeight" runat="server">
-			744 m
+			
 		</td>
 	</tr>
 	<tr>
@@ -24,7 +24,7 @@
 			Quota massima:
 		</td>
 		<td id="MaxHeight" runat="server">
-			960 m
+			
 		</td>
 	</tr>
 	<tr>
@@ -32,7 +32,7 @@
 			Quota minima:
 		</td>
 		<td id="MinHeight" runat="server">
-			433 m
+			
 		</td>
 	</tr>
 	<tr>
@@ -40,7 +40,7 @@
 			Ciclabilità:
 		</td>
 		<td id="Cycle" runat="server">
-			75%
+			
 		</td>
 	</tr>
 	<tr>
@@ -48,7 +48,7 @@
 			Difficoltà:
 		</td>
 		<td id="Difficulty" runat="server">
-			molto alta
+			
 		</td>
 	</tr>
 </table>

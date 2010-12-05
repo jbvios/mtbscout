@@ -32,7 +32,7 @@ namespace MTBScout
             {
                 if (zippedFile == null)
                 {
-                    zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(gpxFile, ".zip"));
+                    zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(sourceFile, ".zip"));
                     if (!File.Exists(zippedFile))
                     {
                         string folder = Path.GetDirectoryName(zippedFile);
@@ -42,12 +42,12 @@ namespace MTBScout
                         {
                             using (ZipOutputStream stream = new ZipOutputStream(fs))
                             {
-                                ZipEntry entry = new ZipEntry(Path.GetFileName(gpxFile));
+                                ZipEntry entry = new ZipEntry(Path.GetFileName(sourceFile));
 
                                 entry.DateTime = DateTime.Now;
                                 stream.PutNextEntry(entry);
 
-                                byte[] buff = File.ReadAllBytes(gpxFile);
+                                byte[] buff = File.ReadAllBytes(sourceFile);
                                 stream.Write(buff, 0, buff.Length);
 
                                 stream.Finish();
@@ -91,8 +91,8 @@ namespace MTBScout
         private List<WayPoint> wayPoints = new List<WayPoint>();
         public List<WayPoint> WayPoints { get { return wayPoints; } }
 
-        private string gpxFile = "";
-
+        private string sourceFile = "";
+        public string SourceFile { get { return sourceFile; } }
         public double MaxElevation { get { return maxEle; } }
         public double MinElevation { get { return minEle; } }
         public double LinearDistance { get { return linearDistance; } }
@@ -119,7 +119,7 @@ namespace MTBScout
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(gpxFile);
-            this.gpxFile = gpxFile;
+            this.sourceFile = gpxFile;
             foreach (XmlElement wpElement in doc.DocumentElement.GetElementsByTagName("wpt"))
             {
                 WayPoint wp = new WayPoint();
@@ -159,7 +159,7 @@ namespace MTBScout
         {
             if (photoLoaded)
                 return;
-            string original = PathFunctions.GetImagePathFromGpx(gpxFile);
+            string original = PathFunctions.GetImagePathFromGpx(sourceFile);
             if (Directory.Exists(original))
             {
                 foreach (string file in Directory.GetFiles(original, "*.jpg"))

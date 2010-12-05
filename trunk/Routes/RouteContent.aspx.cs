@@ -20,9 +20,7 @@ public partial class Map : System.Web.UI.Page
         Response.Write("<script type=\"text/javascript\">\r\n");
         Response.Write("function addMarkers(){\r\n");
 
-        IList<Route> routes = DBHelper.GetRoutes();
-
-        foreach (Route r in routes)
+        foreach (Route r in DBHelper.Routes)
         {
             string routeFolderPath = PathFunctions.GetRoutePathFromName(r.Name);
             string url = PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'");
