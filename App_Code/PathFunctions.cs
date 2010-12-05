@@ -107,5 +107,9 @@ namespace MTBScout
             return Path.Combine(RootPath, "Mappings");
         }
 
+        internal static string GetGpxPathFromRouteName(string name)
+        {
+            return Path.Combine(GetRoutePathFromName(name), "track.gpx");
+        }
     }
 }

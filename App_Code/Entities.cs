@@ -22,12 +22,28 @@ namespace MTBScout.Entities
             this.host = host;
             this.visits = 0;
         }
-       
+
     }
 
 
     public class Route
     {
+        private GpxParser parser = null;
+        public GpxParser Parser
+        {
+            get
+            {
+                lock (this)
+                {
+                    if (parser == null)
+                    { 
+                        string path = PathFunctions.GetGpxPathFromRouteName(Name);
+                        parser = Helper.GetGpxParser(path);
+                    }
+                    return parser;
+                }
+            }
+        }
         private Int32 id;
         public Int32 Id
         {

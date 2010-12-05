@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Web;
 using System.Data.OleDb;
@@ -22,6 +23,17 @@ public class DBHelper
     public const string VisitorSessionCount = "VisitorSessionCount";
     public const string SessionCount = "SessionCount";
     public const string HostCount = "HostCount";
+
+    private static IList<Route> routes;
+
+    static DBHelper()
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            ICriteria criteria = iSession.CreateCriteria<Route>();
+            routes = criteria.List<Route>();
+        }
+    }
     //--------------------------------------------------------------------------------
     public static void CountVisitor(HttpRequest request, HttpSessionState session)
     {
@@ -40,7 +52,7 @@ public class DBHelper
                 visitorSessionCount = visitor.Visits;
                 transaction.Commit();
                 session[VisitorSessionCount] = visitorSessionCount;
-                
+
             }
             var criteria = iSession.CreateCriteria<Visitor>()
                     .SetProjection(Projections.Sum("Visits"), Projections.Count("Visits"));
@@ -51,23 +63,16 @@ public class DBHelper
         }
     }
 
-    public static IList<Route> GetRoutes()
-    {
-        using (ISession iSession = NHSessionManager.GetSession())
-        {
-            ICriteria criteria = iSession.CreateCriteria<Route>();
-            return criteria.List<Route>();
-        }
-    }
+    public static IEnumerable<Route> Routes { get { return routes; } }
 
-    public static Route GetRoute(string RouteName)
+    public static Route GetRoute(string routeName)
     {
-        using (ISession iSession = NHSessionManager.GetSession())
-        {
-            ICriteria criteria = iSession.CreateCriteria<Route>();
-            criteria.Add(Restrictions.Eq("Name", RouteName));
-            return criteria.UniqueResult<Route>();
-        }
+        var routes =
+            from route in Routes
+            where string.Compare(route.Name, routeName, StringComparison.InvariantCultureIgnoreCase) == 0
+            select route;
+
+        return routes.First<Route>();
     }
 }
 
