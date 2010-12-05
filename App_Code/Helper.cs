@@ -10,6 +10,12 @@ using System.Web.Caching;
 using System.Drawing;
 using System.Net;
 using System.Xml;
+using System.Web.Security;
+using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
+using DotNetOpenAuth.OpenId;
+using MTBScout.Entities;
+using NHibernate;
+using NHibernate.Criterion;
 
 /// <summary>
 /// Summary description for Helper
@@ -100,13 +106,6 @@ public static class Helper
         HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Params["Return"]);
     }
 
-    public static void TestLogin()
-    {
-        if (HttpContext.Current.Session["UserId"] == null)
-        {
-            HttpContext.Current.Response.Redirect(string.Format("~/Login.aspx?Return={0}", HttpUtility.UrlEncode(HttpContext.Current.Request.Url.ToString())));
-        }
-    }
 
     public static GpxParser GetGpxParser(string gpxPath)
     {
@@ -313,3 +312,82 @@ public static class Helper
     }
 }
 
+/// <summary>
+/// Strong-typed bag of session state.
+/// </summary>
+public class LoginState
+{
+    public static bool TestLogin()
+    {
+        if (ClaimedIdentifier == null)
+        {
+            FormsAuthentication.RedirectToLoginPage();
+            return false;
+        }
+        return true;
+    }
+
+    public static ClaimsResponse ProfileFields
+    {
+        get { return HttpContext.Current.Session["ProfileFields"] as ClaimsResponse; }
+        set { HttpContext.Current.Session["ProfileFields"] = value; }
+    }
+
+    public static Identifier ClaimedIdentifier
+    {
+        get { return HttpContext.Current.Session["ClaimedIdentifier"] as Identifier; }
+        set { HttpContext.Current.Session["ClaimedIdentifier"] = value; }
+    }
+
+    public static Identifier FriendlyLoginName
+    {
+        get { return HttpContext.Current.Session["FriendlyUsername"] as string; }
+        set { HttpContext.Current.Session["FriendlyUsername"] = value; }
+    }
+    public static MTBUser User
+    {
+        get
+        {
+            MTBUser user = HttpContext.Current.Session["MTBUser"] as MTBUser;
+            if (user == null)
+            {
+                using (ISession iSession = NHSessionManager.GetSession())
+                {
+                    user = iSession.Get<MTBUser>(ClaimedIdentifier.ToString());
+                    if (user == null)
+                    {
+                        using (ITransaction transaction = iSession.BeginTransaction())
+                        {
+                            user = new MTBUser();
+                            user.Id = ClaimedIdentifier;
+
+                            ClaimsResponse profileFields = ProfileFields;
+                            user.Name = profileFields.FullName;
+                            user.Surname = "";
+                            user.EMail = profileFields.Email;
+                            iSession.SaveOrUpdate(user);
+                            iSession.Flush();
+                            transaction.Commit();
+                        }
+                    }
+
+                }
+            }
+            return user;
+        }
+
+    }
+
+    public static void SaveUser(MTBUser user)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.SaveOrUpdate(user);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
+}

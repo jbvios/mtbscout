@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Text;
 using System.Reflection;
+using DotNetOpenAuth.OpenId;
 namespace MTBScout.Entities
 {
     public class Visitor
@@ -76,5 +77,15 @@ namespace MTBScout.Entities
             }
             return sb.ToString();
         }
+    }
+
+    public class MTBUser
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string EMail { get; set; }
+       
+        
     }
 }
