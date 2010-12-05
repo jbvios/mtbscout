@@ -22,7 +22,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
 		<div class="box">
-			<rp:OpenIdLogin ID="OpenIdLogin1" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
+			<rp:OpenIdLogin ID="OpenIdLogin" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
 				CanceledText="Login annullata." ExamplePrefix="Esempio:" FailedMessageText="Login fallita: {0}"
 				RegisterText="Registrati" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito con MyOpenID."
 				RememberMeText="Ricordami" RequestBirthDate="Require" RequestCountry="Require"
@@ -30,7 +30,7 @@
 				RequestNickname="Require" RequestPostalCode="Require" RequestTimeZone="Require"
 				RequiredText="Prima inserisci un indirizzo OpenID." 
 				UriFormatText="Indirizzo OpenID invalido." 
-				ExampleUrl="http://tuo.nome.myopenid.com" onloggedin="OpenIdLogin1_LoggedIn1">
+				ExampleUrl="http://tuo.nome.myopenid.com" OnLoggedIn="OpenIdLogin_LoggedIn">
 				
 			</rp:OpenIdLogin></div>
 			
