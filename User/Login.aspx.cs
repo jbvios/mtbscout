@@ -22,7 +22,7 @@ public partial class Login : System.Web.UI.Page
     {
 		
     }
-
+	
 	protected void OpenIdLogin_LoggedIn(object sender, OpenIdEventArgs e)
 	{
         LoginState.ClaimedIdentifier = e.ClaimedIdentifier;
