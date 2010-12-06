@@ -17,22 +17,113 @@
 			top: 30px;
 			padding: 20px;
 		}
+		.LoginBox
+		{
+			padding: 20px;
+			
+		}
+		.LoginBox table
+		{
+			margin-left:auto;
+			margin-right:auto;
+			position:relative;
+		}
 	</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
+	<h1>Inserisci le tue credenziali</h1>
 		<div class="box">
-			<rp:OpenIdLogin ID="OpenIdLogin" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
-				CanceledText="Login annullata." ExamplePrefix="Esempio:" FailedMessageText="Login fallita: {0}"
-				RegisterText="Registrati" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito con MyOpenID."
-				RememberMeText="Ricordami" RequestBirthDate="Require" RequestCountry="Require"
-				RequestEmail="Require" RequestFullName="Require" RequestGender="Require" RequestLanguage="Require"
-				RequestNickname="Require" RequestPostalCode="Require" RequestTimeZone="Require"
-				RequiredText="Prima inserisci un indirizzo OpenID." 
-				UriFormatText="Indirizzo OpenID invalido." 
-				ExampleUrl="http://tuo.nome.myopenid.com" OnLoggedIn="OpenIdLogin_LoggedIn">
-				
-			</rp:OpenIdLogin></div>
-			
+			<div class="LoginBox">
+				<rp:OpenIdLogin ID="OpenIdLogin" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
+					CanceledText="Login annullata." ExamplePrefix="Esempio:" FailedMessageText="Login fallita: {0}"
+					RegisterText="Registrati" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito con MyOpenID."
+					RememberMeText="Ricordami" RequestBirthDate="Require" RequestCountry="Require"
+					RequestEmail="Require" RequestFullName="Require" RequestGender="Require" RequestLanguage="Require"
+					RequestNickname="Require" RequestPostalCode="Require" RequestTimeZone="Require"
+					RequiredText="Prima inserisci un indirizzo OpenID." UriFormatText="Indirizzo OpenID invalido."
+					ExampleUrl="http://tuo.nome.myopenid.com" OnLoggedIn="OpenIdLogin_LoggedIn">
+				</rp:OpenIdLogin>
+			</div>
+			<div style="padding: 20px;">
+				<rp:OpenIdButton runat="server" ImageUrl="~/images/yahoo.png" Text="Usa il tuo OpenId Yahoo!"
+					ID="yahooLoginButton" Identifier="https://me.yahoo.com/" OnLoggedIn="OpenIdLogin_LoggedIn" />
+			</div>
+			<p>
+				Pensi di non avere un OpenId? Forse non è così: molti portali in cui sei registrato
+				offrono il servizio OpenId; di seguito ti offriamo alcuni esempi, <a href="http://openid.net/get-an-openid/"
+					target="_blank">vai qui</a> per ulteriori informazioni.</p>
+			<p>
+				Ma cosè OpenId? E&#39; un servizio che ti permette di usare lo stesso nome e password
+				che usi nel tuo portale preferito anche per effettuare l&#39;accesso ad altri siti;
+				in questo modo si evita il proliferare di password con tutti i problemi di sicurezza
+				connessi alla gestione delle stesse.</p>
+			<div style="text-align: left; padding-left: 30px; padding-right: 30px;">
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<a href="http://google.com">
+									<img alt="Google" src="/images/google.png" /></a>
+							</td>
+							<td>
+								<p>
+									Recupera a questo indirizzo il tuo <a href="http://google.com/profiles/me">Profilo Google</a>.</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="http://livejournal.com">
+									<img alt="LiveJournal" src="/images/livejournal.png" /></a>
+							</td>
+							<td>
+								<p>
+									Inserisci “<strong>nomeutente</strong>.livejournal.com”</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="http://blogger.com">
+									<img alt="Blogger" src="/images/blogger.png" /></a>
+							</td>
+							<td>
+								<p>
+									Inserisci il tuo indirizzo di BLOG: “<strong>nomeblog</strong>.blogspot.com”</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="http://myspace.com">
+									<img alt="MySpace" src="/images/myspace.png"></a>
+							</td>
+							<td>
+								<p>
+									Inserisci “www.myspace.com/<b>nomeutente</b>”</p>
+							</td>
+						</tr>
+						<tr>
+						<td>
+							<a href="http://wordpress.com">
+								<img alt="Wordpress" src="/images/wordpress.png"></a>
+						</td>
+						<td>
+							<p>
+								Inserisci il tuo indirizzo WordPress.com, per esempio: “<strong>nomeutente</strong>.wordpress.com”</p>
+						</td>
+						</tr>
+						<tr>
+							<td>
+								<a href="http://aol.com">
+									<img alt="AOL" src="/images/aol.png"></a>
+							</td>
+							<td>
+								<p>
+									Inserisci “openid.aol.com/<strong>nomeutente</strong>”</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </asp:Content>
