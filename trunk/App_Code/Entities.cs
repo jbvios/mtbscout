@@ -37,7 +37,7 @@ namespace MTBScout.Entities
                 lock (this)
                 {
                     if (parser == null)
-                    { 
+                    {
                         string path = PathFunctions.GetGpxPathFromRouteName(Name);
                         parser = Helper.GetGpxParser(path);
                     }
@@ -81,11 +81,26 @@ namespace MTBScout.Entities
 
     public class MTBUser
     {
+        public enum GenderType { Male = 0, Female = 1, Unspecified = 2 }
+        public MTBUser()
+        {
+            SendMail = true;
+            Gender = GenderType.Unspecified;
+            BirthDate = DateTime.MinValue;
+        }
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string EMail { get; set; }
-       
-        
+        public DateTime BirthDate { get; set; }
+        public Int16 GenderNumber { get; set; }
+        public string Zip { get; set; }
+        public string Bike1 { get; set; }
+        public string Bike2 { get; set; }
+        public string Bike3 { get; set; }
+        public bool SendMail { get; set; }
+
+        public GenderType Gender { get { return (GenderType)GenderNumber; } set { GenderNumber = (short)value; } }
+
     }
 }

@@ -1,12 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
-						 assembly="App_Code" 
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+						 assembly="App_Code"
 						 namespace="MTBScout.Entities">
-	
-	<class name="MTBUser" table="MTBUsers" lazy="false">
+
+    <class name="MTBUser" table="MTBUsers" lazy="false">
         <id name="Id" column="Id" type="System.String" ></id>
         <property name="Name" column="Name" type="System.String" unique="true"/>
         <property name="Surname" column="Surname" type="System.String"  />
         <property name="EMail" column="EMail" type="System.String" not-null="true"/>
-	</class>
+        <property name="BirthDate" column="BirthDate" type="System.DateTime" />
+        <property name="GenderNumber" column="Gender" type="System.Int16" />
+        <property name="Zip" column="Zip" type="System.String" />
+        <property name="Bike1" column="Bike1" type="System.String" />
+        <property name="Bike2" column="Bike2" type="System.String" />
+        <property name="Bike3" column="Bike3" type="System.String" />
+        <property name="SendMail" column="SendMail" type="System.Boolean" />
+    </class>
 </hibernate-mapping>

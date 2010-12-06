@@ -46,9 +46,11 @@
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBoxMail"
-                                    ErrorMessage="Campo obbligatorio!">Campo obbligatorio!</asp:RequiredFieldValidator>
+                                    ErrorMessage="Campo obbligatorio!" Display="Dynamic">Campo obbligatorio!</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="TextBoxMail"
-                                    ErrorMessage="Formato data non valido!" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Formato data non valido!</asp:RegularExpressionValidator>
+                                    ErrorMessage="Indirizzo non valido!" 
+                                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+                                    Display="Dynamic">Indirizzo non valido!</asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>
@@ -56,13 +58,14 @@
                                 Data di nascita
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBoxBirthDay" runat="server" Width="330px"></asp:TextBox>
+                                <asp:TextBox ID="TextBoxBirthDate" runat="server" Width="330px"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBoxBirthDay"
-                                    ErrorMessage="Campo obbligatorio!">Campo obbligatorio!</asp:RequiredFieldValidator>
-                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBoxBirthDay"
-                                    ErrorMessage="Formato data non valido!">Formato data non valido!</asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidatorBirth" runat="server" ControlToValidate="TextBoxBirthDate"
+                                    ErrorMessage="Campo obbligatorio!" Display="Dynamic">Campo obbligatorio!</asp:RequiredFieldValidator>
+                                <asp:CustomValidator  ID="CustomValidatorBirth" runat="server" ControlToValidate="TextBoxBirthDate"
+                                    ErrorMessage="Formato data non valido! Formato ammesso: 'gg/mm/aaaa'" 
+                                    onservervalidate="CustomValidatorBirth_ServerValidate" Display="Dynamic">Formato data non valido! Formato ammesso: &#39;gg/mm/aaaa&#39;</asp:CustomValidator>
                             </td>
                         </tr>
                         <tr>
@@ -70,9 +73,7 @@
                                 Codice Postale
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBoxZip" runat="server" Width="330px"></asp:TextBox>
-                            </td>
-                            <td>
+                                <asp:TextBox ID="TextBoxZip" runat="server" Width="330px"></asp:TextBox></td><td>
                             </td>
                         </tr>
                         <tr>
@@ -80,13 +81,8 @@
                                 Sesso
                             </td>
                             <td>
-                                <asp:RadioButtonList ID="RadioButtonListSex" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
-                                    <asp:ListItem>Maschio</asp:ListItem>
-                                    <asp:ListItem>Femmina</asp:ListItem>
-                                    <asp:ListItem Selected="True">Non specificato</asp:ListItem>
-                                </asp:RadioButtonList>
-                            </td>
-                            <td>
+                                <asp:RadioButtonList ID="RadioButtonListGender" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
+                                    <asp:ListItem>Maschio</asp:ListItem><asp:ListItem>Femmina</asp:ListItem><asp:ListItem Selected="True">Non specificato</asp:ListItem></asp:RadioButtonList></td><td>
                             </td>
                         </tr>
                         <tr>
@@ -94,9 +90,7 @@
                                 Bici 1
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBoxBike1" runat="server" Width="330px"></asp:TextBox>
-                            </td>
-                            <td>
+                                <asp:TextBox ID="TextBoxBike1" runat="server" Width="330px"></asp:TextBox></td><td>
                             </td>
                         </tr>
                         <tr>
@@ -104,9 +98,7 @@
                                 Bici 2
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBoxBike2" runat="server" Width="330px"></asp:TextBox>
-                            </td>
-                            <td>
+                                <asp:TextBox ID="TextBoxBike2" runat="server" Width="330px"></asp:TextBox></td><td>
                             </td>
                         </tr>
                         <tr>
@@ -114,13 +106,21 @@
                                 Bici 3
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBoxBike3" runat="server" Width="330px"></asp:TextBox>
+                                <asp:TextBox ID="TextBoxBike3" runat="server" Width="330px"></asp:TextBox></td><td>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                
                             </td>
                             <td>
+                                <asp:CheckBox ID="CheckBoxMailList" runat="server" Width="330px" Text="Voglio ricevere e-mail sulle novità del sito" ></asp:CheckBox></td><td>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <p></p>
                 <div>
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva profilo" OnClick="ButtonSave_Click" />
                 </div>
