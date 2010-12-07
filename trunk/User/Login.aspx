@@ -50,10 +50,9 @@
 				<rp:OpenIdButton runat="server" ImageUrl="~/images/yahoo.png" Text="Usa il tuo OpenId Yahoo!"
 					ID="yahooLoginButton" Identifier="https://me.yahoo.com/" OnLoggedIn="OpenIdLogin_LoggedIn" />
 			</div>
-			<div style="padding: 20px;">
-			Usa le tue credenziali Facebook
-				<fb:login-button></fb:login-button>
-			</div>
+			<div style="padding: 20px;" title = "Usa le tue credenziali Facebook">
+			
+				<fb:login-button></fb:login-button></div>
 			<p>
 				Pensi di non avere un OpenId? Forse non è così: molti portali in cui sei probabilmente
 				già registrato offrono questo servizio; di seguito ti offriamo alcuni esempi, <a
