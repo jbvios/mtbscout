@@ -16,6 +16,7 @@ using DotNetOpenAuth.OpenId;
 using MTBScout.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using System.Linq.Expressions;
 
 /// <summary>
 /// Summary description for Helper
@@ -354,7 +355,15 @@ public class LoginState
                 using (ISession iSession = NHSessionManager.GetSession())
                 {
 					var criteria = iSession.CreateCriteria<MTBUser>();
-					criteria.Add(Restrictions.Eq("OpenId", ClaimedIdentifier.ToString()));
+
+					//crea l'espressione per accedere allaproprietà OpenId 
+					Expression<Func<MTBUser, object>> expr = u => u.OpenId;
+					
+					//where OpenId = ?
+					criteria.Add(
+						Restrictions.Eq(Projections.Property(expr), 
+						ClaimedIdentifier.ToString()));
+					
 					user = criteria.UniqueResult<MTBUser>();
 					if (user == null)
 					{
