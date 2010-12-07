@@ -49,6 +49,9 @@
 			<div style="padding: 20px;">
 				<rp:OpenIdButton runat="server" ImageUrl="~/images/yahoo.png" Text="Usa il tuo OpenId Yahoo!"
 					ID="yahooLoginButton" Identifier="https://me.yahoo.com/" OnLoggedIn="OpenIdLogin_LoggedIn" />
+			</div>
+			<div style="padding: 20px;">
+			Usa le tue credenziali Facebook
 				<fb:login-button></fb:login-button>
 			</div>
 			<p>
@@ -138,13 +141,13 @@
 
 	<script type="text/javascript">
 		FB.init({ appId: 'your app id', status: true, cookie: true, xfbml: true });
-		FB.Event.subscribe('auth.sessionChange', function(response) {
+		FB.Event.subscribe('auth.login', function(response) {
 			if (response.session) {
 				// A user has logged in, and a new cookie has been saved
 				alert('true');
 			} else {
-			// The user has logged out, and the cookie has been cleared
-			alert('false');
+				// The user has logged out, and the cookie has been cleared
+				alert('false');
 			}
 		});
 
