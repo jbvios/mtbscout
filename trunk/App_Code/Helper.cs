@@ -353,24 +353,19 @@ public class LoginState
             {
                 using (ISession iSession = NHSessionManager.GetSession())
                 {
-                    user = iSession.Get<MTBUser>(ClaimedIdentifier.ToString());
-                    if (user == null)
-                    {
-                        using (ITransaction transaction = iSession.BeginTransaction())
-                        {
-                            user = new MTBUser();
-                            user.Id = ClaimedIdentifier;
-
-                            ClaimsResponse profileFields = ProfileFields;
-                            user.Name = profileFields.FullName;
-                            user.Surname = "";
-                            user.EMail = profileFields.Email;
-                            iSession.SaveOrUpdate(user);
-                            iSession.Flush();
-                            transaction.Commit();
-                        }
-                    }
-
+					var criteria = iSession.CreateCriteria<MTBUser>();
+					criteria.Add(Restrictions.Eq("OpenId", ClaimedIdentifier.ToString()));
+					user = criteria.UniqueResult<MTBUser>();
+					if (user == null)
+					{
+						user = new MTBUser();
+						user.OpenId = ClaimedIdentifier;
+						ClaimsResponse profileFields = ProfileFields;
+						user.Name = profileFields.FullName;
+						user.Surname = "";
+						user.EMail = profileFields.Email;
+					}
+					HttpContext.Current.Session["MTBUser"] = user;
                 }
             }
             return user;

@@ -16,24 +16,25 @@
 			position: relative;
 			top: 30px;
 			padding: 20px;
+			margin-bottom: 20px;
 		}
 		.LoginBox
 		{
 			padding: 20px;
-			
 		}
 		.LoginBox table
 		{
-			margin-left:auto;
-			margin-right:auto;
-			position:relative;
+			margin-left: auto;
+			margin-right: auto;
+			position: relative;
 		}
 	</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
-	<h1>Inserisci le tue credenziali</h1>
 		<div class="box">
+			<h1>
+				Inserisci le tue credenziali</h1>
 			<div class="LoginBox">
 				<rp:OpenIdLogin ID="OpenIdLogin" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
 					CanceledText="Login annullata." ExamplePrefix="Esempio:" FailedMessageText="Login fallita: {0}"
@@ -48,11 +49,12 @@
 			<div style="padding: 20px;">
 				<rp:OpenIdButton runat="server" ImageUrl="~/images/yahoo.png" Text="Usa il tuo OpenId Yahoo!"
 					ID="yahooLoginButton" Identifier="https://me.yahoo.com/" OnLoggedIn="OpenIdLogin_LoggedIn" />
+				<fb:login-button></fb:login-button>
 			</div>
 			<p>
-				Pensi di non avere un OpenId? Forse non è così: molti portali in cui sei registrato
-				offrono il servizio OpenId; di seguito ti offriamo alcuni esempi, <a href="http://openid.net/get-an-openid/"
-					target="_blank">vai qui</a> per ulteriori informazioni.</p>
+				Pensi di non avere un OpenId? Forse non è così: molti portali in cui sei probabilmente
+				già registrato offrono questo servizio; di seguito ti offriamo alcuni esempi, <a
+					href="http://www.openid.it/dove/" target="_blank">qui</a> trovi ulteriori informazioni.</p>
 			<p>
 				Ma cosè OpenId? E&#39; un servizio che ti permette di usare lo stesso nome e password
 				che usi nel tuo portale preferito anche per effettuare l&#39;accesso ad altri siti;
@@ -68,7 +70,10 @@
 							</td>
 							<td>
 								<p>
-									Recupera a questo indirizzo il tuo <a href="http://google.com/profiles/me">Profilo Google</a>.</p>
+									Recupera <a target="_blank" href="http://google.com/profiles/me">qui</a> il tuo
+									indirizzo di profilo Google: ti verrà richiesto di autenticarti con le credenziali
+									Google, poi verrai reindirizzato alla tua pagina di profilo; a quel punto, copia
+									l&#39;indirizzo della pagina e inseriscilo nella casella dell&#39;OpenId</p>
 							</td>
 						</tr>
 						<tr>
@@ -102,14 +107,14 @@
 							</td>
 						</tr>
 						<tr>
-						<td>
-							<a href="http://wordpress.com">
-								<img alt="Wordpress" src="/images/wordpress.png"></a>
-						</td>
-						<td>
-							<p>
-								Inserisci il tuo indirizzo WordPress.com, per esempio: “<strong>nomeutente</strong>.wordpress.com”</p>
-						</td>
+							<td>
+								<a href="http://wordpress.com">
+									<img alt="Wordpress" src="/images/wordpress.png"></a>
+							</td>
+							<td>
+								<p>
+									Inserisci il tuo indirizzo WordPress.com, per esempio: “<strong>nomeutente</strong>.wordpress.com”</p>
+							</td>
 						</tr>
 						<tr>
 							<td>
@@ -126,4 +131,33 @@
 			</div>
 		</div>
 	</div>
+	<div id="fb-root">
+	</div>
+
+	<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+
+	<script type="text/javascript">
+		FB.init({ appId: 'your app id', status: true, cookie: true, xfbml: true });
+		FB.Event.subscribe('auth.sessionChange', function(response) {
+			if (response.session) {
+				// A user has logged in, and a new cookie has been saved
+				alert('true');
+			} else {
+			// The user has logged out, and the cookie has been cleared
+			alert('false');
+			}
+		});
+
+		function FBLogin() {
+			FB.login(function(response) {
+				if (response.session) {
+					// user successfully logged in
+					alert('true');
+				} else {
+					alert('false');
+				}
+			});
+		}
+	</script>
+
 </asp:Content>

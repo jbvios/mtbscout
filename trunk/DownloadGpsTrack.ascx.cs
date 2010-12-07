@@ -31,6 +31,10 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
 			MeteoFrame.Attributes["src"] = string.Format("http://www.ilmeteo.it/script/meteo.php?id=free&citta={0}", countryCode);
 		else
 			MeteoFrame.Visible = false;
+
+		FBLike.Attributes["src"] = string.Format(
+			"http://www.facebook.com/widgets/like.php?href={0}",
+			HttpUtility.UrlEncode(Page.Request.Url.ToString()));
     }
 
 	
