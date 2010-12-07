@@ -88,8 +88,9 @@ namespace MTBScout.Entities
             Gender = GenderType.Unspecified;
             BirthDate = DateTime.MinValue;
         }
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+		public string OpenId { get; set; }
+		public string Name { get; set; }
         public string Surname { get; set; }
         public string EMail { get; set; }
         public DateTime BirthDate { get; set; }
