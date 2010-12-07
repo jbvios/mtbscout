@@ -69,4 +69,8 @@ public partial class User_User : System.Web.UI.Page
     {
         return DateTime.TryParse(dateString, CultureInfo.CurrentCulture, DateTimeStyles.None, out date);
     }
+	protected void TextBoxZip_TextChanged(object sender, EventArgs e)
+	{
+
+	}
 }

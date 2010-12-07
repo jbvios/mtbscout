@@ -5,7 +5,7 @@
 <uc1:Donate ID="Donate1" runat="server" />
 	<br />
 	<iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" 
-		style="border:none; width:450px; height:80px"></iframe>
+		style="border:none; width:330px; height:50px"></iframe>
 <table style="width: 60%; margin-left: auto; margin-right: auto;">
 	<tr>
 		<td style="width: 50%">

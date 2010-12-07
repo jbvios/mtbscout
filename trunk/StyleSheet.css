@@ -43,12 +43,11 @@ td.ImageCell
 td.ImageCell div
 {
 	border: solid 3px;
-	
 	vertical-align: top;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:20px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
 }
 
 table.RouteData
@@ -56,9 +55,8 @@ table.RouteData
 	table-layout: auto;
 	text-align: left;
 	margin-left: auto;
-	margin-right:auto;
-	position:relative;
-	
+	margin-right: auto;
+	position: relative;
 }
 div.HeaderContainer
 {
@@ -94,7 +92,7 @@ div.ImageAndDesc img
 .ImageWithBorder
 {
 	border: solid 1px blue;
-	}
+}
 div.FooterContainer
 {
 	width: 790px;
@@ -131,7 +129,7 @@ div.Vert
 div.Vert ul
 {
 	padding: 0px;
-	margin:0px;
+	margin: 0px;
 }
 div.Vert li
 {
@@ -160,8 +158,8 @@ div.Vert img
 {
 	background-color: #B6E2FD;
 	overflow: hidden;
-	left:1px;
-	top:1px;
+	left: 1px;
+	top: 1px;
 }
 div.NewsBanner
 {
@@ -191,4 +189,14 @@ div.MainCenter
 .CenterUrl
 {
 	text-align: center;
+}
+.FbLike
+{
+	border: none;
+	overflow: hidden;
+	width: 75px;
+	height: 21px;
+	position: absolute;
+	left: 30px;
+	top: 3px;
 }

@@ -11,6 +11,7 @@ using System.Reflection;
 using MTBScout.Entities;
 using MTBScout;
 using NHibernate.Criterion;
+using System.Linq.Expressions;
 
 
 
@@ -54,8 +55,10 @@ public class DBHelper
                 session[VisitorSessionCount] = visitorSessionCount;
 
             }
-            var criteria = iSession.CreateCriteria<Visitor>()
-                    .SetProjection(Projections.Sum("Visits"), Projections.Count("Visits"));
+			
+			Expression<Func<Visitor, object>> expr = v => v.Visits;
+			var criteria = iSession.CreateCriteria<Visitor>()
+					.SetProjection(Projections.Sum(expr), Projections.Count(expr));
             object[] result = criteria.List<object[]>()[0];
 
             session[SessionCount] = Convert.ToInt64(result[0]);

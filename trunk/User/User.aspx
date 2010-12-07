@@ -73,7 +73,8 @@
                                 Codice Postale
                             </td>
                             <td>
-                                <asp:TextBox ID="TextBoxZip" runat="server" Width="330px"></asp:TextBox></td><td>
+                                <asp:TextBox ID="TextBoxZip" runat="server" Width="330px" 
+									ontextchanged="TextBoxZip_TextChanged"></asp:TextBox></td><td>
                             </td>
                         </tr>
                         <tr>
