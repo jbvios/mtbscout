@@ -10,7 +10,36 @@ using System.Linq.Expressions;
 using NHibernate.Criterion;
 namespace MTBScout.Entities
 {
-    public class Visitor
+    internal class DescriptionAttribute : Attribute
+    {
+        public string Description { get; set; }
+        public DescriptionAttribute(string description)
+        {
+            this.Description = description;
+        }
+    }
+    public class Entity
+    {
+        public override string ToString()
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (PropertyInfo pi in GetType().GetProperties())
+            {
+                MethodInfo mi = pi.GetGetMethod();
+                if (mi == null)
+                    continue;
+                object[] o = pi.GetCustomAttributes(typeof(DescriptionAttribute), true);
+                string propDesc = (o.Length == 1)
+                    ? ((DescriptionAttribute)o[0]).Description
+                    : pi.Name;
+                sb.AppendFormat("{0}: {1}\r\n", propDesc, mi.Invoke(this, null));
+            }
+            return sb.ToString();
+        }
+    }
+    public class Visitor : Entity
     {
         private string host;
         public string Host { get { return host; } set { host = value; } }
@@ -30,7 +59,7 @@ namespace MTBScout.Entities
     }
 
 
-    public class Route
+    public class Route : Entity
     {
         private GpxParser parser = null;
         public GpxParser Parser
@@ -67,22 +96,10 @@ namespace MTBScout.Entities
         public string Difficulty { get; set; }
         public string Description { get; set; }
 
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (PropertyInfo pi in GetType().GetProperties())
-            {
-                MethodInfo mi = pi.GetGetMethod();
-                if (mi == null)
-                    continue;
-                sb.AppendFormat("{0}: {1}\r\n", pi.Name, mi.Invoke(this, null));
-            }
-            return sb.ToString();
-        }
+        
     }
 
-    public class MTBUser
+    public class MTBUser : Entity
     {
         public enum GenderType { Male = 0, Female = 1, Unspecified = 2 }
         public MTBUser()
@@ -91,21 +108,33 @@ namespace MTBScout.Entities
             Gender = GenderType.Unspecified;
             BirthDate = DateTime.MinValue;
         }
-
+        [Description("Codice identificativo")]
         public int Id { get; set; }
-		public string OpenId { get; set; }
-		public string Name { get; set; }
+        [Description("Identificativo OpenId")]
+        public string OpenId { get; set; }
+		[Description("Nome")]
+        public string Name { get; set; }
+        [Description("Cognome")]
         public string Surname { get; set; }
+        [Description("Nickname")]
         public string Nickname { get; set; }
+        [Description("Indirizzo di posta elettronica")]
         public string EMail { get; set; }
+        [Description("Data di nascita")]
         public DateTime BirthDate { get; set; }
+        [Description("Genere (numero)")]
         public Int16 GenderNumber { get; set; }
+        [Description("Codice postale")]
         public string Zip { get; set; }
+        [Description("Prima bici")]
         public string Bike1 { get; set; }
+        [Description("Seconda bici")]
         public string Bike2 { get; set; }
+        [Description("Terza bici")]
         public string Bike3 { get; set; }
+        [Description("Mandatemi mail")]
         public bool SendMail { get; set; }
-
+        [Description("Genere (tipo)")]
         public GenderType Gender { get { return (GenderType)GenderNumber; } set { GenderNumber = (short)value; } }
 
         public void Save()

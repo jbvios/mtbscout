@@ -70,14 +70,24 @@ public partial class User_User : System.Web.UI.Page
             user.SendMail = CheckBoxMailList.Checked;
             user.Save();
             //l'ho salvato: adesso è un utente buono
-            LoginState.User = user;
+            if (LoginState.User != user)
+            {
+                LoginState.User = user;
+                //mi mando una mail per conoscenza, e una la mando a chi si è registrato
+                string msg = string.Format("Grazie per esserti registrato a MTBScout, questo è il riepilogo dei tuoi dati:\r\n{0}", user);
+                Helper.SendMail(user.EMail, null, "info@mtbscout.it", "Conferma avvenuta registrazione", msg);
+                
+                //non mi serve più quello temporaneo
+                LoginState.NewUser = null;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "MessageOK", "alert('Informazioni salvate correttamente.');", true);
         }
         catch (Exception ex)
         {
             message = String.Format("Errore salvando i dati utente: {0}", ex.Message);
-            
+            ScriptManager.RegisterStartupScript(this, GetType(), "MessageError", string.Format("alert('{0}');", message), true);
         }
-        ScriptManager.RegisterStartupScript(this, GetType(), "Message", string.Format("alert('{0}');", message), true);
+        
     }
     protected void CustomValidatorBirth_ServerValidate(object source, ServerValidateEventArgs args)
     {

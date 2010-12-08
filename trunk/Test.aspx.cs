@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using MTBScout;
+using System.Net.Mail;
 
 public partial class Test : System.Web.UI.Page
 {
@@ -15,10 +16,16 @@ public partial class Test : System.Web.UI.Page
     {
         string folder = Server.MapPath("~/Routes");
         Response.Write(PathFunctions.RootPath);
-        Delete(folder, "profile.png");
-        Delete(folder, "map.html");
-		Delete(Server.MapPath("~/public/workingdata"), "track.gz");
-        Delete(Server.MapPath("~"), "thumbs.db");
+        //Delete(folder, "profile.png");
+        //Delete(folder, "map.html");
+        //Delete(folder, "route.xml");
+
+        //SmtpClient client = new SmtpClient("localhost");
+
+        //MailMessage msg = new MailMessage("info@mtbscout.it", "info@mtbscout.it", "Ciao", "Ciao");
+        //client.Send(msg);
+		//Delete(Server.MapPath("~/public/workingdata"), "track.gz");
+       // Delete(Server.MapPath("~"), "thumbs.db");
 
     }
 
