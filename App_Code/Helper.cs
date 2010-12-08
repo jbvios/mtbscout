@@ -17,6 +17,7 @@ using MTBScout.Entities;
 using NHibernate;
 using NHibernate.Criterion;
 using System.Linq.Expressions;
+using System.Net.Mail;
 
 /// <summary>
 /// Summary description for Helper
@@ -311,6 +312,34 @@ public static class Helper
     {
         return string.Compare(PathFunctions.RootPath, "c:\\mtbscout", StringComparison.InvariantCultureIgnoreCase) == 0;
     }
+
+    public static void SendMail(string to, string cc, string bcc, string subject, string body)
+    {
+        string[] ccAr = cc == null ? new string[0] : new string[] { cc };
+        string[] bccAr = bcc == null ? new string[0] : new string[] { bcc };
+        SendMail(new string[] { to }, ccAr, bccAr, subject, body);
+    }
+    public static void SendMail(string[] to, string[] cc, string[] bcc, string subject, string body)
+    {
+        if (IsDevelopment())
+            return;
+
+        SmtpClient client = new SmtpClient("localhost");
+
+        MailMessage msg = new MailMessage();
+        msg.Body = body;
+        msg.Subject = subject;
+        msg.Sender = new MailAddress("info@mtbscout.it");
+        msg.From = new MailAddress("info@mtbscout.it");
+        foreach (string s in to)
+            msg.To.Add(new MailAddress(s));
+        foreach (string s in cc)
+            msg.CC.Add(new MailAddress(s));
+        foreach (string s in bcc)
+            msg.Bcc.Add(new MailAddress(s));
+
+        client.Send(msg);
+    }
 }
 
 /// <summary>
@@ -325,7 +354,7 @@ public class LoginState
             FormsAuthentication.RedirectToLoginPage();
             return false;
         }
-       
+
         return true;
     }
     private const string MTBUserIdentifier = "MTBUser";
@@ -352,5 +381,5 @@ public class LoginState
             HttpContext.Current.Session[MTBNewUserIdentifier] = value;
         }
     }
-    
+
 }
