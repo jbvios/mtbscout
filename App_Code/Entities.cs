@@ -5,6 +5,9 @@ using System.Web;
 using System.Text;
 using System.Reflection;
 using DotNetOpenAuth.OpenId;
+using NHibernate;
+using System.Linq.Expressions;
+using NHibernate.Criterion;
 namespace MTBScout.Entities
 {
     public class Visitor
@@ -88,10 +91,12 @@ namespace MTBScout.Entities
             Gender = GenderType.Unspecified;
             BirthDate = DateTime.MinValue;
         }
+
         public int Id { get; set; }
 		public string OpenId { get; set; }
 		public string Name { get; set; }
         public string Surname { get; set; }
+        public string Nickname { get; set; }
         public string EMail { get; set; }
         public DateTime BirthDate { get; set; }
         public Int16 GenderNumber { get; set; }
@@ -103,5 +108,34 @@ namespace MTBScout.Entities
 
         public GenderType Gender { get { return (GenderType)GenderNumber; } set { GenderNumber = (short)value; } }
 
+        public void Save()
+        {
+            using (ISession iSession = NHSessionManager.GetSession())
+            {
+                using (ITransaction transaction = iSession.BeginTransaction())
+                {
+                    iSession.SaveOrUpdate(this);
+                    iSession.Flush();
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public static MTBUser Load(string id)
+        {
+            using (ISession iSession = NHSessionManager.GetSession())
+            {
+                var criteria = iSession.CreateCriteria<MTBUser>();
+
+                //crea l'espressione per accedere allaproprietà OpenId 
+                Expression<Func<MTBUser, object>> expr = u => u.OpenId;
+
+                //where OpenId = ?
+                criteria.Add(Restrictions.Eq(Projections.Property(expr), id));
+
+                //recupero l'utente da db
+                return criteria.UniqueResult<MTBUser>();
+            }
+        }
     }
 }

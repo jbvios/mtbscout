@@ -320,78 +320,37 @@ public class LoginState
 {
     public static bool TestLogin()
     {
-        if (ClaimedIdentifier == null)
+        if (User == null)
         {
             FormsAuthentication.RedirectToLoginPage();
             return false;
         }
+       
         return true;
     }
-
-    public static ClaimsResponse ProfileFields
-    {
-        get { return HttpContext.Current.Session["ProfileFields"] as ClaimsResponse; }
-        set { HttpContext.Current.Session["ProfileFields"] = value; }
-    }
-
-    public static Identifier ClaimedIdentifier
-    {
-        get { return HttpContext.Current.Session["ClaimedIdentifier"] as Identifier; }
-        set { HttpContext.Current.Session["ClaimedIdentifier"] = value; }
-    }
-
-    public static Identifier FriendlyLoginName
-    {
-        get { return HttpContext.Current.Session["FriendlyUsername"] as string; }
-        set { HttpContext.Current.Session["FriendlyUsername"] = value; }
-    }
+    private const string MTBUserIdentifier = "MTBUser";
     public static MTBUser User
     {
         get
         {
-            MTBUser user = HttpContext.Current.Session["MTBUser"] as MTBUser;
-            if (user == null)
-            {
-                using (ISession iSession = NHSessionManager.GetSession())
-                {
-					var criteria = iSession.CreateCriteria<MTBUser>();
-
-					//crea l'espressione per accedere allaproprietà OpenId 
-					Expression<Func<MTBUser, object>> expr = u => u.OpenId;
-					
-					//where OpenId = ?
-					criteria.Add(
-						Restrictions.Eq(Projections.Property(expr), 
-						ClaimedIdentifier.ToString()));
-					
-					user = criteria.UniqueResult<MTBUser>();
-					if (user == null)
-					{
-						user = new MTBUser();
-						user.OpenId = ClaimedIdentifier;
-						ClaimsResponse profileFields = ProfileFields;
-						user.Name = profileFields.FullName;
-						user.Surname = "";
-						user.EMail = profileFields.Email;
-					}
-					HttpContext.Current.Session["MTBUser"] = user;
-                }
-            }
-            return user;
+            return HttpContext.Current.Session[MTBUserIdentifier] as MTBUser;
         }
-
-    }
-
-    public static void SaveUser(MTBUser user)
-    {
-        using (ISession iSession = NHSessionManager.GetSession())
+        set
         {
-            using (ITransaction transaction = iSession.BeginTransaction())
-            {
-                iSession.SaveOrUpdate(user);
-                iSession.Flush();
-                transaction.Commit();
-            }
+            HttpContext.Current.Session[MTBUserIdentifier] = value;
         }
     }
+    private const string MTBNewUserIdentifier = "NewMTBUser";
+    public static MTBUser NewUser
+    {
+        get
+        {
+            return HttpContext.Current.Session[MTBNewUserIdentifier] as MTBUser;
+        }
+        set
+        {
+            HttpContext.Current.Session[MTBNewUserIdentifier] = value;
+        }
+    }
+    
 }

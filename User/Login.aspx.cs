@@ -11,24 +11,75 @@ using DotNetOpenAuth.OpenId.Extensions.SimpleRegistration;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using DotNetOpenAuth.OpenId;
 using MTBScout.Entities;
+using NHibernate;
+using System.Linq.Expressions;
+using NHibernate.Criterion;
 
 public partial class Login : System.Web.UI.Page
 {
-	protected override void OnInit(EventArgs e)
-	{
-		base.OnInit(e);
-	}
-    protected void Page_Load(object sender, EventArgs e)
+    protected void OpenIdLogin_LoggedIn(object sender, OpenIdEventArgs e)
     {
-		
+        //recupero l'utente da db, oppure lo creo al volo se non esiste
+        MTBUser user = MTBUser.Load(e.ClaimedIdentifier.ToString());
+
+        //non esiste? allora lo creo e lo metto nella sessione come NewUser, quindi 
+        //rimando alla pagina User che, solo dopo aver inserito i dati obblicatori, lo metterà
+        //finalmente in sessione come User
+        if (user == null)
+        {
+            user = new MTBUser();
+            user.OpenId = e.ClaimedIdentifier;
+            user.Surname = "";
+            ClaimsResponse profileFields = e.Response.GetExtension<ClaimsResponse>();
+            if (profileFields != null)
+            {
+                user.Name = profileFields.FullName;
+                user.EMail = profileFields.Email;
+                user.Nickname = profileFields.Nickname;
+                if (profileFields.Gender != null)
+                {
+                    switch (profileFields.Gender.Value)
+                    {
+                        case Gender.Male:
+                            user.Gender = MTBUser.GenderType.Male;
+                            break;
+                        case Gender.Female:
+                            user.Gender = MTBUser.GenderType.Female;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                if (profileFields.BirthDate != null)
+                    user.BirthDate = profileFields.BirthDate.Value;
+            }
+
+            LoginState.NewUser = user;
+            Response.Redirect("User.aspx");
+        }
+        else
+        {
+            LoginState.User = user;
+        }
+
     }
-	
-	protected void OpenIdLogin_LoggedIn(object sender, OpenIdEventArgs e)
-	{
-        LoginState.ClaimedIdentifier = e.ClaimedIdentifier;
-		LoginState.FriendlyLoginName = e.Response.FriendlyIdentifierForDisplay;
-        LoginState.ProfileFields = e.Response.GetExtension<ClaimsResponse>();
-	}
+
+    protected void OpenIdLogin_LoggingIn(object sender, OpenIdEventArgs e)
+    {
+        e.Request.AddExtension(new ClaimsRequest
+        {
+            BirthDate = DemandLevel.Require,
+            Country = DemandLevel.Require,
+            Email = DemandLevel.Require,
+            FullName = DemandLevel.Require,
+            Gender = DemandLevel.Require,
+            PostalCode = DemandLevel.Require,
+            TimeZone = DemandLevel.Require,
+            Language = DemandLevel.Require,
+            Nickname = DemandLevel.Require
+        });
+    }
 }
 
 

@@ -39,6 +39,16 @@
                         </tr>
                         <tr>
                             <td>
+                                Nickname
+                            </td>
+                            <td>
+                                <asp:TextBox ID="TextBoxNickname" runat="server" Width="330px"></asp:TextBox>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 Mail
                             </td>
                             <td>
