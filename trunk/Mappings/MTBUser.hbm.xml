@@ -10,6 +10,7 @@
 	<property  name="OpenId" column="OpenId" type="System.String" unique="true"></property>
 	<property name="Name" column="Name" type="System.String" unique="true"/>
 	<property name="Surname" column="Surname" type="System.String"  />
+	<property name="Nickname" column="Nickname" type="System.String"  />
 	<property name="EMail" column="EMail" type="System.String" not-null="true"/>
 	<property name="BirthDate" column="BirthDate" type="System.DateTime" />
 	<property name="GenderNumber" column="Gender" type="System.Int16" />

@@ -6,17 +6,25 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MTBScout.Entities;
 using System.Globalization;
+using NHibernate;
+using System.Web.Security;
 
 public partial class User_User : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (LoginState.TestLogin() && !IsPostBack)
+        MTBUser user = GetUser();
+        //neahce di nuova creazione: vai alla login!
+        if (user == null)
         {
-            MTBUser user = LoginState.User;
-           
+            FormsAuthentication.RedirectToLoginPage();
+            return;
+        }
+        if (!IsPostBack)
+        {
             TextBoxName.Text = user.Name;
             TextBoxSurname.Text = user.Surname;
+            TextBoxNickname.Text = user.Nickname;
             TextBoxMail.Text = user.EMail;
             if (user.BirthDate != DateTime.MinValue)
                 TextBoxBirthDate.Text = user.BirthDate.ToString("dd/MM/yyyy", CultureInfo.CurrentCulture);
@@ -30,16 +38,26 @@ public partial class User_User : System.Web.UI.Page
             CheckBoxMailList.Checked = user.SendMail;
         }
     }
+
+    private static MTBUser GetUser()
+    {
+        MTBUser user = LoginState.User;
+        if (user == null) //non ho trovato un utente da db, alora è di nuova creazione?
+            user = LoginState.NewUser;
+        return user;
+    }
     protected void ButtonSave_Click(object sender, EventArgs e)
     {
         if (!IsValid)
             return;
+
         string message = "Informazioni salvate correttamente.";
         try
         {
-            MTBUser user = LoginState.User;
+            MTBUser user = GetUser();
             user.Name = TextBoxName.Text;
             user.Surname = TextBoxSurname.Text;
+            user.Nickname = TextBoxNickname.Text;
             user.EMail = TextBoxMail.Text;
             DateTime d;
             if (ParseDate(TextBoxBirthDate.Text, out d))
@@ -50,7 +68,9 @@ public partial class User_User : System.Web.UI.Page
             user.Bike2 = TextBoxBike2.Text;
             user.Bike3 = TextBoxBike3.Text;
             user.SendMail = CheckBoxMailList.Checked;
-            LoginState.SaveUser(user);
+            user.Save();
+            //l'ho salvato: adesso è un utente buono
+            LoginState.User = user;
         }
         catch (Exception ex)
         {
@@ -73,4 +93,6 @@ public partial class User_User : System.Web.UI.Page
 	{
 
 	}
+
+    
 }
