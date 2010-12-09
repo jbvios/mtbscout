@@ -29,7 +29,7 @@ public partial class Footer : System.Web.UI.UserControl
         if (LoginState.User != null)
         {
             Disconnect.Visible = true;
-            Disconnect.ToolTip = string.Format("Disconnetti l'utente {0}", GetUser());
+			Disconnect.ToolTip = string.Format("Disconnetti l'utente {0}", LoginState.User.DisplayName);
         }
         else
         {
@@ -40,7 +40,7 @@ public partial class Footer : System.Web.UI.UserControl
     {
         if (LoginState.User != null)
         {
-            return GetUser() + " - ";
+			return LoginState.User.DisplayName +" - ";
         }
         else
         {
@@ -48,12 +48,7 @@ public partial class Footer : System.Web.UI.UserControl
         }
     }
 
-    private static string GetUser()
-    {
-        return string.IsNullOrEmpty(LoginState.User.Nickname)
-            ? LoginState.User.Name + " " + LoginState.User.Surname
-            : LoginState.User.Nickname;
-    }
+   
     protected long GetVisitorNumber()
     {
         return (long)Session[DBHelper.HostCount];

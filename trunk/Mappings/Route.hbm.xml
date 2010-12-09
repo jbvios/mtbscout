@@ -15,5 +15,6 @@
         <property name="Cycling" column="Cycling" type="System.Int32" />
         <property name="Difficulty" column="Difficulty" type="System.String"/>
         <property name="Description" column="Description" type="System.String"/>
+		<property name="OwnerId" column="OwnerId" type="System.Int32"/>
 	</class>
 </hibernate-mapping>
