@@ -99,7 +99,7 @@ namespace MTBScout
 
         public static string GetRoutePathFromName(string name)
         {
-            return Path.Combine(RootPath, string.Format("Routes\\{0}", name));
+            return Path.Combine(RootPath, string.Format("Public\\Routes\\{0}", name));
         }
 
         internal static string GetMappingPath()

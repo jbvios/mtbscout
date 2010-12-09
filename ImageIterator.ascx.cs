@@ -141,18 +141,12 @@ public partial class ImageIterator : System.Web.UI.UserControl
 			img.Style[HtmlTextWriterStyle.Left] = "0px";
 			img.Style[HtmlTextWriterStyle.Top] = "0px";
 
-
-
 			Label l = new Label();
 			l.Style[HtmlTextWriterStyle.Display] = "block";
 			l.Text = caption;
 
 			cell.Controls.Add(l);
-			LiteralControl lc = new LiteralControl(string.Format(
-							"<iframe src=\"http://www.facebook.com/plugins/like.php?href={0}&amp;layout=button_count&amp;show_faces=false&amp;width=75&amp;action=like&amp;colorscheme=light&amp;height=21\" scrolling=\"no\" frameborder=\"0\" class=\"FbLike\"\" allowTransparency=\"true\"></iframe>",
-							originalPhotoUrl));
 			
-			p.Controls.Add(lc);
 			if (++col == 3)
 				col = 0;
 		}
