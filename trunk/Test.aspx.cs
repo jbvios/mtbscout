@@ -15,8 +15,8 @@ public partial class Test : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string folder = Server.MapPath("~/Routes");
-        Response.Write(PathFunctions.RootPath);
-        //Delete(folder, "profile.png");
+        string target = Server.MapPath("~/Public/Routes");
+       //Delete(folder, "profile.png");
         //Delete(folder, "map.html");
         //Delete(folder, "route.xml");
 
@@ -29,6 +29,7 @@ public partial class Test : System.Web.UI.Page
 
     }
 
+  
     private void Delete(string folder, string filter)
     {
         foreach (string file in Directory.GetFiles(folder, filter, SearchOption.AllDirectories))
