@@ -25,7 +25,28 @@ using System.Net.Mail;
 public static class Helper
 {
     private static int sessions = 0;
+	private static Dictionary<string, int> countryCodes = null;
+	
+	static Helper()
+	{
+		string file = Path.Combine(PathFunctions.RootPath, "resources\\ilmeteo_codici_comuni.csv");
 
+		countryCodes = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
+
+		using (StreamReader sr = new StreamReader(file))
+		{
+			string s = "";
+			while ((s = sr.ReadLine()) != null)
+			{
+				string[] tokens = s.Split(';');
+				string code = tokens[0];
+				string name = tokens[1];
+				string province = tokens[2];
+				countryCodes.Add(Mengle(name, province), int.Parse(code));
+			}
+		}
+
+	}
     public static int GetActiveSessionCount()
     {
         return sessions;
@@ -100,14 +121,11 @@ public static class Helper
         }
     }
 
-
-
     public static void AddUserInfoToSession(OleDbDataReader reader)
     {
         HttpContext.Current.Session["UserId"] = Convert.ToInt32(reader["ID"]);
         HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Params["Return"]);
     }
-
 
     public static GpxParser GetGpxParser(string gpxPath)
     {
@@ -128,6 +146,7 @@ public static class Helper
         }
         return parser;
     }
+
     public static ImageCache GetImageCache(string imagesPath)
     {
         ImageCache cache = HttpContext.Current.Cache[imagesPath] as ImageCache;
@@ -267,46 +286,16 @@ public static class Helper
         return code;
     }
 
-    static Dictionary<string, int> GetCountryCodes()
+	
+	static Dictionary<string, int> GetCountryCodes()
     {
-        string file = Path.Combine(PathFunctions.RootPath, "resources\\ilmeteo_codici_comuni.csv");
-
-        Dictionary<string, int> codes = HttpContext.Current.Cache[file] as Dictionary<string, int>;
-        if (codes == null)
-        {
-            codes = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
-
-            using (StreamReader sr = new StreamReader(file))
-            {
-                string s = "";
-                while ((s = sr.ReadLine()) != null)
-                {
-                    string[] tokens = s.Split(';');
-                    string code = tokens[0];
-                    string name = tokens[1];
-                    string province = tokens[2];
-                    codes.Add(Mengle(name, province), int.Parse(code));
-                }
-            }
-
-            HttpContext.Current.Cache.Add(
-                file,
-                codes,
-                new CacheDependency(new string[] { file }),
-                Cache.NoAbsoluteExpiration,
-                Cache.NoSlidingExpiration,
-                CacheItemPriority.Normal,
-                null);
-
-        }
-        return codes;
+		return countryCodes;
     }
 
     private static string Mengle(string country, string province)
     {
         return country + ", " + province;
     }
-
 
     internal static bool IsDevelopment()
     {
