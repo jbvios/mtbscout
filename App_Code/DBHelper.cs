@@ -26,13 +26,16 @@ public class DBHelper
     public const string HostCount = "HostCount";
 
     private static IList<Route> routes;
-
-    static DBHelper()
+	private static IList<MTBUser> users;
+    //--------------------------------------------------------------------------------
+	static DBHelper()
     {
         using (ISession iSession = NHSessionManager.GetSession())
         {
             ICriteria criteria = iSession.CreateCriteria<Route>();
             routes = criteria.List<Route>();
+			criteria = iSession.CreateCriteria<MTBUser>();
+			users = criteria.List<MTBUser>();
         }
     }
     //--------------------------------------------------------------------------------
@@ -66,8 +69,12 @@ public class DBHelper
         }
     }
 
+    //--------------------------------------------------------------------------------
     public static IEnumerable<Route> Routes { get { return routes; } }
+	//--------------------------------------------------------------------------------
+	public static IEnumerable<MTBUser> Users { get { return users; } }
 
+    //--------------------------------------------------------------------------------
     public static Route GetRoute(string routeName)
     {
         var routes =
@@ -77,6 +84,57 @@ public class DBHelper
 
         return routes.First<Route>();
     }
+
+	//--------------------------------------------------------------------------------
+    public static void SaveUser(MTBUser user)
+	{
+		using (ISession iSession = NHSessionManager.GetSession())
+		{
+			//aggiungo l'utente al database, oppure lo aggiorno
+			using (ITransaction transaction = iSession.BeginTransaction())
+			{
+				iSession.SaveOrUpdate(user);
+				iSession.Flush();
+				transaction.Commit();
+			}
+
+			//se non è presente nella mia cache, lo aggiungo
+			if (user != LoadUser(user.Id))
+				users.Add(user);
+		}
+	}
+	//--------------------------------------------------------------------------------
+    /// <summary>
+	/// recupera lo user a partire dal suo openid
+	/// </summary>
+	/// <param name="openId"></param>
+	/// <returns></returns>
+	public static MTBUser LoadUser(string openId)
+	{
+		var users =
+		   from user in Users
+		   where user.OpenId == openId
+		   select user;
+
+		return users.First<MTBUser>();
+	}
+
+	
+	//--------------------------------------------------------------------------------
+    /// <summary>
+	/// recupera lo user a partire dal suo id interno
+	/// </summary>
+	/// <param name="id"></param>
+	/// <returns></returns>
+	public static MTBUser LoadUser(int id)
+	{
+		var users =
+		   from user in Users
+		   where user.Id == id
+		   select user;
+
+		return users.First<MTBUser>();
+	}
 }
 
 

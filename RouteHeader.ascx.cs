@@ -40,7 +40,7 @@ public partial class RouteHeader : System.Web.UI.UserControl
             Title.Visible = false;
         else
             Title.InnerText = r.Title;
-		Owner.InnerText = MTBUser.Load(r.OwnerId).DisplayName;
+		Owner.InnerText = DBHelper.LoadUser(r.OwnerId).DisplayName;
         Lenght.InnerText = routeLenght + " Km";
         TotalHeight.InnerText = routeTotalHeight + " m";
         MaxHeight.InnerText = routeMaxHeight + " m";

@@ -5,7 +5,7 @@
 <table class="RouteData">
 	<tr>
 		<td>
-			Iserita da:
+			Percorso inserito da:
 		</td>
 		<td id="Owner" runat="server">
 			
