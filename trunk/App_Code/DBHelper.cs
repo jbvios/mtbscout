@@ -125,8 +125,7 @@ public class DBHelper
 			   from user in Users
 			   where user.OpenId == openId
 			   select user;
-
-			return users.First<MTBUser>();
+			return users.Count() == 0 ? null : users.First<MTBUser>();
 		}
 	}
 
@@ -146,7 +145,7 @@ public class DBHelper
 			   where user.Id == id
 			   select user;
 
-			return users.First<MTBUser>();
+			return users.Count() == 0 ? null : users.First<MTBUser>();
 		}
 	}
 }
