@@ -341,6 +341,30 @@ public static class Helper
         client.Send(msg);
     }
 }
+internal class AutoLock : IDisposable
+{
+	private static readonly TimeSpan timeout = TimeSpan.FromMinutes(1);
+	ReaderWriterLock l;
+	bool forWrite;
+	public AutoLock(ReaderWriterLock l, bool forWrite)
+	{
+		this.l = l;
+
+		if (this.forWrite = forWrite)
+			l.AcquireWriterLock(timeout);
+		else
+			l.AcquireReaderLock(timeout);
+
+	}
+	public void Dispose()
+	{
+		if (this.forWrite)
+			l.ReleaseWriterLock();
+		else
+			l.ReleaseReaderLock();
+	}
+
+}
 
 /// <summary>
 /// Strong-typed bag of session state.
