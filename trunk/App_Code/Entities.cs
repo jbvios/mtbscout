@@ -147,54 +147,6 @@ namespace MTBScout.Entities
 			}
 		}
 
-		public void Save()
-		{
-			using (ISession iSession = NHSessionManager.GetSession())
-			{
-				using (ITransaction transaction = iSession.BeginTransaction())
-				{
-					iSession.SaveOrUpdate(this);
-					iSession.Flush();
-					transaction.Commit();
-				}
-			}
-		}
-		/// <summary>
-		/// recupera lo user a partire dal suo openid
-		/// </summary>
-		/// <param name="openId"></param>
-		/// <returns></returns>
-		public static MTBUser Load(string openId)
-		{
-			return Load(openId, u => u.OpenId);
-		}
-
-		/// <summary>
-		/// recupera lo user a partire dal suo id interno
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		public static MTBUser Load(int id)
-		{
-			return Load(id, u => u.Id);
-		}
-		/// <summary>
-		/// recupera lo user a partire dal suo id interno
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		public static MTBUser Load(object id, Expression<Func<MTBUser, object>> expr)
-		{
-			using (ISession iSession = NHSessionManager.GetSession())
-			{
-				var criteria = iSession.CreateCriteria<MTBUser>();
-
-				//where OpenId = ?
-				criteria.Add(Restrictions.Eq(Projections.Property(expr), id));
-
-				//recupero l'utente da db
-				return criteria.UniqueResult<MTBUser>();
-			}
-		}
+		
 	}
 }

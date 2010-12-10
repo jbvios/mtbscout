@@ -68,7 +68,7 @@ public partial class User_User : System.Web.UI.Page
             user.Bike2 = TextBoxBike2.Text;
             user.Bike3 = TextBoxBike3.Text;
             user.SendMail = CheckBoxMailList.Checked;
-            user.Save();
+            DBHelper.SaveUser(user);
             //l'ho salvato: adesso è un utente buono
             if (LoginState.User != user)
             {

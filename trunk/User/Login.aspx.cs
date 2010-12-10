@@ -20,7 +20,7 @@ public partial class Login : System.Web.UI.Page
     protected void OpenIdLogin_LoggedIn(object sender, OpenIdEventArgs e)
     {
         //recupero l'utente da db, oppure lo creo al volo se non esiste
-        MTBUser user = MTBUser.Load(e.ClaimedIdentifier.ToString());
+        MTBUser user = DBHelper.LoadUser(e.ClaimedIdentifier.ToString());
 
         //non esiste? allora lo creo e lo metto nella sessione come NewUser, quindi 
         //rimando alla pagina User che, solo dopo aver inserito i dati obblicatori, lo metterà
