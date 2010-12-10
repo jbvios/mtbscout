@@ -22,8 +22,6 @@ namespace MTBScout
         private double totalClimb = 0.0;
         private double minEle = 2000000.0;
         private bool photoLoaded = false;
-        private bool countryCodeLoaded = false;
-        private int countryCode = 0;
         
         private string zippedFile = null;
         public string ZippedFile
@@ -32,28 +30,34 @@ namespace MTBScout
             {
                 if (zippedFile == null)
                 {
-                    zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(sourceFile, ".zip"));
-                    if (!File.Exists(zippedFile))
-                    {
-                        string folder = Path.GetDirectoryName(zippedFile);
-                        if (!Directory.Exists(folder))
-                            Directory.CreateDirectory(folder);
-                        using (FileStream fs = new FileStream(zippedFile, FileMode.Create))
-                        {
-                            using (ZipOutputStream stream = new ZipOutputStream(fs))
-                            {
-                                ZipEntry entry = new ZipEntry(Path.GetFileName(sourceFile));
+					lock (this)
+					{
+						if (zippedFile == null)
+						{
+							zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(sourceFile, ".zip"));
+							if (!File.Exists(zippedFile))
+							{
+								string folder = Path.GetDirectoryName(zippedFile);
+								if (!Directory.Exists(folder))
+									Directory.CreateDirectory(folder);
+								using (FileStream fs = new FileStream(zippedFile, FileMode.Create))
+								{
+									using (ZipOutputStream stream = new ZipOutputStream(fs))
+									{
+										ZipEntry entry = new ZipEntry(Path.GetFileName(sourceFile));
 
-                                entry.DateTime = DateTime.Now;
-                                stream.PutNextEntry(entry);
+										entry.DateTime = DateTime.Now;
+										stream.PutNextEntry(entry);
 
-                                byte[] buff = File.ReadAllBytes(sourceFile);
-                                stream.Write(buff, 0, buff.Length);
+										byte[] buff = File.ReadAllBytes(sourceFile);
+										stream.Write(buff, 0, buff.Length);
 
-                                stream.Finish();
-                            }
-                        }
-                    }
+										stream.Finish();
+									}
+								}
+							}
+						}
+					}
                 }
                 return zippedFile;
             }
@@ -66,25 +70,50 @@ namespace MTBScout
             {
                 if (mediumPoint == null)
                 {
-                    double lat = 0.0, lon = 0.0;
-                    int points = 0;
-                    foreach (Track t in Tracks)
-                        foreach (TrackSegment seg in t.Segments)
-                        {
-                            foreach (TrackPoint tp in seg.Points)
-                            {
-                                lat += tp.lat;
-                                lon += tp.lon;
-                            }
-                            points += seg.Points.Count;
-                        }
-                    mediumPoint = new GenericPoint();
-                    mediumPoint.lat = lat / points;
-                    mediumPoint.lon = lon / points;
+					lock (this)
+					{
+						if (mediumPoint == null)
+						{
+							double lat = 0.0, lon = 0.0;
+							int points = 0;
+							foreach (Track t in Tracks)
+								foreach (TrackSegment seg in t.Segments)
+								{
+									foreach (TrackPoint tp in seg.Points)
+									{
+										lat += tp.lat;
+										lon += tp.lon;
+									}
+									points += seg.Points.Count;
+								}
+							mediumPoint = new GenericPoint();
+							mediumPoint.lat = lat / points;
+							mediumPoint.lon = lon / points;
+						}
+					}
                 }
                 return mediumPoint;
             }
         }
+
+		private int ?countryCode = 0;
+		public int CountryCode
+		{
+			get
+			{
+				if (countryCode == null)
+				{
+					lock (this)
+					{
+						if (countryCode == null)
+						{
+							countryCode = Helper.GetCountryCode(MediumPoint.lat, MediumPoint.lon);
+						}
+					}
+				}
+				return countryCode.Value;
+			}
+		}
         private List<Track> tracks = new List<Track>();
         public List<Track> Tracks { get { return tracks; } }
 
@@ -98,18 +127,7 @@ namespace MTBScout
         public double LinearDistance { get { return linearDistance; } }
         public double Distance3D { get { return distance3D; } }
         public double TotalClimb { get { return totalClimb; } }
-        public int CountryCode
-        {
-            get
-            {
-                if (!countryCodeLoaded)
-                {
-                    countryCode = Helper.GetCountryCode(MediumPoint.lat, MediumPoint.lon);
-                    countryCodeLoaded = true;
-                }
-                return countryCode;
-            }
-        }
+        
         public GpxParser()
         {
 
