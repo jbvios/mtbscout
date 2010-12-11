@@ -15,7 +15,7 @@ namespace MTBScout
         
         public static string GetProfileUrl(string routeFolder)
         {
-            return string.Format("{0}\\Routes\\{1}\\profile.png", workingDataUrl, routeFolder);
+            return string.Format("{0}\\Public\\Routes\\{1}\\profile.png", workingDataUrl, routeFolder);
         }
 
         public static string GetImagePathFromGpx(string gpxFile)
