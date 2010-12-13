@@ -79,10 +79,8 @@
                 <div>
                     <div class="LoginBox">
                         <rp:OpenIdLogin ID="OpenIdLogin" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
-                            RegisterUrl = "http://openid.virgilio.it/openid/home/login.shtml"
                             CanceledText="Login annullata." ExamplePrefix="Esempio:" FailedMessageText="Login fallita: {0}"
-                            RegisterText="Non hai un OpenId? Creane uno!" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito con Virgilio."
-                            RememberMeText="Ricordami" RequestBirthDate="Require" RequestCountry="Require"
+                            RegisterText="Non hai un OpenId? Creane uno!" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito
                             RequestEmail="Require" RequestFullName="Require" RequestGender="Require" RequestLanguage="Require"
                             RequestNickname="Require" RequestPostalCode="Require" RequestTimeZone="Require"
                             RequiredText="Prima inserisci un indirizzo OpenID." UriFormatText="Indirizzo OpenID invalido."
