@@ -21,7 +21,24 @@ public partial class SiteHeader : System.Web.UI.UserControl
 
 		SpotLeft.Visible = ShowAds;
 		SpotRight.Visible = ShowAds;
+        
+        if (LoginState.User != null)
+        {
+            User.Visible = true;
+			DisconnectButton.ToolTip = string.Format("Disconnetti l'utente {0}", LoginState.User.DisplayName);
+            Disconnect.Alt = DisconnectButton.ToolTip;
+        }
+        else
+        {
+            User.Visible = false;
+        }
+    }
+    protected void Disconnect_Click(object sender, EventArgs e)
+    {
+        LoginState.User = null;
+        User.Visible = false;
     }
 
-	
+
+    
 }

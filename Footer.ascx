@@ -8,9 +8,7 @@
             - Visitatori attualmente connessi:
             <% Response.Write(Helper.GetActiveSessionCount()); %></span>
     </div>
-    <div style="text-align: center">
-    <asp:LinkButton runat="server"  ID="Disconnect" onclick="Disconnect_Click">[Esci]</asp:LinkButton>
-    </div>
+    
     <div style="text-align: center">
         <a href="mailto:info@mtbscout.it">info@mtbscout.it</a>
     </div>
