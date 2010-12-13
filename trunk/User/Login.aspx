@@ -80,7 +80,7 @@
                     <div class="LoginBox">
                         <rp:OpenIdLogin ID="OpenIdLogin" runat="server" ButtonText="Accedi »" ButtonToolTip="Effettua l'accesso"
                             CanceledText="Login annullata." ExamplePrefix="Esempio:" FailedMessageText="Login fallita: {0}"
-                            RegisterText="Non hai un OpenId? Creane uno!" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito
+                            RegisterText="Non hai un OpenId? Creane uno!" RegisterToolTip="Registrati adesso per ottenere un OpenID gratuito"
                             RequestEmail="Require" RequestFullName="Require" RequestGender="Require" RequestLanguage="Require"
                             RequestNickname="Require" RequestPostalCode="Require" RequestTimeZone="Require"
                             RequiredText="Prima inserisci un indirizzo OpenID." UriFormatText="Indirizzo OpenID invalido."
