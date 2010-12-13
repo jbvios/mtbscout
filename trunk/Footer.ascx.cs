@@ -26,15 +26,7 @@ public partial class Footer : System.Web.UI.UserControl
         MainFooterPanel.BackColor = BackColor;
         MainFooterPanel.ForeColor = Color;
         MainFooterPanel.Style[HtmlTextWriterStyle.Top] = Top.ToString();
-        if (LoginState.User != null)
-        {
-            Disconnect.Visible = true;
-			Disconnect.ToolTip = string.Format("Disconnetti l'utente {0}", LoginState.User.DisplayName);
-        }
-        else
-        {
-            Disconnect.Visible = false;
-        }
+        
     }
     protected string GetUserString()
     {
@@ -63,9 +55,5 @@ public partial class Footer : System.Web.UI.UserControl
     {
         return (long)Session[DBHelper.VisitorSessionCount];
     }
-    protected void Disconnect_Click(object sender, EventArgs e)
-    {
-        LoginState.User = null;
-        Disconnect.Visible = false;
-    }
+    
 }
