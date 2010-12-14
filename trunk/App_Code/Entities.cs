@@ -149,4 +149,22 @@ namespace MTBScout.Entities
 
 		
 	}
+
+	public class Rank : Entity
+	{
+		private Int32 id;
+		public Int32 Id
+		{
+			get { return id; }
+		}
+
+		public Rank()
+		{
+			id = 0;
+		}
+
+		public Int32 RouteId { get; set; }
+		public Int32 UserId { get; set; }
+		public Byte RankNumber { get; set; }
+	}
 }
