@@ -37,5 +37,16 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
 			HttpUtility.UrlEncode(Page.Request.Url.ToString()));
     }
 
-	
+
+	protected void Rank_SelectedIndexChanged(object sender, EventArgs e)
+	{
+		if (!LoginState.TestLogin())
+			return;
+
+		string s = LoginState.User.Bike3;
+	}
+	protected void Rank_Load(object sender, EventArgs e)
+	{
+
+	}
 }
