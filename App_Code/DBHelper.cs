@@ -112,9 +112,46 @@ public class DBHelper
 		}
 	}
 	//--------------------------------------------------------------------------------
-	public static void SaveRank(MTBUser user, Route route, byte rank)
-	{
-	}
+    public static void SaveRank(MTBUser user, Route route, byte rank)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Rank r = GetRank(user, route, iSession);
+            if (r == null)
+            {
+                r = new Rank();
+                r.RouteId = route.Id;
+                r.UserId = user.Id;
+            }
+            if (r.RankNumber != rank)
+            {
+                r.RankNumber = rank;
+                using (ITransaction transaction = iSession.BeginTransaction())
+                {
+                    iSession.SaveOrUpdate(r);
+                    iSession.Flush();
+                    transaction.Commit();
+                }
+            }
+        }
+    }
+    public static Rank GetRank(MTBUser user, Route route)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            return GetRank(user, route, iSession);
+        }
+    }
+    private static Rank GetRank(MTBUser user, Route route, ISession iSession)
+    {
+        Expression<Func<Rank, object>> expr = rt => rt.RouteId;
+        var criteria = iSession.CreateCriteria<Rank>();
+        criteria.Add(Restrictions.Eq(Projections.Property(expr), route.Id));
+        expr = rt => rt.UserId;
+        criteria.Add(Restrictions.Eq(Projections.Property(expr), user.Id));
+
+        return criteria.UniqueResult<Rank>();
+    }
 	//--------------------------------------------------------------------------------
 	/// <summary>
 	/// recupera lo user a partire dal suo openid
