@@ -4,12 +4,23 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MTBScout;
+using MTBScout.Entities;
+using System.IO;
 
 public partial class DownloadGpsTrack : System.Web.UI.UserControl
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        string gpxFullPath = Page.MapPath("track.gpx");
+	public string RouteName
+	{
+		get;
+		set;
+	}
+
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		if (Page.IsPostBack)
+			return;
+
+		string gpxFullPath = Page.MapPath("track.gpx");
 		string gpxRelPath = PathFunctions.GetRelativePath(gpxFullPath);
 		gpxRelPath = gpxRelPath.Replace('\\', '/');
 		if (!gpxRelPath.StartsWith("/"))
@@ -25,7 +36,7 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
 			countryCode = parser.CountryCode;
 			string zipPath = parser.ZippedFile;
 			HyperLinkToGps.NavigateUrl = PathFunctions.GetUrlFromPath(zipPath, true);
-			
+
 		}
 		if (countryCode != 0)
 			MeteoFrame.Attributes["src"] = string.Format("http://www.ilmeteo.it/script/meteo.php?id=free&citta={0}", countryCode);
@@ -35,18 +46,20 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
 		FBLike.Attributes["src"] = string.Format(
 			"http://www.facebook.com/widgets/like.php?href={0}",
 			HttpUtility.UrlEncode(Page.Request.Url.ToString()));
-    }
+
+		Rank.SelectedIndex = -1;
+	}
 
 
 	protected void Rank_SelectedIndexChanged(object sender, EventArgs e)
 	{
 		if (!LoginState.TestLogin())
 			return;
+		 if (string.IsNullOrEmpty(RouteName))
+            RouteName = Path.GetFileName(Page.MapPath("."));
+        Route r = DBHelper.GetRoute(RouteName);
 
-		string s = LoginState.User.Bike3;
+		DBHelper.SaveRank(LoginState.User, r, (Convert.ToByte(Rank.SelectedIndex)));
 	}
-	protected void Rank_Load(object sender, EventArgs e)
-	{
 
-	}
 }

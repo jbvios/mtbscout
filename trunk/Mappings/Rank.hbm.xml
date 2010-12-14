@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+						 assembly="App_Code"
+						 namespace="MTBScout.Entities">
+
+  <class name="Rank" table="Ranks" lazy="false">
+	<id name="id" unsaved-value="0" access="field" type="System.Int32" >
+	  <generator class="native" />
+	</id>
+	<property name="RouteId" column="RouteId" type="System.Int32"/>
+	<property name="UserId" column="UserId" type="System.Int32"/>
+	<property name="RankNumber" column="Rank" type="System.Byte"/>
+  </class>
+</hibernate-mapping>

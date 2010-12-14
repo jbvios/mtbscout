@@ -112,6 +112,10 @@ public class DBHelper
 		}
 	}
 	//--------------------------------------------------------------------------------
+	public static void SaveRank(MTBUser user, Route route, byte rank)
+	{
+	}
+	//--------------------------------------------------------------------------------
 	/// <summary>
 	/// recupera lo user a partire dal suo openid
 	/// </summary>
