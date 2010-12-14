@@ -5,23 +5,27 @@
 <br />
 <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
 	width: 330px; height: 50px"></iframe>
-<div class="ImageAndDesc">
-	Dai il tuo voto a questo percorso
-	<asp:RadioButtonList ID="Rank" runat="server" ToolTip="Dai il tuo voto a questo percorso"
-		RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True" CausesValidation="True"
-		OnLoad="Rank_Load" OnSelectedIndexChanged="Rank_SelectedIndexChanged">
-		<asp:ListItem>1</asp:ListItem>
-		<asp:ListItem>2</asp:ListItem>
-		<asp:ListItem>3</asp:ListItem>
-		<asp:ListItem>4</asp:ListItem>
-		<asp:ListItem>5</asp:ListItem>
-		<asp:ListItem>6</asp:ListItem>
-		<asp:ListItem>7</asp:ListItem>
-		<asp:ListItem>8</asp:ListItem>
-		<asp:ListItem>9</asp:ListItem>
-		<asp:ListItem>10</asp:ListItem>
-	</asp:RadioButtonList>
-</div>
+<asp:UpdatePanel runat="server" ChildrenAsTriggers="true" UpdateMode="Always" ID="RankPanel">
+	<ContentTemplate>
+		<div class="ImageAndDesc">
+			Dai il tuo voto a questo percorso
+			<asp:RadioButtonList ID="Rank" runat="server" ToolTip="Dai il tuo voto a questo percorso"
+				RepeatDirection="Horizontal" RepeatLayout="Flow" AutoPostBack="True" CausesValidation="True"
+				OnSelectedIndexChanged="Rank_SelectedIndexChanged">
+				<asp:ListItem>1</asp:ListItem>
+				<asp:ListItem>2</asp:ListItem>
+				<asp:ListItem>3</asp:ListItem>
+				<asp:ListItem>4</asp:ListItem>
+				<asp:ListItem>5</asp:ListItem>
+				<asp:ListItem>6</asp:ListItem>
+				<asp:ListItem>7</asp:ListItem>
+				<asp:ListItem>8</asp:ListItem>
+				<asp:ListItem>9</asp:ListItem>
+				<asp:ListItem>10</asp:ListItem>
+			</asp:RadioButtonList>
+		</div>
+	</ContentTemplate>
+</asp:UpdatePanel>
 <table style="width: 60%; margin-left: auto; margin-right: auto;">
 	<tr>
 		<td style="width: 50%">
