@@ -62,7 +62,16 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
     {
         if (!LoginState.TestLogin())
             return;
-        DBHelper.SaveRank(LoginState.User, GetRoute(), (Convert.ToByte(Rank.SelectedIndex + 1)));
+        try
+        {
+            DBHelper.SaveRank(LoginState.User, GetRoute(), (Convert.ToByte(Rank.SelectedIndex + 1)));
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "MessageOK", "alert('Il tuo voto è stato registrato, grazie per il contributo.');", true);
+        }
+        catch (Exception ex)
+        {
+            string script = String.Format("alert('Si è verificato un errore: {0}'", ex.Message);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "MessageError", script, true);
+        }
     }
 
     private Route GetRoute()
