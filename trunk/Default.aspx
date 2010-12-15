@@ -12,13 +12,14 @@
 	<link href="StyleSheet.css" rel="stylesheet" type="text/css" />
 	<title>Mountain Bike Group Scout</title>
 
-	<!--script type="text/javascript" src="script/snow.js"></script-->
+	<script type="text/javascript" src="script/snow.js"></script>
 	<script type="text/javascript" src="script/HomeScript.js"></script>
 
 	<script type="text/javascript" src="script/CommonScript.js"></script>
 
 </head>
 <body onload="Init();" style="background-image: none; height: auto;">
+
 	<form id="Logo" runat="server">
 	<!--<div id="NewsBanner" class="NewsBanner" >
 		<div style="position: absolute; width: 98%; left: 1%; top: 5px">
@@ -30,6 +31,7 @@
 		</a>
 	</div>-->
 	<uc1:Header ID="Header1" runat="server" ShowAds="false" />
+	<p style="color:Red;text-align:center">MTB Scout augura a tutti Buone Feste</p>
 	<div class="MainCenter">
 		<uc3:ImageRandomizer ID="MainImage" AlternateText="Montoggio" runat="server" ImageFolder="~/Home" />
 	</div>
