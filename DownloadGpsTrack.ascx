@@ -5,7 +5,6 @@
 <br />
 <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
 	width: 330px; height: 50px"></iframe>
-
 <asp:UpdatePanel runat="server" ChildrenAsTriggers="true" UpdateMode="Always" ID="RankPanel">
 	<ContentTemplate>
 		<div class="ImageAndDesc">
@@ -24,10 +23,11 @@
 				<asp:ListItem>9</asp:ListItem>
 				<asp:ListItem>10</asp:ListItem>
 			</asp:RadioButtonList>
+			<br />
+			<asp:Label ID="RankMessage" runat="server" Text="" Visible="false"></asp:Label>
 		</div>
 	</ContentTemplate>
 </asp:UpdatePanel>
-
 <table style="width: 60%; margin-left: auto; margin-right: auto;">
 	<tr>
 		<td style="width: 50%">

@@ -80,6 +80,7 @@ function getMaxBannerSize() {
 function Init() {
 	moveMenu();
 	animateNewsBanner();
+	initsnow();
 }
 function onResize() {
 	moveMenu();
