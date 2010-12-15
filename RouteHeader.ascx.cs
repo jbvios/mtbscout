@@ -40,7 +40,7 @@ public partial class RouteHeader : System.Web.UI.UserControl
             Title.Visible = false;
         else
             Title.InnerText = r.Title;
-		MTBUser user = DBHelper.LoadUser(r.OwnerId);
+        MTBUser user = DBHelper.LoadUser(r.OwnerId);
         if (user != null)
             Owner.InnerText = user.DisplayName;
         Lenght.InnerText = routeLenght + " Km";
@@ -49,5 +49,15 @@ public partial class RouteHeader : System.Web.UI.UserControl
         MinHeight.InnerText = routeMinHeight + " m";
         Cycle.InnerText = r.Cycling.ToString() + "%";
         Difficulty.InnerText = r.Difficulty;
+        int votes = 0;
+        double w = DBHelper.GetMediumRank(r, out votes);
+        RankIndicator.Style.Add(HtmlTextWriterStyle.Width, Convert.ToInt16(w * 10) + "px");
+        RankIndicator.Style.Add(HtmlTextWriterStyle.Height, "20px");
+        RankIndicator.Style.Add(HtmlTextWriterStyle.BackgroundColor, "blue");
+        RankIndicator.Style.Add(HtmlTextWriterStyle.Display, "inline");
+        RankIndicator.Style.Add(HtmlTextWriterStyle.Position, "absolute");
+
+        RankLabel.InnerText = string.Format("Valutazione ({0} voti):", votes);
+
     }
 }
