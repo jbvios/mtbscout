@@ -6,7 +6,7 @@
 <head runat="server">
 	<title></title>
 </head>
-<body style="font-size: 12px; margin: 0 0 0 10px; padding: 0px;">
+<body style="font-size: 11px; margin: 0 0 0 10px; padding: 0px;">
 	<form id="form1" runat="server">
 	<uc1:RouteHeader ID="RouteHeader1" HideTitle="true" runat="server" />
 	</form>
