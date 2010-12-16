@@ -21,7 +21,10 @@ public partial class RouteHeader : System.Web.UI.UserControl
 
     public bool HideTitle { get; set; }
 
-
+	public void SetFontWidth(int pixels)
+	{
+		Table.Style[HtmlTextWriterStyle.FontSize] = pixels + "px";
+	}
     protected void Page_Load(object sender, EventArgs e)
     {
         if (string.IsNullOrEmpty(RouteName))
