@@ -23,7 +23,9 @@ public partial class Map : System.Web.UI.Page
         foreach (Route r in DBHelper.Routes)
         {
             string routeFolderPath = PathFunctions.GetRoutePathFromName(r.Name);
-            string url = PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'");
+            string url = string.IsNullOrEmpty(r.Page)
+                ? PathFunctions.GetUrlFromPath(PathFunctions.RoutesPage, false).Replace("'", "\\'") + "?Route=" + r.Name
+                : PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'");
             string gpxFile = Path.Combine(routeFolderPath, "track.gpx");
 
             GpxParser parser = Helper.GetGpxParser(gpxFile);
@@ -64,7 +66,7 @@ public partial class Map : System.Web.UI.Page
         Response.Write("</script>\r\n");
     }
 
-    
+
     /// <summary>
     /// Genera una linea tipo:
     /// track.push({ color:'#E60000', points:[ [44.518971,9.054657], [44.518977,9.054656] ] });

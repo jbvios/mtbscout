@@ -11,6 +11,7 @@ namespace MTBScout
     {
         const string workingDataUrl = "~\\Public\\WorkingData";
         static string workingDataPath = HttpContext.Current.Server.MapPath(workingDataUrl);
+        public static string RoutesPage = HttpContext.Current.Server.MapPath("~\\Routes\\Route.aspx");
         public static string RootPath = HttpContext.Current.Server.MapPath("~").TrimEnd(Path.DirectorySeparatorChar);
         
         public static string GetProfileUrl(string routeFolder)
@@ -21,6 +22,10 @@ namespace MTBScout
         public static string GetImagePathFromGpx(string gpxFile)
         {
             return Path.Combine(Path.GetDirectoryName(gpxFile), "Images");
+        }
+        public static string GetImagePathFromRouteName(string name)
+        {
+            return Path.Combine(GetRoutePathFromName(name), "Images");
         }
       
         public static string GetWorkingPath(string sourcePath)
