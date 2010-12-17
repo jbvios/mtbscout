@@ -56,12 +56,14 @@
 			Voto:
 		</td>
 		<td id="Rank" runat="server">
-			<div style="width: 100px; height: 20px;">
-				<div runat="server" id="RankIndicator">
+			<asp:HyperLink runat="server" ID="RankDetailLink" title="Visualizza dettaglio voti">
+				<div style="width: 100px; height: 20px;">
+					<div runat="server" id="RankIndicator">
+					</div>
+					<asp:Image runat="server" alt="Voto" Style="width: 100px; height: 20px; position: absolute;
+						z-index: 10;" ImageUrl="~/Images/Rank.png" />
 				</div>
-				<asp:Image runat="server" alt="Voto" Style="width: 100px; height: 20px; position: absolute;
-					z-index: 10;" ImageUrl="~/Images/Rank.png" />
-			</div>
+			</asp:HyperLink>
 		</td>
 	</tr>
 </table>

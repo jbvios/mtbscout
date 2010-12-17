@@ -21,32 +21,34 @@ public partial class ImageIterator : System.Web.UI.UserControl
 		get { return title; }
 		set { title = value; }
 	}
-
-	string imagesRelPath = "Images";
-
-	protected override void OnInit(EventArgs e)
-	{
-		base.OnInit(e);
-		cache = Helper.GetImageCache(Page.MapPath(imagesRelPath));
-		PageCounterDown.OnClick += new PageCounter.OnClickDelegate(PageCounter_OnClick);
-		PageCounterUp.OnClick += new PageCounter.OnClickDelegate(PageCounter_OnClick);
-
-		int start = 0;
-		int.TryParse(Start.Value, out start);
-		int currentPage = (int)Math.Ceiling((float)start / (float)ImageCache.maxPerPage);
-		PageCounterUp.Pages = PageCounterDown.Pages = cache.pages;
-		PageCounterUp.CurrentPage = PageCounterDown.CurrentPage = currentPage;
-		PageCounterUp.DrawPages();
-		PageCounterDown.DrawPages();
-
-		ImagesTitle.InnerText = Title;
-		ImagesTable.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
-		ImagesTable.Style[HtmlTextWriterStyle.MarginRight] = "auto";
-		ImagesTable.Width = Unit.Percentage(95);
-	}
+    public string ImagesPath { get; set; }
+	
 	//--------------------------------------------------------------------------------
 	protected void Page_Load(object sender, EventArgs e)
 	{
+        if (string.IsNullOrEmpty(ImagesPath))
+            ImagesPath = Page.MapPath("Images");
+
+        cache = Helper.GetImageCache(ImagesPath);
+        if (cache == null)
+            return;
+
+        PageCounterDown.OnClick += new PageCounter.OnClickDelegate(PageCounter_OnClick);
+        PageCounterUp.OnClick += new PageCounter.OnClickDelegate(PageCounter_OnClick);
+
+        int start = 0;
+        int.TryParse(Start.Value, out start);
+        int currentPage = (int)Math.Ceiling((float)start / (float)ImageCache.maxPerPage);
+        PageCounterUp.Pages = PageCounterDown.Pages = cache.pages;
+        PageCounterUp.CurrentPage = PageCounterDown.CurrentPage = currentPage;
+        PageCounterUp.DrawPages();
+        PageCounterDown.DrawPages();
+
+        ImagesTitle.InnerText = Title;
+        ImagesTable.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
+        ImagesTable.Style[HtmlTextWriterStyle.MarginRight] = "auto";
+        ImagesTable.Width = Unit.Percentage(95);
+
 		if (!Page.IsPostBack)
 			DrawTable();
 	}

@@ -87,6 +87,8 @@ public class DBHelper
                 where string.Compare(route.Name, routeName, StringComparison.InvariantCultureIgnoreCase) == 0
                 select route;
 
+			if (routes.Count() == 0)
+				return null;
             return routes.First<Route>();
         }
     }
@@ -112,16 +114,16 @@ public class DBHelper
         }
     }
     //--------------------------------------------------------------------------------
-    public static void SaveRank(MTBUser user, Route route, byte rank)
+    public static void SaveRank(int userId, int routeId, byte rank)
     {
         using (ISession iSession = NHSessionManager.GetSession())
         {
-            Rank r = GetRank(user, route, iSession);
+            Rank r = GetRank(userId, routeId, iSession);
             if (r == null)
             {
                 r = new Rank();
-                r.RouteId = route.Id;
-                r.UserId = user.Id;
+                r.RouteId = routeId;
+                r.UserId = userId;
             }
             if (r.RankNumber != rank)
             {
@@ -135,20 +137,31 @@ public class DBHelper
             }
         }
     }
-    public static Rank GetRank(MTBUser user, Route route)
+    public static Rank GetRank(int userId, int routeId)
     {
         using (ISession iSession = NHSessionManager.GetSession())
         {
-            return GetRank(user, route, iSession);
+            return GetRank(userId, routeId, iSession);
         }
     }
-    private static Rank GetRank(MTBUser user, Route route, ISession iSession)
+	public static IList<Rank> GetRanks(int routeId)
+	{
+		using (ISession iSession = NHSessionManager.GetSession())
+		{
+			Expression<Func<Rank, object>> expr = rt => rt.RouteId;
+			var criteria = iSession.CreateCriteria<Rank>();
+			criteria.Add(Restrictions.Eq(Projections.Property(expr), routeId));
+
+			return criteria.List<Rank>();
+		}
+	}
+    private static Rank GetRank(int userId, int routeId, ISession iSession)
     {
         Expression<Func<Rank, object>> expr = rt => rt.RouteId;
         var criteria = iSession.CreateCriteria<Rank>();
-        criteria.Add(Restrictions.Eq(Projections.Property(expr), route.Id));
+        criteria.Add(Restrictions.Eq(Projections.Property(expr), routeId));
         expr = rt => rt.UserId;
-        criteria.Add(Restrictions.Eq(Projections.Property(expr), user.Id));
+        criteria.Add(Restrictions.Eq(Projections.Property(expr), userId));
 
         return criteria.UniqueResult<Rank>();
     }
