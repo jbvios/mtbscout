@@ -18,6 +18,8 @@ using NHibernate;
 using NHibernate.Criterion;
 using System.Linq.Expressions;
 using System.Net.Mail;
+using System.Drawing.Imaging;
+using System.Text;
 
 /// <summary>
 /// Summary description for Helper
@@ -25,28 +27,30 @@ using System.Net.Mail;
 public static class Helper
 {
     private static int sessions = 0;
-	private static Dictionary<string, int> countryCodes = null;
-	
-	static Helper()
-	{
-		string file = Path.Combine(PathFunctions.RootPath, "resources\\ilmeteo_codici_comuni.csv");
+    private static Dictionary<string, int> countryCodes = null;
+    private const int ImageTitleId = 0x010E;
+    private const int DigitizedId = 0x9004;
+    
+    static Helper()
+    {
+        string file = Path.Combine(PathFunctions.RootPath, "resources\\ilmeteo_codici_comuni.csv");
 
-		countryCodes = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
+        countryCodes = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
 
-		using (StreamReader sr = new StreamReader(file))
-		{
-			string s = "";
-			while ((s = sr.ReadLine()) != null)
-			{
-				string[] tokens = s.Split(';');
-				string code = tokens[0];
-				string name = tokens[1];
-				string province = tokens[2];
-				countryCodes.Add(Mengle(name, province), int.Parse(code));
-			}
-		}
+        using (StreamReader sr = new StreamReader(file))
+        {
+            string s = "";
+            while ((s = sr.ReadLine()) != null)
+            {
+                string[] tokens = s.Split(';');
+                string code = tokens[0];
+                string name = tokens[1];
+                string province = tokens[2];
+                countryCodes.Add(Mengle(name, province), int.Parse(code));
+            }
+        }
 
-	}
+    }
     public static int GetActiveSessionCount()
     {
         return sessions;
@@ -193,6 +197,7 @@ public static class Helper
             caption = caption.Substring(4);
         return caption;
     }
+
     public static DateTime GetCreationDate(string file)
     {
         Bitmap i = null;
@@ -200,8 +205,8 @@ public static class Helper
         {
             i = Image.FromFile(file) as Bitmap;
 
-            EXIFextractor ext = new EXIFextractor(ref i, Environment.NewLine);
-            string s = ext["DTDigitized"] as string;
+            PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
+            string s = Encoding.ASCII.GetString(piDate.Value);
 
             if (s != null)
             {
@@ -244,6 +249,60 @@ public static class Helper
         return fi.LastWriteTime;
     }
 
+    public static string GetImageTitle(Image img)
+    {
+        try
+        {
+            PropertyItem piDesc = img.GetPropertyItem(ImageTitleId);
+            return Encoding.UTF8.GetString(piDesc.Value);
+        }
+        catch
+        {
+            return "";
+        }
+    }
+
+
+    public static void SetImageTitle(string file, string title)
+    {
+
+        byte[] buff;
+        using (FileStream fs = File.OpenRead(file))
+        {
+            buff = new byte[(int)fs.Length];
+            fs.Read(buff, 0, (int)fs.Length);
+
+        }
+        using (MemoryStream ms = new MemoryStream(buff))
+        {
+            using (Bitmap bmp = (Bitmap)Bitmap.FromStream(ms))
+            {
+                SetImageTitle(bmp, title);
+                bmp.Save(file);
+            }
+        }
+    }
+    public static void SetImageTitle(Image img, string title)
+    {
+        try
+        {
+
+            PropertyItem piDate = img.PropertyItems[0];
+            piDate.Id = ImageTitleId;
+            piDate.Type = 2;
+            byte[] buff = Encoding.UTF8.GetBytes(title);
+            piDate.Value = new byte[buff.Length + 1];
+            buff.CopyTo(piDate.Value, 0);
+            piDate.Value[buff.Length] = 0;
+            piDate.Len = piDate.Value.Length;
+
+            img.SetPropertyItem(piDate);
+        }
+        catch (Exception)
+        {
+        }
+
+    }
     public static int GetCountryCode(double lat, double lon)
     {
         try
@@ -286,10 +345,10 @@ public static class Helper
         return code;
     }
 
-	
-	static Dictionary<string, int> GetCountryCodes()
+
+    static Dictionary<string, int> GetCountryCodes()
     {
-		return countryCodes;
+        return countryCodes;
     }
 
     private static string Mengle(string country, string province)
@@ -332,26 +391,26 @@ public static class Helper
 }
 internal class AutoLock : IDisposable
 {
-	private static readonly TimeSpan timeout = TimeSpan.FromMinutes(1);
-	ReaderWriterLock l;
-	bool forWrite;
-	public AutoLock(ReaderWriterLock l, bool forWrite)
-	{
-		this.l = l;
+    private static readonly TimeSpan timeout = TimeSpan.FromMinutes(1);
+    ReaderWriterLock l;
+    bool forWrite;
+    public AutoLock(ReaderWriterLock l, bool forWrite)
+    {
+        this.l = l;
 
-		if (this.forWrite = forWrite)
-			l.AcquireWriterLock(timeout);
-		else
-			l.AcquireReaderLock(timeout);
+        if (this.forWrite = forWrite)
+            l.AcquireWriterLock(timeout);
+        else
+            l.AcquireReaderLock(timeout);
 
-	}
-	public void Dispose()
-	{
-		if (this.forWrite)
-			l.ReleaseWriterLock();
-		else
-			l.ReleaseReaderLock();
-	}
+    }
+    public void Dispose()
+    {
+        if (this.forWrite)
+            l.ReleaseWriterLock();
+        else
+            l.ReleaseReaderLock();
+    }
 
 }
 
