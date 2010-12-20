@@ -10,13 +10,18 @@
     <title runat="server"></title>
 </head>
 <body onunload="GUnload();" style="margin: 0px;">
- 
+
     <script type="text/javascript">
         var google_api_key = 'ABQIAAAAL62oiS9sZ5GT5jp5CP3CaBTwdqewuzim-EqFnqqrpKSirU6sOBSfd4t8mrab9z8qp0pt5xsAL1xFaA';
         document.writeln('<script src="http://maps.google.com/maps?file=api&v=2&sensor=false&key=' + google_api_key + '" type="text/javascript"><' + '/' + 'script>');
-	</script>
+    </script>
 
-    <div style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px;">
+    <form id="form1" runat="server" target="_self">
+    <asp:Panel runat="server" ID="ChooseRoute" Visible="false">
+        <asp:FileUpload ID="FileUploadGpx" runat="server" onchange="form.submit();" />
+    </asp:Panel>
+    <div id="MapContainer" runat="server" style="margin-left: 0px; margin-right: 0px;
+        margin-top: 0px; margin-bottom: 0px;">
         <div id="gmap_div" style="width: 100%; height: 100%; margin: 0px; margin-right: 12px;
             background-color: #F0F0F0; float: left; overflow: hidden;">
             <p align="center" style="font: 10px Arial;">
@@ -126,7 +131,7 @@
         gv_options.legend_options.position = ['G_ANCHOR_BOTTOM_LEFT', 4, 60];  // [Google anchor name, relative x, relative y]
         gv_options.legend_options.draggable = true;  // true|false: can it be moved around the screen?
         gv_options.legend_options.collapsible = true;  // true|false: can it be collapsed by double-clicking its top bar?
-        gv_options.measurement_tools = { enabled: true, distance_color: 'blue', area_color: 'red', position: ['G_ANCHOR_BOTTOM_LEFT', 100, 60] };
+        gv_options.measurement_tools = { enabled: false, distance_color: 'blue', area_color: 'red', position: ['G_ANCHOR_BOTTOM_LEFT', 100, 60] };
 
         // track-related options:
         gv_options.tracklist_options = []; // options for a floating list of the tracks visible on the map
@@ -192,10 +197,10 @@
         gv_options.marker_filter_options.min_zoom = 0;  // below this zoom level, don't show any markers at all
         gv_options.marker_filter_options.zoom_message = '';  // message to put in the marker list if the map is below the min_zoom threshold
 
-
+        addCustomOptions();
         // Load GPS Visualizer's Google Maps functions (this must be loaded AFTER gv_options are set):
         //document.writeln('<script src="http://maps.gpsvisualizer.com/google_maps/functions.js?1289030737" type="text/javascript"><' + '/' + 'script>');
-        document.writeln('<script src="Script/gpsvisualizer.js" type="text/javascript"><' + '/' + 'script>');
+        document.writeln('<script src="../Script/gpsvisualizer.js" type="text/javascript"><' + '/' + 'script>');
 		
     </script>
 
@@ -238,7 +243,8 @@
             }
         }
         GV_Map(); // execute the above code
-		</script>
+    </script>
 
+    </form>
 </body>
 </html>

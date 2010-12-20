@@ -6,6 +6,7 @@ using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Diagnostics;
 using System.Security;
+using System.Web;
 
 namespace MTBScout
 {
@@ -22,7 +23,8 @@ namespace MTBScout
         private double totalClimb = 0.0;
         private double minEle = 2000000.0;
         private bool photoLoaded = false;
-        
+        private XmlDocument doc = new XmlDocument();
+
         private string zippedFile = null;
         public string ZippedFile
         {
@@ -30,34 +32,34 @@ namespace MTBScout
             {
                 if (zippedFile == null)
                 {
-					lock (this)
-					{
-						if (zippedFile == null)
-						{
-							zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(sourceFile, ".zip"));
-							if (!File.Exists(zippedFile))
-							{
-								string folder = Path.GetDirectoryName(zippedFile);
-								if (!Directory.Exists(folder))
-									Directory.CreateDirectory(folder);
-								using (FileStream fs = new FileStream(zippedFile, FileMode.Create))
-								{
-									using (ZipOutputStream stream = new ZipOutputStream(fs))
-									{
-										ZipEntry entry = new ZipEntry(Path.GetFileName(sourceFile));
+                    lock (this)
+                    {
+                        if (zippedFile == null)
+                        {
+                            zippedFile = PathFunctions.GetWorkingPath(Path.ChangeExtension(sourceFile, ".zip"));
+                            if (!File.Exists(zippedFile))
+                            {
+                                string folder = Path.GetDirectoryName(zippedFile);
+                                if (!Directory.Exists(folder))
+                                    Directory.CreateDirectory(folder);
+                                using (FileStream fs = new FileStream(zippedFile, FileMode.Create))
+                                {
+                                    using (ZipOutputStream stream = new ZipOutputStream(fs))
+                                    {
+                                        ZipEntry entry = new ZipEntry(Path.GetFileName(sourceFile));
 
-										entry.DateTime = DateTime.Now;
-										stream.PutNextEntry(entry);
+                                        entry.DateTime = DateTime.Now;
+                                        stream.PutNextEntry(entry);
 
-										byte[] buff = File.ReadAllBytes(sourceFile);
-										stream.Write(buff, 0, buff.Length);
+                                        byte[] buff = File.ReadAllBytes(sourceFile);
+                                        stream.Write(buff, 0, buff.Length);
 
-										stream.Finish();
-									}
-								}
-							}
-						}
-					}
+                                        stream.Finish();
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 return zippedFile;
             }
@@ -70,50 +72,50 @@ namespace MTBScout
             {
                 if (mediumPoint == null)
                 {
-					lock (this)
-					{
-						if (mediumPoint == null)
-						{
-							double lat = 0.0, lon = 0.0;
-							int points = 0;
-							foreach (Track t in Tracks)
-								foreach (TrackSegment seg in t.Segments)
-								{
-									foreach (TrackPoint tp in seg.Points)
-									{
-										lat += tp.lat;
-										lon += tp.lon;
-									}
-									points += seg.Points.Count;
-								}
-							mediumPoint = new GenericPoint();
-							mediumPoint.lat = lat / points;
-							mediumPoint.lon = lon / points;
-						}
-					}
+                    lock (this)
+                    {
+                        if (mediumPoint == null)
+                        {
+                            double lat = 0.0, lon = 0.0;
+                            int points = 0;
+                            foreach (Track t in Tracks)
+                                foreach (TrackSegment seg in t.Segments)
+                                {
+                                    foreach (TrackPoint tp in seg.Points)
+                                    {
+                                        lat += tp.lat;
+                                        lon += tp.lon;
+                                    }
+                                    points += seg.Points.Count;
+                                }
+                            mediumPoint = new GenericPoint();
+                            mediumPoint.lat = lat / points;
+                            mediumPoint.lon = lon / points;
+                        }
+                    }
                 }
                 return mediumPoint;
             }
         }
 
-		private int ?countryCode = 0;
-		public int CountryCode
-		{
-			get
-			{
-				if (countryCode == null)
-				{
-					lock (this)
-					{
-						if (countryCode == null)
-						{
-							countryCode = Helper.GetCountryCode(MediumPoint.lat, MediumPoint.lon);
-						}
-					}
-				}
-				return countryCode.Value;
-			}
-		}
+        private int? countryCode = 0;
+        public int CountryCode
+        {
+            get
+            {
+                if (countryCode == null)
+                {
+                    lock (this)
+                    {
+                        if (countryCode == null)
+                        {
+                            countryCode = Helper.GetCountryCode(MediumPoint.lat, MediumPoint.lon);
+                        }
+                    }
+                }
+                return countryCode.Value;
+            }
+        }
         private List<Track> tracks = new List<Track>();
         public List<Track> Tracks { get { return tracks; } }
 
@@ -127,17 +129,39 @@ namespace MTBScout
         public double LinearDistance { get { return linearDistance; } }
         public double Distance3D { get { return distance3D; } }
         public double TotalClimb { get { return totalClimb; } }
-        
+
         public GpxParser()
         {
 
         }
 
+        private static string GetParserKey(string routeName)
+        {
+            return routeName + "_GPX";
+        }
+        public static GpxParser FromSession(string routeName)
+        {
+            return HttpContext.Current.Session[GetParserKey(routeName)] as GpxParser;
+        }
+        public void ToSession(string routeName)
+        {
+            HttpContext.Current.Session[GetParserKey(routeName)] = this;
+        }
+
+        public void Save(string file)
+        {
+            doc.Save(file);
+        }
         public void Parse(string gpxFile)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(gpxFile);
             this.sourceFile = gpxFile;
+            using (FileStream fs = new FileStream(gpxFile, FileMode.Open, FileAccess.Read))
+                Parse(fs);
+
+        }
+        public void Parse(Stream stream)
+        {
+            doc.Load(stream);
             foreach (XmlElement wpElement in doc.DocumentElement.GetElementsByTagName("wpt"))
             {
                 WayPoint wp = new WayPoint();
@@ -213,15 +237,15 @@ namespace MTBScout
         }
 
         // codice preso da http://www.codeproject.com/KB/cs/Douglas-Peucker_Algorithm.aspx
-        
+
         /// <summary>
         /// Uses the Douglas Peucker algorithm to reduce the number of points.
         /// </summary>
         /// <param name="Points">The points.</param>
         /// <param name="Tolerance">The tolerance.</param>
         /// <returns></returns>
-        public static List<TrackPoint> DouglasPeuckerReduction (
-            List<TrackPoint> points, 
+        public static List<TrackPoint> DouglasPeuckerReduction(
+            List<TrackPoint> points,
             double tolerance)
         {
             try
@@ -250,7 +274,7 @@ namespace MTBScout
 
                 return returnPoints;
             }
-            catch 
+            catch
             {
                 return points;
             }
@@ -266,8 +290,8 @@ namespace MTBScout
         /// <param name="pointIndexsToKeep">The point index to keep.</param>
         private static void DouglasPeuckerReduction(
             List<TrackPoint> points,
-            int firstPoint, 
-            int lastPoint, 
+            int firstPoint,
+            int lastPoint,
             Double tolerance,
             ref List<int> pointIndexsToKeep)
         {
@@ -276,7 +300,7 @@ namespace MTBScout
 
             for (int index = firstPoint; index < lastPoint; index++)
             {
-                double distance = PerpendicularDistance (points[firstPoint], points[lastPoint], points[index]);
+                double distance = PerpendicularDistance(points[firstPoint], points[lastPoint], points[index]);
                 if (distance > maxDistance)
                 {
                     maxDistance = distance;
@@ -347,6 +371,7 @@ namespace MTBScout
 
             //double d = DistanceBetweenOn2DPlane(Point, new Point(xx, yy));
         }
+
     }
     public class Track
     {
@@ -400,6 +425,21 @@ namespace MTBScout
         private double totalClimb = 0.0;
 
         public List<TrackPoint> Points { get { return points; } }
+        public TrackPoint[] ReducedPoints
+        {
+            get
+            {
+                if (reducedPoints == null)
+                {
+                    lock (this)
+                    {
+                        if (reducedPoints == null)
+                            reducedPoints = GpxParser.DouglasPeuckerReduction(Points, 0.00005).ToArray();
+                    }
+                }
+                return reducedPoints;
+            }
+        }
         public double MaxElevation { get { return maxEle; } }
         public double MinElevation { get { return minEle; } }
         public double LinearDistance { get { return linearDistance; } }
@@ -407,7 +447,7 @@ namespace MTBScout
         public double TotalClimb { get { return totalClimb; } }
 
         TrackPoint[] reducedPoints = null;
-        
+
         internal void Parse(XmlElement trackSegment)
         {
             TrackPoint prevPoint = null;
@@ -435,12 +475,7 @@ namespace MTBScout
             }
         }
 
-        public TrackPoint[] GetReducedPoints()
-        {
-            if (reducedPoints == null)
-                reducedPoints = GpxParser.DouglasPeuckerReduction(Points, 0.00005).ToArray();
-            return reducedPoints;
-        }
+
     }
 
     public class GenericPoint
