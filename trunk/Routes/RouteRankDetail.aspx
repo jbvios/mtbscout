@@ -2,6 +2,7 @@
 	CodeFile="RouteRankDetail.aspx.cs" Inherits="Routes_RouteRankDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+	<title>Dettaglio voti</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">

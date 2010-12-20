@@ -130,7 +130,7 @@ public static class Helper
         HttpContext.Current.Session["UserId"] = Convert.ToInt32(reader["ID"]);
         HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Params["Return"]);
     }
-
+    
     public static GpxParser GetGpxParser(string gpxPath)
     {
         gpxPath = gpxPath.ToLower().Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
@@ -169,9 +169,8 @@ public static class Helper
         return cache;
     }
 
-    public static string GenerateProfileFile(string filesRelPath)
+    public static string GenerateProfileFile(string gpxPath)
     {
-        string gpxPath = PathFunctions.RootPath + filesRelPath;
         //calcolo la cartella che contiene le tracce
         string folder = Path.GetFileName(Path.GetDirectoryName(gpxPath));
 
@@ -188,7 +187,11 @@ public static class Helper
 
     public static string GetImageCaption(int prog, string file)
     {
-        string caption = System.IO.Path.GetFileNameWithoutExtension(file);
+        string caption = Helper.GetImageTitle(file);
+        if (!string.IsNullOrEmpty(caption))
+            return caption;
+
+        caption = System.IO.Path.GetFileNameWithoutExtension(file);
         if (caption.IndexOf("-") != 3)
             caption = prog.ToString("000");
         else if (!char.IsDigit(caption[0]) || !char.IsDigit(caption[1]) || !char.IsDigit(caption[1]))
@@ -197,6 +200,8 @@ public static class Helper
             caption = caption.Substring(4);
         return caption;
     }
+
+    
 
     public static DateTime GetCreationDate(string file)
     {
@@ -249,6 +254,11 @@ public static class Helper
         return fi.LastWriteTime;
     }
 
+    public static string GetImageTitle(string file)
+    {
+        using (Bitmap bmp = new Bitmap(file))
+            return GetImageTitle(bmp);
+    }
     public static string GetImageTitle(Image img)
     {
         try

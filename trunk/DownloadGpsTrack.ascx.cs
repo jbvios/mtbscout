@@ -26,13 +26,9 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
         GpxParser parser = Helper.GetGpxParser(gpxFullPath);
         if (parser == null)
             return;
-        string gpxRelPath = PathFunctions.GetRelativePath(gpxFullPath);
-        gpxRelPath = gpxRelPath.Replace('\\', '/');
-        if (!gpxRelPath.StartsWith("/"))
-            gpxRelPath = "/" + gpxRelPath;
-        MapLink.NavigateUrl = string.Format("~/Map.aspx?GpxUrl={0}&MapTitle={1}", gpxRelPath, Page.Header.Title);
-
-        ProfileImage.Src = Helper.GenerateProfileFile(gpxRelPath);
+       
+        MapLink.NavigateUrl = string.Format("~/Routes/Map.aspx?Route={0}", RouteName);
+        ProfileImage.Src = Helper.GenerateProfileFile(gpxFullPath);
 
         int countryCode = 0;
         countryCode = parser.CountryCode;

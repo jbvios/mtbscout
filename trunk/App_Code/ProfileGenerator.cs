@@ -42,7 +42,7 @@ namespace MTBScout
 
 						foreach (TrackSegment seg in t.Segments)
 						{
-							foreach (TrackPoint tp in seg.Points)
+							foreach (TrackPoint tp in seg.ReducedPoints)
 							{
 								if (prevPoint == null)
 								{
