@@ -20,6 +20,15 @@ public partial class User_User : System.Web.UI.Page
             FormsAuthentication.RedirectToLoginPage();
             return;
         }
+        if (LoginState.User == null)
+        {
+            MyRoutes.Visible = false;
+        }
+        else
+        {
+            MyRoutes.Visible = true;
+            MyRoutes.Attributes["src"] = "/Routes/RouteContent.aspx?UserId=" + LoginState.User.Id;
+        }
         if (!IsPostBack)
         {
             TextBoxName.Text = user.Name;

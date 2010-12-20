@@ -20,7 +20,7 @@ public partial class Map : System.Web.UI.Page
         Response.Write("<script type=\"text/javascript\">\r\n");
         Response.Write("function addMarkers(){\r\n");
 
-        foreach (Route r in DBHelper.Routes)
+        foreach (Route r in GetRoutes())
         {
             string routeFolderPath = PathFunctions.GetRoutePathFromName(r.Name);
             string url = string.IsNullOrEmpty(r.Page)
@@ -64,6 +64,16 @@ public partial class Map : System.Web.UI.Page
 
         Response.Write("}\r\n");
         Response.Write("</script>\r\n");
+    }
+
+    private IEnumerable<Route> GetRoutes()
+    {
+        int ownerId;
+        string filter = Request.QueryString["UserId"];
+        
+        return (string.IsNullOrEmpty(filter) || !int.TryParse(filter, out ownerId))
+            ? DBHelper.Routes 
+            : DBHelper.GetRoutes(ownerId);
     }
 
 

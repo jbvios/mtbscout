@@ -27,19 +27,27 @@ public class DBHelper
     public const string HostCount = "HostCount";
 
     private static IList<Route> routes;
-    private static ReaderWriterLock routesLock = new ReaderWriterLock();
     private static IList<MTBUser> users;
-    private static ReaderWriterLock userLock = new ReaderWriterLock();
     //--------------------------------------------------------------------------------
     static DBHelper()
     {
         using (ISession iSession = NHSessionManager.GetSession())
         {
-            ICriteria criteria = iSession.CreateCriteria<Route>();
-            routes = criteria.List<Route>();
-            criteria = iSession.CreateCriteria<MTBUser>();
-            users = criteria.List<MTBUser>();
+            LoadRoutes(iSession);
+            LoadUsers(iSession);
         }
+    }
+
+    private static void LoadUsers(ISession iSession)
+    {
+        ICriteria criteria = iSession.CreateCriteria<MTBUser>();
+        users = criteria.List<MTBUser>();
+    }
+
+    private static void LoadRoutes(ISession iSession)
+    {
+        ICriteria criteria = iSession.CreateCriteria<Route>();
+        routes = criteria.List<Route>();
     }
     //--------------------------------------------------------------------------------
     public static void CountVisitor(HttpRequest request, HttpSessionState session)
@@ -78,19 +86,26 @@ public class DBHelper
     public static IEnumerable<MTBUser> Users { get { return users; } }
 
     //--------------------------------------------------------------------------------
+    public static IEnumerable<Route> GetRoutes(int ownerId)
+    {
+        var rr =
+            from route in Routes
+            where route.OwnerId == ownerId
+            select route;
+
+        return rr;
+    }
+    //--------------------------------------------------------------------------------
     public static Route GetRoute(string routeName)
     {
-        using (AutoLock l = new AutoLock(routesLock, false))
-        {
-            var routes =
-                from route in Routes
-                where string.Compare(route.Name, routeName, StringComparison.InvariantCultureIgnoreCase) == 0
-                select route;
+        var rr =
+            from route in Routes
+            where string.Compare(route.Name, routeName, StringComparison.InvariantCultureIgnoreCase) == 0
+            select route;
 
-			if (routes.Count() == 0)
-				return null;
-            return routes.First<Route>();
-        }
+        if (rr.Count() == 0)
+            return null;
+        return rr.First<Route>();
     }
 
     //--------------------------------------------------------------------------------
@@ -105,12 +120,7 @@ public class DBHelper
                 iSession.Flush();
                 transaction.Commit();
             }
-            using (AutoLock l = new AutoLock(userLock, true))
-            {
-                //se non è presente nella mia cache, lo aggiungo
-                if (user != LoadUser(user.Id))
-                    users.Add(user);
-            }
+            DBHelper.LoadUsers(iSession);
         }
     }
     //--------------------------------------------------------------------------------
@@ -144,17 +154,17 @@ public class DBHelper
             return GetRank(userId, routeId, iSession);
         }
     }
-	public static IList<Rank> GetRanks(int routeId)
-	{
-		using (ISession iSession = NHSessionManager.GetSession())
-		{
-			Expression<Func<Rank, object>> expr = rt => rt.RouteId;
-			var criteria = iSession.CreateCriteria<Rank>();
-			criteria.Add(Restrictions.Eq(Projections.Property(expr), routeId));
+    public static IList<Rank> GetRanks(int routeId)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<Rank, object>> expr = rt => rt.RouteId;
+            var criteria = iSession.CreateCriteria<Rank>();
+            criteria.Add(Restrictions.Eq(Projections.Property(expr), routeId));
 
-			return criteria.List<Rank>();
-		}
-	}
+            return criteria.List<Rank>();
+        }
+    }
     private static Rank GetRank(int userId, int routeId, ISession iSession)
     {
         Expression<Func<Rank, object>> expr = rt => rt.RouteId;
@@ -193,14 +203,11 @@ public class DBHelper
     /// <returns></returns>
     public static MTBUser LoadUser(string openId)
     {
-        using (AutoLock l = new AutoLock(userLock, false))
-        {
-            var users =
-               from user in Users
-               where user.OpenId == openId
-               select user;
-            return users.Count() == 0 ? null : users.First<MTBUser>();
-        }
+        var uu =
+           from user in Users
+           where user.OpenId == openId
+           select user;
+        return uu.Count() == 0 ? null : uu.First<MTBUser>();
     }
 
 
@@ -212,15 +219,13 @@ public class DBHelper
     /// <returns></returns>
     public static MTBUser LoadUser(int id)
     {
-        using (AutoLock l = new AutoLock(userLock, false))
-        {
-            var users =
-               from user in Users
-               where user.Id == id
-               select user;
 
-            return users.Count() == 0 ? null : users.First<MTBUser>();
-        }
+        var uu =
+           from user in Users
+           where user.Id == id
+           select user;
+
+        return uu.Count() == 0 ? null : uu.First<MTBUser>();
     }
 
 
