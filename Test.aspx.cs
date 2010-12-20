@@ -15,8 +15,8 @@ public partial class Test : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string folder = Server.MapPath("~/Routes");
-        string target = Server.MapPath("~/Public/Routes");
-       //Delete(folder, "profile.png");
+        string target = Server.MapPath("~/Public/workingdata");
+       //Delete(target, "profile.png");
         //Delete(folder, "map.html");
         //Delete(folder, "route.xml");
 

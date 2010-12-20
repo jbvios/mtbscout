@@ -98,7 +98,7 @@ namespace MTBScout
             }
         }
 
-        private int? countryCode = 0;
+        private int? countryCode = null;
         public int CountryCode
         {
             get
