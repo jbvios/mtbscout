@@ -20,14 +20,14 @@ public partial class User_User : System.Web.UI.Page
             FormsAuthentication.RedirectToLoginPage();
             return;
         }
-        if (LoginState.User == null)
+        if (LoginState.User == null || DBHelper.GetRoutes(LoginState.User.Id).Count() == 0)
         {
-            MyRoutes.Visible = false;
+			MyRoutesPanel.Visible = false;
         }
         else
         {
-            MyRoutes.Visible = true;
-            MyRoutes.Attributes["src"] = "/Routes/RouteContent.aspx?UserId=" + LoginState.User.Id;
+			MyRoutesPanel.Visible = true;
+            MyRoutes.Attributes["src"] = "/Routes/RouteContent.aspx?EditMode=true&UserId=" + LoginState.User.Id;
         }
         if (!IsPostBack)
         {
