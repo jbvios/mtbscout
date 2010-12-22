@@ -19,13 +19,17 @@ public partial class Map : System.Web.UI.Page
     {
         Response.Write("<script type=\"text/javascript\">\r\n");
         Response.Write("function addMarkers(){\r\n");
-
+		bool editMode = Request.QueryString["EditMode"] == "true";
         foreach (Route r in GetRoutes())
         {
             string routeFolderPath = PathFunctions.GetRoutePathFromName(r.Name);
-            string url = string.IsNullOrEmpty(r.Page)
-                ? PathFunctions.GetUrlFromPath(PathFunctions.RoutesPage, false).Replace("'", "\\'") + "?Route=" + r.Name
-                : PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'");
+            string url = 
+				editMode
+				? PathFunctions.GetUrlFromPath(PathFunctions.EditRoutePage, false).Replace("'", "\\'") + "?Route=" + r.Name
+				: (string.IsNullOrEmpty(r.Page)
+					? PathFunctions.GetUrlFromPath(PathFunctions.RoutesPage, false).Replace("'", "\\'") + "?Route=" + r.Name
+					: PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'"));
+
             string gpxFile = Path.Combine(routeFolderPath, "track.gpx");
 
             GpxParser parser = Helper.GetGpxParser(gpxFile);
