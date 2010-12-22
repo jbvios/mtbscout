@@ -24,6 +24,7 @@ public partial class Map : System.Web.UI.Page
             Response.Write(@"
             gv_options.width = 750;  
             gv_options.height = 350;  
+            gv_options.mousewheel_zoom = false;
             gv_options.full_screen = false;");
 
         }
