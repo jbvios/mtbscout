@@ -20,7 +20,7 @@ public partial class User_User : System.Web.UI.Page
             FormsAuthentication.RedirectToLoginPage();
             return;
         }
-        if (LoginState.User == null || DBHelper.GetRoutes(LoginState.User.Id).Count() == 0)
+        if (LoginState.User == null)
         {
 			MyRoutesPanel.Visible = false;
         }

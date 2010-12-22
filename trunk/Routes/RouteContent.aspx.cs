@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Globalization;
 using System.Xml;
+using System.Linq;
 using MTBScout;
 using System.Web.Caching;
 using System.IO;
@@ -14,13 +15,32 @@ using MTBScout.Entities;
 
 public partial class Map : System.Web.UI.Page
 {
+	bool editMode = false;
+	
+	protected override void OnInit(EventArgs e)
+	{
+		base.OnInit(e);
+		editMode = Request.QueryString["EditMode"] == "true";
+	}
+	public void GenerateCustomOptions()
+	{
+		Response.Write("<script type=\"text/javascript\">\r\n");
+		Response.Write("function addCustomOptions(){\r\n");
+		if (editMode && Routes.Count() == 0)
+		{
+			Response.Write(@"
+			gv_options.zoom = 5;");
+
+		}
+		Response.Write("}\r\n");
+		Response.Write("</script>\r\n");
+	}
 
     public void GenerateMarkers()
     {
         Response.Write("<script type=\"text/javascript\">\r\n");
         Response.Write("function addMarkers(){\r\n");
-		bool editMode = Request.QueryString["EditMode"] == "true";
-        foreach (Route r in GetRoutes())
+		foreach (Route r in Routes)
         {
             string routeFolderPath = PathFunctions.GetRoutePathFromName(r.Name);
             string url = 
@@ -65,19 +85,28 @@ public partial class Map : System.Web.UI.Page
                 photo,
                 url));
         }
-
+		
+        
         Response.Write("}\r\n");
         Response.Write("</script>\r\n");
     }
 
-    private IEnumerable<Route> GetRoutes()
+	IEnumerable<Route> routes = null;
+    private IEnumerable<Route> Routes
     {
-        int ownerId;
-        string filter = Request.QueryString["UserId"];
-        
-        return (string.IsNullOrEmpty(filter) || !int.TryParse(filter, out ownerId))
-            ? DBHelper.Routes 
-            : DBHelper.GetRoutes(ownerId);
+		get
+		{
+			if (routes == null)
+			{
+				int ownerId;
+				string filter = Request.QueryString["UserId"];
+
+				routes =(string.IsNullOrEmpty(filter) || !int.TryParse(filter, out ownerId))
+					? DBHelper.Routes
+					: DBHelper.GetRoutes(ownerId);
+			}
+			return routes;
+		}
     }
 
 
@@ -102,10 +131,9 @@ public partial class Map : System.Web.UI.Page
 
     }
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
-
+		GenerateCustomOptions();
     }
 
 

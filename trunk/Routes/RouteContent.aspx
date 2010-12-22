@@ -62,7 +62,7 @@
         //gv_options.width = 700;  // width of the map, in pixels. MARCO: do not use for fullscreen
         //gv_options.height = 700;  // height of the map, in pixels. MARCO: do not use for fullscreen
         gv_options.full_screen = true;  // true|false: should the map fill the entire page (or frame)?
-        //gv_options.center = [44.523909, 9.0595785];  // [latitude,longitude] - be sure to keep the square brackets
+        gv_options.center = [42.94034, 11.38184];
         gv_options.zoom = 'auto';  // higher number means closer view; can also be 'auto'
         gv_options.map_opacity = 1;  // number from 0 to 1
         gv_options.map_type = 'G_PHYSICAL_MAP';  // popular map_type choices are 'G_NORMAL_MAP', 'G_SATELLITE_MAP', 'G_HYBRID_MAP', 'G_PHYSICAL_MAP', 'MYTOPO_TILES'
@@ -151,7 +151,7 @@
         gv_options.marker_filter_options.min_zoom = 0;  // below this zoom level, don't show any markers at all
         gv_options.marker_filter_options.zoom_message = '';  // message to put in the marker list if the map is below the min_zoom threshold
 
-
+        addCustomOptions();
         // Load GPS Visualizer's Google Maps functions (this must be loaded AFTER gv_options are set):
         //document.writeln('<script src="http://maps.gpsvisualizer.com/google_maps/functions.js?1289030737" type="text/javascript"><' + '/' + 'script>');
         document.writeln('<script src="../Script/gpsvisualizer.js" type="text/javascript"><' + '/' + 'script>');
