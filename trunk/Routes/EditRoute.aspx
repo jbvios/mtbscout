@@ -8,7 +8,10 @@
         function frameLoaded(frame) {
             var mapDiv = frame.contentDocument.getElementById("gmap_div");
             frame.height = mapDiv ? "400px" : "40px";
-            getGpsField().value = mapDiv ? "SI" : "";
+            getGpsField().value = mapDiv ? "x" : "";
+            document.getElementById("TextBoxGPSMessage").innerHTML = mapDiv
+                ? "CARICATO - Premi il pulsante sotto per sostituirlo"
+                : "NON CARICATO - Premi il pulsante sotto per caricare un file GPX";
         }
     </script>
 
@@ -20,6 +23,16 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:HiddenField ID="RouteName" runat="server" />
+                <div>
+                    <span>Tracciato GPS:</span> <span id="TextBoxGPSMessage"></span>
+                    <asp:RequiredFieldValidator ID="TextBoxGPSRequiredFieldValidator" runat="server"
+                        ErrorMessage="Campo obbligatorio!" ControlToValidate="TextBoxGPS" Display="Dynamic"
+                        SetFocusOnError="false"></asp:RequiredFieldValidator>
+                </div>
+                <asp:TextBox ID="TextBoxGPS" Enabled="false" Style="display: none;" runat="server"
+                    Width="100%" TextMode="SingleLine" CausesValidation="True"></asp:TextBox>
+                <iframe id="MapFrame" runat="server" frameborder="0" width="100%" scrolling="no"
+                    height="400px"></iframe>
                 <div>
                     Titolo percorso:
                     <asp:RequiredFieldValidator ID="TextBoxTitleRequiredFieldValidator" runat="server"
@@ -35,16 +48,6 @@
                 </div>
                 <asp:TextBox ID="TextBoxDescription" runat="server" Width="100%" TextMode="MultiLine"
                     CausesValidation="True" Rows="5"></asp:TextBox>
-                <div>
-                    Tracciato GPS:
-                    <asp:RequiredFieldValidator ID="TextBoxGPSRequiredFieldValidator" runat="server"
-                        ErrorMessage="Campo obbligatorio!" ControlToValidate="TextBoxGPS" Display="Dynamic"
-                        SetFocusOnError="false"></asp:RequiredFieldValidator>
-                </div>
-                <asp:TextBox ID="TextBoxGPS" Enabled="false" style="display:none;" runat="server" Width="100%" TextMode="SingleLine"
-                    CausesValidation="True"></asp:TextBox>
-                <iframe id="MapFrame" runat="server" frameborder="0"
-                    width="100%" scrolling="no" height="400px"></iframe>
                 <div style="text-align: center">
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
             </ContentTemplate>
