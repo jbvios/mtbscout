@@ -48,6 +48,16 @@
                 </div>
                 <asp:TextBox ID="TextBoxDescription" runat="server" Width="100%" TextMode="MultiLine"
                     CausesValidation="True" Rows="5"></asp:TextBox>
+               <div>
+                    Percentuale di ciclabilità:
+                    <asp:RangeValidator ID="RangeValidator" runat="server"
+                        ErrorMessage="Inserire un valore fra 0 e 100!" 
+						ControlToValidate="TextBoxCiclyng" Display="Dynamic"
+                        SetFocusOnError="True" MaximumValue="100" MinimumValue="0"></asp:RangeValidator>
+                </div>
+                <asp:TextBox ID="TextBoxCiclyng" runat="server" Width="100%" TextMode="SingleLine"
+                    CausesValidation="True" ></asp:TextBox>
+               
                 <div style="text-align: center">
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
             </ContentTemplate>
