@@ -22,7 +22,7 @@ public partial class DownloadGpsTrack : System.Web.UI.UserControl
 
         if (string.IsNullOrEmpty(RouteName))
             RouteName = Path.GetFileName(Page.MapPath("."));
-        string gpxFullPath = Path.Combine(PathFunctions.GetRoutePathFromName(RouteName), "track.gpx");
+		string gpxFullPath = PathFunctions.GetGpxPathFromRouteName(RouteName);
         GpxParser parser = Helper.GetGpxParser(gpxFullPath);
         if (parser == null)
             return;

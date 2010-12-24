@@ -50,7 +50,7 @@ public partial class Map : System.Web.UI.Page
 					? PathFunctions.GetUrlFromPath(PathFunctions.RoutesPage, false).Replace("'", "\\'") + "?Route=" + r.Name
 					: PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'"));
 
-            string gpxFile = Path.Combine(routeFolderPath, "track.gpx");
+			string gpxFile = PathFunctions.GetGpxPathFromRouteName(r.Name);
 
             GpxParser parser = Helper.GetGpxParser(gpxFile);
             if (parser == null)
