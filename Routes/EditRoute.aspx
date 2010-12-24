@@ -52,6 +52,7 @@
                     Percentuale di ciclabilità:
                     <asp:RangeValidator ID="RangeValidator" runat="server"
                         ErrorMessage="Inserire un valore fra 0 e 100!" 
+                        Type="Integer"
 						ControlToValidate="TextBoxCiclyng" Display="Dynamic"
                         SetFocusOnError="True" MaximumValue="100" MinimumValue="0"></asp:RangeValidator>
                 </div>
