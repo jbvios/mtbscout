@@ -172,7 +172,7 @@ public partial class Map : System.Web.UI.Page
                 Route r = DBHelper.GetRoute(routeName);
                 if (r != null)
                 {
-                    string gpxFile = Path.Combine(PathFunctions.GetRoutePathFromName(routeName), "track.gpx");
+                    string gpxFile = PathFunctions.GetGpxPathFromRouteName(routeName);
                     parser = Helper.GetGpxParser(gpxFile);
 
                     parser.LoadPhothos();

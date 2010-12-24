@@ -57,7 +57,16 @@
                 </div>
                 <asp:TextBox ID="TextBoxCiclyng" runat="server" Width="100%" TextMode="SingleLine"
                     CausesValidation="True" ></asp:TextBox>
-               
+                <div>
+                    Difficoltà:
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorTextBoxDifficulty" runat="server"
+                        ErrorMessage="Campo obbligatorio!" 
+						ControlToValidate="TextBoxDifficulty" Display="Dynamic"
+                        SetFocusOnError="True"></asp:RequiredFieldValidator>
+                </div>
+                <asp:TextBox ID="TextBoxDifficulty" runat="server" Width="100%" TextMode="SingleLine"
+                    CausesValidation="True" ></asp:TextBox>
+                
                 <div style="text-align: center">
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
             </ContentTemplate>

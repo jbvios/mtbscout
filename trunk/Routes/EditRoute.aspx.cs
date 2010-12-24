@@ -42,6 +42,7 @@ function getGpsField(){{
             TextBoxTitle.Text = route.Title;
             TextBoxDescription.Text = route.Description;
 			TextBoxCiclyng.Text = route.Cycling.ToString();
+			TextBoxDifficulty.Text = route.Difficulty;
         }
 
     }
@@ -54,11 +55,12 @@ function getGpsField(){{
         GpxParser parser = GpxParser.FromSession(routeName);
 		if (parser != null)
 		{
-			string path = PathFunctions.GetRoutePathFromName(routeName);
+			string gpxFile = PathFunctions.GetGpxPathFromRouteName(routeName);
+			string path = Path.GetDirectoryName(gpxFile);
 			if (!Directory.Exists(path))
 				Directory.CreateDirectory(path);
 
-			parser.Save(Path.Combine(path, "track.gpx"));
+			parser.Save(gpxFile);
 		}
 		bool added = false;
 		added = (route == null);
@@ -71,7 +73,7 @@ function getGpsField(){{
 			route.Cycling = c;
 		route.Title = TextBoxTitle.Text;
 		route.Description = TextBoxDescription.Text;
-		//route.Difficulty = "";
+		route.Difficulty = TextBoxDifficulty.Text;
 		DBHelper.SaveRoute(route);
     }
 }
