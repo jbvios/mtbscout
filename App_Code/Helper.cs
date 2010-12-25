@@ -30,9 +30,23 @@ public static class Helper
     private static Dictionary<string, int> countryCodes = null;
     private const int ImageTitleId = 0x010E;
     private const int DigitizedId = 0x9004;
-    
+    public static Dictionary<string, string> DifficultyMap = new Dictionary<string, string>();
+    public static Dictionary<string, Color> DifficultyMapColor = new Dictionary<string, Color>();
+
     static Helper()
     {
+        DifficultyMap["TC"] = "(turistico) percorso su strade sterrate dal fondo compatto e scorrevole, di tipo carrozzabile";
+        DifficultyMap["MC"] = "(per cicloescursionisti di media capacità tecnica) percorso su sterrate con fondo poco sconnesso o poco irregolare (tratturi, carrarecce…) o su sentieri con fondo compatto e scorrevole";
+        DifficultyMap["BC"] = "(per cicloescursionisti di buone capacità tecniche) percorso su sterrate molto sconnesse o su mulattiere e sentieri dal fondo piuttosto sconnesso ma abbastanza scorrevole oppure compatto ma irregolare, con qualche ostacolo naturale (per es. gradini di roccia o radici)";
+        DifficultyMap["OC"] = "(per cicloescursionisti di ottime capacità tecniche) come sopra ma su sentieri dal fondo molto sconnesso e/o molto irregolare, con presenza significativa di ostacoli";
+        DifficultyMap["EC"] = "(massimo livello per il cicloescursionista... estremo! ma possibilmente da evitare in gite sociali) percorso su sentieri molto irregolari, caratterizzati da gradoni e ostacoli in continua successione, che richiedono tecniche di tipo trialistico";
+
+        DifficultyMapColor["TC"] = Color.Yellow;
+        DifficultyMapColor["MC"] = Color.PaleGreen;
+        DifficultyMapColor["BC"] = Color.Orange;
+        DifficultyMapColor["OC"] = Color.OrangeRed;
+        DifficultyMapColor["EC"] = Color.Violet;
+
         string file = Path.Combine(PathFunctions.RootPath, "resources\\ilmeteo_codici_comuni.csv");
 
         countryCodes = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
@@ -130,7 +144,7 @@ public static class Helper
         HttpContext.Current.Session["UserId"] = Convert.ToInt32(reader["ID"]);
         HttpContext.Current.Response.Redirect(HttpContext.Current.Request.Params["Return"]);
     }
-    
+
     public static GpxParser GetGpxParser(string gpxPath)
     {
         gpxPath = gpxPath.ToLower().Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
@@ -201,7 +215,7 @@ public static class Helper
         return caption;
     }
 
-    
+
 
     public static DateTime GetCreationDate(string file)
     {
