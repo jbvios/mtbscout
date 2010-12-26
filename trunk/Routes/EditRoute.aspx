@@ -22,6 +22,23 @@
         }
     </script>
 
+    <link href="/uploadify/uploadify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/uploadify/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/uploadify/swfobject.js"></script>
+    <script type="text/javascript" src="/uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#file_upload').uploadify({
+                'uploader': '/uploadify/uploadify.swf',
+                'script': '/uploadify/uploadify.php',
+                'cancelImg': '/uploadify/cancel.png',
+                'folder': '/uploads',
+                'multi':true,
+                'auto': true
+            });
+        });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
     <div id="ContentPanel" class="ContentPanel" style="text-align: left">
@@ -62,7 +79,7 @@
                             <asp:RangeValidator ID="TextBoxCiclyngRangeValidator" runat="server" ErrorMessage="Inserire un valore fra 0 e 100!"
                                 Type="Integer" ControlToValidate="TextBoxCiclyng" Display="Dynamic" SetFocusOnError="True"
                                 MaximumValue="100" MinimumValue="0"></asp:RangeValidator>
-                                <asp:RequiredFieldValidator ID="TextBoxCiclyngRequiredFieldValidator" runat="server"
+                            <asp:RequiredFieldValidator ID="TextBoxCiclyngRequiredFieldValidator" runat="server"
                                 ErrorMessage="Campo obbligatorio!" ControlToValidate="TextBoxCiclyng" Display="Dynamic"
                                 SetFocusOnError="True"></asp:RequiredFieldValidator>
                         </div>
@@ -110,11 +127,13 @@
                                     SetFocusOnError="True"></asp:RequiredFieldValidator>
                                 <asp:TextBox ID="TextBoxDifficulty" runat="server" TextMode="SingleLine" CausesValidation="True"
                                     Enabled="false"></asp:TextBox>
-                                    <a target="MTBCAI" href = "http://www.mtbcai.it/scaladifficolta.asp"; title="Per saperne di più...">Per saperne di più...</a>
+                                <a target="MTBCAI" href="http://www.mtbcai.it/scaladifficolta.asp" title="Per saperne di più...">
+                                    Per saperne di più...</a>
                             </div>
                         </fieldset>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+                <input id="file_upload" name="file_upload" type="file" />
                 <div style="text-align: center">
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
             </ContentTemplate>

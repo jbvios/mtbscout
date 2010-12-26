@@ -29,9 +29,7 @@
 	</script>
 
 	<script type="text/javascript" src="/Video/swfobject.js"></script>
-	<script type="text/javascript" src="/Video/silverlight.js"></script>
-	<script type="text/javascript" src="/Video/wmvplayer.js"></script>
-
+	
 	<script type="text/javascript">
 		try {
 			swfobject.registerObject("player", "9.0.98", "expressInstall.swf");
@@ -39,12 +37,7 @@
 		catch (e) {
 		}
 
-		function playSilverligth(cnt, w, h, file) {
-			var src = '/video/wmvplayer.xaml';
-			var cfg = { height: h, width: w, file: file };
-			var ply = new jeroenwijering.Player(cnt, src, cfg);
-			ply.PLAY
-		}
+		
 	</script>
     
     <link rel="shortcut icon" href="favicon.ico" />
