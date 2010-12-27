@@ -88,16 +88,21 @@ public static class Helper
         }
         using (System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file))
         {
-            int w;
-            int h;
-            GetNewSize(size, bmp, out w, out h);
-            using (System.Drawing.Image img = new System.Drawing.Bitmap(bmp, w, h))
+            using (System.Drawing.Image img = CreateThumbnail(bmp, size))
             {
                 img.Save(thumbFile);
                 return img.Size;
             }
         }
     }
+    public static Bitmap CreateThumbnail(Bitmap original, int size)
+    {
+        int w;
+        int h;
+        GetNewSize(size, original, out w, out h);
+        return new System.Drawing.Bitmap(original, w, h);
+    }
+
     public static void Resize(string file, int size)
     {
         using (System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file))

@@ -24,7 +24,10 @@ function getRouteName(){{
 }}
 function getGpsField(){{
     return document.getElementById('{1}'); 
-}}", RouteName.ClientID, TextBoxGPS.ClientID);
+}}
+function getUpdateImagesButton(){{
+    return document.getElementById('{2}'); 
+}}", RouteName.ClientID, TextBoxGPS.ClientID, ReloadImages.ClientID);
 
         ScriptManager.RegisterClientScriptBlock(
             this,
@@ -38,28 +41,34 @@ function getGpsField(){{
         MapFrame.Attributes["onload"] = "frameLoaded(this);";
 		UploadImageFrame.Attributes["src"] = "UploadFile.aspx?Route=" + RouteName.Value;
 		UploadImageFrame.Attributes["onload"] = "imagesUploaded(this);";
-		
+
+        if (!IsPostBack)
+        {
+            route = DBHelper.GetRoute(RouteName.Value);
+            if (route != null)
+            {
+                TextBoxTitle.Text = route.Title;
+                TextBoxDescription.Text = route.Description;
+                TextBoxCiclyng.Text = route.Cycling.ToString();
+                TextBoxDifficulty.Text = route.Difficulty;
+                DifficultyFromString();
+            }
+
+            
+        }
+        UpdatePanelImages.ContentTemplateContainer.Controls.Clear();
 		List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
 		foreach (UploadedImage ui in list)
 		{
-			Label l = new Label();
-			l.Text = ui.FileName;
-			UpdatePanelImages.ContentTemplateContainer.Controls.Add(l);
+            System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+            img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, ui.FileName);
+            img.Width = Unit.Percentage(33.33);
+            
+			UpdatePanelImages.ContentTemplateContainer.Controls.Add(img);
 			UpdatePanelImages.Update();
 		}
 
-		if (IsPostBack)
-            return;
-        route = DBHelper.GetRoute(RouteName.Value);
-        if (route != null)
-        {
-            TextBoxTitle.Text = route.Title;
-            TextBoxDescription.Text = route.Description;
-            TextBoxCiclyng.Text = route.Cycling.ToString();
-            TextBoxDifficulty.Text = route.Difficulty;
-            DifficultyFromString();
-        }
-        
+       
     }
 
 

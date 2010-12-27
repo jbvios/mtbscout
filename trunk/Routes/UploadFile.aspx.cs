@@ -17,7 +17,8 @@ public partial class Routes_UploadFile : System.Web.UI.Page
 			HttpPostedFile file = Request.Files[i];
 
 			UploadedImage ui = new UploadedImage();
-			ui.FileName = file.FileName;
+			ui.FileName = Guid.NewGuid().ToString();
+            ui.Description = file.FileName;
 			ui.Image = (Bitmap)Bitmap.FromStream(file.InputStream);
 			ui.Description = "";
 

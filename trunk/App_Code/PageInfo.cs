@@ -68,7 +68,7 @@ namespace MTBScout
 		public string FileName { get; set; }
 		public string Description { get; set; }
 		public Bitmap Image { get; set; }
-
+        public bool ExistFile { get; set; }
 
 		public void AddToSession(string routeName)
 		{
@@ -94,15 +94,35 @@ namespace MTBScout
 			{
 				list = new List<UploadedImage>();
 				HttpContext.Current.Session[key] = list;
+
+                ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(routeName));
+                foreach (string file in cache.files)
+                {
+                    UploadedImage img = new UploadedImage();
+                    img.Description = Helper.GetImageCaption(0, file);
+                    img.FileName = Path.GetFileName(file);
+                    img.Image = Bitmap.FromFile(file) as Bitmap;
+                    img.ExistFile = true;
+                    list.Add(img);
+                }
 			}
 			return list;
 		}
 
 
+        internal static UploadedImage FromSession(string routeName, string imageName)
+        {
+            List<UploadedImage> list = FromSession(routeName);
+            foreach (UploadedImage img in list)
+                if (img.FileName == imageName)
+                    return img;
+            return null;
+        }
 
 		private static string GetKey(string routeName)
 		{
 			return routeName + "ImageList";
 		}
-	}
+
+    }
 }
