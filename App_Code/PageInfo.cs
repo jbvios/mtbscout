@@ -62,4 +62,47 @@ namespace MTBScout
         }
 
     }
+
+	public class UploadedImage
+	{
+		public string FileName { get; set; }
+		public string Description { get; set; }
+		public Bitmap Image { get; set; }
+
+
+		public void AddToSession(string routeName)
+		{
+			List<UploadedImage> list = FromSession(routeName);
+
+			//foreach (UploadedImage ui in list)
+			//{
+			//    if (ui.FileName == FileName)
+			//    {
+			//        list.Remove(ui);
+			//        break;
+			//    }
+			//}
+
+			list.Add(this);
+		}
+
+		public static List<UploadedImage> FromSession(string routeName)
+		{
+			string key = GetKey(routeName);
+			List<UploadedImage> list = HttpContext.Current.Session[key] as List<UploadedImage>;
+			if (list == null)
+			{
+				list = new List<UploadedImage>();
+				HttpContext.Current.Session[key] = list;
+			}
+			return list;
+		}
+
+
+
+		private static string GetKey(string routeName)
+		{
+			return routeName + "ImageList";
+		}
+	}
 }
