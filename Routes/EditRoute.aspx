@@ -120,13 +120,13 @@
                         </fieldset>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-               <asp:UpdatePanel ID="UpdatePanelImages" runat="server" ChildrenAsTriggers="true"
+                <asp:UpdatePanel ID="UpdatePanelImages" runat="server" ChildrenAsTriggers="true"
                     UpdateMode="Conditional">
                     <ContentTemplate>
-                        <asp:Button runat="server" CausesValidation=false ID="ReloadImages" Style="display: none" />
+                        <asp:Button runat="server" CausesValidation="false" ID="ReloadImages" Style="display: none" />
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                 <iframe id="UploadImageFrame" runat="server" frameborder="0" width="100%" scrolling="no"
+                <iframe id="UploadImageFrame" runat="server" frameborder="0" width="100%" scrolling="no"
                     height="40px"></iframe>
                 <div style="text-align: center">
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
