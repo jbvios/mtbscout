@@ -41,34 +41,13 @@
                         <div id="gv_legend" align="left" style="line-height: 13px; border: solid #000000 1px;
                             background: #FFFFFF; padding: 4px; font: 11px Arial;">
                             <div id="gv_legend_header" style="padding-bottom: 2px;">
-                                <b>Altidudine (m)</b></div>
+                                <b>Altitudine (m)</b></div>
                             <%GenerateLegendItems();%>
                         </div>
                     </td>
                 </tr>
             </table>
         </div>
-        <%--<div id="gv_tracklist_container" style="display: none;">
-            <table id="gv_tracklist_table" style="position: relative; filter: alpha(opacity=95);
-                -moz-opacity: 0.95; opacity: 0.95;" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td>
-                        <div id="gv_tracklist_handle" align="center" style="height: 6px; max-height: 6px;
-                            background: #CCCCCC; border-left: 1px solid #999999; border-top: 1px solid #EEEEEE;
-                            border-right: 1px solid #999999; padding: 0px; cursor: move; min-width: 40px;">
-                            <!-- -->
-                        </div>
-                        <div id="gv_tracklist" align="left" style="font: 11px Arial; line-height: 11px; border: solid #666666 1px;
-                            background: #FFFFFF; padding: 4px; overflow: auto;">
-                            <div id="gv_tracklist_header" style="padding-bottom: 2px; color: #000000;">
-                                <b>Tracks:</b></div>
-                            <div id="gv_tracklist_links" style="color: #000000;">
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>--%>
         <div id="gv_tracklist_tooltip" class="gv_tracklist_tooltip" style="background-color: #FFFFFF;
             border: 1px solid #CCCCCC; padding: 2px; font: 11px Arial; display: none;">
         </div>
