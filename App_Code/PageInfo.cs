@@ -65,10 +65,36 @@ namespace MTBScout
 
 	public class UploadedImage
 	{
-		public string FileName { get; set; }
-		public string Description { get; set; }
-		public Bitmap Image { get; set; }
-        public bool ExistFile { get; set; }
+		private string description;
+		private Bitmap image;
+		private string id;
+		
+		public UploadedImage(string id)
+		{
+			this.id = id;
+		}
+		public UploadedImage(string id, string description, Bitmap image)
+		{
+			this.id = id;
+			this.description = description;
+			this.image = image;
+		}
+		public string Id
+		{
+			get { return id; }
+		}
+
+		public string Description
+		{
+			get { return description; }
+			set { if (description != value) { description = value; IsModified = true; } }
+		}
+		public Bitmap Image
+		{
+			get { return image; }
+			set { if (image != value) { image = value; IsModified = true; } }
+		}
+        public bool IsModified { get; set; }
 
 		public void AddToSession(string routeName)
 		{
@@ -94,15 +120,14 @@ namespace MTBScout
 			{
 				list = new List<UploadedImage>();
 				HttpContext.Current.Session[key] = list;
-
+				//carico i file già presenti su file system
                 ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(routeName));
                 foreach (string file in cache.files)
                 {
-                    UploadedImage img = new UploadedImage();
-                    img.Description = Helper.GetImageCaption(0, file);
-                    img.FileName = Path.GetFileName(file);
-                    img.Image = Bitmap.FromFile(file) as Bitmap;
-                    img.ExistFile = true;
+                    UploadedImage img = new UploadedImage(
+						Path.GetFileName(file), 
+						Helper.GetImageCaption(0, file),
+						Bitmap.FromFile(file) as Bitmap);
                     list.Add(img);
                 }
 			}
@@ -114,7 +139,7 @@ namespace MTBScout
         {
             List<UploadedImage> list = FromSession(routeName);
             foreach (UploadedImage img in list)
-                if (img.FileName == imageName)
+                if (img.Id == imageName)
                     return img;
             return null;
         }

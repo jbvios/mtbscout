@@ -14,11 +14,11 @@ public partial class Routes_EditRoute : System.Web.UI.Page
 {
 	Route route;
 	protected void Page_Load(object sender, EventArgs e)
-    {
-        if (string.IsNullOrEmpty(RouteName.Value))
-            RouteName.Value = Request.Params["Route"];
+	{
+		if (string.IsNullOrEmpty(RouteName.Value))
+			RouteName.Value = Request.Params["Route"];
 
-        string script = string.Format(@"
+		string script = string.Format(@"
 function getRouteName(){{
     return document.getElementById('{0}').value; 
 }}
@@ -29,47 +29,84 @@ function getUpdateImagesButton(){{
     return document.getElementById('{2}'); 
 }}", RouteName.ClientID, TextBoxGPS.ClientID, ReloadImages.ClientID);
 
-        ScriptManager.RegisterClientScriptBlock(
-            this,
-            GetType(),
-            "ScriptFunctions",
-            script,
-            true);
+		ScriptManager.RegisterClientScriptBlock(
+			this,
+			GetType(),
+			"ScriptFunctions",
+			script,
+			true);
 
 
-        MapFrame.Attributes["src"] = "map.aspx?EditMode=true&Route=" + RouteName.Value;
-        MapFrame.Attributes["onload"] = "frameLoaded(this);";
+		MapFrame.Attributes["src"] = "map.aspx?EditMode=true&Route=" + RouteName.Value;
+		MapFrame.Attributes["onload"] = "frameLoaded(this);";
 		UploadImageFrame.Attributes["src"] = "UploadFile.aspx?Route=" + RouteName.Value;
 		UploadImageFrame.Attributes["onload"] = "imagesUploaded(this);";
 
-        if (!IsPostBack)
-        {
-            route = DBHelper.GetRoute(RouteName.Value);
-            if (route != null)
-            {
-                TextBoxTitle.Text = route.Title;
-                TextBoxDescription.Text = route.Description;
-                TextBoxCiclyng.Text = route.Cycling.ToString();
-                TextBoxDifficulty.Text = route.Difficulty;
-                DifficultyFromString();
-            }
+		if (!IsPostBack)
+		{
+			route = DBHelper.GetRoute(RouteName.Value);
+			if (route != null)
+			{
+				TextBoxTitle.Text = route.Title;
+				TextBoxDescription.Text = route.Description;
+				TextBoxCiclyng.Text = route.Cycling.ToString();
+				TextBoxDifficulty.Text = route.Difficulty;
+				DifficultyFromString();
+			}
 
-            
-        }
-        UpdatePanelImages.ContentTemplateContainer.Controls.Clear();
+
+		}
+		Table table = new Table();
+		table.Style[HtmlTextWriterStyle.Position] = "relative";
+		table.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
+		table.Style[HtmlTextWriterStyle.MarginRight] = "auto";
+		table.Style[HtmlTextWriterStyle.TextAlign] = "center";
+		UpdatePanelImages.ContentTemplateContainer.Controls.Add(table);
+		TableRow row = null;
+
 		List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
+		int col = 0;
 		foreach (UploadedImage ui in list)
 		{
-            System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
-            img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, ui.FileName);
-            img.Width = Unit.Percentage(33.33);
-            
-			UpdatePanelImages.ContentTemplateContainer.Controls.Add(img);
-			UpdatePanelImages.Update();
+			if (col == 0)
+			{
+				row = new TableRow();
+				table.Rows.Add(row);
+			}
+
+			TableCell cell = new TableCell();
+			row.Cells.Add(cell);
+			cell.CssClass = "ImageCell";
+			cell.Width = Unit.Percentage(33.33333);
+			System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+			img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, ui.Id);
+			img.Style[HtmlTextWriterStyle.PaddingLeft] = img.Style[HtmlTextWriterStyle.PaddingRight] = "20px";
+			cell.Controls.Add(img);
+
+			TextBox tb = new TextBox();
+			tb.Style[HtmlTextWriterStyle.Display] ="block";
+			tb.Width = Unit.Pixel(200);
+			tb.ID = "I_" + ui.Id;
+			tb.Text = ui.Description;
+			tb.CausesValidation = true;
+			
+			tb.Style[HtmlTextWriterStyle.MarginLeft] = tb.Style[HtmlTextWriterStyle.MarginRight] = "AUTO";
+			
+			cell.Controls.Add(tb);
+
+			RequiredFieldValidator val = new RequiredFieldValidator();
+			val.ControlToValidate = tb.ID;
+			val.ErrorMessage = "Campo obbligatorio!";
+			val.SetFocusOnError = true;
+			cell.Controls.Add(val);
+
+
+			if (++col == 3)
+				col = 0;
 		}
 
-       
-    }
+
+	}
 
 
 	protected void ButtonSave_Click(object sender, EventArgs e)
