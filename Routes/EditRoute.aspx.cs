@@ -9,12 +9,19 @@ using System.IO;
 using MTBScout.Entities;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Web.Security;
 
 public partial class Routes_EditRoute : System.Web.UI.Page
 {
 	Route route;
 	protected void Page_Load(object sender, EventArgs e)
 	{
+        if (!LoginState.TestLogin())
+        {
+            FormsAuthentication.RedirectToLoginPage();
+            return;
+        }
+       
 		if (string.IsNullOrEmpty(RouteName.Value))
 			RouteName.Value = Request.Params["Route"];
 
@@ -41,21 +48,17 @@ function getUpdateImagesButton(){{
 		MapFrame.Attributes["onload"] = "frameLoaded(this);";
 		UploadImageFrame.Attributes["src"] = "UploadFile.aspx?Route=" + RouteName.Value;
 		UploadImageFrame.Attributes["onload"] = "imagesUploaded(this);";
+		route = DBHelper.GetRoute(RouteName.Value);
 
-		if (!IsPostBack)
+		if (!IsPostBack && route != null)
 		{
-			route = DBHelper.GetRoute(RouteName.Value);
-			if (route != null)
-			{
-				TextBoxTitle.Text = route.Title;
-				TextBoxDescription.Text = route.Description;
-				TextBoxCiclyng.Text = route.Cycling.ToString();
-				TextBoxDifficulty.Text = route.Difficulty;
-				DifficultyFromString();
-			}
-
-
-		}
+			TextBoxTitle.Text = route.Title;
+			TextBoxDescription.Text = route.Description;
+			TextBoxCiclyng.Text = route.Cycling.ToString();
+			TextBoxDifficulty.Text = route.Difficulty;
+			DifficultyFromString();
+        }
+		
 		Table table = new Table();
 		table.Style[HtmlTextWriterStyle.Position] = "relative";
 		table.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
@@ -96,7 +99,7 @@ function getUpdateImagesButton(){{
 
 			RequiredFieldValidator val = new RequiredFieldValidator();
 			val.ControlToValidate = tb.ID;
-			val.ErrorMessage = "Campo obbligatorio!";
+			val.ErrorMessage = "Descrizione immagine obbligatoria!";
 			val.SetFocusOnError = true;
 			cell.Controls.Add(val);
 
@@ -114,6 +117,10 @@ function getUpdateImagesButton(){{
 		string routeName = RouteName.Value;
 		if (string.IsNullOrEmpty(routeName))
 			return;
+        //non posso salvare una traccia che appartiene ad un alro utente
+        //(se mai riesco a editarla)
+        if (route != null && route.OwnerId != LoginState.User.Id)
+            return;
 
 		GpxParser parser = GpxParser.FromSession(routeName);
 		if (parser != null)
@@ -125,9 +132,16 @@ function getUpdateImagesButton(){{
 
 			parser.Save(gpxFile);
 		}
-		bool added = false;
-		added = (route == null);
-
+        List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
+        string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
+        foreach (UploadedImage ui in list)
+        {
+            if (ui.IsModified)
+            {
+                Helper.SetImageTitle(ui.Image, ui.Description);
+                ui.Image.Save(Path.Combine(imageFolder, ui.Id));
+            }
+        }
 		route = new Route();
 		route.Name = routeName;
 		route.OwnerId = LoginState.User.Id;
@@ -137,6 +151,7 @@ function getUpdateImagesButton(){{
 		route.Title = TextBoxTitle.Text;
 		route.Description = TextBoxDescription.Text;
 		route.Difficulty = TextBoxDifficulty.Text;
+        route.Image = "";//TODO
 		DBHelper.SaveRoute(route);
 	}
 
