@@ -96,22 +96,6 @@ namespace MTBScout
 		}
         public bool IsModified { get; set; }
 
-		public void AddToSession(string routeName)
-		{
-			List<UploadedImage> list = FromSession(routeName);
-
-			//foreach (UploadedImage ui in list)
-			//{
-			//    if (ui.FileName == FileName)
-			//    {
-			//        list.Remove(ui);
-			//        break;
-			//    }
-			//}
-
-			list.Add(this);
-		}
-
 		public static List<UploadedImage> FromSession(string routeName)
 		{
 			string key = GetKey(routeName);

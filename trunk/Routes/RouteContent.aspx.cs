@@ -63,7 +63,7 @@ public partial class Map : System.Web.UI.Page
             string description = string.Format("<iframe scrolling=\"no\" frameborder=\"no\" src=\"/RouteData.aspx?name={0}\"/>", r.Name);
             string icon = "";
             string imageFolder = PathFunctions.GetImagePathFromGpx(gpxFile);
-            string imageFile = Path.Combine(imageFolder, r.Image);
+            string imageFile = Path.Combine(imageFolder, string.IsNullOrEmpty (r.Image) ? "" : r.Image);
             if (!File.Exists(imageFile))
             {
                 string[] files = Directory.GetFiles(imageFolder, "*.jpg");
