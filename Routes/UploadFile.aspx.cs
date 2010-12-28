@@ -26,6 +26,7 @@ public partial class Routes_UploadFile : System.Web.UI.Page
 				if (string.IsNullOrEmpty(ui.Description))
 					ui.Description = Path.GetFileNameWithoutExtension(file.FileName);
 				ui.AddToSession(routeName);
+				System.Threading.Thread.Sleep(5000);
 			}
 			catch 
 			{

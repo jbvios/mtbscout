@@ -126,8 +126,7 @@
                         <asp:Button runat="server" CausesValidation="false" ID="ReloadImages" Style="display: none" />
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <iframe id="UploadImageFrame" runat="server" frameborder="0" width="100%" scrolling="no"
-                    ></iframe>
+                <iframe id="UploadImageFrame" runat="server" frameborder="0" width="100%" scrolling="no" height="100px;" ></iframe>
                 <div style="text-align: center">
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
             </ContentTemplate>
