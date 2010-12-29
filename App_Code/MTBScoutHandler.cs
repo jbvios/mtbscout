@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.SessionState;
 using System.Drawing.Imaging;
 using System.Drawing;
+using System.IO;
 
 namespace MTBScout
 {
@@ -17,18 +18,20 @@ namespace MTBScout
 
         public void ProcessRequest(HttpContext context)
         {
+			string file = context.Request.QueryString["File"];
+			if (!string.IsNullOrEmpty(file))
+			{
+				context.Response.ContentType = "application/octet-stream";
+				context.Response.TransmitFile(file);
+				return;
+			}
             string routeName = context.Request.QueryString["Route"];
             string imageName = context.Request.QueryString["Image"];
 
             UploadedImage img = UploadedImage.FromSession(routeName, imageName);
+			string folder = PathFunctions.GetImagePathFromRouteName(routeName);
             if (img != null)
-            {
-                using (Bitmap bmp = Helper.CreateThumbnail(img.Image, 200))
-                {
-                    context.Response.ContentType = "image/jpeg";
-                    bmp.Save(context.Response.OutputStream, ImageFormat.Jpeg);
-                }
-            }
+				img.SaveTo(context.Response);
         }
     }
 }

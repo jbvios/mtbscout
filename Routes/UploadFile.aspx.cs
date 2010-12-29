@@ -10,26 +10,29 @@ using System.IO;
 
 public partial class Routes_UploadFile : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        string routeName = Request.QueryString["Route"];
-        for (int i = 0; i < Request.Files.Count; i++)
-        {
-            try
-            {
-                HttpPostedFile file = Request.Files[i];
+	protected void Page_Load(object sender, EventArgs e)
+	{
+		string routeName = Request.QueryString["Route"];
+		List<UploadedImage> list = UploadedImage.FromSession(routeName);
 
-                //creo un nuovo file in session
-                List<UploadedImage> list = UploadedImage.FromSession(routeName);
-                UploadedImage ui = new UploadedImage(list.Count.ToString("000") + ".jpg");
-                ui.Image = (Bitmap)Bitmap.FromStream(file.InputStream);
-                ui.Description = Helper.GetImageTitle(ui.Image);
-                list.Add(ui);
-            }
-            catch
-            {
-                //file non valido, mancato upload!
-            }
-        }
-    }
+		string temporaryFolder = PathFunctions.GetTempPath();
+		
+		for (int i = 0; i < Request.Files.Count; i++)
+		{
+			try
+			{
+				HttpPostedFile file = Request.Files[i];
+
+				//creo un nuovo file in session
+				string filePath = Path.Combine(temporaryFolder, 
+					string.Format("{0}-{1}.jpg", (list.Count + 1).ToString("000"), routeName));
+				UploadedImage ui = new UploadedImage(filePath, file.InputStream);
+				list.Add(ui);
+			}
+			catch
+			{
+				//file non valido, mancato upload!
+			}
+		}
+	}
 }

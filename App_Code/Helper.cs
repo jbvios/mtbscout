@@ -78,21 +78,19 @@ public static class Helper
         Interlocked.Decrement(ref sessions);
     }
 
-    public static Size CreateThumbnail(string file, int size)
+    public static Bitmap CreateThumbnail(string file, int size, bool save)
     {
         string thumbFile = PathFunctions.GetThumbFile(file);
         if (File.Exists(thumbFile))
         {
-            using (Bitmap bmp = new Bitmap(thumbFile))
-                return bmp.Size;
+            return new Bitmap(thumbFile);
         }
         using (System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file))
         {
-            using (System.Drawing.Image img = CreateThumbnail(bmp, size))
-            {
-                img.Save(thumbFile);
-                return img.Size;
-            }
+			Bitmap img = CreateThumbnail(bmp, size);
+            if (save)
+				img.Save(thumbFile);
+            return img;
         }
     }
     public static Bitmap CreateThumbnail(Bitmap original, int size)
@@ -206,11 +204,7 @@ public static class Helper
 
     public static string GetImageCaption(int prog, string file)
     {
-        string caption = Helper.GetImageTitle(file);
-        if (!string.IsNullOrEmpty(caption))
-            return caption;
-
-        caption = System.IO.Path.GetFileNameWithoutExtension(file);
+		string caption = System.IO.Path.GetFileNameWithoutExtension(file);
         if (caption.IndexOf("-") != 3)
             caption = prog.ToString("000");
         else if (!char.IsDigit(caption[0]) || !char.IsDigit(caption[1]) || !char.IsDigit(caption[1]))
@@ -283,7 +277,7 @@ public static class Helper
         try
         {
             PropertyItem piDesc = img.GetPropertyItem(ImageTitleId);
-            return Encoding.UTF8.GetString(piDesc.Value);
+            return Encoding.UTF8.GetString(piDesc.Value, 0, piDesc.Value.Length - 1);
         }
         catch
         {

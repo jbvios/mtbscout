@@ -9,19 +9,15 @@
 		<h1>
 			Links utili</h1>
 		<p class="CenterUrl">
-			<a href="http://www.comune.montoggio.ge.it/" target="_blank">
-				<img src="Images/logo_montoggio.gif" alt="Comune di Montoggio" title="Comune di Montoggio" />
-			</a>
-		</p>
-		<p class="CenterUrl">
-			<a href="http://www.genoabike.com/" target="_blank" title="Genoa Bike">
-				<img src="Images/genoabike.png" alt="Genoa Bike" />
-			</a>
-		</p>
-		<p class="CenterUrl">
 			<a href="http://www.videociclismo.altervista.org" target="_blank" title="Video di ciclismo">
 				<img src="Images/bike-icon.png" alt="Video di ciclismo" /><br />
 				Video di ciclismo
+			</a>
+		</p>
+		<p class="CenterUrl">
+			<a href="http://ilariainterplanetaria.wordpress.com/" target="_blank" title="Torte artistiche e... buonissime!">
+				<img src="Images/Ilariainterplanetaria.png" alt="Torte artistiche e... buonissime!" /><br />
+				Torte artistiche e... buonissime!
 			</a>
 		</p>
 		<p class="CenterUrl">

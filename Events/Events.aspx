@@ -30,6 +30,14 @@
 			Eventi</h1>
 		<div class="Event">
 			<table class="Event">
+			<tr>
+					<td class="DateColumn">
+						<a href="CoppaItalia2010/CoppaItalia2010.aspx">Sabato 1 e domenica 2 maggio 2010</a>
+					</td>
+					<td>
+						Prima Tappa Coppa Italia Giovanile MTB Cross Country
+					</td>
+				</tr>
 				<td class="DateColumn">
 						<a href="Antola2009/Antola2009.aspx">Sabato 22 agosto 2009</a>
 					</td>
