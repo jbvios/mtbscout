@@ -117,5 +117,10 @@ namespace MTBScout
         {
             return Path.Combine(GetRoutePathFromName(name), "track.gpx");
         }
-    }
+
+		public static string GetTempPath()
+		{
+			return workingDataPath;
+		}
+	}
 }

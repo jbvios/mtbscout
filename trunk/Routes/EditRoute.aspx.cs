@@ -13,6 +13,8 @@ using System.Web.Security;
 
 public partial class Routes_EditRoute : System.Web.UI.Page
 {
+	Dictionary<TextBox, UploadedImage> descriptionMap = new Dictionary<TextBox, UploadedImage>();
+
 	Route route;
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -81,36 +83,49 @@ function getUpdateImagesButton(){{
 			row.Cells.Add(cell);
 			cell.CssClass = "ImageCell";
 			cell.Width = Unit.Percentage(33.33333);
+
+			UpdatePanel panel = new UpdatePanel();
+			panel.ChildrenAsTriggers = true;
+			panel.UpdateMode = UpdatePanelUpdateMode.Conditional;
+			cell.Controls.Add(panel);
+
 			System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
-			img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, ui.Id);
+			img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, HttpUtility.UrlEncode(ui.File));
 			img.Style[HtmlTextWriterStyle.PaddingLeft] = img.Style[HtmlTextWriterStyle.PaddingRight] = "20px";
-			cell.Controls.Add(img);
+			img.Style[HtmlTextWriterStyle.PaddingTop] = "20px";
+			panel.ContentTemplateContainer.Controls.Add(img);
 
 			TextBox tb = new TextBox();
 			tb.Style[HtmlTextWriterStyle.Display] ="block";
 			tb.Width = Unit.Pixel(200);
-			tb.ID = "I_" + ui.Id;
+			tb.ID = "I_" + Path.GetFileName(ui.File);
 			tb.Text = ui.Description;
 			tb.CausesValidation = true;
+			descriptionMap[tb] = ui;
+			tb.TextChanged += new EventHandler(tb_TextChanged);
+			tb.AutoPostBack = true;
+			tb.Style[HtmlTextWriterStyle.MarginLeft] = tb.Style[HtmlTextWriterStyle.MarginRight] = "auto";
 			
-			tb.Style[HtmlTextWriterStyle.MarginLeft] = tb.Style[HtmlTextWriterStyle.MarginRight] = "AUTO";
-			
-			cell.Controls.Add(tb);
+			panel.ContentTemplateContainer.Controls.Add(tb);
 
 			RequiredFieldValidator val = new RequiredFieldValidator();
 			val.ControlToValidate = tb.ID;
 			val.ErrorMessage = "Descrizione immagine obbligatoria!";
 			val.SetFocusOnError = true;
-			cell.Controls.Add(val);
+			panel.ContentTemplateContainer.Controls.Add(val);
 
 
 			if (++col == 3)
 				col = 0;
 		}
-
-
 	}
 
+	void tb_TextChanged(object sender, EventArgs e)
+	{
+		TextBox tb = ((TextBox)sender);
+		UploadedImage ui = descriptionMap[tb];
+		ui.Description = tb.Text;
+	}
 
 	protected void ButtonSave_Click(object sender, EventArgs e)
 	{
@@ -121,6 +136,22 @@ function getUpdateImagesButton(){{
         //(se mai riesco a editarla)
         if (route != null && route.OwnerId != LoginState.User.Id)
             return;
+   
+		List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
+		if (list.Count == 0)
+			return;
+
+		string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
+		string mainImage = null;
+		foreach (UploadedImage ui in list)
+		{
+			ui.SaveTo(imageFolder);
+			if (ui.IsMainImage)
+				mainImage = ui.File;
+		}
+		if (mainImage == null)
+			mainImage = list[0].File;
+
 
 		GpxParser parser = GpxParser.FromSession(routeName);
 		if (parser != null)
@@ -132,17 +163,10 @@ function getUpdateImagesButton(){{
 
 			parser.Save(gpxFile);
 		}
-        List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
-        string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
-        foreach (UploadedImage ui in list)
-        {
-            if (ui.IsModified)
-            {
-                Helper.SetImageTitle(ui.Image, ui.Description);
-                ui.Image.Save(Path.Combine(imageFolder, ui.Id));
-            }
-        }
-		route = new Route();
+     
+		if (route == null)
+			route = new Route();
+
 		route.Name = routeName;
 		route.OwnerId = LoginState.User.Id;
 		int c = 0;
@@ -151,7 +175,7 @@ function getUpdateImagesButton(){{
 		route.Title = TextBoxTitle.Text;
 		route.Description = TextBoxDescription.Text;
 		route.Difficulty = TextBoxDifficulty.Text;
-        route.Image = "";//TODO
+		route.Image = Path.GetFileName(mainImage);
 		DBHelper.SaveRoute(route);
 	}
 

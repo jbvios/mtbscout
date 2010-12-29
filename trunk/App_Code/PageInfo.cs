@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.IO;
 using System.Drawing;
+using System.Drawing.Imaging;
 namespace MTBScout
 {
     /// <summary>
@@ -49,13 +50,18 @@ namespace MTBScout
             for (int i = 0; i < files.Length; i++)
             {
                 string file = files[i];
-                sizes[i] = Helper.CreateThumbnail(file, 200/*800*/);
+				Size sz;
+				using (Bitmap bmp = Helper.CreateThumbnail(file, 200/*800*/, true))
+					sz = bmp.Size;
+				sizes[i] = sz;
                 thumbUrls[i] = PathFunctions.GetUrlFromPath(PathFunctions.GetThumbFile(file), true);
 
                 Helper.CreateReduced(file);
                 reducedUrls[i] = PathFunctions.GetUrlFromPath(PathFunctions.GetReducedFile(file), true);
-
-                captions[i] = Helper.GetImageCaption(i, file);
+				string title = Helper.GetImageTitle(file);
+				if (string.IsNullOrEmpty(title))
+					title = Helper.GetImageCaption(i, file);
+				captions[i] = title;
                 fileUrls[i] = PathFunctions.GetUrlFromPath(file, false);
 
             }
@@ -63,25 +69,42 @@ namespace MTBScout
 
     }
 
-	public class UploadedImage
+	public class UploadedImage 
 	{
 		private string description;
-		private Bitmap image;
-		private string id;
-		
-		public UploadedImage(string id)
+		private string file;
+		private bool isMainImage;
+
+		public bool IsMainImage
 		{
-			this.id = id;
+			get { return isMainImage; }
+			set { isMainImage = value; }
 		}
-		public UploadedImage(string id, string description, Bitmap image)
+
+		public UploadedImage(string file, Stream s)
 		{
-			this.id = id;
+			this.file = file;
+			using (Bitmap image = (Bitmap)Bitmap.FromStream(s))
+			{
+				Description = Helper.GetImageTitle(image);
+				image.Save(file);
+			}
+		}
+		public UploadedImage(string file, string description)
+		{
+			this.file = file;
 			this.description = description;
-			this.image = image;
 		}
-		public string Id
+
+		~UploadedImage()
 		{
-			get { return id; }
+			if (file.StartsWith(PathFunctions.GetTempPath()))
+				System.IO.File.Delete(file);
+		}
+
+		public string File
+		{
+			get { return file; }
 		}
 
 		public string Description
@@ -89,11 +112,7 @@ namespace MTBScout
 			get { return description; }
 			set { if (description != value) { description = value; IsModified = true; } }
 		}
-		public Bitmap Image
-		{
-			get { return image; }
-			set { if (image != value) { image = value; IsModified = true; } }
-		}
+		
         public bool IsModified { get; set; }
 
 		public static List<UploadedImage> FromSession(string routeName)
@@ -106,32 +125,56 @@ namespace MTBScout
 				HttpContext.Current.Session[key] = list;
 				//carico i file già presenti su file system
                 ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(routeName));
-                foreach (string file in cache.files)
-                {
-                    UploadedImage img = new UploadedImage(
-						Path.GetFileName(file), 
-						Helper.GetImageCaption(0, file),
-						Bitmap.FromFile(file) as Bitmap);
-                    list.Add(img);
-                }
+				for (int i = 0; i < cache.files.Length; i++)
+				{
+					UploadedImage img = new UploadedImage(
+						cache.files[i],
+						cache.captions[i]
+						);
+					list.Add(img);
+				}
 			}
 			return list;
 		}
 
 
-        internal static UploadedImage FromSession(string routeName, string imageName)
+		public static UploadedImage FromSession(string routeName, string file)
         {
             List<UploadedImage> list = FromSession(routeName);
             foreach (UploadedImage img in list)
-                if (img.Id == imageName)
+				if (img.file == file)
                     return img;
             return null;
         }
 
 		private static string GetKey(string routeName)
 		{
-			return routeName + "ImageList";
+			return routeName + "IL";
 		}
 
-    }
+
+		public void SaveTo(string imageFolder)
+		{
+			if (IsModified)
+			{
+				string newFile = Path.Combine(imageFolder, Path.GetFileName(file));
+				if (!System.IO.File.Exists(newFile))
+				{
+					System.IO.File.Move(file, newFile);
+					file = newFile;
+				}
+				Helper.SetImageTitle(file, Description);
+			}
+		}
+
+		internal void SaveTo(HttpResponse httpResponse)
+		{
+			using (Bitmap bmp = Helper.CreateThumbnail(file, 200, false))
+			{
+				httpResponse.ContentType = "image/jpeg";
+				bmp.Save(httpResponse.OutputStream, ImageFormat.Jpeg);
+			}
+			
+		}
+	}
 }

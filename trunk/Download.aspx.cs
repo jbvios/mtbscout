@@ -19,6 +19,9 @@ public partial class Download : System.Web.UI.Page
 				case ".pdf":
 					Response.ContentType = "application/pdf";
 					break;
+				case ".gpx":
+					Response.ContentType = "application/octet-stream";
+					break;
 				default:
 					Response.ContentType = "text/xml";
 					break;
