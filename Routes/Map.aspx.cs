@@ -39,8 +39,6 @@ public partial class Map : System.Web.UI.Page
 
         if (parser != null && !string.IsNullOrEmpty(parser.SourceFile))
         {
-
-            int prog = 0;
             string thumbsFolder = PathFunctions.GetThumbsFolder(parser.SourceFile);
 
             foreach (WayPoint wp in parser.WayPoints)
@@ -52,9 +50,8 @@ public partial class Map : System.Web.UI.Page
                 string color = hasPhoto
                     ? "blue"
                     : "red";
-                string name = hasPhoto
-                    ? Helper.GetImageCaption(prog++, wp.link).Replace("'", "\\'")
-                    : wp.name.Replace("'", "\\'");
+
+                string name = wp.name.Replace("'", "\\'");
                 string description = wp.description.Replace("'", "\\'");
                 string icon = hasPhoto
                     ? "camera"

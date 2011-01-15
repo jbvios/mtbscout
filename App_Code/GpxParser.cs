@@ -204,6 +204,7 @@ namespace MTBScout
             string original = PathFunctions.GetImagePathFromGpx(sourceFile);
             if (Directory.Exists(original))
             {
+                int prog = 0;
                 foreach (string file in Directory.GetFiles(original, "*.jpg"))
                 {
                     if (AlreadyAvailable(file))
@@ -216,6 +217,9 @@ namespace MTBScout
                         {
                             WayPoint wp = new WayPoint(tp);
                             wp.link = file;
+                            wp.name = Helper.GetImageTitle(file);
+                            if (string.IsNullOrEmpty(wp.name))
+                                wp.name = Helper.GetImageCaption(prog++, wp.link).Replace("'", "\\'");
                             wayPoints.Add(wp);
                         }
                     }
