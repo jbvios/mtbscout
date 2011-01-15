@@ -173,15 +173,18 @@ public static class Helper
         ImageCache cache = HttpContext.Current.Cache[imagesPath] as ImageCache;
         if (cache == null)
         {
-            cache = new ImageCache(imagesPath);
-            HttpContext.Current.Cache.Add(
-                imagesPath,
-                cache,
-                new CacheDependency(new string[] { imagesPath }),
-                Cache.NoAbsoluteExpiration,
-                Cache.NoSlidingExpiration,
-                CacheItemPriority.Normal,
-                null);
+               cache = new ImageCache(imagesPath);
+               if (Directory.Exists(imagesPath))
+               {
+                   HttpContext.Current.Cache.Add(
+                                   imagesPath,
+                                   cache,
+                                   new CacheDependency(new string[] { imagesPath }),
+                                   Cache.NoAbsoluteExpiration,
+                                   Cache.NoSlidingExpiration,
+                                   CacheItemPriority.Normal,
+                                   null);
+               }
         }
         return cache;
     }

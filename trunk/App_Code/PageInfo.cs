@@ -33,7 +33,9 @@ namespace MTBScout
 
         public ImageCache(string imagesPath)
         {
-            files = Directory.GetFiles(imagesPath, "*.jpg");
+            files = Directory.Exists(imagesPath)
+             ? Directory.GetFiles(imagesPath, "*.jpg")
+             : new string[0];
             thumbUrls = new string[files.Length];
             reducedUrls = new string[files.Length];
             captions = new string[files.Length];
