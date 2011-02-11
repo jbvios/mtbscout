@@ -4,7 +4,7 @@
     font-family:  'Comic Sans MS', verdana, Tahoma, Arial, sans-serif;
     color: #0000FF;
     text-align: center;
-    background: #FFFFFF url("/images/bkgnd.jpg") repeat-y fixed center top;
+    background: #FFFFFF url("images/bkgnd.jpg") repeat-y fixed center top;
 }
 h1
 {
@@ -54,7 +54,7 @@ table.RouteData
 div.HeaderContainer
 {
     height: 160px;
-    width: 900px;
+    width: 1000px;
     margin-left: auto;
     margin-right: auto;
     background-color: #0FD3FF;
@@ -69,7 +69,7 @@ img.HeaderLogo
 
 div.ContentPanel
 {
-    width: 880px;
+    width: 980px;
     margin-left: auto;
     margin-right: auto;
     padding: 0px 10px 20px 10px;
@@ -81,7 +81,7 @@ div.ContentPanel
 }
 div.FooterContainer
 {
-    width: 900px;
+    width: 1000px;
     height: 52px;
     margin-left: auto;
     margin-right: auto;
@@ -120,7 +120,7 @@ div.Horiz
     background-color: Silver;
     margin-left: auto;
     margin-right: auto;
-    width: 900px;
+    width: 1000px;
     text-align:center;
     font-size: medium;
     font-weight: bold;
