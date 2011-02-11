@@ -219,7 +219,7 @@ namespace MTBScout
                             wp.link = file;
                             wp.name = Helper.GetImageTitle(file);
                             if (string.IsNullOrEmpty(wp.name))
-                                wp.name = Helper.GetImageCaption(prog++, wp.link).Replace("'", "\\'");
+                                wp.name = Helper.GetImageCaption(prog++, wp.link);
                             wayPoints.Add(wp);
                         }
                     }
