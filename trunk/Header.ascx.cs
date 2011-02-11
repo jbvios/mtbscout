@@ -19,8 +19,8 @@ public partial class SiteHeader : System.Web.UI.UserControl
 		LiteralControl c = new LiteralControl("<META NAME=\"Description\" CONTENT=\"mountain bike MTB montoggio scout bicicletta bike biker bikers pentemina scrivia\">");
 		Page.Header.Controls.Add(c);
 
-		SpotLeft.Visible = ShowAds;
-		SpotRight.Visible = ShowAds;
+		//SpotLeft.Visible = ShowAds;
+		//SpotRight.Visible = ShowAds;
         
         if (LoginState.User != null)
         {

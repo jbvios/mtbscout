@@ -1,31 +1,24 @@
 ﻿body
 {
-    font-family: Verdana;
+    background-position: center top;
+    font-family:  'Comic Sans MS', verdana, Tahoma, Arial, sans-serif;
     color: #0000FF;
     text-align: center;
-    height: 970px;
-    background-position: center center;
-    background-image: url('images/frameroundedhole.png');
-    background-attachment: scroll;
-    background-repeat: no-repeat;
-    background-color: #FFFFCC;
+    background: #FFFFFF url("/images/bkgnd.jpg") repeat-y fixed center top;
 }
 h1
 {
-    font-family: Verdana;
     color: #0000FF;
     text-align: center;
 }
 h2
 {
-    font-family: Verdana;
     color: #0000FF;
     text-align: center;
 }
 h3
 {
-    font-family: Verdana;
-    color: #0000FF;
+     color: #0000FF;
     text-align: center;
 }
 p
@@ -60,26 +53,40 @@ table.RouteData
 }
 div.HeaderContainer
 {
-    text-align: center;
-    height: 220px;
-    width: 770px;
+    height: 160px;
+    width: 900px;
     margin-left: auto;
     margin-right: auto;
+    background-color: #0FD3FF;
 }
+img.HeaderLogo
+{
+    height: 140px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+}
+
 div.ContentPanel
 {
-    height: 580px;
-    width: 768px;
+    width: 880px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0px 10px 0px 10px;
-    font-family: Verdana;
-    font-size: small;
+    padding: 0px 10px 20px 10px;
+     font-size: small;
     color: #0000FF;
     overflow: auto;
     background-color: #FFFFCC;
     position: relative;
-    top: -10px;
+}
+div.FooterContainer
+{
+    width: 900px;
+    height: 52px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: x-small;
+    font-weight: bold;
 }
 div.ImageAndDesc
 {
@@ -93,58 +100,36 @@ div.ImageAndDesc img
 {
     border: solid 1px blue;
 }
-div.FooterContainer
+
+div.Horiz ul
 {
-    width: 790px;
-    height: 52px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: Verdana;
-    font-size: x-small;
-    font-weight: bold;
-    position: relative;
-    top: -10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 div.Horiz li
 {
     display: inline;
     text-align: center;
-}
-div.Horiz
-{
-    left: 0px;
-    position: relative;
-    top: 15px;
-}
-div.Horiz img
-{
-    border-style: none;
-    width: 120px;
-    height: 40px;
-    z-index: 10;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-div.Vert
+div.Horiz
 {
-    text-align: left;
+
+    background-color: Silver;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    text-align:center;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-style: normal;
+    font-variant: small-caps;
 }
-div.Vert ul
-{
-    padding: 0px;
-    margin: 0px;
-}
-div.Vert li
-{
-    text-align: left;
-    list-style-type: none;
-    display: inline;
-}
-div.Vert img
-{
-    border-style: none;
-    width: 240px;
-    height: 80px;
-}
+
+
 
 .MenuButton
 {

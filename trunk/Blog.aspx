@@ -6,6 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
-	<iframe id="blogFrame" style="width: 99%; height: 99%; border:none; display: inline;"></iframe>
+	<iframe style="margin-left:auto;margin-right:auto;padding-left:0px;padding-right:0px" id="blogFrame" name="blogframe" frameborder="0" vspace="0" hspace="0"
+marginwidth="0" marginheight="0" scrolling="auto" noresize width="880px" height="800px"></iframe>
 	</div>
 </asp:Content>
