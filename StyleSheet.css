@@ -1,7 +1,7 @@
 ﻿body
 {
     background-position: center top;
-    font-family:  'Comic Sans MS', verdana, Tahoma, Arial, sans-serif;
+    font-family: 'Comic Sans MS' , verdana, Tahoma, Arial, sans-serif;
     color: #0000FF;
     text-align: center;
     background: #FFFFFF url("images/bkgnd.jpg") repeat-y fixed center top;
@@ -18,7 +18,7 @@ h2
 }
 h3
 {
-     color: #0000FF;
+    color: #0000FF;
     text-align: center;
 }
 p
@@ -57,7 +57,7 @@ div.HeaderContainer
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #0FD3FF;
+    background-color: #FFFFCC;
 }
 img.HeaderLogo
 {
@@ -73,7 +73,7 @@ div.ContentPanel
     margin-left: auto;
     margin-right: auto;
     padding: 0px 10px 20px 10px;
-     font-size: small;
+    font-size: small;
     color: #0000FF;
     overflow: auto;
     background-color: #FFFFCC;
@@ -106,22 +106,26 @@ div.Horiz ul
     padding-top: 10px;
     padding-bottom: 10px;
 }
-div.Horiz li
+li
 {
     display: inline;
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
 }
-
+div.Horiz li.SelectedMenu
+{
+    background-color: #FFFFCC;
+    padding-bottom: 10px;
+}
 div.Horiz
 {
-
     background-color: Silver;
     margin-left: auto;
     margin-right: auto;
     width: 1000px;
-    text-align:center;
+    height:40px;
+    text-align: center;
     font-size: medium;
     font-weight: bold;
     text-transform: capitalize;
