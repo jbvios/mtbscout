@@ -1,9 +1,18 @@
 ﻿function hoverImage(el) {
-	el.className = "HoverMenuImage";
+   el.className = "HoverIteratorImage";
 }
 function normalImage(el) {
-	el.className = "";
+    el.className = "IteratorImage";
 }
+function hoverDownloadImage(el) {
+    el.style.width = "35px";
+    el.style.height = "35px";
+}
+function normalDownloadImage(el) {
+    el.style.width = "30px";
+    el.style.height = "30px";
+}
+
 
 function CalcDeltaX(deltaY, radius) {
 	var angle = Math.asin(deltaY / radius);

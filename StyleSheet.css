@@ -35,14 +35,25 @@ td.ImageCell
 }
 td.ImageCell div
 {
-    border: solid 3px;
     vertical-align: top;
     position: relative;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
 }
-
+.IteratorImage
+{
+    position: absolute;
+    border-color:blue;
+    background-color: white;
+    display: inline;
+    left: 0px;
+    top: 0px;
+}
+.HoverIteratorImage
+{
+    border-color:Red;
+}
 table.RouteData
 {
     table-layout: auto;
@@ -124,7 +135,7 @@ div.Horiz
     margin-left: auto;
     margin-right: auto;
     width: 1000px;
-    height:40px;
+    height: 40px;
     text-align: center;
     font-size: medium;
     font-weight: bold;
@@ -145,13 +156,6 @@ div.Horiz
 }
 
 
-.HoverMenuImage
-{
-    background-color: #B6E2FD;
-    overflow: hidden;
-    left: 1px;
-    top: 1px;
-}
 div.NewsBanner
 {
     visibility: hidden;
