@@ -118,8 +118,8 @@ public partial class ImageIterator : System.Web.UI.UserControl
 			downLoadImg.Style[HtmlTextWriterStyle.Display] = "inline";
 			downLoadImg.Style[HtmlTextWriterStyle.Cursor] = "pointer";
 
-			downLoadImg.Attributes["onmouseout"] = "normalImage(this);";
-			downLoadImg.Attributes["onmouseover"] = "hoverImage(this);";
+			downLoadImg.Attributes["onmouseout"] = "normalDownloadImage(this);";
+			downLoadImg.Attributes["onmouseover"] = "hoverDownloadImage(this);";
 			string originalPhotoUrl = PathFunctions.GetFullPath(Request, cache.fileUrls[prog]);
 			downLoadImg.Attributes["onclick"] = string.Format("window.open('{0}')", originalPhotoUrl);
 
@@ -136,12 +136,10 @@ public partial class ImageIterator : System.Web.UI.UserControl
 			img.AlternateText = "Clicca per ingrandire";
 			img.Attributes["title"] = "Clicca per ingrandire";
 			img.Attributes["imageDescription"] = System.IO.Path.GetFileNameWithoutExtension(file);
-			img.Style[HtmlTextWriterStyle.Position] = "absolute";
-			img.BorderWidth = Unit.Pixel(1);
-			img.Style[HtmlTextWriterStyle.BackgroundColor] = "white";
-			img.Style[HtmlTextWriterStyle.Display] = "inline";
-			img.Style[HtmlTextWriterStyle.Left] = "0px";
-			img.Style[HtmlTextWriterStyle.Top] = "0px";
+            img.Attributes["onmouseout"] = "normalImage(this);";
+            img.Attributes["onmouseover"] = "hoverImage(this);";
+            img.CssClass = "IteratorImage";
+            img.BorderWidth = Unit.Pixel(2);
 
 			Label l = new Label();
 			l.Style[HtmlTextWriterStyle.Display] = "block";
