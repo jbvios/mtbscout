@@ -117,13 +117,13 @@ namespace MTBScout
 		
         public bool IsModified { get; set; }
 
-		public static List<UploadedImage> FromSession(string routeName)
+		public static UploadedImages FromSession(string routeName)
 		{
 			string key = GetKey(routeName);
-			List<UploadedImage> list = HttpContext.Current.Session[key] as List<UploadedImage>;
+			UploadedImages list = HttpContext.Current.Session[key] as UploadedImages;
 			if (list == null)
 			{
-				list = new List<UploadedImage>();
+				list = new UploadedImages();
 				HttpContext.Current.Session[key] = list;
 				//carico i file già presenti su file system
                 ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(routeName));
@@ -142,7 +142,7 @@ namespace MTBScout
 
 		public static UploadedImage FromSession(string routeName, string file)
         {
-            List<UploadedImage> list = FromSession(routeName);
+			UploadedImages list = FromSession(routeName);
             foreach (UploadedImage img in list)
 				if (img.file == file)
                     return img;
@@ -177,6 +177,34 @@ namespace MTBScout
 				bmp.Save(httpResponse.OutputStream, ImageFormat.Jpeg);
 			}
 			
+		}
+	}
+
+	public class UploadedImages : IEnumerable<UploadedImage>
+	{
+		List<UploadedImage> list = new List<UploadedImage>();
+
+		public int Count { get { return list.Count;  } }
+
+		public void Add(UploadedImage img)
+		{
+			list.Add(img);
+		}
+
+		public IEnumerator<UploadedImage> GetEnumerator()
+		{
+			return list.GetEnumerator();
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return list.GetEnumerator();
+		}
+
+
+		public UploadedImage GetAt(int i)
+		{
+			return list[i];
 		}
 	}
 }
