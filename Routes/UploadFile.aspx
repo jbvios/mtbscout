@@ -25,11 +25,10 @@
         background-repeat: no-repeat; background-color: White; display: none;" title="Caricamento immagini in corso, attentere prego...">
     </div>
     <p style="text-align: justify;">
-        Premi il pulsante sotto per aggiungere immagini. Se il tuo browser lo supporta,
-        puoi selezionare più immagini contemporaneamente tenendo premuto il tasto CTRL
+        Premi il pulsante sotto per aggiungere un'immagine
     </p>
     <div>
-        <asp:FileUpload ID="file_upload" runat="server" name="file_upload" type="file" multiple=""
+        <asp:FileUpload ID="file_upload" runat="server" name="file_upload" type="file"
             accept="image/jpg" onchange="onFileSelected(this);" />
     </div>
     </form>

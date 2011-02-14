@@ -13,7 +13,7 @@ public partial class Routes_UploadFile : System.Web.UI.Page
 	protected void Page_Load(object sender, EventArgs e)
 	{
 		string routeName = Request.QueryString["Route"];
-		List<UploadedImage> list = UploadedImage.FromSession(routeName);
+		UploadedImages list = UploadedImage.FromSession(routeName);
 
 		string temporaryFolder = PathFunctions.GetTempPath();
 		

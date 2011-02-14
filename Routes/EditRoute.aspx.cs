@@ -14,8 +14,9 @@ using System.Web.Security;
 public partial class Routes_EditRoute : System.Web.UI.Page
 {
 	Dictionary<TextBox, UploadedImage> descriptionMap = new Dictionary<TextBox, UploadedImage>();
-
 	Route route;
+	List<MyButton> buttons = new List<MyButton>();
+
 	protected void Page_Load(object sender, EventArgs e)
 	{
         if (!LoginState.TestLogin())
@@ -52,6 +53,8 @@ function getUpdateImagesButton(){{
 		UploadImageFrame.Attributes["onload"] = "imagesUploaded(this);";
 		route = DBHelper.GetRoute(RouteName.Value);
 
+		string mainImage = null;
+		UploadedImages list = UploadedImage.FromSession(RouteName.Value);
 		if (!IsPostBack && route != null)
 		{
 			TextBoxTitle.Text = route.Title;
@@ -59,8 +62,9 @@ function getUpdateImagesButton(){{
 			TextBoxCiclyng.Text = route.Cycling.ToString();
 			TextBoxDifficulty.Text = route.Difficulty;
 			DifficultyFromString();
+			mainImage = route.Image;
         }
-		
+		 
 		Table table = new Table();
 		table.Style[HtmlTextWriterStyle.Position] = "relative";
 		table.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
@@ -69,10 +73,10 @@ function getUpdateImagesButton(){{
 		UpdatePanelImages.ContentTemplateContainer.Controls.Add(table);
 		TableRow row = null;
 
-		List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
 		int col = 0;
-		foreach (UploadedImage ui in list)
+		for (int i = 0; i < list.Count; i++)
 		{
+			UploadedImage ui = list.GetAt(i);
 			if (col == 0)
 			{
 				row = new TableRow();
@@ -115,6 +119,23 @@ function getUpdateImagesButton(){{
 			panel.ContentTemplateContainer.Controls.Add(val);
 
 
+			MyButton cb = new MyButton(panel);
+			buttons.Add(cb);
+			cb.Style[HtmlTextWriterStyle.Display] = "block";
+			cb.Width = Unit.Pixel(200);
+			string fileName = Path.GetFileName(ui.File);
+			cb.ID = "CB_" + fileName;
+			cb.Text = "Immagine principale";
+
+			cb.Image = ui;
+			if (mainImage == null)
+				mainImage = fileName;
+
+			cb.Checked = fileName == mainImage;
+			cb.CausesValidation = false;
+			cb.EnableViewState = true;
+			cell.Controls.Add(cb);
+
 			if (++col == 3)
 				col = 0;
 		}
@@ -127,6 +148,7 @@ function getUpdateImagesButton(){{
 		ui.Description = tb.Text;
 	}
 
+
 	protected void ButtonSave_Click(object sender, EventArgs e)
 	{
 		string routeName = RouteName.Value;
@@ -136,21 +158,14 @@ function getUpdateImagesButton(){{
         //(se mai riesco a editarla)
         if (route != null && route.OwnerId != LoginState.User.Id)
             return;
-   
-		List<UploadedImage> list = UploadedImage.FromSession(RouteName.Value);
+
+		UploadedImages list = UploadedImage.FromSession(RouteName.Value);
 		if (list.Count == 0)
 			return;
 
 		string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
-		string mainImage = null;
 		foreach (UploadedImage ui in list)
-		{
 			ui.SaveTo(imageFolder);
-			if (ui.IsMainImage)
-				mainImage = ui.File;
-		}
-		if (mainImage == null)
-			mainImage = list[0].File;
 
 
 		GpxParser parser = GpxParser.FromSession(routeName);
@@ -175,7 +190,12 @@ function getUpdateImagesButton(){{
 		route.Title = TextBoxTitle.Text;
 		route.Description = TextBoxDescription.Text;
 		route.Difficulty = TextBoxDifficulty.Text;
-		route.Image = Path.GetFileName(mainImage);
+		foreach (MyButton btn in buttons)
+			if (btn.Checked)
+			{
+				route.Image = Path.GetFileName(btn.Image.File);
+				break;
+			}
 		DBHelper.SaveRoute(route);
 	}
 
@@ -264,4 +284,15 @@ function getUpdateImagesButton(){{
 				break;
 			}
 	}
+}
+class MyButton : RadioButton 
+{
+	public MyButton(UpdatePanel panel)
+	{
+		Panel = panel;
+		this.AutoPostBack = false;
+		this.GroupName = "MainImage";
+	}
+	public UpdatePanel Panel { get; set; }
+	public UploadedImage Image { get; set; }
 }
