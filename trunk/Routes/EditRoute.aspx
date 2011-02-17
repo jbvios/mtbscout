@@ -44,10 +44,10 @@
 						</div>
 						<asp:TextBox ID="TextBoxGPS" Enabled="false" Style="display: none;" runat="server"
 							Width="100%" TextMode="SingleLine" CausesValidation="True"></asp:TextBox>
-						<div style="text-align:center;">
-						<iframe id="MapFrame" runat="server" frameborder="0" width="800px" scrolling="no"
-							height="400px"></iframe>
-							</div>
+						<div style="text-align: center;">
+							<iframe id="MapFrame" runat="server" frameborder="0" width="800px" scrolling="no"
+								height="400px"></iframe>
+						</div>
 						<div>
 							Titolo percorso:
 							<asp:RequiredFieldValidator ID="TextBoxTitleRequiredFieldValidator" runat="server"
@@ -132,7 +132,11 @@
 		</asp:UpdatePanel>
 		<iframe id="UploadImageFrame" runat="server" frameborder="0" width="100%" scrolling="no"
 			height="100px;"></iframe>
-		<div style="text-align: center">
-			<asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
+		<asp:UpdatePanel ID="UpdatePanelButton" runat="server" ChildrenAsTriggers="true">
+			<ContentTemplate>
+				<div style="text-align: center">
+					<asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
+			</ContentTemplate>
+		</asp:UpdatePanel>
 	</div>
 </asp:Content>
