@@ -113,6 +113,7 @@ function getUpdateImagesButton(){{
 			panel.ContentTemplateContainer.Controls.Add(tb);
 
 			RequiredFieldValidator val = new RequiredFieldValidator();
+			val.ID = "V_" + tb.ID;
 			val.ControlToValidate = tb.ID;
 			val.ErrorMessage = "Descrizione immagine obbligatoria!";
 			val.SetFocusOnError = true;
@@ -151,52 +152,71 @@ function getUpdateImagesButton(){{
 
 	protected void ButtonSave_Click(object sender, EventArgs e)
 	{
-		string routeName = RouteName.Value;
-		if (string.IsNullOrEmpty(routeName))
-			return;
-        //non posso salvare una traccia che appartiene ad un alro utente
-        //(se mai riesco a editarla)
-        if (route != null && route.OwnerId != LoginState.User.Id)
-            return;
-
-		UploadedImages list = UploadedImage.FromSession(RouteName.Value);
-		if (list.Count == 0)
-			return;
-
-		string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
-		foreach (UploadedImage ui in list)
-			ui.SaveTo(imageFolder);
-
-
-		GpxParser parser = GpxParser.FromSession(routeName);
-		if (parser != null)
+		try
 		{
-			string gpxFile = PathFunctions.GetGpxPathFromRouteName(routeName);
-			string path = Path.GetDirectoryName(gpxFile);
-			if (!Directory.Exists(path))
-				Directory.CreateDirectory(path);
+			string routeName = RouteName.Value;
+			if (string.IsNullOrEmpty(routeName))
+				return;
+			//non posso salvare una traccia che appartiene ad un alro utente
+			//(se mai riesco a editarla)
+			if (route != null && route.OwnerId != LoginState.User.Id)
+				return;
 
-			parser.Save(gpxFile);
-		}
-     
-		if (route == null)
-			route = new Route();
-
-		route.Name = routeName;
-		route.OwnerId = LoginState.User.Id;
-		int c = 0;
-		if (int.TryParse(TextBoxCiclyng.Text, out c))
-			route.Cycling = c;
-		route.Title = TextBoxTitle.Text;
-		route.Description = TextBoxDescription.Text;
-		route.Difficulty = TextBoxDifficulty.Text;
-		foreach (MyButton btn in buttons)
-			if (btn.Checked)
+			UploadedImages list = UploadedImage.FromSession(RouteName.Value);
+			if (list.Count == 0)
 			{
-				route.Image = Path.GetFileName(btn.Image.File);
-				break;
+				ScriptManager.RegisterStartupScript(this, GetType(), "NoImages", "alert('Occorre caricare almeno una immagine.');", true);
+				return;
 			}
-		DBHelper.SaveRoute(route);
+			string mainImage = null;
+			foreach (MyButton btn in buttons)
+				if (btn.Checked)
+				{
+					mainImage = Path.GetFileName(btn.Image.File);
+					break;
+				}
+			if (string.IsNullOrEmpty(mainImage))
+			{
+				ScriptManager.RegisterStartupScript(this, GetType(), "NoImages", "alert('Occorre indicare un'immagine principale.');", true);
+				return;
+			}
+
+			string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
+			foreach (UploadedImage ui in list)
+				ui.SaveTo(imageFolder);
+
+			GpxParser parser = GpxParser.FromSession(routeName);
+			if (parser != null)
+			{
+				string gpxFile = PathFunctions.GetGpxPathFromRouteName(routeName);
+				string path = Path.GetDirectoryName(gpxFile);
+				if (!Directory.Exists(path))
+					Directory.CreateDirectory(path);
+
+				parser.Save(gpxFile);
+			}
+
+			if (route == null)
+				route = new Route();
+
+			route.Image = mainImage;
+			route.Name = routeName;
+			route.OwnerId = LoginState.User.Id;
+			int c = 0;
+			if (int.TryParse(TextBoxCiclyng.Text, out c))
+				route.Cycling = c;
+			route.Title = TextBoxTitle.Text;
+			route.Description = TextBoxDescription.Text;
+			route.Difficulty = TextBoxDifficulty.Text;
+
+			DBHelper.SaveRoute(route);
+			ScriptManager.RegisterStartupScript(this, GetType(), "MessageOK", "alert('Informazioni salvate correttamente.');", true);
+		}
+		catch (Exception ex)
+		{
+			ScriptManager.RegisterStartupScript(this, GetType(), "Error", string.Format("alert('Errore durante il salvataggio: {0}.');", ex.Message), true);
+		}
+		
 	}
 
 	protected void DropDownListDown_SelectedIndexChanged(object sender, EventArgs e)
