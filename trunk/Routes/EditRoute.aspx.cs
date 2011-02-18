@@ -15,7 +15,7 @@ public partial class Routes_EditRoute : System.Web.UI.Page
 {
 	Dictionary<TextBox, UploadedImage> descriptionMap = new Dictionary<TextBox, UploadedImage>();
 	Route route;
-	List<MyButton> buttons = new List<MyButton>();
+	List<MyRadioButton> buttons = new List<MyRadioButton>();
 
 	protected void Page_Load(object sender, EventArgs e)
 	{
@@ -88,11 +88,33 @@ function getUpdateImagesButton(){{
 			cell.CssClass = "ImageCell";
 			cell.Width = Unit.Percentage(33.33333);
 
+			Panel container = new Panel(); 
+			container.Style[HtmlTextWriterStyle.Display] = "inline-block";
+
+			cell.Controls.Add(container);
+
+			string fileName = Path.GetFileName(ui.File);
+			if (mainImage == null)
+				mainImage = fileName;
+			
+			MyImageButton ib = new MyImageButton();
+			ib.ID = "IB_" + fileName;
+			ib.ImageUrl = "~/Images/Close.png";
+			ib.ToolTip = "Elimina immagine";
+			ib.Click += new ImageClickEventHandler(ib_Click);
+			ib.CssClass = "DeleteImage";
+			ib.CausesValidation = false;
+			ib.Attributes["onmouseout"] = "normalDeleteImage(this);";
+			ib.Attributes["onmouseover"] = "hoverDeleteImage(this);";
+			
+			container.Controls.Add(ib);
+
 			UpdatePanel panel = new UpdatePanel();
 			panel.ChildrenAsTriggers = true;
 			panel.UpdateMode = UpdatePanelUpdateMode.Conditional;
-			cell.Controls.Add(panel);
+			container.Controls.Add(panel);
 
+			
 			System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
 			img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, HttpUtility.UrlEncode(ui.File));
 			img.Style[HtmlTextWriterStyle.PaddingLeft] = img.Style[HtmlTextWriterStyle.PaddingRight] = "20px";
@@ -117,29 +139,30 @@ function getUpdateImagesButton(){{
 			val.ControlToValidate = tb.ID;
 			val.ErrorMessage = "Descrizione immagine obbligatoria!";
 			val.SetFocusOnError = true;
+			val.Display = ValidatorDisplay.Dynamic;
 			panel.ContentTemplateContainer.Controls.Add(val);
 
 
-			MyButton cb = new MyButton(panel);
-			buttons.Add(cb);
-			cb.Style[HtmlTextWriterStyle.Display] = "block";
-			cb.Width = Unit.Pixel(200);
-			string fileName = Path.GetFileName(ui.File);
-			cb.ID = "CB_" + fileName;
-			cb.Text = "Immagine principale";
-
-			cb.Image = ui;
-			if (mainImage == null)
-				mainImage = fileName;
-
-			cb.Checked = fileName == mainImage;
-			cb.CausesValidation = false;
-			cb.EnableViewState = true;
-			cell.Controls.Add(cb);
+			MyRadioButton rb = new MyRadioButton(ui);
+			buttons.Add(rb);
+			rb.Style[HtmlTextWriterStyle.Display] = "block";
+			rb.Width = Unit.Pixel(200);
+			rb.ID = "CB_" + fileName;
+			rb.Text = "Immagine principale";
+			rb.Style[HtmlTextWriterStyle.MarginLeft] = rb.Style[HtmlTextWriterStyle.MarginRight] = "auto";
+			rb.Checked = fileName == mainImage;
+			rb.CausesValidation = false;
+			rb.EnableViewState = true;
+			container.Controls.Add(rb);
 
 			if (++col == 3)
 				col = 0;
 		}
+	}
+
+	void ib_Click(object sender, ImageClickEventArgs e)
+	{
+		
 	}
 
 	void tb_TextChanged(object sender, EventArgs e)
@@ -169,7 +192,7 @@ function getUpdateImagesButton(){{
 				return;
 			}
 			string mainImage = null;
-			foreach (MyButton btn in buttons)
+			foreach (MyRadioButton btn in buttons)
 				if (btn.Checked)
 				{
 					mainImage = Path.GetFileName(btn.Image.File);
@@ -181,10 +204,7 @@ function getUpdateImagesButton(){{
 				return;
 			}
 
-			string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
-			foreach (UploadedImage ui in list)
-				ui.SaveTo(imageFolder);
-
+			
 			GpxParser parser = GpxParser.FromSession(routeName);
 			if (parser != null)
 			{
@@ -195,6 +215,13 @@ function getUpdateImagesButton(){{
 
 				parser.Save(gpxFile);
 			}
+
+			string imageFolder = PathFunctions.GetImagePathFromRouteName(RouteName.Value);
+			if (!Directory.Exists(imageFolder))
+				Directory.CreateDirectory(imageFolder);
+			
+			foreach (UploadedImage ui in list)
+				ui.SaveTo(imageFolder);
 
 			if (route == null)
 				route = new Route();
@@ -305,14 +332,23 @@ function getUpdateImagesButton(){{
 			}
 	}
 }
-class MyButton : RadioButton 
+class MyRadioButton : RadioButton 
 {
-	public MyButton(UpdatePanel panel)
+	UploadedImage image;
+	public MyRadioButton(UploadedImage image)
 	{
-		Panel = panel;
 		this.AutoPostBack = false;
 		this.GroupName = "MainImage";
+		this.image = image;
 	}
-	public UpdatePanel Panel { get; set; }
-	public UploadedImage Image { get; set; }
+	public UploadedImage Image { get { return image; } }
+}
+
+class MyImageButton : ImageButton
+{
+	UploadedImage image;
+	public MyImageButton()
+	{
+	}
+	public UploadedImage Image { get { return image; } }
 }

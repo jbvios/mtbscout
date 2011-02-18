@@ -1,9 +1,26 @@
 ﻿function hoverImage(el) {
-	el.className = "HoverMenuImage";
+	el.className = "HoverIteratorImage";
 }
 function normalImage(el) {
-	el.className = "";
+	el.className = "IteratorImage";
 }
+function hoverDownloadImage(el) {
+	el.style.width = "35px";
+	el.style.height = "35px";
+}
+function normalDownloadImage(el) {
+	el.style.width = "30px";
+	el.style.height = "30px";
+}
+function hoverDeleteImage(el) {
+	el.style.width = "25px";
+	el.style.height = "25px";
+}
+function normalDeleteImage(el) {
+	el.style.width = "20px";
+	el.style.height = "20px";
+}
+
 
 function CalcDeltaX(deltaY, radius) {
 	var angle = Math.asin(deltaY / radius);
@@ -14,7 +31,7 @@ function Round(id, radius, step) {
 	var el = document.getElementById(id);
 	if (el == null)
 		return;
-		
+
 	var w = el.offsetWidth;
 	var currEl = el;
 	var deltay = step;
@@ -42,5 +59,5 @@ function Round(id, radius, step) {
 }
 
 function InitPage() {
-	
+
 }
