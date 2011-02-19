@@ -77,6 +77,8 @@ function getUpdateImagesButton(){{
 		for (int i = 0; i < list.Count; i++)
 		{
 			UploadedImage ui = list.GetAt(i);
+            if (ui.IsDeleted)
+                continue;
 			if (col == 0)
 			{
 				row = new TableRow();
@@ -97,9 +99,9 @@ function getUpdateImagesButton(){{
 			if (mainImage == null)
 				mainImage = fileName;
 			
-			MyImageButton ib = new MyImageButton();
+			MyImageButton ib = new MyImageButton(ui);
 			ib.ID = "IB_" + fileName;
-			ib.ImageUrl = "~/Images/Close.png";
+			ib.ImageUrl = "~/Images/Recycle.png";
 			ib.ToolTip = "Elimina immagine";
 			ib.Click += new ImageClickEventHandler(ib_Click);
 			ib.CssClass = "DeleteImage";
@@ -162,7 +164,8 @@ function getUpdateImagesButton(){{
 
 	void ib_Click(object sender, ImageClickEventArgs e)
 	{
-		
+        MyImageButton ib = ((MyImageButton)sender);
+        ib.Image.IsDeleted = true;
 	}
 
 	void tb_TextChanged(object sender, EventArgs e)
@@ -200,10 +203,21 @@ function getUpdateImagesButton(){{
 				}
 			if (string.IsNullOrEmpty(mainImage))
 			{
-				ScriptManager.RegisterStartupScript(this, GetType(), "NoImages", "alert('Occorre indicare un'immagine principale.');", true);
+				ScriptManager.RegisterStartupScript(this, GetType(), "NoImages1111", "alert('Occorre indicare un'immagine principale.');", true);
 				return;
 			}
+            if (route == null)
+                route = new Route();
 
+            route.Image = mainImage;
+            route.Name = routeName;
+            route.OwnerId = LoginState.User.Id;
+            int c = 0;
+            if (int.TryParse(TextBoxCiclyng.Text, out c))
+                route.Cycling = c;
+            route.Title = TextBoxTitle.Text;
+            route.Description = TextBoxDescription.Text;
+            route.Difficulty = TextBoxDifficulty.Text;
 			
 			GpxParser parser = GpxParser.FromSession(routeName);
 			if (parser != null)
@@ -223,18 +237,7 @@ function getUpdateImagesButton(){{
 			foreach (UploadedImage ui in list)
 				ui.SaveTo(imageFolder);
 
-			if (route == null)
-				route = new Route();
-
-			route.Image = mainImage;
-			route.Name = routeName;
-			route.OwnerId = LoginState.User.Id;
-			int c = 0;
-			if (int.TryParse(TextBoxCiclyng.Text, out c))
-				route.Cycling = c;
-			route.Title = TextBoxTitle.Text;
-			route.Description = TextBoxDescription.Text;
-			route.Difficulty = TextBoxDifficulty.Text;
+			
 
 			DBHelper.SaveRoute(route);
 			ScriptManager.RegisterStartupScript(this, GetType(), "MessageOK", "alert('Informazioni salvate correttamente.');", true);
@@ -347,8 +350,9 @@ class MyRadioButton : RadioButton
 class MyImageButton : ImageButton
 {
 	UploadedImage image;
-	public MyImageButton()
+	public MyImageButton(UploadedImage image)
 	{
+        this.image = image;
 	}
 	public UploadedImage Image { get { return image; } }
 }

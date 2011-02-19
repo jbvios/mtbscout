@@ -116,6 +116,7 @@ namespace MTBScout
 		}
 		
         public bool IsModified { get; set; }
+        public bool IsDeleted { get; set; }
 
 		public static UploadedImages FromSession(string routeName)
 		{
@@ -157,7 +158,13 @@ namespace MTBScout
 
 		public void SaveTo(string imageFolder)
 		{
-			if (IsModified)
+			if (IsDeleted)
+            {
+                string newFile = Path.Combine(imageFolder, Path.GetFileName(file));
+                if (System.IO.File.Exists(newFile))
+                    System.IO.File.Delete(newFile);
+            }
+            else if (IsModified)
 			{
 				string newFile = Path.Combine(imageFolder, Path.GetFileName(file));
 				if (!System.IO.File.Exists(newFile))
