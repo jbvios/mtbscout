@@ -16,7 +16,8 @@ public partial class Routes_EditRoute : System.Web.UI.Page
 	Dictionary<TextBox, UploadedImage> descriptionMap = new Dictionary<TextBox, UploadedImage>();
 	Route route;
 	List<MyRadioButton> buttons = new List<MyRadioButton>();
-
+    string mainImage = "";
+		
 	protected void Page_Load(object sender, EventArgs e)
 	{
         if (!LoginState.TestLogin())
@@ -53,8 +54,6 @@ function getUpdateImagesButton(){{
 		UploadImageFrame.Attributes["onload"] = "imagesUploaded(this);";
 		route = DBHelper.GetRoute(RouteName.Value);
 
-		string mainImage = null;
-		UploadedImages list = UploadedImage.FromSession(RouteName.Value);
 		if (!IsPostBack && route != null)
 		{
 			TextBoxTitle.Text = route.Title;
@@ -64,108 +63,139 @@ function getUpdateImagesButton(){{
 			DifficultyFromString();
 			mainImage = route.Image;
         }
-		 
-		Table table = new Table();
-		table.Style[HtmlTextWriterStyle.Position] = "relative";
-		table.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
-		table.Style[HtmlTextWriterStyle.MarginRight] = "auto";
-		table.Style[HtmlTextWriterStyle.TextAlign] = "center";
-		UpdatePanelImages.ContentTemplateContainer.Controls.Add(table);
-		TableRow row = null;
 
-		int col = 0;
-		for (int i = 0; i < list.Count; i++)
-		{
-			UploadedImage ui = list.GetAt(i);
+        BuildImageControls();
+	}
+
+    private void BuildImageControls()
+    {
+        string tableId = "TableImages";
+        Control c = UpdatePanelImages.ContentTemplateContainer.FindControl(tableId);
+        if (c != null)
+            UpdatePanelImages.ContentTemplateContainer.Controls.Remove(c);
+        UploadedImages list = UploadedImage.FromSession(RouteName.Value);
+        Table table = new Table();
+        table.ID = tableId;
+        table.Style[HtmlTextWriterStyle.Position] = "relative";
+        table.Style[HtmlTextWriterStyle.MarginLeft] = "auto";
+        table.Style[HtmlTextWriterStyle.MarginRight] = "auto";
+        table.Style[HtmlTextWriterStyle.TextAlign] = "center";
+        UpdatePanelImages.ContentTemplateContainer.Controls.Add(table);
+        TableRow row = null;
+
+        int col = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            UploadedImage ui = list.GetAt(i);
             if (ui.IsDeleted)
                 continue;
-			if (col == 0)
-			{
-				row = new TableRow();
-				table.Rows.Add(row);
-			}
+            if (col == 0)
+            {
+                row = new TableRow();
+                table.Rows.Add(row);
+            }
 
-			TableCell cell = new TableCell();
-			row.Cells.Add(cell);
-			cell.CssClass = "ImageCell";
-			cell.Width = Unit.Percentage(33.33333);
+            TableCell cell = new TableCell();
+            row.Cells.Add(cell);
+            cell.CssClass = "ImageCell";
+            cell.Width = Unit.Percentage(33.33333);
 
-			Panel container = new Panel(); 
-			container.Style[HtmlTextWriterStyle.Display] = "inline-block";
+            Panel container = new Panel();
+            container.Style[HtmlTextWriterStyle.Display] = "inline-block";
 
-			cell.Controls.Add(container);
+            cell.Controls.Add(container);
 
-			string fileName = Path.GetFileName(ui.File);
-			if (mainImage == null)
-				mainImage = fileName;
-			
-			MyImageButton ib = new MyImageButton(ui);
-			ib.ID = "IB_" + fileName;
-			ib.ImageUrl = "~/Images/Recycle.png";
-			ib.ToolTip = "Elimina immagine";
-			ib.Click += new ImageClickEventHandler(ib_Click);
-			ib.CssClass = "DeleteImage";
-			ib.CausesValidation = false;
-			ib.Attributes["onmouseout"] = "normalDeleteImage(this);";
-			ib.Attributes["onmouseover"] = "hoverDeleteImage(this);";
-			
-			container.Controls.Add(ib);
+            string fileName = Path.GetFileName(ui.File);
+            if (string.IsNullOrEmpty(mainImage))
+                mainImage = fileName;
 
-			UpdatePanel panel = new UpdatePanel();
-			panel.ChildrenAsTriggers = true;
-			panel.UpdateMode = UpdatePanelUpdateMode.Conditional;
-			container.Controls.Add(panel);
+            MyImageButton ib = new MyImageButton(ui);
+            ib.ID = "IB_" + fileName;
+            ib.ImageUrl = "~/Images/Recycle.png";
+            ib.ToolTip = "Elimina immagine";
+            ib.Click += new ImageClickEventHandler(ib_Click);
+            ib.CssClass = "DeleteImage";
+            ib.CausesValidation = false;
+            ib.Attributes["onmouseout"] = "normalDeleteImage(this);";
+            ib.Attributes["onmouseover"] = "hoverDeleteImage(this);";
 
-			
-			System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
-			img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, HttpUtility.UrlEncode(ui.File));
-			img.Style[HtmlTextWriterStyle.PaddingLeft] = img.Style[HtmlTextWriterStyle.PaddingRight] = "20px";
-			img.Style[HtmlTextWriterStyle.PaddingTop] = "20px";
-			panel.ContentTemplateContainer.Controls.Add(img);
+            container.Controls.Add(ib);
 
-			TextBox tb = new TextBox();
-			tb.Style[HtmlTextWriterStyle.Display] ="block";
-			tb.Width = Unit.Pixel(200);
-			tb.ID = "I_" + Path.GetFileName(ui.File);
-			tb.Text = ui.Description;
-			tb.CausesValidation = true;
-			descriptionMap[tb] = ui;
-			tb.TextChanged += new EventHandler(tb_TextChanged);
-			tb.AutoPostBack = true;
-			tb.Style[HtmlTextWriterStyle.MarginLeft] = tb.Style[HtmlTextWriterStyle.MarginRight] = "auto";
-			
-			panel.ContentTemplateContainer.Controls.Add(tb);
-
-			RequiredFieldValidator val = new RequiredFieldValidator();
-			val.ID = "V_" + tb.ID;
-			val.ControlToValidate = tb.ID;
-			val.ErrorMessage = "Descrizione immagine obbligatoria!";
-			val.SetFocusOnError = true;
-			val.Display = ValidatorDisplay.Dynamic;
-			panel.ContentTemplateContainer.Controls.Add(val);
+            UpdatePanel panel = new UpdatePanel();
+            panel.ChildrenAsTriggers = true;
+            panel.UpdateMode = UpdatePanelUpdateMode.Conditional;
+            container.Controls.Add(panel);
 
 
-			MyRadioButton rb = new MyRadioButton(ui);
-			buttons.Add(rb);
-			rb.Style[HtmlTextWriterStyle.Display] = "block";
-			rb.Width = Unit.Pixel(200);
-			rb.ID = "CB_" + fileName;
-			rb.Text = "Immagine principale";
-			rb.Style[HtmlTextWriterStyle.MarginLeft] = rb.Style[HtmlTextWriterStyle.MarginRight] = "auto";
-			rb.Checked = fileName == mainImage;
-			rb.CausesValidation = false;
-			rb.EnableViewState = true;
-			container.Controls.Add(rb);
+            System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+            img.ImageUrl = string.Format("~/RouteImage.axd?Route={0}&Image={1}", RouteName.Value, HttpUtility.UrlEncode(ui.File));
+            img.Style[HtmlTextWriterStyle.PaddingLeft] = img.Style[HtmlTextWriterStyle.PaddingRight] = "20px";
+            img.Style[HtmlTextWriterStyle.PaddingTop] = "20px";
+            panel.ContentTemplateContainer.Controls.Add(img);
 
-			if (++col == 3)
-				col = 0;
-		}
-	}
+            TextBox tb = new TextBox();
+            tb.Style[HtmlTextWriterStyle.Display] = "block";
+            tb.Width = Unit.Pixel(200);
+            tb.ID = "I_" + Path.GetFileName(ui.File);
+            tb.Text = ui.Description;
+            tb.CausesValidation = true;
+            descriptionMap[tb] = ui;
+            tb.TextChanged += new EventHandler(tb_TextChanged);
+            tb.AutoPostBack = true;
+            tb.Style[HtmlTextWriterStyle.MarginLeft] = tb.Style[HtmlTextWriterStyle.MarginRight] = "auto";
+
+            panel.ContentTemplateContainer.Controls.Add(tb);
+
+            RequiredFieldValidator val = new RequiredFieldValidator();
+            val.ID = "V_" + tb.ID;
+            val.ControlToValidate = tb.ID;
+            val.ErrorMessage = "Descrizione immagine obbligatoria!";
+            val.SetFocusOnError = true;
+            val.Display = ValidatorDisplay.Dynamic;
+            panel.ContentTemplateContainer.Controls.Add(val);
+
+
+            MyRadioButton rb = new MyRadioButton(ui);
+            buttons.Add(rb);
+            rb.Style[HtmlTextWriterStyle.Display] = "block";
+            rb.Width = Unit.Pixel(200);
+            rb.ID = "CB_" + fileName;
+            rb.Text = "Immagine principale";
+            rb.Style[HtmlTextWriterStyle.MarginLeft] = rb.Style[HtmlTextWriterStyle.MarginRight] = "auto";
+            rb.Checked = fileName == mainImage;
+            rb.CausesValidation = false;
+            rb.EnableViewState = true;
+            container.Controls.Add(rb);
+
+            if (++col == 3)
+                col = 0;
+        }
+       
+    }
 
 	void ib_Click(object sender, ImageClickEventArgs e)
 	{
         MyImageButton ib = ((MyImageButton)sender);
         ib.Image.IsDeleted = true;
+        MyRadioButton first = null;
+        for (int i = 0; i < buttons.Count; i++)
+        {
+           //la prima immagine non cancellata diventa la default
+            MyRadioButton btn = buttons[i];
+            if (btn.Image.IsDeleted)
+            {
+                btn.Checked = false;
+            }
+            else if (first == null)
+                first = btn;
+        }
+        if (first != null)
+        {
+            first.Checked = true;
+            mainImage = Path.GetFileName(first.Image.File);
+        }
+        BuildImageControls();
+        UpdatePanelImages.Update();
 	}
 
 	void tb_TextChanged(object sender, EventArgs e)
@@ -189,23 +219,14 @@ function getUpdateImagesButton(){{
 				return;
 
 			UploadedImages list = UploadedImage.FromSession(RouteName.Value);
-			if (list.Count == 0)
-			{
-				ScriptManager.RegisterStartupScript(this, GetType(), "NoImages", "alert('Occorre caricare almeno una immagine.');", true);
-				return;
-			}
-			string mainImage = null;
+			mainImage = "";
 			foreach (MyRadioButton btn in buttons)
 				if (btn.Checked)
 				{
 					mainImage = Path.GetFileName(btn.Image.File);
 					break;
 				}
-			if (string.IsNullOrEmpty(mainImage))
-			{
-				ScriptManager.RegisterStartupScript(this, GetType(), "NoImages1111", "alert('Occorre indicare un'immagine principale.');", true);
-				return;
-			}
+			
             if (route == null)
                 route = new Route();
 
@@ -236,8 +257,6 @@ function getUpdateImagesButton(){{
 			
 			foreach (UploadedImage ui in list)
 				ui.SaveTo(imageFolder);
-
-			
 
 			DBHelper.SaveRoute(route);
 			ScriptManager.RegisterStartupScript(this, GetType(), "MessageOK", "alert('Informazioni salvate correttamente.');", true);

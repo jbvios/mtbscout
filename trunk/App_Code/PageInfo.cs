@@ -75,13 +75,6 @@ namespace MTBScout
 	{
 		private string description;
 		private string file;
-		private bool isMainImage;
-
-		public bool IsMainImage
-		{
-			get { return isMainImage; }
-			set { isMainImage = value; }
-		}
 
 		public UploadedImage(string file, Stream s)
 		{
