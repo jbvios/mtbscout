@@ -107,7 +107,26 @@ public class DBHelper
 			return null;
 		return rr.First<Route>();
 	}
-
+    //--------------------------------------------------------------------------------
+    public static void DeleteRoute(Route route)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            //aggiungo l'utente al database, oppure lo aggiorno
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.Delete(route);
+                transaction.Commit();
+            }
+            new Thread(() =>
+            {
+                using (ISession ss = NHSessionManager.GetSession())
+                {
+                    DBHelper.LoadRoutes(ss);
+                }
+            }).Start();
+        }
+    }
 	//--------------------------------------------------------------------------------
 	public static void SaveRoute(Route route)
 	{

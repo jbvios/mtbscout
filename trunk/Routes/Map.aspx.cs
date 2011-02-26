@@ -170,9 +170,10 @@ public partial class Map : System.Web.UI.Page
                 if (r != null)
                 {
                     string gpxFile = PathFunctions.GetGpxPathFromRouteName(routeName);
+                   
                     parser = Helper.GetGpxParser(gpxFile);
-
-                    parser.LoadPhothos();
+                    if (parser != null)
+                        parser.LoadPhothos();
                     Title = r.Title;
                 }
             }
