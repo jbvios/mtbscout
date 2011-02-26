@@ -23,6 +23,9 @@
         function imagesUploaded(frame) {
             getUpdateImagesButton().click();
         }
+        function confirmDelete() {
+            return confirm("Sei sicuro di cancellare questo percorso? Tutti i dati associati andranno persi, l'operazione è irreversibile. Vuoi proseguire?");
+        }
 		
     </script>
 
@@ -138,7 +141,9 @@
                         height="100px;"></iframe>
                 </fieldset>
                 <div style="text-align: center">
-                    <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" /></div>
+                    <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" />
+                <asp:Button ID="ButtonDelete" runat="server" Text="Elimina questo percorso" 
+                        CausesValidation="false" OnClientClick="return confirmDelete();" onclick="ButtonDelete_Click" /></div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

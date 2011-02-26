@@ -87,9 +87,9 @@ public static class Helper
         }
         using (System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file))
         {
-			Bitmap img = CreateThumbnail(bmp, size);
+            Bitmap img = CreateThumbnail(bmp, size);
             if (save)
-				img.Save(thumbFile);
+                img.Save(thumbFile);
             return img;
         }
     }
@@ -154,8 +154,11 @@ public static class Helper
         GpxParser parser = HttpContext.Current.Cache[gpxPath] as GpxParser;
         if (parser == null)
         {
-            parser = new GpxParser();
+           if (!File.Exists(gpxPath))
+                return null;
+ 			parser = new GpxParser();
             parser.Parse(gpxPath);
+
             HttpContext.Current.Cache.Add(
                 gpxPath,
                 parser,
@@ -173,18 +176,18 @@ public static class Helper
         ImageCache cache = HttpContext.Current.Cache[imagesPath] as ImageCache;
         if (cache == null)
         {
-               cache = new ImageCache(imagesPath);
-               if (Directory.Exists(imagesPath))
-               {
-                   HttpContext.Current.Cache.Add(
-                                   imagesPath,
-                                   cache,
-                                   new CacheDependency(new string[] { imagesPath }),
-                                   Cache.NoAbsoluteExpiration,
-                                   Cache.NoSlidingExpiration,
-                                   CacheItemPriority.Normal,
-                                   null);
-               }
+            cache = new ImageCache(imagesPath);
+            if (Directory.Exists(imagesPath))
+            {
+                HttpContext.Current.Cache.Add(
+                                imagesPath,
+                                cache,
+                                new CacheDependency(new string[] { imagesPath }),
+                                Cache.NoAbsoluteExpiration,
+                                Cache.NoSlidingExpiration,
+                                CacheItemPriority.Normal,
+                                null);
+            }
         }
         return cache;
     }
@@ -207,7 +210,7 @@ public static class Helper
 
     public static string GetImageCaption(int prog, string file)
     {
-		string caption = System.IO.Path.GetFileNameWithoutExtension(file);
+        string caption = System.IO.Path.GetFileNameWithoutExtension(file);
         if (caption.IndexOf("-") != 3)
             caption = prog.ToString("000");
         else if (!char.IsDigit(caption[0]) || !char.IsDigit(caption[1]) || !char.IsDigit(caption[1]))

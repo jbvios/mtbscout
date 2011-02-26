@@ -205,6 +205,51 @@ function getUpdateImagesButton(){{
 		ui.Description = tb.Text;
 	}
 
+    protected void ButtonDelete_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string routeName = RouteName.Value;
+            if (string.IsNullOrEmpty(routeName))
+                return;
+            //non posso eliminare una traccia che appartiene ad un alro utente
+            //(se mai riesco a editarla)
+            if (route != null && route.OwnerId != LoginState.User.Id)
+                return;
+
+            string path = PathFunctions.GetRoutePathFromName(routeName);
+            TryDeleting(path);
+            path = PathFunctions.GetWorkingPath(path);
+            TryDeleting(path);
+            if (route != null)
+                DBHelper.DeleteRoute(route);
+        }
+        catch (Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "ErrorDeleting", string.Format("alert('Errore durante l'eliminazione: {0}.');", ex.Message), true);
+        }
+    }
+
+    private static void TryDeleting(string path)
+    {
+        //faccio 10 tentativi
+        int count = 0;
+        while (true)
+        {
+            try
+            {
+                if (Directory.Exists(path))
+                    Directory.Delete(path, true);
+                break;
+            }
+            catch
+            {
+                count++;
+                if (count > 10)
+                    throw;
+            }
+        }
+    }
 
 	protected void ButtonSave_Click(object sender, EventArgs e)
 	{
@@ -353,6 +398,7 @@ function getUpdateImagesButton(){{
 				break;
 			}
 	}
+  
 }
 class MyRadioButton : RadioButton 
 {
