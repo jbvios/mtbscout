@@ -73,7 +73,7 @@ public partial class Map : System.Web.UI.Page
                     imageFile = "";
             }
             string thumbFile = imageFile.Length == 0 ? "" : PathFunctions.GetThumbFile(imageFile);
-            string photo = PathFunctions.GetUrlFromPath(thumbFile, false).Replace("'", "\\'");
+            string photo = thumbFile.Length == 0 ? "" : PathFunctions.GetUrlFromPath(thumbFile, false).Replace("'", "\\'");
             Response.Write(string.Format(
             "GV_Draw_Marker({{ lat: {0}, lon: {1}, name: '{2}', desc: '{3}', color: '{4}', icon: '{5}', photo: '{6}', url: '{7}' }});\r\n",
                 p.lat.ToString(System.Globalization.CultureInfo.InvariantCulture),
