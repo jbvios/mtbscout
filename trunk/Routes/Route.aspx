@@ -8,16 +8,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
     <div id="ContentPanel" class="ContentPanel">
+        <h1 id="UnexistingRoute" runat="server" visible="false">
+            Percorso inesistente: potrebbe essere sato rimosso</h1>
         <uc4:RouteHeader ID="RouteHeader1" runat="server" />
         <%
             
             foreach (string s in DescriptionParagraphs)
             {%>
-               <p>
-               <%= s.Trim()%>
-               </p>
-            <%}
-             %>
+        <p>
+            <%= s.Trim()%>
+        </p>
+        <%}
+        %>
         <uc2:DownloadGpsTrack ID="DownloadGpsTrack1" runat="server" />
         <uc1:ImageIterator ID="ImageIterator1" runat="server" />
     </div>

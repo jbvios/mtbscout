@@ -30,7 +30,10 @@ public partial class RouteHeader : System.Web.UI.UserControl
 		if (string.IsNullOrEmpty(RouteName))
 			RouteName = Path.GetFileName(Page.MapPath("."));
 		Route r = DBHelper.GetRoute(RouteName);
-
+        if (r == null)
+        {
+            return;
+        }
 		GpxParser parser = r.Parser;
 		string routeLenght = Math.Round(parser.Distance3D / 1000, 1).ToString(CultureInfo.InvariantCulture);
 		string routeTotalHeight = Convert.ToInt32(parser.TotalClimb).ToString();

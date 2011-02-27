@@ -14,11 +14,20 @@ public partial class Routes_Route : System.Web.UI.Page
     { 
         base.OnInit(e);
         string routeName = Request.Params["Route"];
-        RouteHeader1.RouteName = routeName;
-        DownloadGpsTrack1.RouteName = routeName;
-        ImageIterator1.ImagesPath = PathFunctions.GetImagePathFromRouteName(routeName);
-
         Route r = DBHelper.GetRoute(routeName);
+        if (r == null)
+        {
+            RouteHeader1.Visible = false;
+            DownloadGpsTrack1.Visible = false;
+            ImageIterator1.Visible = false;
+            UnexistingRoute.Visible = true;
+        }
+        else
+        {
+            RouteHeader1.RouteName = routeName;
+            DownloadGpsTrack1.RouteName = routeName;
+            ImageIterator1.ImagesPath = PathFunctions.GetImagePathFromRouteName(routeName);
+        }
         if (r == null || string.IsNullOrEmpty(r.Description))
         {
             DescriptionParagraphs = new string[0];
