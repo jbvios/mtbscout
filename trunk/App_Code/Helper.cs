@@ -20,6 +20,7 @@ using System.Linq.Expressions;
 using System.Net.Mail;
 using System.Drawing.Imaging;
 using System.Text;
+using System.Reflection;
 
 /// <summary>
 /// Summary description for Helper
@@ -416,6 +417,16 @@ public static class Helper
             msg.Bcc.Add(new MailAddress(s));
 
         client.Send(msg);
+    }
+
+    public static void DisableAppDomainRestartOnDelete()
+    {
+        PropertyInfo p = typeof(System.Web.HttpRuntime).GetProperty("FileChangesMonitor", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
+        object o = p.GetValue(null, null);
+        FieldInfo f = o.GetType().GetField("_dirMonSubdirs", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
+        object monitor = f.GetValue(o);
+        MethodInfo m = monitor.GetType().GetMethod("StopMonitoring", BindingFlags.Instance | BindingFlags.NonPublic);
+        m.Invoke(monitor, new object[] { }); 
     }
 }
 internal class AutoLock : IDisposable
