@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
     <div id="ContentPanel" class="ContentPanel">
         <h1 id="UnexistingRoute" runat="server" visible="false">
-            Percorso inesistente: potrebbe essere sato rimosso</h1>
+            Percorso inesistente: potrebbe essere stato rimosso</h1>
         <uc4:RouteHeader ID="RouteHeader1" runat="server" />
         <%
             
