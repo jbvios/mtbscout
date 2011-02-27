@@ -70,7 +70,7 @@ function getUpdateImagesButton(){{
         Control c = UpdatePanelImages.ContentTemplateContainer.FindControl(tableId);
         if (c != null)
             UpdatePanelImages.ContentTemplateContainer.Controls.Remove(c);
-        UploadedImages list = UploadedImage.FromSession(RouteName.Value);
+        UploadedImages list = UploadedImages.FromSession(RouteName.Value);
         Table table = new Table();
         table.ID = tableId;
         table.Style[HtmlTextWriterStyle.Position] = "relative";
@@ -220,6 +220,10 @@ function getUpdateImagesButton(){{
             TryDeleting(path);
             if (route != null)
                 DBHelper.DeleteRoute(route);
+            GpxParser.RemoveFromSession(routeName);
+            UploadedImages.RemoveFromSession(routeName);
+            //forza il ricaricamento della pagina
+            Response.Redirect(Request.Url.ToString(), true);
         }
         catch (Exception ex)
         {
@@ -260,7 +264,7 @@ function getUpdateImagesButton(){{
 			if (route != null && route.OwnerId != LoginState.User.Id)
 				return;
 
-			UploadedImages list = UploadedImage.FromSession(RouteName.Value);
+			UploadedImages list = UploadedImages.FromSession(RouteName.Value);
 			mainImage = "";
 			foreach (MyRadioButton btn in buttons)
 				if (btn.Checked)

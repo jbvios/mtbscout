@@ -111,43 +111,16 @@ namespace MTBScout
         public bool IsModified { get; set; }
         public bool IsDeleted { get; set; }
 
-		public static UploadedImages FromSession(string routeName)
-		{
-			string key = GetKey(routeName);
-			UploadedImages list = HttpContext.Current.Session[key] as UploadedImages;
-			if (list == null)
-			{
-				list = new UploadedImages();
-				HttpContext.Current.Session[key] = list;
-				//carico i file già presenti su file system
-                ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(routeName));
-				for (int i = 0; i < cache.files.Length; i++)
-				{
-					UploadedImage img = new UploadedImage(
-						cache.files[i],
-						cache.captions[i]
-						);
-					list.Add(img);
-				}
-			}
-			return list;
-		}
-
+		
 
 		public static UploadedImage FromSession(string routeName, string file)
         {
-			UploadedImages list = FromSession(routeName);
+			UploadedImages list = UploadedImages.FromSession(routeName);
             foreach (UploadedImage img in list)
 				if (img.file == file)
                     return img;
             return null;
         }
-
-		private static string GetKey(string routeName)
-		{
-			return routeName + "IL";
-		}
-
 
 		public void SaveTo(string imageFolder)
 		{
@@ -186,6 +159,36 @@ namespace MTBScout
 
 		public int Count { get { return list.Count;  } }
 
+        public static UploadedImages FromSession(string routeName)
+        {
+            string key = GetKey(routeName);
+            UploadedImages list = HttpContext.Current.Session[key] as UploadedImages;
+            if (list == null)
+            {
+                list = new UploadedImages();
+                HttpContext.Current.Session[key] = list;
+                //carico i file già presenti su file system
+                ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(routeName));
+                for (int i = 0; i < cache.files.Length; i++)
+                {
+                    UploadedImage img = new UploadedImage(
+                        cache.files[i],
+                        cache.captions[i]
+                        );
+                    list.Add(img);
+                }
+            }
+            return list;
+        }
+        public static void RemoveFromSession(string routeName)
+        {
+            string key = GetKey(routeName);
+            HttpContext.Current.Session[key] = null;
+        }
+        private static string GetKey(string routeName)
+        {
+            return routeName + "IL";
+        }
 		public void Add(UploadedImage img)
 		{
 			list.Add(img);
