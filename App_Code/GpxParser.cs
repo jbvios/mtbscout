@@ -143,6 +143,10 @@ namespace MTBScout
         {
             return HttpContext.Current.Session[GetParserKey(routeName)] as GpxParser;
         }
+        public static void RemoveFromSession(string routeName)
+        {
+            HttpContext.Current.Session[GetParserKey(routeName)]  = null;
+        }
         public void ToSession(string routeName)
         {
             HttpContext.Current.Session[GetParserKey(routeName)] = this;
