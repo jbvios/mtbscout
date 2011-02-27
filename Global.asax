@@ -4,6 +4,7 @@
     void Application_Start(object sender, EventArgs e) 
     {
         this.EndRequest += new EventHandler(global_asax_EndRequest);
+        Helper.DisableAppDomainRestartOnDelete();
     }
 
     void global_asax_EndRequest(object sender, EventArgs e)

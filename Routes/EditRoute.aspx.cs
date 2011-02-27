@@ -21,10 +21,7 @@ public partial class Routes_EditRoute : System.Web.UI.Page
 	protected void Page_Load(object sender, EventArgs e)
 	{
         if (!LoginState.TestLogin())
-        {
-            FormsAuthentication.RedirectToLoginPage();
-            return;
-        }
+             return;
        
 		if (string.IsNullOrEmpty(RouteName.Value))
 			RouteName.Value = Request.Params["Route"];
