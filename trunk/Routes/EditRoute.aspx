@@ -48,7 +48,7 @@
 				<li>Scegli un titolo per il percorso: per omogeneità è preferibile utilizzare come 
 					titolo la sequenza di località toccate dal percorso stesso (es. Montoggio - 
 					Casella - Val Brevenna - Carsi - Carsegli - Montoggio).</li>
-			<li>Fornisci una descrizione di dettaglio (caratteristiche del fondo, tecnicità, 
+			<li>Fornisci una descrizione di dettaglio: caratteristiche del fondo, tecnicità, 
 				punti panoramici, punti di attenzione, punti di rifornimento idrico, in generale 
 				ogni informazioni che reputi possa tornare utile a chi desideri affrontare il 
 				percorso.</li>
