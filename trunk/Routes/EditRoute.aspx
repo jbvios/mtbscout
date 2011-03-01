@@ -3,12 +3,18 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Gestione percorsi</title>
-    <style>
+    <style type="text/css">
         .comboLevel
         {
             text-align: justify;
             padding: 20px;
         }
+        
+    	li
+		{
+			text-align: justify;
+		}
+        
     </style>
 
     <script type="text/javascript">
@@ -34,6 +40,27 @@
     <div id="ContentPanel" class="ContentPanel" style="text-align: left">
         <h1>
             Inserisci o modifica i dati del tuo percorso</h1>
+            <p>Ecco alcune linee guida per inserire il tuo percorso:</p>
+		<ul>
+			<li>Carica il tracciato GPS del percorso; deve trattarsi di un file GPX, se il 
+				formato del tuo file non corrisponde esistono in rete molti strumenti di 
+				conversione.</li>
+				<li>Scegli un titolo per il percorso: per omogeneità è preferibile utilizzare come 
+					titolo la sequenza di località toccate dal percorso stesso (es. Montoggio - 
+					Casella - Val Brevenna - Carsi - Carsegli - Montoggio).</li>
+			<li>Fornisci una descrizione di dettaglio (caratteristiche del fondo, tecnicità, 
+				punti panoramici, punti di attenzione, punti di rifornimento idrico, in generale 
+				ogni informazioni che reputi possa tornare utile a chi desideri affrontare il 
+				percorso.</li>
+			<li>Indica una percentuale di ciclabilità da zero a cento (ovviamente indicativa, 
+				spesso la ciclabilità di un percorso è funzione di fattori variabili come le 
+				condizioni meteorologiche, le abilità tecniche del biker, le condizioni di 
+				allenamento, ecc..).</li>
+			<li>Scegli un livello di difficoltà fra quelli disponibili (suddiviso fra salita e 
+				discesa). Tenuto conto che anche in questo caso il fattore soggettivo è 
+				imprescindibile, si è scelto di adottare la scala di difficoltà proposta dal CAI 
+				(segui il link proposto per ulteriori informazioni).</li>
+			</ul>
         <asp:UpdatePanel ID="UpdatePanelOuter" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
             <ContentTemplate>
                 <fieldset title="Informazioni di base">
