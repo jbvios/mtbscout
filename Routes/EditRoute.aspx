@@ -60,6 +60,14 @@
 				discesa). Tenuto conto che anche in questo caso il fattore soggettivo è 
 				imprescindibile, si è scelto di adottare la scala di difficoltà proposta dal CAI 
 				(segui il link proposto per ulteriori informazioni).</li>
+			<li>Carica le foto del tuo percorso (opzionale ma consigliato). Se le tue foto sono 
+				geolocalizzate (ossia contengono le informazioni di latitudine e longitudine 
+				della posizione in cui sono state scattate: molte fotocamere moderne hanno un 
+				sensore GPS integrato che permette di avere questa informazione), verranno 
+				conseguentemente posizionate sulla mappa lungo il tracciato del percorso; in 
+				alternativa, puoi sincronizzare data e ora della tua fotocamera con data e ora 
+				del tuo GPS, il motore del sito provvederà, riconciliando queste informazioni, 
+				ad inserire le informazioni di geolocalizzazione nelle tue foto.</li>
 			</ul>
         <asp:UpdatePanel ID="UpdatePanelOuter" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
             <ContentTemplate>
