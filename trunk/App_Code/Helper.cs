@@ -31,6 +31,10 @@ public static class Helper
     private static Dictionary<string, int> countryCodes = null;
     private const int ImageTitleId = 0x010E;
     private const int DigitizedId = 0x9004;
+    private const int GpsLatitudeRefId = 0x1;
+    private const int GpsLatitudeId = 0x2;
+    private const int GpsLongitudeRefId = 0x3;
+    private const int GpsLongitudeId = 0x4;
     public static Dictionary<string, string> DifficultyMap = new Dictionary<string, string>();
     public static Dictionary<string, Color> DifficultyMapColor = new Dictionary<string, Color>();
 
@@ -223,7 +227,13 @@ public static class Helper
 
 
 
-    public static DateTime GetCreationDate(string file)
+    public static void GetImageInfos(
+        string file, 
+        out DateTime creationTime, 
+        out double latitudeRef,
+        out double latitude,
+        out double longitudeRef,
+        out double longitude)
     {
         Bitmap i = null;
         try
@@ -259,8 +269,12 @@ public static class Helper
                 idxEnd = s.IndexOf("\0", idxStart);
                 string second = s.Substring(idxStart, idxEnd - idxStart);
 
-                return new DateTime(int.Parse(year), int.Parse(month), int.Parse(day), int.Parse(hour), int.Parse(minute), int.Parse(second));
-
+                creationTime =  new DateTime(int.Parse(year), int.Parse(month), int.Parse(day), int.Parse(hour), int.Parse(minute), int.Parse(second));
+                latitudeRef = 0.0;
+                latitude = 0.0;
+                longitudeRef = 0.0;
+                longitude = 0.0;
+                return;
             }
         }
         finally
@@ -271,7 +285,11 @@ public static class Helper
 
 
         FileInfo fi = new FileInfo(file);
-        return fi.LastWriteTime;
+        creationTime = fi.LastWriteTime;
+        latitudeRef = 0.0;
+        latitude = 0.0;
+        longitudeRef = 0.0;
+        longitude = 0.0;
     }
 
     public static string GetImageTitle(string file)
