@@ -215,7 +215,9 @@ namespace MTBScout
                         continue;
                     try
                     {
-                        DateTime photoTime = Helper.GetCreationDate(file);
+                        DateTime photoTime;
+                        double latidudeRef, latitude, longitudeRef, longitude;
+                        Helper.GetImageInfos(file, out photoTime, out latidudeRef, out latitude, out longitudeRef, out longitude);
                         TrackPoint tp = GetPoint(photoTime, 1);
                         if (tp != null)
                         {
