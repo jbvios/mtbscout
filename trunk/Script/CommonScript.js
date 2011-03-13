@@ -62,8 +62,8 @@ function InitPage() {
 
 }
 function moveRouteImage(div, left) {
-	left = left - 2;
-	if (left < -340) {
+	left = left - 1;
+	if (left < -200) {
 		document.getElementById("reloadImages").click();	
 		return;
 	}
