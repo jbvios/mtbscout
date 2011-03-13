@@ -8,6 +8,7 @@ using DotNetOpenAuth.OpenId;
 using NHibernate;
 using System.Linq.Expressions;
 using NHibernate.Criterion;
+using System.IO;
 namespace MTBScout.Entities
 {
 	internal class DescriptionAttribute : Attribute
@@ -97,6 +98,17 @@ namespace MTBScout.Entities
 		public string Description { get; set; }
 		public int OwnerId { get; set; }
 
+		public string GetRouteUrl (bool editMode)
+		{
+			string routeFolderPath = PathFunctions.GetRoutePathFromName(Name);
+			string url =
+				editMode
+				? PathFunctions.GetUrlFromPath(PathFunctions.EditRoutePage, false).Replace("'", "\\'") + "?Route=" + Name
+				: (string.IsNullOrEmpty(Page)
+					? PathFunctions.GetUrlFromPath(PathFunctions.RoutesPage, false).Replace("'", "\\'") + "?Route=" + Name
+					: PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, Page), false).Replace("'", "\\'"));
+			return url;
+		}
 	}
 
 	public class MTBUser : Entity

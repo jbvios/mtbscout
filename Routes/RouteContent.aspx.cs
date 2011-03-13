@@ -42,13 +42,7 @@ public partial class Map : System.Web.UI.Page
         Response.Write("function addMarkers(){\r\n");
 		foreach (Route r in Routes)
         {
-            string routeFolderPath = PathFunctions.GetRoutePathFromName(r.Name);
-            string url = 
-				editMode
-				? PathFunctions.GetUrlFromPath(PathFunctions.EditRoutePage, false).Replace("'", "\\'") + "?Route=" + r.Name
-				: (string.IsNullOrEmpty(r.Page)
-					? PathFunctions.GetUrlFromPath(PathFunctions.RoutesPage, false).Replace("'", "\\'") + "?Route=" + r.Name
-					: PathFunctions.GetUrlFromPath(Path.Combine(routeFolderPath, r.Page), false).Replace("'", "\\'"));
+			string url = r.GetRouteUrl(editMode);
 
 			string gpxFile = PathFunctions.GetGpxPathFromRouteName(r.Name);
 
@@ -90,6 +84,8 @@ public partial class Map : System.Web.UI.Page
         Response.Write("}\r\n");
         Response.Write("</script>\r\n");
     }
+
+	
 
 	IEnumerable<Route> routes = null;
     private IEnumerable<Route> Routes
