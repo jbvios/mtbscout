@@ -61,3 +61,12 @@ function Round(id, radius, step) {
 function InitPage() {
 
 }
+function moveRouteImage(div, left) {
+	left = left - 2;
+	if (left < -340) {
+		document.getElementById("reloadImages").click();	
+		return;
+	}
+	div.style.left = left + "px";
+	setTimeout(function() { moveRouteImage(div, left); }, 5);
+}
