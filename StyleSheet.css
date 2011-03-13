@@ -37,8 +37,8 @@ p
 }
 .widget div
 {
-	width: 340px;
-	height: 240px;
+	width: 200px;
+	height: 150px;
 	margin-top:20px;
 	overflow: hidden;
 	margin-left: auto;
@@ -48,16 +48,16 @@ p
 {
 	margin:0;
 	padding:0;
-	width:720px;
-	height:240px;
+	width:600px;
+	height:150px;
 	position:relative;
 	left:0px;
 	top:0px;
 }
 .widget div div img
 {
-	width:340px;
-	height:240px;
+	width:200px;
+	height:150px;
 	position:absolute;
 }
 td.ImageCell
