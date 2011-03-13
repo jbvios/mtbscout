@@ -60,7 +60,7 @@ public partial class _Default : System.Web.UI.Page
 			int routeIdx = r.Next(DBHelper.Routes.Count());
 			Route route = DBHelper.Routes.ElementAt(routeIdx);
 			ImageCache cache = Helper.GetImageCache(PathFunctions.GetImagePathFromRouteName(route.Name));
-			if (cache.reducedUrls.Length == 0)
+			if (cache.thumbUrls.Length == 0)
 				continue;
 			int imageIdx = r.Next(cache.fileUrls.Length);
 			Size sz = cache.sizes[imageIdx];
@@ -68,7 +68,7 @@ public partial class _Default : System.Web.UI.Page
 				continue;
 			title = route.Title;
 			pageUrl = route.GetRouteUrl(false);
-			return cache.reducedUrls[imageIdx];
+			return cache.thumbUrls[imageIdx];
 		}
 	}
 }
