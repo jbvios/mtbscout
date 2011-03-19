@@ -181,7 +181,7 @@ public static class Helper
         ImageCache cache = HttpContext.Current.Cache[imagesPath] as ImageCache;
         if (cache == null)
         {
-            cache = new ImageCache(imagesPath);
+            cache = ImageCache.Create(imagesPath);
             if (Directory.Exists(imagesPath))
             {
                 HttpContext.Current.Cache.Add(

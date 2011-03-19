@@ -26,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
 			RandomImage1.ToolTip = RandomImage2.ToolTip;
 			A1.NavigateUrl = A2.NavigateUrl;
 		}
-        RouteTitle.Text = RandomImage1.ToolTip;
+        
 		if (string.IsNullOrEmpty(RandomImage3.ImageUrl))
 		{
 			RandomImage2.ImageUrl = GetRandomImageUrl(out title, out url);
