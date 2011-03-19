@@ -8,6 +8,8 @@
     <div id="ContentPanel" class="ContentPanel">
         <div style="padding-top: 20px;">
             <div class="widget">
+            <br />
+                <span id="RouteTitle" style="padding-top:30px;">Guarda i percorsi registrati, scarica la traccia GPS e buon divertimento!</span>
                 <asp:UpdatePanel ID="routePreview" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div id="ImageLayer">
@@ -22,8 +24,6 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <br />
-                <asp:Label ID="RouteTitle" runat="server"></asp:Label>
             </div>
         </div>
     </div>
