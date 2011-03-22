@@ -60,8 +60,7 @@ function getImage2(){{
 function getImage3(){{
     return document.getElementById('{2}'); 
 }}
-
-document.getElementById(""RouteTitle"").innerHTML = getImage1().title;
+window.onload = function() {{document.getElementById(""RouteTitle"").innerHTML = getImage1().title;}};
 ", RandomImage1.ClientID, RandomImage2.ClientID, RandomImage3.ClientID);
 
 		ScriptManager.RegisterClientScriptBlock(

@@ -9,7 +9,6 @@
 		<div style="padding-top: 20px;">
 			<div class="widget">
 				<div style="padding:20px;">
-					<br />
 					<span style="padding-top: 30px;">Guarda i nostri percorsi registrati, scarica la traccia
 						GPS e buon divertimento!</span>
 					<asp:UpdatePanel ID="routePreview" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
