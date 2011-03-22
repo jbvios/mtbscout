@@ -47,7 +47,7 @@ public partial class _Default : System.Web.UI.Page
 			this,
 			GetType(),
 			"StartScrolling",
-			"document.getElementById(\"RouteTitle\").innerHTML = getImage2().title; setTimeout(function() { moveRouteImage(document.getElementById('ImageLayer'), 0); }, 3000);",
+			"setTimeout(function() { moveRouteImage(document.getElementById('ImageLayer'), 0); }, 3000);",
 			true);
 
 		string script = string.Format(@"
@@ -59,7 +59,10 @@ function getImage2(){{
 }}
 function getImage3(){{
     return document.getElementById('{2}'); 
-}}", RandomImage1.ClientID, RandomImage2.ClientID, RandomImage3.ClientID);
+}}
+
+document.getElementById(""RouteTitle"").innerHTML = getImage1().title;
+", RandomImage1.ClientID, RandomImage2.ClientID, RandomImage3.ClientID);
 
 		ScriptManager.RegisterClientScriptBlock(
 			this,
