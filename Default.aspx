@@ -1,5 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"
 	MasterPageFile="~/MasterPage.master" %>
+<%@ Register Src="HorizontalSpot.ascx" TagName="Spot" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 	<title>Mountain Bike Group Scout</title>
@@ -7,6 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
 		<div style="padding-top: 20px;">
+		<uc1:Spot ID="Spot2" runat="server" />
 			<div class="widget">
 				<div style="padding:20px;">
 					<span style="padding-top: 30px;">Guarda i nostri percorsi registrati, scarica la traccia
@@ -28,6 +30,7 @@
 					<span id="RouteTitle" style="padding-top: 30px;"></span>
 				</div>
 			</div>
+		<uc1:Spot ID="Spot1" runat="server" />
 		</div>
 	</div>
 </asp:Content>
