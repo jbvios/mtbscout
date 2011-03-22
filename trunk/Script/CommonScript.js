@@ -64,6 +64,7 @@ function InitPage() {
 function moveRouteImage(div, left) {
 	left = left - 1;
 	if (left < -200) {
+		document.getElementById("RouteTitle").innerHTML = getImage2().title;
 		document.getElementById("reloadImages").click();	
 		return;
 	}

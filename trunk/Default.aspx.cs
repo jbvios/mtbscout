@@ -47,9 +47,26 @@ public partial class _Default : System.Web.UI.Page
 			this,
 			GetType(),
 			"StartScrolling",
-			"setTimeout(function() { moveRouteImage(document.getElementById('ImageLayer'), 0); }, 3000);",
+			"document.getElementById(\"RouteTitle\").innerHTML = getImage2().title; setTimeout(function() { moveRouteImage(document.getElementById('ImageLayer'), 0); }, 3000);",
 			true);
-		
+
+		string script = string.Format(@"
+function getImage1(){{
+    return document.getElementById('{0}'); 
+}}
+function getImage2(){{
+    return document.getElementById('{1}'); 
+}}
+function getImage3(){{
+    return document.getElementById('{2}'); 
+}}", RandomImage1.ClientID, RandomImage2.ClientID, RandomImage3.ClientID);
+
+		ScriptManager.RegisterClientScriptBlock(
+			this,
+			GetType(),
+			"ScriptFunctions",
+			script,
+			true);
     }
 
 	private string GetRandomImageUrl (out string title, out string pageUrl)

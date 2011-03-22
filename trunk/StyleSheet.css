@@ -35,7 +35,7 @@ p
 	height: 350px;
 	display:inline-block;
 }
-.widget div
+.widget div div
 {
 	width: 200px;
 	height: 150px;
@@ -44,7 +44,7 @@ p
 	margin-left: auto;
 	margin-right: auto;
 }
-.widget div div
+.widget div div div
 {
 	margin:0;
 	padding:0;
@@ -54,7 +54,7 @@ p
 	left:0px;
 	top:0px;
 }
-.widget div div img
+.widget div div div img
 {
 	width:200px;
 	height:150px;
