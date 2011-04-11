@@ -3,21 +3,17 @@
 						 assembly="App_Code"
 						 namespace="MTBScout.Entities">
 
-  <class name="MTBUser" table="MTBUsers" lazy="false">
+  <class name="EventSubscriptor" table="EventSubscriptors" lazy="false">
 	<id name="Id" unsaved-value="0" type="System.Int32" >
 	  <generator class="native" />
 	</id>
-	<property  name="OpenId" column="OpenId" type="System.String" unique="true"></property>
+	<property name="UserId" column="EventId" type="System.Int32" />
+	<property name="EventId" column="UserId" type="System.Int32" />
 	<property name="Name" column="Name" type="System.String" />
 	<property name="Surname" column="Surname" type="System.String"  />
-	<property name="Nickname" column="Nickname" type="System.String"  />
 	<property name="EMail" column="EMail" type="System.String" not-null="true"/>
 	<property name="BirthDate" column="BirthDate" type="System.DateTime" />
 	<property name="GenderNumber" column="Gender" type="System.Int16" />
-	<property name="Zip" column="Zip" type="System.String" />
-	<property name="Bike1" column="Bike1" type="System.String" />
-	<property name="Bike2" column="Bike2" type="System.String" />
-	<property name="Bike3" column="Bike3" type="System.String" />
-	<property name="SendMail" column="SendMail" type="System.Boolean" />
+	
   </class>
 </hibernate-mapping>

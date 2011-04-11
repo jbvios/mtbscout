@@ -162,6 +162,35 @@ namespace MTBScout.Entities
 		
 	}
 
+	public class EventSubscriptor : Entity
+	{
+		public EventSubscriptor()
+		{
+			Gender = MTBScout.Entities.MTBUser.GenderType.Unspecified;
+			BirthDate = DateTime.MinValue;
+		}
+		[Description("Codice identificativo")]
+		public int Id { get; set; }
+		[Description("Codice identificativo evento")]
+		public int EventId { get; set; }
+		[Description("Codice identificativo utente")]
+		public int UserId { get; set; }
+		[Description("Nome")]
+		public string Name { get; set; }
+		[Description("Cognome")]
+		public string Surname { get; set; }
+		[Description("Indirizzo di posta elettronica")]
+		public string EMail { get; set; }
+		[Description("Data di nascita")]
+		public DateTime BirthDate { get; set; }
+		[Description("Genere (numero)")]
+		public Int16 GenderNumber { get; set; }
+		[Description("Genere (tipo)")]
+		public MTBScout.Entities.MTBUser.GenderType Gender { get { return (MTBScout.Entities.MTBUser.GenderType)GenderNumber; } set { GenderNumber = (short)value; } }
+		[Description("Nome visualizzato")]
+		public string DisplayName { get { return  Name + " " + Surname; } }
+	}
+
 	public class Rank : Entity
 	{
 		private Int32 id;
