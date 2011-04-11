@@ -244,6 +244,48 @@ public class DBHelper
                 : Convert.ToDouble(result[0]) / (double)voteNumber;
         }
     }
+
+	public static EventSubscriptor[] GetSubscriptors(int userId, int eventId)
+	{
+		using (ISession iSession = NHSessionManager.GetSession())
+		{
+			Expression<Func<EventSubscriptor, object>> expr = rt => rt.EventId;
+			var criteria = iSession.CreateCriteria<EventSubscriptor>();
+			criteria.Add(Restrictions.Eq(Projections.Property(expr), eventId));
+			expr = rt => rt.UserId;
+			criteria.Add(Restrictions.Eq(Projections.Property(expr), userId));
+
+			return criteria.List<EventSubscriptor>().ToArray();
+		}
+	}
+	//--------------------------------------------------------------------------------
+	public static void DeleteSubscriptor(EventSubscriptor subscriptor)
+	{
+		using (ISession iSession = NHSessionManager.GetSession())
+		{
+			//aggiungo l'utente al database, oppure lo aggiorno
+			using (ITransaction transaction = iSession.BeginTransaction())
+			{
+				iSession.Delete(subscriptor);
+				iSession.Flush();
+				transaction.Commit();
+			}
+		}
+	}
+	//--------------------------------------------------------------------------------
+	public static void SaveSubscriptor(EventSubscriptor subscriptor)
+	{
+		using (ISession iSession = NHSessionManager.GetSession())
+		{
+			//aggiungo l'utente al database, oppure lo aggiorno
+			using (ITransaction transaction = iSession.BeginTransaction())
+			{
+				iSession.SaveOrUpdate(subscriptor);
+				iSession.Flush();
+				transaction.Commit();
+			}
+		}
+	}
     //--------------------------------------------------------------------------------
     /// <summary>
     /// recupera lo user a partire dal suo openid
