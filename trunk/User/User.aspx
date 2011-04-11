@@ -4,6 +4,15 @@
 <%@ Register Assembly="System.Web.Entity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
 	Namespace="System.Web.UI.WebControls" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+	<script type="text/javascript">
+		function onCanSave() {
+			if (!document.getElementById("CheckboxPrivacy").checked) {
+				alert("Per salvare il profilo occorre acconsentire al trattamento dei dati personali!");
+				return false;
+			}
+			return true;
+		}
+	</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
@@ -82,7 +91,7 @@
 								Codice Postale
 							</td>
 							<td>
-								<asp:TextBox ID="TextBoxZip" runat="server" Width="330px" OnTextChanged="TextBoxZip_TextChanged"></asp:TextBox>
+								<asp:TextBox ID="TextBoxZip" runat="server" Width="330px"></asp:TextBox>
 							</td>
 							<td>
 							</td>
@@ -142,10 +151,22 @@
 							<td>
 							</td>
 						</tr>
+						<tr>
+							<td>
+							</td>
+							<td>
+								<input id="CheckboxPrivacy" type="checkbox"  title="Acconsento al trattamento dei miei dati personali" / >
+								<label for="CheckboxPrivacy">Acconsento al trattamento dei miei dati personali</label>
+								</td>
+							</td>
+							<td>
+								
+						</tr>
 					</tbody>
 				</table>
 				<div>
-					<asp:Button ID="ButtonSave" runat="server" Text="Salva profilo" OnClick="ButtonSave_Click" />
+					<asp:Button ID="ButtonSave" runat="server" Text="Salva profilo" 
+						OnClick="ButtonSave_Click" onclientclick="return onCanSave();" />
 				</div>
 				<asp:Panel ID="MyRoutesPanel" runat="server">
 					<h2>
