@@ -35,7 +35,7 @@
 			<tr>
 				<td style="width: 50%">
 					<div class="ImageAndDesc">
-						<asp:HyperLink ID="HyperLinkToGps" NavigateUrl="~/Events/Discesa2011/track.zip" runat="server"
+						<asp:HyperLink ID="HyperLinkToGps" NavigateUrl="~/Events/Enduro2011/track.zip" runat="server"
 							ToolTip="Tracciato GPS">
 							<asp:Image ID="Image1" runat="server" ImageUrl="~/Routes/gps.jpg" AlternateText="Tracciato GPS"
 								BorderWidth="1px" />
