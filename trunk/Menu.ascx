@@ -2,9 +2,9 @@
 <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
 <div id="MenuContainer" class="Horiz">
     <ul style="margin: 0px">
-        <li runat="server" id="LiWhoWeAre" ><a runat="server" id="AWhoWeAre" href="~/whoweare/whoweare.aspx" title="Chi siamo">
+        <%--<li runat="server" id="LiWhoWeAre" ><a runat="server" id="AWhoWeAre" href="~/whoweare/whoweare.aspx" title="Chi siamo">
             Chi siamo</a></li>
-        <li>|</li>
+        <li>|</li>--%>
         <li runat="server" id="LiEvents"><a runat="server" id="AEvents" href="~/Events/Events.aspx" title="Eventi">Eventi</a>
         </li>
         <li>|</li>

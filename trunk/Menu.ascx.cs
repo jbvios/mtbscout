@@ -24,9 +24,10 @@ public partial class Menu : System.Web.UI.UserControl
         {
             User.Visible = false;
         }
-        if (Page.Request.Url.AbsolutePath.EndsWith("/whoweare.aspx", StringComparison.InvariantCultureIgnoreCase))
+        /*if (Page.Request.Url.AbsolutePath.EndsWith("/whoweare.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiWhoWeAre);
-        else if (Page.Request.Url.AbsolutePath.EndsWith("/events.aspx", StringComparison.InvariantCultureIgnoreCase))
+        else*/
+		if (Page.Request.Url.AbsolutePath.EndsWith("/events.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiEvents);
         else if (Page.Request.Url.AbsolutePath.EndsWith("/Routes.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiRoutes);
