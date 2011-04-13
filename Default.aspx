@@ -7,7 +7,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
-	
+	<h1 style="padding: 20px 0px 0px 0px; font-style:italic; font-variant: small-caps; font-weight: bold;">Climb the discovery!</h1>
 	<uc1:Spot ID="Spot2" runat="server" />
 		<h3>
 			Gli Scout</h3>
