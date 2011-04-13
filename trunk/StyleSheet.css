@@ -31,7 +31,7 @@ p
 .widget
 {
 	background-image: url("Images/widget-bkgnd1.png");
-	width: 488px;
+	width: 480px;
 	height: 350px;
 	display:inline-block;
 }
