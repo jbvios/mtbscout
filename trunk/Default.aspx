@@ -36,6 +36,14 @@
 			</div>
 			<div class="widget">
 				<div style="padding: 20px;">
+				<span>Prima tappa Coppa Italia Giovanile 2011 - Domenica 1 maggio 2011</span>
+					<a target="genoacup" title="Prima tappa Coppa Italia Giovanile 2011" href="http://www.genoabike.com/media/manifestazioni/genoacup/main/genoacup00.html">
+						<img src="Images/genoacup.png" 
+						style="height: 280px; width: 354px; margin-left: 5px;" /></a>
+				</div>
+			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
 					<span>Guarda i nostri percorsi registrati, scarica la traccia
 						GPS e buon divertimento!</span>
 					<asp:UpdatePanel ID="routePreview" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
@@ -53,6 +61,15 @@
 					</asp:UpdatePanel>
 					<br />
 					<span id="RouteTitle" style="padding-top: 30px;"></span>
+				</div>
+			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
+				<div style="width:400px;height:30px;margin-top:0px;padding-bottom:20px;">
+				<span>MTB Scout con</span> <a title="Microarea - Software gestionale ERP" target="microarea" href="http://www.microarea.it"><img style="border:none;" src="Images/LogoMicroareaMaster.png"/></a> <span>alla 24H di Finale Ligure</span>
+				</div>
+					<a title="24H Finale" href="http://www.24hfinale.com/24h/24ore_teams-view-10.html" target="finale">
+						<img src="Images/MicroareaMTBScout.jpg" style="height: 213px" /></a>
 				</div>
 			</div>
 			<uc1:Spot ID="Spot1" runat="server" />
