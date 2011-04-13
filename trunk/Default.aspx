@@ -10,7 +10,12 @@
 		<div style="padding-top: 20px;">
 		<uc1:Spot ID="Spot2" runat="server" />
 			<div class="widget">
-				<div style="padding:20px;">
+				<div style="padding: 20px;">
+					<a title="Prima gara di Enduro MTB" href="Events/Enduro2011/Enduro2011.aspx"><img src="Images/enduro.jpg" /></a>
+				</div>
+			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
 					<span style="padding-top: 30px;">Guarda i nostri percorsi registrati, scarica la traccia
 						GPS e buon divertimento!</span>
 					<asp:UpdatePanel ID="routePreview" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
