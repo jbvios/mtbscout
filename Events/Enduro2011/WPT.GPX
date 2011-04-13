@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="CompeGPS" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <link href="http://www.compegps.com">
+      <text>CompeGPS TEAM, SL</text>
+    </link>
+    <time>2011-04-11T06:14:06Z</time>
+    <bounds maxlat="44.539962" maxlon="9.050555" minlat="44.517253" minlon="9.031554"/>
+  </metadata>
+  <wpt lat="44.523857" lon="9.045982">
+	<ele>535.4</ele>
+	<name>Fine PS3</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+  <wpt lat="44.517571" lon="9.050555">
+	<ele>444.1</ele>
+	<name>Partenza</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+  <wpt lat="44.536494" lon="9.043302">
+	<ele>902.5</ele>
+	<name>Inizio PS1</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+  <wpt lat="44.533266" lon="9.036399">
+	<ele>750.2</ele>
+	<name>Fine PS1</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+  <wpt lat="44.531517" lon="9.045619">
+	<ele>781.2</ele>
+	<name>Inizio PS2</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+  <wpt lat="44.525494" lon="9.043900">
+	<ele>612.1</ele>
+	<name>Fine PS2</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+  <wpt lat="44.539961" lon="9.048602">
+	<ele>829.8</ele>
+	<name>Inizio PS3</name>
+	<cmt></cmt>
+	<sym>Waypoint</sym>
+  </wpt>
+ 
+</gpx>
