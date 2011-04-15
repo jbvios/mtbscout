@@ -13,13 +13,13 @@
 		<h3>
 			Organizzata da Genova Ciclo Sport 1989</h3>
 		<p>
-			Gara di discesa a cronometro su percorsi stile &quot;Super Enduro&quot;; tre discese 
-			tecniche dopo altrettanti percorsi di trasferimento che attraverseranno paesaggi 
-			dal panorama mozzafiato! In questo <a href="/Public/Routes/Banca_Castello/Banca_Castello.aspx">link</a> trovate la descrizione del percorso (con 
+			Gara di discesa a cronometro: tre discese 
+			tecniche dopo altrettanti percorsi di trasferimento che attraverseranno 
+			splendidi paesaggi! In questo <a href="/Public/Routes/Banca_Castello/Banca_Castello.aspx">link</a> trovate la descrizione del percorso (con 
 			video in soggettiva) che ripercorre la terza discesa, quella più spaccabraccia!</p>
 		<p>
 			Le iscrizioni si terranno la mattina dell&#39;evento presso il centro Sportivo di 
-			Montoggio a partire dalle 8.30.</p>
+			Montoggio a partire dalle 8.30. <a href="VOLANTINOENDURO2011.pdf" target="volantino" title="Scarica volantino">Scarica volantino.</a></p>
 		<iframe style="width: 900px; height: 900px" src="map.html"></iframe>
 		<br />
 		Tracciato di gara<br />

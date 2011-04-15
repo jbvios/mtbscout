@@ -31,7 +31,7 @@
 				<div style="padding: 20px;">
 				<span>Prima gara di Enduro MTB - Domenica 8 maggio 2011</span>
 					<a title="Prima gara di Enduro MTB" href="Events/Enduro2011/Enduro2011.aspx">
-						<img src="Images/enduro.jpg" /></a>
+						<img src="Events/Enduro2011/volantino.PNG" /></a>
 				</div>
 			</div>
 			<div class="widget">
