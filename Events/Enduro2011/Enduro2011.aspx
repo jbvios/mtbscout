@@ -19,10 +19,13 @@
 			video in soggettiva) che ripercorre la terza discesa, quella più spaccabraccia!</p>
 		<p>
 			Le iscrizioni si terranno la mattina dell&#39;evento presso il centro Sportivo di 
-			Montoggio a partire dalle 8.30. <a href="VOLANTINOENDURO2011.pdf" target="volantino" title="Scarica volantino">Scarica volantino.</a></p>
+			Montoggio a partire dalle 8.30 e sono aperte a tesserati e non tesserati purché 
+			muniti di un certificato medico agonistico. </p>
+		<p>
+			<a href="VOLANTINOENDURO2011.pdf" target="volantino" title="Scarica volantino">Scarica volantino.</a></p>
 		<iframe style="width: 900px; height: 900px" src="map.html"></iframe>
 		<br />
-		Tracciato di gara<br />
+		Tracciato di gara (potrà subire modifiche nella sua versione definitiva)<br />
 		<br />
 		<iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
 			width: 330px; height: 50px"></iframe>

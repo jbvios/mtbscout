@@ -40,6 +40,14 @@
                     <td class="EventColumn">
                         Prima Gara di Enduro MTB
                     </td>
+                </tr> 
+                <tr>
+                    <td class="DateColumn">
+                        <a href="http://www.genoabike.com/media/manifestazioni/genoacup/main/genoacup00.html">Domenica 1 maggio 2011</a>
+                    </td>
+                    <td class="EventColumn">
+                        Prima Tappa Coppa Italia Giovanile 2011
+                    </td>
                 </tr>
                 <tr>
                     <td class="DateColumn">
