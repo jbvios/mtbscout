@@ -187,6 +187,23 @@ namespace MTBScout.Entities
 		public Int16 GenderNumber { get; set; }
 		[Description("Genere (tipo)")]
 		public MTBScout.Entities.MTBUser.GenderType Gender { get { return (MTBScout.Entities.MTBUser.GenderType)GenderNumber; } set { GenderNumber = (short)value; } }
+		[Description("Genere (descrizione)")]
+		public string GenderDescription 
+		{
+			get
+			{
+				switch (Gender)
+				{ 
+					case MTBUser.GenderType.Female:
+						return "Femmina";
+					case MTBUser.GenderType.Male:
+						return "Maschio";
+					default:
+						return "Non specificato";
+				}
+			}
+		}
+		
 		[Description("Nome visualizzato")]
 		public string DisplayName { get { return  Name + " " + Surname; } }
 	}
