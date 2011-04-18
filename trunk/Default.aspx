@@ -2,6 +2,8 @@
 	MasterPageFile="~/MasterPage.master" %>
 
 <%@ Register Src="HorizontalSpot.ascx" TagName="Spot" TagPrefix="uc1" %>
+<%@ Register Src="~/Video.ascx" TagName="Video" TagPrefix="uc2" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 	<title>Mountain Bike Group Scout</title>
 </asp:Content>
@@ -27,11 +29,20 @@
 			e pubblicizzazione, principalmente attraverso questo sito.
 		</p>
 		<div style="padding-top: 20px;">
-			<div class="widget">
+		<div class="widget">
 				<div style="padding: 20px;">
 				<span>Prima gara di Enduro MTB - Domenica 8 maggio 2011</span>
 					<a title="Prima gara di Enduro MTB" href="Events/Enduro2011/Enduro2011.aspx">
 						<img src="Events/Enduro2011/volantino.PNG" /></a>
+				</div>
+			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
+				<a title="Anello dei Fieschi, video discesa Casale - Pontenero" href="public/Routes/AnelloFieschi/AnelloFieschi.aspx">
+					<span>Anello dei Fieschi, video discesa Casale - Pontenero</span>
+						<uc2:Video ID="Video1"  VideoHeight = "280px" runat="server" VideoUrl="public/routes/AnelloFieschi/casale_pontenero.flv" PreviewUrl="public/routes/AnelloFieschi/casale_pontenero.jpg"
+			 />
+			</a>
 				</div>
 			</div>
 			<div class="widget">
@@ -70,6 +81,15 @@
 				</div>
 					<a title="24H Finale" href="http://www.24hfinale.com/24h/24ore_teams-view-10.html" target="finale">
 						<img src="Images/MicroareaMTBScout.jpg" style="height: 213px" /></a>
+				</div>
+			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
+				<div style="width:400px;height:30px;margin-top:0px;padding-bottom:20px;">
+				<span>2° TOUR DEL MONTE FIGOGNA - DOMENICA 12 GIUGNO 2011</span> 
+				</div>
+					<a title="2° TOUR DEL MONTE FIGOGNA - DOMENICA 12 GIUGNO 2011" href="http://www.bikersteamlivellato.it/index.php?option=com_content&view=article&id=59&Itemid=66" target="livellato">
+						<img src="Images/MTBLivellato.jpg" style="height: 213px" /></a>
 				</div>
 			</div>
 			<uc1:Spot ID="Spot1" runat="server" />
