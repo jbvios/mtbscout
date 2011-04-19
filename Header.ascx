@@ -37,6 +37,14 @@
         </div>--%>
         <asp:Image ID="logo" class CssClass="HeaderLogo" runat="server" AlternateText="MTB Group Scout"
             ImageUrl="~/Images/MtbScoutLogoNew.PNG" />
+            <img id = "Climb" src="Images/ClimbTheDiscovery.png"/ 
+            style=	"border: medium none;
+					height: 70px;
+					left: 300px;
+					position: relative;
+					top: 100px;
+					width: 400px;
+					z-index: 100;" />
         <br />
     </a>
 </asp:Panel>

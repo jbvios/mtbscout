@@ -20,14 +20,6 @@
 		}
 	</script>
 
-	<script type="text/javascript">
-		if (!window.onload) {
-			window.onload = function() {
-				InitPage();
-			}
-		}
-	</script>
-
 	<script type="text/javascript" src="/Video/swfobject.js"></script>
 	
 	<script type="text/javascript">
