@@ -19,7 +19,9 @@
 			pageTracker._trackPageview();
 		}
 	</script>
-
+	<script type="text/javascript">
+		window.onload = function() { InitPage(); }
+	</script>
 	<script type="text/javascript" src="/Video/swfobject.js"></script>
 	
 	<script type="text/javascript">

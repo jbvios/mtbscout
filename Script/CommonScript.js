@@ -59,6 +59,8 @@ function Round(id, radius, step) {
 }
 
 function InitPage() {
+	if (initRouteTitle)
+		initRouteTitle();
 	setTimeout(function() { moveClimbHeader(); }, 5);
 	
 }
@@ -68,20 +70,26 @@ function moveClimbHeader() {
 		setTimeout(function() { moveClimbHeader(); }, 5);
 		return;
 	}
-	if (!img.delta)
+	if (!img.delta) {
+		img.style.left = "500px";
+		img.style.visibility = "visible";
 		img.delta = -5;
+	}
 		
 	var x = parseInt(img.style.left) + img.delta;
 	img.style.left = x + "px";
 
 	if (img.delta < 0) {
-		if (x < -400)
+		if (x < -450)
 			img.delta = 5;
 
 		setTimeout(function() { moveClimbHeader(); }, 5);
 	}
 	else if (x < -300) {
 		setTimeout(function() { moveClimbHeader(); }, 5);
+	}
+	else {
+		img.delta = null;
 	}
 	
 }
@@ -96,4 +104,4 @@ function moveRouteImage(div, left) {
 	setTimeout(function() { moveRouteImage(div, left); }, 5);
 }
 
-InitPage();
+
