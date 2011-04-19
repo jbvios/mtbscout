@@ -44,7 +44,8 @@
 					position: relative;
 					top: 100px;
 					width: 400px;
-					z-index: 100;" />
+					z-index: 100;
+					visibility:hidden;" />
         <br />
     </a>
 </asp:Panel>
