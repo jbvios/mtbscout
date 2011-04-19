@@ -59,15 +59,41 @@ function Round(id, radius, step) {
 }
 
 function InitPage() {
+	setTimeout(function() { moveClimbHeader(); }, 5);
+	
+}
+function moveClimbHeader() {
+	var img = document.getElementById("Climb");
+	if (!img) {
+		setTimeout(function() { moveClimbHeader(); }, 5);
+		return;
+	}
+	if (!img.delta)
+		img.delta = -5;
+		
+	var x = parseInt(img.style.left) + img.delta;
+	img.style.left = x + "px";
 
+	if (img.delta < 0) {
+		if (x < -400)
+			img.delta = 5;
+
+		setTimeout(function() { moveClimbHeader(); }, 5);
+	}
+	else if (x < -300) {
+		setTimeout(function() { moveClimbHeader(); }, 5);
+	}
+	
 }
 function moveRouteImage(div, left) {
 	left = left - 1;
 	if (left < -200) {
 		document.getElementById("RouteTitle").innerHTML = getImage1().title;
-		document.getElementById("reloadImages").click();	
+		document.getElementById("reloadImages").click();
 		return;
 	}
 	div.style.left = left + "px";
 	setTimeout(function() { moveRouteImage(div, left); }, 5);
 }
+
+InitPage();
