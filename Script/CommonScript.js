@@ -70,7 +70,12 @@ function moveClimbHeader() {
 		setTimeout(function() { moveClimbHeader(); }, 5);
 		return;
 	}
-	if (!img.delta) {
+	if (!document.getElementById("dummyForHomePage")) {
+		img.style.left = "-300px";
+		img.style.visibility = "visible";
+		return;
+	}
+	else if (!img.delta) {
 		img.style.left = "500px";
 		img.style.visibility = "visible";
 		img.delta = -5;

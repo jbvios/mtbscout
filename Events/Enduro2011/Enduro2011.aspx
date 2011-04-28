@@ -20,8 +20,10 @@
 		<p>
 			Le iscrizioni si terranno la mattina dell&#39;evento presso il centro Sportivo di 
 			Montoggio a partire dalle 8.30 e sono aperte a tesserati e non tesserati purché 
-			muniti di un certificato medico agonistico. </p>
-		<p>
+			muniti di un certificato medico agonistico. È gradita la preiscrizione 
+			utilizzando l&#39;<a href="../../User/Subscriptions.aspx" title="Preiscrizione NON tesserati FCI">apposito modulo</a> per i NON tesserati FCI, e l&#39;iscrizione 
+			utilizzando Fattore K per i tesserati FCI.</p>
+		<p style="text-align:center;">
 			<a href="VOLANTINOENDURO2011.pdf" target="volantino" title="Scarica volantino">Scarica volantino.</a></p>
 		<iframe style="width: 900px; height: 900px" src="map.html"></iframe>
 		<br />

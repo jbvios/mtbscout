@@ -9,7 +9,7 @@
 	<param name="allowscriptaccess" value="always" />
 	<param name="flashvars" <%Response.Write(Value); %> />
 	<object type="application/x-shockwave-flash" data="/video/player-viral.swf" width="<%Response.Write(VideoWidth);%>" height="<%Response.Write(VideoHeight);%>">
-		<param name="movie" value="player-viral.swf" />
+		<param name="movie" value="/video/player-viral.swf" />
 		<param name="allowfullscreen" value="true" />
 		<param name="allowscriptaccess" value="always" />
 		<param name="flashvars" <%Response.Write(Value); %> />
