@@ -34,6 +34,7 @@ p
 	width: 480px;
 	height: 350px;
 	display:inline-block;
+	overflow:hidden;
 }
 .widget div div
 {
