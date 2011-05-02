@@ -46,14 +46,6 @@
 			</div>
 			<div class="widget">
 				<div style="padding: 20px;">
-				<span>Prima tappa Coppa Italia Giovanile 2011 - Domenica 1 maggio 2011</span>
-					<a target="genoacup" title="Prima tappa Coppa Italia Giovanile 2011" href="http://www.genoabike.com/media/manifestazioni/genoacup/main/genoacup00.html">
-						<img src="Images/genoacup.png" 
-						style="height: 280px; width: 354px; margin-left: 5px;" /></a>
-				</div>
-			</div>
-			<div class="widget">
-				<div style="padding: 20px;">
 					<span>Guarda i nostri percorsi registrati, scarica la traccia
 						GPS e buon divertimento!</span>
 					<asp:UpdatePanel ID="routePreview" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
