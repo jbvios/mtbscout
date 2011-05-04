@@ -47,7 +47,7 @@ public partial class _Default : System.Web.UI.Page
 			this,
 			GetType(),
 			"StartScrolling",
-			"setTimeout(function() { moveRouteImage(document.getElementById('ImageLayer'), 0); }, 3000);",
+			"initRouteTitle(); setTimeout(function() { moveRouteImage(document.getElementById('ImageLayer'), 0); }, 3000);",
 			true);
 
 		string script = string.Format(@"
