@@ -29,13 +29,6 @@
 		<div style="padding-top: 20px;">
 			<div class="widget">
 				<div style="padding: 20px;">
-					<span>Prima gara di Enduro MTB - Domenica 8 maggio 2011</span> <a title="Prima gara di Enduro MTB"
-						href="Events/Enduro2011/Enduro2011.aspx">
-						<img src="Events/Enduro2011/volantino.PNG" /></a>
-				</div>
-			</div>
-			<div class="widget">
-				<div style="padding: 20px;">
 					<a title="Anello dei Fieschi, video discesa Casale - Pontenero" href="/public/Routes/AnelloFieschi/AnelloFieschi.aspx">
 						<span>Anello dei Fieschi, video discesa Casale - Pontenero</span>
 						<uc2:Video ID="Video1" VideoHeight="280px" runat="server" VideoUrl="~/public/routes/AnelloFieschi/casale_pontenero.flv"
