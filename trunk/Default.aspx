@@ -86,6 +86,13 @@
 						<img style="height: 265px" src="http://www.mcaltavaltrebbia.it/wordpress/wp-content/uploads/2011/05/Manifesto.jpg" /></a>
 				</div>
 			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
+					<span>Vuoi fare divertire i tuoi cuccioli di biker? - Domenica 29 maggio 2011</span> <a target="bianconiglio" title="Ma dove sta andando il Bianconiglio?"
+						href="Events/temp/LocandinaCacciaTesoro_Col.pdf">
+						<img style="height: 265px" src="Events/Temp/LocandinaCacciaTesoro.bmp" /></a>
+				</div>
+			</div>
 			<uc1:Spot ID="Spot1" runat="server" />
 			<h3>
 				Pensare <i>All Mountain</i></h3>
