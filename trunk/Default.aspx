@@ -59,31 +59,11 @@
 			<div class="widget">
 				<div style="padding: 20px;">
 					<div style="width: 400px; height: 30px; margin-top: 0px; padding-bottom: 20px;">
-						<span>MTB Scout con</span> <a title="Microarea - Software gestionale ERP" target="microarea"
-							href="http://www.microarea.it">
-							<img style="border: none;" src="Images/LogoMicroareaMaster.png" /></a> <span>alla 24H
-								di Finale Ligure</span>
-					</div>
-					<a title="24H Finale" href="http://www.24hfinale.com/24h/24ore_teams-view-10.html"
-						target="finale">
-						<img src="Images/MicroareaMTBScout.jpg" style="height: 213px" /></a>
-				</div>
-			</div>
-			<div class="widget">
-				<div style="padding: 20px;">
-					<div style="width: 400px; height: 30px; margin-top: 0px; padding-bottom: 20px;">
 						<span>2° TOUR DEL MONTE FIGOGNA - DOMENICA 12 GIUGNO 2011</span>
 					</div>
 					<a title="2° TOUR DEL MONTE FIGOGNA - DOMENICA 12 GIUGNO 2011" href="http://www.bikersteamlivellato.it/index.php?option=com_content&view=article&id=59&Itemid=66"
 						target="livellato">
 						<img src="Images/MTBLivellato.jpg" style="height: 213px" /></a>
-				</div>
-			</div>
-			<div class="widget">
-				<div style="padding: 20px;">
-					<span>24°Giornata Nazionale Escursionismo - Domenica 22 maggio 2011</span> <a target="escursionismo" title="24°Giornata Nazionale Escursionismo"
-						href="http://www.mcaltavaltrebbia.it/wordpress/?page_id=5869">
-						<img style="height: 265px" src="http://www.mcaltavaltrebbia.it/wordpress/wp-content/uploads/2011/05/Manifesto.jpg" /></a>
 				</div>
 			</div>
 			<div class="widget">
