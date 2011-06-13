@@ -56,16 +56,7 @@
 					<span id="RouteTitle" style="padding-top: 30px;"></span>
 				</div>
 			</div>
-			<div class="widget">
-				<div style="padding: 20px;">
-					<div style="width: 400px; height: 30px; margin-top: 0px; padding-bottom: 20px;">
-						<span>2° TOUR DEL MONTE FIGOGNA - DOMENICA 12 GIUGNO 2011</span>
-					</div>
-					<a title="2° TOUR DEL MONTE FIGOGNA - DOMENICA 12 GIUGNO 2011" href="http://www.bikersteamlivellato.it/index.php?option=com_content&view=article&id=59&Itemid=66"
-						target="livellato">
-						<img src="Images/MTBLivellato.jpg" style="height: 213px" /></a>
-				</div>
-			</div>
+			
 			
 			<uc1:Spot ID="Spot1" runat="server" />
 			<h3>
