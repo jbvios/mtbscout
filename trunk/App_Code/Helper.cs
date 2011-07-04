@@ -236,47 +236,50 @@ public static class Helper
         out double longitude)
     {
         Bitmap i = null;
-        try
-        {
-            i = Image.FromFile(file) as Bitmap;
+		try
+		{
+			i = Image.FromFile(file) as Bitmap;
 
-            PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
-            string s = Encoding.ASCII.GetString(piDate.Value);
+			PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
+			string s = Encoding.ASCII.GetString(piDate.Value);
 
-            if (s != null)
-            {
-                int idxStart = 0, idxEnd = 0;
-                idxEnd = s.IndexOf(":", idxStart);
-                string year = s.Substring(idxStart, idxEnd - idxStart);
+			if (s != null)
+			{
+				int idxStart = 0, idxEnd = 0;
+				idxEnd = s.IndexOf(":", idxStart);
+				string year = s.Substring(idxStart, idxEnd - idxStart);
 
-                idxStart = idxEnd + 1;
-                idxEnd = s.IndexOf(":", idxStart);
-                string month = s.Substring(idxStart, idxEnd - idxStart);
+				idxStart = idxEnd + 1;
+				idxEnd = s.IndexOf(":", idxStart);
+				string month = s.Substring(idxStart, idxEnd - idxStart);
 
-                idxStart = idxEnd + 1;
-                idxEnd = s.IndexOf(" ", idxStart);
-                string day = s.Substring(idxStart, idxEnd - idxStart);
+				idxStart = idxEnd + 1;
+				idxEnd = s.IndexOf(" ", idxStart);
+				string day = s.Substring(idxStart, idxEnd - idxStart);
 
-                idxStart = idxEnd + 1;
-                idxEnd = s.IndexOf(":", idxStart);
-                string hour = s.Substring(idxStart, idxEnd - idxStart);
+				idxStart = idxEnd + 1;
+				idxEnd = s.IndexOf(":", idxStart);
+				string hour = s.Substring(idxStart, idxEnd - idxStart);
 
-                idxStart = idxEnd + 1;
-                idxEnd = s.IndexOf(":", idxStart);
-                string minute = s.Substring(idxStart, idxEnd - idxStart);
+				idxStart = idxEnd + 1;
+				idxEnd = s.IndexOf(":", idxStart);
+				string minute = s.Substring(idxStart, idxEnd - idxStart);
 
-                idxStart = idxEnd + 1;
-                idxEnd = s.IndexOf("\0", idxStart);
-                string second = s.Substring(idxStart, idxEnd - idxStart);
+				idxStart = idxEnd + 1;
+				idxEnd = s.IndexOf("\0", idxStart);
+				string second = s.Substring(idxStart, idxEnd - idxStart);
 
-                creationTime =  new DateTime(int.Parse(year), int.Parse(month), int.Parse(day), int.Parse(hour), int.Parse(minute), int.Parse(second));
-                latitudeRef = 0.0;
-                latitude = 0.0;
-                longitudeRef = 0.0;
-                longitude = 0.0;
-                return;
-            }
-        }
+				creationTime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day), int.Parse(hour), int.Parse(minute), int.Parse(second));
+				latitudeRef = 0.0;
+				latitude = 0.0;
+				longitudeRef = 0.0;
+				longitude = 0.0;
+				return;
+			}
+		}
+		catch
+		{ 
+		}
         finally
         {
             if (i != null)
@@ -292,6 +295,52 @@ public static class Helper
         longitude = 0.0;
     }
 
+	public static void SetCreationTime(string file, DateTime creationTime)
+	{
+
+		byte[] buff;
+		using (FileStream fs = File.OpenRead(file))
+		{
+			buff = new byte[(int)fs.Length];
+			fs.Read(buff, 0, (int)fs.Length);
+
+		}
+		using (MemoryStream ms = new MemoryStream(buff))
+		{
+			using (Bitmap bmp = (Bitmap)Bitmap.FromStream(ms))
+			{
+				SetCreationTime(bmp, creationTime);
+				bmp.Save(file);
+			}
+		}
+	}
+	public static void SetCreationTime(
+	   Bitmap i,
+	   DateTime creationTime)
+	{
+		try
+		{
+			PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
+			//2010:12:11 14:15:19
+			string s = string.Format("{0}:{1}:{2} {3}:{4}:{5}",
+				creationTime.Year.ToString("0000"),
+				creationTime.Month.ToString("00"),
+				creationTime.Day.ToString("00"),
+				creationTime.Hour.ToString("00"),
+				creationTime.Minute.ToString("00"),
+				creationTime.Second.ToString("00"));
+
+			byte[] buff = Encoding.UTF8.GetBytes(s);
+			piDate.Value = new byte[buff.Length + 1];
+			buff.CopyTo(piDate.Value, 0);
+			piDate.Value[buff.Length] = 0;
+			piDate.Len = piDate.Value.Length;
+			i.SetPropertyItem(piDate);
+		}
+		catch
+		{
+		}
+	}
     public static string GetImageTitle(string file)
     {
         using (Bitmap bmp = new Bitmap(file))
@@ -487,6 +536,13 @@ public class LoginState
 
         return true;
     }
+
+	public static bool IsAdmin()
+	{
+		if (User == null)
+			return false;
+		return User.OpenId == "https://www.google.com/accounts/o8/id?id=AItOawneX8LxcCxIsA5sFr4S_0mJDJUB3HfaLzw";
+	}
     private const string MTBUserIdentifier = "MTBUser";
     public static MTBUser User
     {
@@ -511,5 +567,4 @@ public class LoginState
             HttpContext.Current.Session[MTBNewUserIdentifier] = value;
         }
     }
-
 }
