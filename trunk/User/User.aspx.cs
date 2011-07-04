@@ -84,7 +84,7 @@ public partial class User_User : System.Web.UI.Page
                 LoginState.User = user;
                 //mi mando una mail per conoscenza, e una la mando a chi si è registrato
                 string msg = string.Format("Grazie per esserti registrato a MTBScout, questo è il riepilogo dei tuoi dati:\r\n{0}", user);
-                Helper.SendMail(user.EMail, null, "info@mtbscout.it", "Conferma avvenuta registrazione", msg);
+                Helper.SendMail(user.EMail, null, "info@mtbscout.it", "Conferma avvenuta registrazione", msg, false);
                 
                 //non mi serve più quello temporaneo
                 LoginState.NewUser = null;

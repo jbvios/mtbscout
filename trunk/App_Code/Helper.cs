@@ -458,13 +458,13 @@ public static class Helper
         return string.Compare(PathFunctions.RootPath, "c:\\mtbscout", StringComparison.InvariantCultureIgnoreCase) == 0;
     }
 
-    public static void SendMail(string to, string cc, string bcc, string subject, string body)
+    public static void SendMail(string to, string cc, string bcc, string subject, string body, bool html)
     {
         string[] ccAr = cc == null ? new string[0] : new string[] { cc };
         string[] bccAr = bcc == null ? new string[0] : new string[] { bcc };
-        SendMail(new string[] { to }, ccAr, bccAr, subject, body);
+        SendMail(new string[] { to }, ccAr, bccAr, subject, body, html);
     }
-    public static void SendMail(string[] to, string[] cc, string[] bcc, string subject, string body)
+    public static void SendMail(string[] to, string[] cc, string[] bcc, string subject, string body, bool html)
     {
         if (IsDevelopment())
             return;
@@ -476,6 +476,7 @@ public static class Helper
         msg.Subject = subject;
         msg.Sender = new MailAddress("info@mtbscout.it");
         msg.From = new MailAddress("info@mtbscout.it");
+		msg.IsBodyHtml = html;
         foreach (string s in to)
             msg.To.Add(new MailAddress(s));
         foreach (string s in cc)
