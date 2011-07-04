@@ -311,6 +311,17 @@ function getUpdateImagesButton(){{
             Helper.GetImageCache(imageFolder);
             //salvo il record
             DBHelper.SaveRoute(route);
+			
+			//mando una mail agli utenti registrati
+			string msg = string.Format("Ciao biker!<br/>L'utente {0} ha inserito o modificato il percorso<br/><a target=\"route\" href=\"{1}\">{2}</a><br/>Scarica il tracciato e vieni a provarlo!<br/><br/>MTB Scout",
+				LoginState.User.DisplayName,
+				"http://www.mtbscout.it" + route.GetRouteUrl(false), 
+				route.Title
+				);
+			foreach (MTBUser u in DBHelper.Users)
+				if (u.SendMail)
+					Helper.SendMail(u.EMail, null, null, "Inserimento/modifica percorso", msg, true);
+               
             ScriptManager.RegisterStartupScript(this, GetType(), "MessageOK", "alert('Informazioni salvate correttamente.');", true);
         }
         catch (Exception ex)
