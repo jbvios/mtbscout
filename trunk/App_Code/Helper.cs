@@ -541,7 +541,7 @@ public class LoginState
 	{
 		if (User == null)
 			return false;
-		return User.OpenId == "https://www.google.com/accounts/o8/id?id=AItOawneX8LxcCxIsA5sFr4S_0mJDJUB3HfaLzw";
+		return User.OpenId == "https://www.google.com/accounts/o8/id?id=AItOawnJeTkR-nPcd4YIwRRGQhCKWlMar4Xjyq8";
 	}
     private const string MTBUserIdentifier = "MTBUser";
     public static MTBUser User
