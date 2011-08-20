@@ -56,8 +56,6 @@
 					<span id="RouteTitle" style="padding-top: 30px;"></span>
 				</div>
 			</div>
-			
-			
 			<uc1:Spot ID="Spot1" runat="server" />
 			<h3>
 				Pensare <i>All Mountain</i></h3>
