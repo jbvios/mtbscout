@@ -62,6 +62,12 @@
 			<a href="http://www.peverada.it/mtb/" target="_blank">Mountain Bike Italian Links</a>
 		</p>
 		<p class="CenterUrl">
+			<a href="http://www.liguriabike.it/" target="_blank">Percorsi MTB in Liguria e Alpi</a>
+		</p>
+		<p class="CenterUrl">
+			<a href="http://www.meteo-casella.info/" target="_blank">Stazione Meteo Casella</a>
+		</p>
+		<p class="CenterUrl">
 			<a href="http://digilander.libero.it/stedgl13/index.htm" target="_blank">Mare e Monti</a>
 		</p>
 	</div>
