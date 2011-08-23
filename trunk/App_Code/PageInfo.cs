@@ -32,9 +32,15 @@ namespace MTBScout
         public Size[] sizes;
         public int pages;
 
+        public static void ClearCache(string imagesPath)
+        { 
+            string cacheFile = GetCacheFile(imagesPath);
+            if (File.Exists(cacheFile))
+                File.Delete(cacheFile);
+        }
         public static ImageCache Create(string imagesPath)
         {
-            string cacheFile = PathFunctions.GetWorkingPath(imagesPath) + ".xml";
+            string cacheFile = GetCacheFile(imagesPath);
             
             ImageCache cache = ImageCache.Load(cacheFile);
             if (cache != null)
@@ -42,6 +48,11 @@ namespace MTBScout
             cache = new ImageCache(imagesPath);
             cache.Save(cacheFile);
             return cache;
+        }
+
+        private static string GetCacheFile(string imagesPath)
+        {
+            return PathFunctions.GetWorkingPath(imagesPath) + ".xml";
         }
 
         private void Save(string cacheFile)

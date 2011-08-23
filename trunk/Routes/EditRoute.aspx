@@ -45,8 +45,7 @@
 			<li>Carica il tracciato GPS del percorso; deve trattarsi di un file GPX, se il 
 				formato del tuo file non corrisponde esistono in rete molti strumenti di 
 				conversione.</li>
-				<li>Scegli un titolo per il percorso: per omogeneità è preferibile utilizzare come 
-					titolo la sequenza di località toccate dal percorso stesso (es. Montoggio - 
+				<li>Scegli un titolo per il percorso: per omogeneità è preferibile utilizzare la sequenza di località toccate dal percorso stesso (es. Montoggio - 
 					Casella - Val Brevenna - Carsi - Carsegli - Montoggio).</li>
 			<li>Fornisci una descrizione di dettaglio: caratteristiche del fondo, tecnicità, 
 				punti panoramici, punti di attenzione, punti di rifornimento idrico, in generale 
@@ -176,6 +175,9 @@
                         height="100px;"></iframe>
                 </fieldset>
                 <div style="text-align: center">
+                    <asp:CheckBox ID="CheckBoxSendMail" runat="server" 
+                        Text="Manda la mail di notifica agli utenti registrati" />
+                        <br />
                     <asp:Button ID="ButtonSave" runat="server" Text="Salva" OnClick="ButtonSave_Click" />
                 <asp:Button ID="ButtonDelete" runat="server" Text="Elimina questo percorso" 
                         CausesValidation="false" OnClientClick="return confirmDelete();" onclick="ButtonDelete_Click" /></div>

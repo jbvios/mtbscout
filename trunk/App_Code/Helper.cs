@@ -176,6 +176,11 @@ public static class Helper
         return parser;
     }
 
+    public static void ClearImageCache(string imagesPath)
+    {
+        ImageCache.ClearCache(imagesPath);
+        HttpContext.Current.Cache[imagesPath] = null; 
+    }
     public static ImageCache GetImageCache(string imagesPath)
     {
         ImageCache cache = HttpContext.Current.Cache[imagesPath] as ImageCache;
