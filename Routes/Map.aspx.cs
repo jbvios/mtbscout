@@ -84,59 +84,8 @@ public partial class Map : System.Web.UI.Page
     /// </summary>
     public void GenerateTrack()
     {
-        Response.Write("<script type=\"text/javascript\">\r\n");
-        Response.Write("function addTracks(){\r\n");
-        if (parser != null)
-        {
-            int trackIndex = 0;
-            foreach (Track trk in parser.Tracks)
-            {
-                Response.Write(string.Format(@"
-                t = {0}; 
-                track = [];
-                trk_info[t] = track;
-                track['name'] = '{1}';
-                track['desc'] = '{2}'; 
-                track['clickable'] = true;
-                track['width'] = 3; 
-                track['opacity'] = 0.9;
-                track['outline_color'] = '#000000';
-                track['outline_width'] = 0;
-                track['fill_color'] = '#E60000'; 
-                track['fill_opacity'] = 0;
-                trkSeg = [];
-                trk_segments[t] = trkSeg;",
-                   ++trackIndex,
-                   trk.Name,
-                   trk.Description));
-
-                foreach (TrackSegment seg in trk.Segments)
-                {
-                    TrackPoint[] reducedPoints = seg.ReducedPoints;
-                    for (int i = 0; i < reducedPoints.Length - 1; i++)
-                    {
-                        TrackPoint p1 = reducedPoints[i];
-                        TrackPoint p2 = reducedPoints[i + 1];
-
-                        string color = ColorProvider.GetColorString(p1.ele, parser.MinElevation, parser.MaxElevation);
-                        //devo usare InvariantCulture per avere il punto come separatore dei decimali
-                        Response.Write(string.Format(
-                            "trkSeg.push({{ color:'{0}', points:[ [{1},{2}], [{3},{4}] ] }});\r\n",
-                            color,
-                            p1.lat.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                            p1.lon.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                            p2.lat.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                            p2.lon.ToString(System.Globalization.CultureInfo.InvariantCulture)
-                            ));
-
-                    }
-                }
-
-                Response.Write("GV_Draw_Track(t);");
-            }
-        }
-        Response.Write("}\r\n");
-        Response.Write("</script>\r\n");
+        Helper.GenerateTrackCode(parser, Response, true);
+   
     }
 
 

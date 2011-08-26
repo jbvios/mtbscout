@@ -53,7 +53,8 @@ public partial class Map : System.Web.UI.Page
             //TrackPoint p = parser.Tracks[0].Segments[0].Points[0];
             GenericPoint p = parser.MediumPoint;
             string color = "blue";
-            string name = r.Title.Replace("'", "\\'");
+            string title = r.Title.Replace("'", "\\'");
+            string name = r.Name;
             string description = string.Format("<iframe scrolling=\"no\" frameborder=\"no\" src=\"/RouteData.aspx?name={0}\"/>", r.Name);
             string icon = "";
             string imageFolder = PathFunctions.GetImagePathFromGpx(gpxFile);
@@ -69,15 +70,16 @@ public partial class Map : System.Web.UI.Page
             string thumbFile = imageFile.Length == 0 ? "" : PathFunctions.GetThumbFile(imageFile);
             string photo = thumbFile.Length == 0 ? "" : PathFunctions.GetUrlFromPath(thumbFile, false).Replace("'", "\\'");
             Response.Write(string.Format(
-            "GV_Draw_Marker({{ lat: {0}, lon: {1}, name: '{2}', desc: '{3}', color: '{4}', icon: '{5}', photo: '{6}', url: '{7}' }});\r\n",
+            "GV_Draw_Marker({{ lat: {0}, lon: {1}, name: '{2}', desc: '{3}', color: '{4}', icon: '{5}', photo: '{6}', url: '{7}', route_name:'{8}' }});\r\n",
                 p.lat.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 p.lon.ToString(System.Globalization.CultureInfo.InvariantCulture),
-                name,
+                title,
                 description,
                 color,
                 icon,
                 photo,
-                url));
+                url, 
+                name));
         }
 		
         
@@ -113,14 +115,9 @@ public partial class Map : System.Web.UI.Page
     /// </summary>
     public void GenerateTrack()
     {
-        Response.Write("<script type=\"text/javascript\">\r\n");
-        Response.Write("function addTracks(){\r\n");
-
-
-        Response.Write("}\r\n");
-        Response.Write("</script>\r\n");
+        Helper.GenerateTrackCode(null, Response, true);
     }
-
+    
 
     public void GenerateLegendItems()
     {

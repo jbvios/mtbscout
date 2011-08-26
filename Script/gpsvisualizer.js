@@ -879,7 +879,7 @@ function GV_Marker(map,marker_info,lon,name,desc,url,color,style,width,label_id)
 		if (m['url']) {
 			GEvent.addListener(marker, "click", function(){ window.open(m['url'],target); });
 		}
-	} else {
+} else {
 		var iw_html = '';
 		var url_quoted = (m['url']) ? m['url'].replace(/"/g,"&quot;") : '';
 		if (m['name']) {
@@ -929,10 +929,23 @@ function GV_Marker(map,marker_info,lon,name,desc,url,color,style,width,label_id)
 		if (window_width > 0 && window_width < 200) { window_width = 200; } // apparently you can't make it less than 217 (let's leave 17 for the close box though)
 		var width_style = (window_width > 0) ? 'width:'+window_width+'px;' : '';
 		var info_html = '<div style="text-align:left; '+width_style+'" class="gv_marker_info_window">'+iw_html+'</div>';
-		if (iw_html) { GEvent.addListener(marker, "click", function(){
-			marker.openInfoWindowHtml(info_html, {maxWidth:gv_options['info_window_width_maximum']});
-			gv_open_infowindow_index = marker.index;
-		}); }
+		if (iw_html) {
+		    GEvent.addListener(marker, "click", function() {
+		        marker.openInfoWindowHtml(info_html, { maxWidth: gv_options['info_window_width_maximum'] });
+		        gv_open_infowindow_index = marker.index;
+		        var request = new XMLHttpRequest();
+		        request.open("GET", "RouteScript.axd?ScriptForRoute=" + uri_escape(m['route_name']), true);
+		        request.setRequestHeader("Content-Type", "application/x-javascript;");
+		        request.onreadystatechange = function() {
+		            if (request.readyState == 4 && request.status == 200) {
+		                if (request.responseText) {
+		                    eval(request.responseText);
+		                    addTracks();
+		                }
+		            }
+		        };
+		        request.send(null);
+		    }); }
 	}
 	
 	var out_of_range = false;
@@ -1049,8 +1062,8 @@ function GV_Initialize_Marker_Tooltip(map) {
 	map.getPane(G_MAP_FLOAT_PANE).appendChild(mtt);
 	return (mtt);
 }
-function GV_Create_Marker_Tooltip(map,marker) {
-	// copied almost verbatim from http://www.econym.demon.co.uk/googlemaps/tooltips4.htm
+function GV_Create_Marker_Tooltip(map, marker) {
+   // copied almost verbatim from http://www.econym.demon.co.uk/googlemaps/tooltips4.htm
 	if (!marker || !marker.tooltip) { return false; }
 	gv_marker_tooltip.innerHTML = marker.tooltip;
 	var point=map.getCurrentMapType().getProjection().fromLatLngToPixel(map.fromDivPixelToLatLng(new GPoint(0,0),true),map.getZoom());
@@ -1065,11 +1078,11 @@ function GV_Create_Marker_Tooltip(map,marker) {
 	gv_marker_tooltip.style.visibility = 'visible';
 }
 function GV_Hide_Marker_Tooltip() {
-	gv_marker_tooltip.style.visibility = 'hidden';
+    gv_marker_tooltip.style.visibility = 'hidden';
 }
 
 function GV_Initialize_Track_Tooltip(map) {
-	var ttt = document.createElement('div');
+    var ttt = document.createElement('div');
 	ttt.id = 'gv_track_tooltip';
 	ttt.style.visibility = 'hidden';
 	map.getPane(G_MAP_FLOAT_PANE).appendChild(ttt);
@@ -1671,8 +1684,8 @@ function GV_Folder_Collapse_Toggle(folder_index,force_show) {
 		gv_marker_list_folder_state[fn].collapsed = true;
 	}
 }
-function GV_Folder_Visibility_Toggle(folder_index,force_show) {
-	if (!self.gv_marker_list_folder_state) { return false; }
+function GV_Folder_Visibility_Toggle(folder_index, force_show) {
+    if (!self.gv_marker_list_folder_state) { return false; }
 	var fn = GV_Get_Folder_Number(folder_index); if (!fn) { return false; }
 	if((gv_marker_list_folder_state[fn].hidden || force_show === true) && force_show !== false) {
 		$('folder_checkbox_'+fn).checked = true;
@@ -1883,7 +1896,9 @@ function GV_Filter_Markers_With_Text (opts) {
 }
 function GV_Filter_Waypoints_With_Text (opts) { GV_Filter_Markers_With_Text(opts); }
 
-function GV_Toggle_Markers_With_Text (opts) {
+function GV_Toggle_Markers_With_Text(opts) {
+    
+	
 	// Works with these fields: name,desc,url,shortdesc,icon,color,image,thumbnail,type,lat,lon,coords,folder
 	if (!opts) { opts = {}; } // in case NOTHING is passed into the function for unfiltering
 	var map_name = (opts['map'] && typeof(opts['map']) !== 'function') ? opts['map'] : 'gmap'; var map = eval(map_name); if (!map) { return false; }
