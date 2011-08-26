@@ -526,6 +526,7 @@ public static class Helper
                 track['outline_width'] = 0;
                 track['fill_color'] = '#E60000'; 
                 track['fill_opacity'] = 0;
+                
                 trkSeg = [];
                 trk_segments[t] = trkSeg;",
                    ++trackIndex,
