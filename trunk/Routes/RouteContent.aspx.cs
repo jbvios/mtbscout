@@ -70,7 +70,7 @@ public partial class Map : System.Web.UI.Page
             string thumbFile = imageFile.Length == 0 ? "" : PathFunctions.GetThumbFile(imageFile);
             string photo = thumbFile.Length == 0 ? "" : PathFunctions.GetUrlFromPath(thumbFile, false).Replace("'", "\\'");
             Response.Write(string.Format(
-            "GV_Draw_Marker({{ lat: {0}, lon: {1}, name: '{2}', desc: '{3}', color: '{4}', icon: '{5}', photo: '{6}', url: '{7}', route_name:'{8}' }});\r\n",
+            "GV_Draw_Marker({{ lat: {0}, lon: {1}, name: '{2}', desc: '{3}', color: '{4}', icon: '{5}', photo: '{6}', url: '{7}', route_name:'{8}', draw_track: true }});\r\n",
                 p.lat.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 p.lon.ToString(System.Globalization.CultureInfo.InvariantCulture),
                 title,

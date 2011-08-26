@@ -933,19 +933,36 @@ function GV_Marker(map,marker_info,lon,name,desc,url,color,style,width,label_id)
 		    GEvent.addListener(marker, "click", function() {
 		        marker.openInfoWindowHtml(info_html, { maxWidth: gv_options['info_window_width_maximum'] });
 		        gv_open_infowindow_index = marker.index;
-		        var request = new XMLHttpRequest();
-		        request.open("GET", "RouteScript.axd?ScriptForRoute=" + uri_escape(m['route_name']), true);
-		        request.setRequestHeader("Content-Type", "application/x-javascript;");
-		        request.onreadystatechange = function() {
-		            if (request.readyState == 4 && request.status == 200) {
-		                if (request.responseText) {
-		                    eval(request.responseText);
-		                    addTracks();
-		                }
+		    });
+		    if (m['draw_track']) {
+		        GEvent.addListener(marker, "click", function() {
+		            if (window.addedOverlays) {
+		                var ovl = window.addedOverlays;
+		                for (var j = 0; j < ovl.length; j++)
+		                    map.removeOverlay(ovl[j]);
 		            }
-		        };
-		        request.send(null);
-		    }); }
+
+		            var request = new XMLHttpRequest();
+		            request.open("GET", "RouteScript.axd?ScriptForRoute=" + uri_escape(m['route_name']), true);
+		            request.setRequestHeader("Content-Type", "application/x-javascript;");
+		            request.onreadystatechange = function() {
+		                if (request.readyState == 4 && request.status == 200) {
+		                    if (request.responseText) {
+		                        try {
+		                            eval(request.responseText);
+		                            addTracks();
+		                        }
+		                        catch (e) {
+		                            alert(e);
+		                        }
+		                    }
+		                }
+		            };
+		            request.send(null);
+		        });
+		    }
+		}
+        
 	}
 	
 	var out_of_range = false;
@@ -1272,6 +1289,7 @@ function GV_Label_Visibility(marker_array_name,marker_index,visible) {
 
 
 function GV_Draw_Track(t) {
+    window.addedOverlays = [];
 	var map_name = (gv_options['map'] && typeof(gv_options['map']) !== 'function') ? gv_options['map'] : 'gmap'; var map = eval(map_name); if (!map) { return false; }
 	if (!trk_segments[t] || !trk_info[t]) { return false; }
 	trk[t] = [];
@@ -1296,7 +1314,9 @@ function GV_Draw_Track(t) {
 		}
 		if (trk_outline_width > 0) { // while we're here, may as well save having to do another loop, since the outline doesn't have per-segment settings anyway:
 			trk[t].push (new GPolyline(segment_points[s],trk_outline_color,trk_outline_width,trk_outline_opacity,{mouseOutTolerance:1}));
-			map.addOverlay(trk[t][ trk[t].length-1 ]);
+			var ovl = trk[t][trk[t].length - 1];
+			window.addedOverlays.push(ovl);
+			map.addOverlay(ovl);
 		}
 	}
 	for (s=0; s<trk_segments[t].length; s++) {
@@ -1310,7 +1330,9 @@ function GV_Draw_Track(t) {
 			} else {
 				trk[t].push (new GPolyline(segment_points[s],segment_color,segment_width,segment_opacity,{mouseOutTolerance:1}));
 			}
-			map.addOverlay(trk[t][ trk[t].length-1 ]);
+			var ovl = trk[t][trk[t].length - 1];
+			window.addedOverlays.push(ovl);
+			map.addOverlay(ovl);
 		}
 	}
 	trk_segments[t] = []; // bad idea?
