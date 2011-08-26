@@ -25,6 +25,14 @@ namespace MTBScout
 				context.Response.TransmitFile(file);
 				return;
 			}
+            string scriptForRoute = context.Request.QueryString["ScriptForRoute"];
+            if (!string.IsNullOrEmpty(scriptForRoute))
+			{
+                string gpxFile = PathFunctions.GetGpxPathFromRouteName(scriptForRoute);
+                GpxParser parser = Helper.GetGpxParser(gpxFile);
+                Helper.GenerateTrackCode(parser, context.Response, false);
+				return;
+			}
             string routeName = context.Request.QueryString["Route"];
             string imageName = context.Request.QueryString["Image"];
 
@@ -32,6 +40,10 @@ namespace MTBScout
 			string folder = PathFunctions.GetImagePathFromRouteName(routeName);
             if (img != null)
 				img.SaveTo(context.Response);
+
+           
+
+        
         }
     }
 }
