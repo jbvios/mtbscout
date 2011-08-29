@@ -10,7 +10,7 @@ public partial class Menu : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        LiteralControl c = new LiteralControl("<META NAME=\"Description\" CONTENT=\"mountain bike MTB montoggio scout bicicletta bike biker bikers pentemina scrivia\">");
+        LiteralControl c = new LiteralControl("<META NAME=\"Description\" CONTENT=\"mountain bike MTB liguria montoggio casella valle GPS track scout bicicletta bike biker bikers pentemina scrivia\">");
         Page.Header.Controls.Add(c);
 
 
