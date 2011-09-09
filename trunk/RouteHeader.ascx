@@ -16,13 +16,13 @@
 		<td id="Lenght" runat="server">
 		</td>
 	</tr>
-	<tr>
+	<%--<tr>
 		<td>
 			Dislivello totale:
 		</td>
 		<td id="TotalHeight" runat="server">
 		</td>
-	</tr>
+	</tr>--%>
 	<tr>
 		<td>
 			Quota massima:

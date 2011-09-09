@@ -50,7 +50,8 @@ public partial class RouteHeader : System.Web.UI.UserControl
 		if (user != null)
 			Owner.InnerText = user.DisplayName;
 		Lenght.InnerText = routeLenght + " Km";
-		TotalHeight.InnerText = routeTotalHeight + " m";
+		//TotalHeight.InnerText = routeTotalHeight + " m";
+
 		MaxHeight.InnerText = routeMaxHeight + " m";
 		MinHeight.InnerText = routeMinHeight + " m";
 		Cycle.InnerText = r.Cycling.ToString() + "%";
