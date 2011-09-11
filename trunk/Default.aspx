@@ -27,16 +27,7 @@
 			e pubblicizzazione, principalmente attraverso questo sito.
 		</p>
 		<div style="padding-top: 20px;">
-		<div class="widget">
-				<div style="padding: 20px; text-align:center">
-				<p style="text-align:center">Domenica 11 settembre escursione sul monte Lavagnola</p>
-					<a title="Vai alla descrizione del percorso" href="/Public/Routes/Pentema_Lavagnola/Pentema_Lavagnola.aspx">
-						<img  src="/Public/WorkingData/Public/Routes/Pentema_Lavagnola/Thumbs/003-Vetta%20del%20Lavagnola.JPG"/>
-					</a>
-				<p style="text-align:center">Ritrovo ore 7.30 presso il campo sportivo di Montoggio; rientro in tarda mattinata, salvo imprevisti</p>
-				<pstyle="text-align:center">Chi desiderasse partecipare ci contatti al nostro indirizzo email: <a href="mailto:info@mtbscout.it">info@mtbscout.it</a></p>
-				</div>
-			</div>
+		
 			<div class="widget">
 				<div style="padding: 20px;">
 					<a title="Anello dei Fieschi, video discesa Casale - Pontenero" href="/public/Routes/AnelloFieschi/AnelloFieschi.aspx">
