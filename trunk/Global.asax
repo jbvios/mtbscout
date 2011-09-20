@@ -3,15 +3,17 @@
 <script runat="server">
     void Application_Start(object sender, EventArgs e) 
     {
-        this.EndRequest += new EventHandler(global_asax_EndRequest);
         Helper.DisableAppDomainRestartOnDelete();
     }
 
-    void global_asax_EndRequest(object sender, EventArgs e)
-    {
-        
-    }
 
+    protected void Application_BeginRequest(object sender, EventArgs e)
+    {
+        // Filter the text to be rendered as all uppercase.
+        //Response.Filter = new WebLocalizer.UpperCaseFilterStream(Response.Filter);
+
+    }
+    
 	void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
 	{
 		
