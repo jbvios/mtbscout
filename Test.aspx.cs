@@ -16,7 +16,10 @@ public partial class Test : System.Web.UI.Page
     {
         string folder = Server.MapPath("~/Routes");
         string target = Server.MapPath("~/Public/workingdata");
-       //Delete(target, "profile.png");
+        if (File.Exists(@"C:\Windows\Microsoft.NET\Framework\v2.0.50727\aspnet_isapi.dll"))
+            Response.Write(folder);
+
+        //Delete(target, "profile.png");
         //Delete(folder, "map.html");
         //Delete(folder, "route.xml");
 
