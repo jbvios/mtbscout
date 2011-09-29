@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /App_Code/
+Disallow: /aspnet_client/
+Disallow: /bin/
+Disallow: /cgi-bin/
+Disallow: /lightbox/
+Disallow: /mappings/
+Disallow: /mdb-database/
+Disallow: /properties/
+Disallow: /resources/
+Disallow: /script/
+Disallow: /video/
