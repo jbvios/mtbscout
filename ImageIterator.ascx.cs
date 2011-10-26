@@ -133,7 +133,7 @@ public partial class ImageIterator : System.Web.UI.UserControl
 			a.Controls.Add(img);
 			p.Controls.Add(downLoadImg);
 			img.ImageUrl = cache.thumbUrls[prog];
-			img.AlternateText = "Clicca per ingrandire";
+            img.AlternateText = caption;
 			img.Attributes["title"] = "Clicca per ingrandire";
 			img.Attributes["imageDescription"] = System.IO.Path.GetFileNameWithoutExtension(file);
             img.Attributes["onmouseout"] = "normalImage(this);";
