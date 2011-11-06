@@ -10,3 +10,4 @@ Disallow: /properties/
 Disallow: /resources/
 Disallow: /script/
 Disallow: /video/
+Crawl-delay: 10
