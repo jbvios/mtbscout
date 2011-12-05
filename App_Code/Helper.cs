@@ -474,7 +474,7 @@ public static class Helper
         if (IsDevelopment())
             return;
 
-        SmtpClient client = new SmtpClient("localhost");
+        SmtpClient client = new SmtpClient("smtp.aruba.it");
 
         MailMessage msg = new MailMessage();
         msg.Body = body;
