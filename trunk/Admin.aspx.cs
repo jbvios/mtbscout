@@ -57,5 +57,19 @@ public partial class Admin : System.Web.UI.Page
 		}
 		
 	}
+    protected void ButtonMail_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            foreach (MTBUser u in DBHelper.Users)
+                if (u.SendMail)
+                    Helper.SendMail(u.EMail, null, null, "Newsletter", TextBoxMail.Text, true);
+        }
+        catch (Exception ex)
+        {
+            TextBoxResult.Text = ex.ToString();
+        }
+   
+    }
 }
 
