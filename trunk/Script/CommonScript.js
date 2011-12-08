@@ -59,13 +59,13 @@ function Round(id, radius, step) {
 }
 
 function InitPage() {
-    setTimeout(function() { moveClimbHeader(); }, 5);
+    setTimeout(function() { moveClimbHeader(); }, 50);
     initsnow(); 
 }
 function moveClimbHeader() {
 	var img = document.getElementById("Climb");
 	if (!img) {
-		setTimeout(function() { moveClimbHeader(); }, 5);
+		setTimeout(function() { moveClimbHeader(); }, 50);
 		return;
 	}
 	if (!document.getElementById("dummyForHomePage")) {
@@ -76,7 +76,7 @@ function moveClimbHeader() {
 	else if (!img.delta) {
 		img.style.left = "500px";
 		img.style.visibility = "visible";
-		img.delta = -5;
+		img.delta = -20;
 	}
 		
 	var x = parseInt(img.style.left) + img.delta;
@@ -84,12 +84,12 @@ function moveClimbHeader() {
 
 	if (img.delta < 0) {
 		if (x < -450)
-			img.delta = 5;
+			img.delta = 20;
 
-		setTimeout(function() { moveClimbHeader(); }, 5);
+		setTimeout(function() { moveClimbHeader(); }, 50);
 	}
 	else if (x < -300) {
-		setTimeout(function() { moveClimbHeader(); }, 5);
+		setTimeout(function() { moveClimbHeader(); }, 50);
 	}
 	else {
 		img.delta = null;
