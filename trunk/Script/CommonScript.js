@@ -60,7 +60,7 @@ function Round(id, radius, step) {
 
 function InitPage() {
     setTimeout(function() { moveClimbHeader(); }, 50);
-    initsnow(); 
+    //initsnow(); 
 }
 function moveClimbHeader() {
 	var img = document.getElementById("Climb");

@@ -100,6 +100,6 @@ function movesnow() {
 }
 
 for (i = 0; i <= snowmax; i++) {
-	document.write("<img src='/Images/fiocco.gif' id='s" + i + "' style='z-index:1000; width:20px;heigth:20px;position:absolute;top:-" + snowmaxsize + "'/>")
+    document.write("<img src='/Images/fiocco.gif' id='s" + i + "' style='z-index:1000; width:20px;heigth:20px;position:absolute;top:-" + snowmaxsize + "'/>")
 }
 
