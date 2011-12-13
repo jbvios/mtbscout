@@ -35,7 +35,7 @@
 						<img alt="Caucaso" src="/Public/WorkingData/Public/Routes/Caucaso/Thumbs/031-Foto%20di%20gruppo.jpg" />			
 					</a>
 					<br />
-					Ritrovo presso il campo sportivo di Montoggio ore 7.30, oppure presso il parcheggio delle piscine di Torriglia ore 8.30. Rientro in mattinata, salvo imprevisti.
+					Ritrovo presso il campo sportivo di Montoggio ore 7.30 con trasferimento in auto fino a Torriglia, oppure presso il parcheggio delle piscine di Torriglia ore 8.30. Rientro in mattinata, salvo imprevisti.
 					<br />
 					Per informazioni e adesioni potete <a href="mailto:info@mtbscout.it">contattarci via mail</a>
 				</div>
