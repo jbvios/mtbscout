@@ -29,15 +29,7 @@
 		<div style="padding-top: 20px;">
 		    <div class="widget">
 				<div style="padding: 20px;">
-				    <span>Domenica 18 dicembre 2011 - Escursione natalizia sul monte Caucaso</span><br />
-					<br />
-					<a title="Descrizione percorso" href="/Public/Routes/Caucaso/Caucaso.aspx">
-						<img alt="Caucaso" src="/Public/WorkingData/Public/Routes/Caucaso/Thumbs/031-Foto%20di%20gruppo.jpg" />			
-					</a>
-					<br />
-					Ritrovo presso il campo sportivo di Montoggio ore 7.30 con trasferimento in auto fino a Torriglia, oppure presso il parcheggio delle piscine di Torriglia ore 8.30. Rientro in mattinata, salvo imprevisti.
-					<br />
-					Per informazioni e adesioni potete <a href="mailto:info@mtbscout.it">contattarci via mail</a>
+				    <iframe width="420" height="300" src="http://www.youtube.com/embed/nS9_EyzyeMs" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			<div class="widget">
