@@ -562,7 +562,12 @@ public static class Helper
         if (addScriptTags)
             response.Write("</script>\r\n");
     }
-    
+
+
+    public static string FormatDate(DateTime date)
+    {
+        return date.ToString("dddd dd MMMM yyyy alle ore hh:mm");
+    }
 }
 internal class AutoLock : IDisposable
 {

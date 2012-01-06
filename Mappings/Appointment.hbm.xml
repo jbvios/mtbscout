@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" 
+						 assembly="App_Code" 
+						 namespace="MTBScout.Entities">
+	
+	<class name="Appointment" table="Appointments" lazy="false">
+        <id name="id" unsaved-value="0" access="field" type="System.Int32" >
+            <generator class="native" />
+        </id>
+        <property name="Message" column="Message" type="System.String"/>
+        <property name="Name" column="Name" type="System.String"/>
+        <property name="Ip" column="Ip" type="System.String"/>
+		<property name="PostingDate" column="PostingDate" type="System.DateTime"/>
+        <property name="AppointmentDate" column="AppointmentDate" type="System.DateTime"/>
+
+        <set name="AppointmentPosts" table="AppointmentPosts" cascade="all" lazy="false">
+            <key column="AppointmentId" />
+            <many-to-many column="PostId" unique="true" class="Post" />
+        </set>
+	</class>
+</hibernate-mapping>

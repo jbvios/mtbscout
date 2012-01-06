@@ -51,114 +51,114 @@ public class DBHelper
         ICriteria criteria = iSession.CreateCriteria<Route>();
         routes = criteria.List<Route>();
     }
-	//--------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------
     public static IList ExecQuery(string queryString)
-	{
-		using (ISession iSession = NHSessionManager.GetSession())
-		{
-			ISQLQuery query = iSession.CreateSQLQuery(queryString);
-			IList genericList = query.List();
-			if (genericList.Count == 0)
-				return new ArrayList();
-			Type t = CreateType(genericList[0] as object[]);
-			if (t == null)
-				return new ArrayList();
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            ISQLQuery query = iSession.CreateSQLQuery(queryString);
+            IList genericList = query.List();
+            if (genericList.Count == 0)
+                return new ArrayList();
+            Type t = CreateType(genericList[0] as object[]);
+            if (t == null)
+                return new ArrayList();
 
-			for (int i = 0; i < genericList.Count; i++)
-				genericList[i] = CreateTypeInstance(t, genericList[i] as object[]);
-			return genericList;
-		}
-	}
-	//--------------------------------------------------------------------------------
+            for (int i = 0; i < genericList.Count; i++)
+                genericList[i] = CreateTypeInstance(t, genericList[i] as object[]);
+            return genericList;
+        }
+    }
+    //--------------------------------------------------------------------------------
     private static Type CreateType(object[] fields)
-	{
-		if (fields == null)
-			return null;
+    {
+        if (fields == null)
+            return null;
 
-		// create a dynamic assembly and module 
-		AssemblyName assemblyName = new AssemblyName();
-		assemblyName.Name = "tmpAssembly";
-		AssemblyBuilder assemblyBuilder = Thread.GetDomain().DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
-		ModuleBuilder module = assemblyBuilder.DefineDynamicModule("tmpModule");
+        // create a dynamic assembly and module 
+        AssemblyName assemblyName = new AssemblyName();
+        assemblyName.Name = "tmpAssembly";
+        AssemblyBuilder assemblyBuilder = Thread.GetDomain().DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+        ModuleBuilder module = assemblyBuilder.DefineDynamicModule("tmpModule");
 
-		// create a new type builder
-		TypeBuilder typeBuilder = module.DefineType("BindableRowCellCollection", TypeAttributes.Public | TypeAttributes.Class);
-		int idx = 0;
-		// Loop over the attributes that will be used as the properties names in out new type
-		foreach (object obj in fields)
-		{
-			string propertyName = "Field_" + (++idx).ToString("00");
+        // create a new type builder
+        TypeBuilder typeBuilder = module.DefineType("BindableRowCellCollection", TypeAttributes.Public | TypeAttributes.Class);
+        int idx = 0;
+        // Loop over the attributes that will be used as the properties names in out new type
+        foreach (object obj in fields)
+        {
+            string propertyName = "Field_" + (++idx).ToString("00");
 
-			// Generate a private field
-			FieldBuilder field = typeBuilder.DefineField("_" + propertyName, obj.GetType(), FieldAttributes.Private);
-			// Generate a public property
-			PropertyBuilder property =
-				typeBuilder.DefineProperty(propertyName,
-								 PropertyAttributes.None,
-								 obj.GetType(),
-								 new Type[] { typeof(string) });
+            // Generate a private field
+            FieldBuilder field = typeBuilder.DefineField("_" + propertyName, obj.GetType(), FieldAttributes.Private);
+            // Generate a public property
+            PropertyBuilder property =
+                typeBuilder.DefineProperty(propertyName,
+                                 PropertyAttributes.None,
+                                 obj.GetType(),
+                                 new Type[] { typeof(string) });
 
-			// The property set and property get methods require a special set of attributes:
+            // The property set and property get methods require a special set of attributes:
 
-			MethodAttributes GetSetAttr =
-				MethodAttributes.Public |
-				MethodAttributes.HideBySig;
+            MethodAttributes GetSetAttr =
+                MethodAttributes.Public |
+                MethodAttributes.HideBySig;
 
-			// Define the "get" accessor method for current private field.
-			MethodBuilder currGetPropMthdBldr =
-				typeBuilder.DefineMethod("get_value",
-										   GetSetAttr,
-										   obj.GetType(),
-										   Type.EmptyTypes);
+            // Define the "get" accessor method for current private field.
+            MethodBuilder currGetPropMthdBldr =
+                typeBuilder.DefineMethod("get_value",
+                                           GetSetAttr,
+                                           obj.GetType(),
+                                           Type.EmptyTypes);
 
-			// Intermediate Language stuff...
-			ILGenerator currGetIL = currGetPropMthdBldr.GetILGenerator();
-			currGetIL.Emit(OpCodes.Ldarg_0);
-			currGetIL.Emit(OpCodes.Ldfld, field);
-			currGetIL.Emit(OpCodes.Ret);
+            // Intermediate Language stuff...
+            ILGenerator currGetIL = currGetPropMthdBldr.GetILGenerator();
+            currGetIL.Emit(OpCodes.Ldarg_0);
+            currGetIL.Emit(OpCodes.Ldfld, field);
+            currGetIL.Emit(OpCodes.Ret);
 
-			// Define the "set" accessor method for current private field.
-			MethodBuilder currSetPropMthdBldr =
-				typeBuilder.DefineMethod("set_value",
-										   GetSetAttr,
-										   null,
-										   new Type[] { obj.GetType() });
+            // Define the "set" accessor method for current private field.
+            MethodBuilder currSetPropMthdBldr =
+                typeBuilder.DefineMethod("set_value",
+                                           GetSetAttr,
+                                           null,
+                                           new Type[] { obj.GetType() });
 
-			// Again some Intermediate Language stuff...
-			ILGenerator currSetIL = currSetPropMthdBldr.GetILGenerator();
-			currSetIL.Emit(OpCodes.Ldarg_0);
-			currSetIL.Emit(OpCodes.Ldarg_1);
-			currSetIL.Emit(OpCodes.Stfld, field);
-			currSetIL.Emit(OpCodes.Ret);
+            // Again some Intermediate Language stuff...
+            ILGenerator currSetIL = currSetPropMthdBldr.GetILGenerator();
+            currSetIL.Emit(OpCodes.Ldarg_0);
+            currSetIL.Emit(OpCodes.Ldarg_1);
+            currSetIL.Emit(OpCodes.Stfld, field);
+            currSetIL.Emit(OpCodes.Ret);
 
-			// Last, we must map the two methods created above to our PropertyBuilder to 
-			// their corresponding behaviors, "get" and "set" respectively. 
-			property.SetGetMethod(currGetPropMthdBldr);
-			property.SetSetMethod(currSetPropMthdBldr);
-		}
+            // Last, we must map the two methods created above to our PropertyBuilder to 
+            // their corresponding behaviors, "get" and "set" respectively. 
+            property.SetGetMethod(currGetPropMthdBldr);
+            property.SetSetMethod(currSetPropMthdBldr);
+        }
 
-		// Generate our type
-		return typeBuilder.CreateType();
-	}
-	 private static object CreateTypeInstance(Type generetedType, object[] fields)
-	 {
-		// Now we have our type. Let's create an instance from it:
-		object generetedObject = Activator.CreateInstance(generetedType);
+        // Generate our type
+        return typeBuilder.CreateType();
+    }
+    private static object CreateTypeInstance(Type generetedType, object[] fields)
+    {
+        // Now we have our type. Let's create an instance from it:
+        object generetedObject = Activator.CreateInstance(generetedType);
 
-		// Loop over all the generated properties, and assign the values from our XML:
-		PropertyInfo[] properties = generetedType.GetProperties();
+        // Loop over all the generated properties, and assign the values from our XML:
+        PropertyInfo[] properties = generetedType.GetProperties();
 
-		int propertiesCounter = 0;
+        int propertiesCounter = 0;
 
-		// Loop over the values that we will assign to the properties
-		foreach (object obj in fields)
-		{
-			properties[propertiesCounter].SetValue(generetedObject, obj, null);
-			propertiesCounter++;
-		}
+        // Loop over the values that we will assign to the properties
+        foreach (object obj in fields)
+        {
+            properties[propertiesCounter].SetValue(generetedObject, obj, null);
+            propertiesCounter++;
+        }
 
-		return generetedObject;
-	}
+        return generetedObject;
+    }
     //--------------------------------------------------------------------------------
     public static void CountVisitor(HttpRequest request, HttpSessionState session)
     {
@@ -355,47 +355,47 @@ public class DBHelper
         }
     }
 
-	public static EventSubscriptor[] GetSubscriptors(int userId, int eventId)
-	{
-		using (ISession iSession = NHSessionManager.GetSession())
-		{
-			Expression<Func<EventSubscriptor, object>> expr = rt => rt.EventId;
-			var criteria = iSession.CreateCriteria<EventSubscriptor>();
-			criteria.Add(Restrictions.Eq(Projections.Property(expr), eventId));
-			expr = rt => rt.UserId;
-			criteria.Add(Restrictions.Eq(Projections.Property(expr), userId));
+    public static EventSubscriptor[] GetSubscriptors(int userId, int eventId)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<EventSubscriptor, object>> expr = rt => rt.EventId;
+            var criteria = iSession.CreateCriteria<EventSubscriptor>();
+            criteria.Add(Restrictions.Eq(Projections.Property(expr), eventId));
+            expr = rt => rt.UserId;
+            criteria.Add(Restrictions.Eq(Projections.Property(expr), userId));
 
-			return criteria.List<EventSubscriptor>().ToArray();
-		}
-	}
-	//--------------------------------------------------------------------------------
-	public static void DeleteSubscriptor(EventSubscriptor subscriptor)
-	{
-		using (ISession iSession = NHSessionManager.GetSession())
-		{
-			//aggiungo l'utente al database, oppure lo aggiorno
-			using (ITransaction transaction = iSession.BeginTransaction())
-			{
-				iSession.Delete(subscriptor);
-				iSession.Flush();
-				transaction.Commit();
-			}
-		}
-	}
-	//--------------------------------------------------------------------------------
-	public static void SaveSubscriptor(EventSubscriptor subscriptor)
-	{
-		using (ISession iSession = NHSessionManager.GetSession())
-		{
-			//aggiungo l'utente al database, oppure lo aggiorno
-			using (ITransaction transaction = iSession.BeginTransaction())
-			{
-				iSession.SaveOrUpdate(subscriptor);
-				iSession.Flush();
-				transaction.Commit();
-			}
-		}
-	}
+            return criteria.List<EventSubscriptor>().ToArray();
+        }
+    }
+    //--------------------------------------------------------------------------------
+    public static void DeleteSubscriptor(EventSubscriptor subscriptor)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            //aggiungo l'utente al database, oppure lo aggiorno
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.Delete(subscriptor);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
+    //--------------------------------------------------------------------------------
+    public static void SaveSubscriptor(EventSubscriptor subscriptor)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            //aggiungo l'utente al database, oppure lo aggiorno
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.SaveOrUpdate(subscriptor);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
     //--------------------------------------------------------------------------------
     public static bool ExistSubscriptor(EventSubscriptor subscriptor)
     {
@@ -444,6 +444,61 @@ public class DBHelper
         return uu.Count() == 0 ? null : uu.First<MTBUser>();
     }
 
+
+    public static IList<Appointment> GetAppointments()
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<Appointment, object>> expr = rt => rt.AppointmentDate;
+            var criteria = iSession.CreateCriteria<Appointment>();
+            criteria.AddOrder(Order.Asc(Projections.Property(expr)));
+            IList<Appointment> apps = criteria.List<Appointment>();
+            
+            return apps;
+        }
+    }
+
+    public static void SaveAppointment(Appointment appointment)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.SaveOrUpdate(appointment);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
+
+    public static void DeleteOldAppointments()
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<Appointment, object>> expr = rt => rt.AppointmentDate;
+            var criteria = iSession.CreateCriteria<Appointment>();
+            criteria.Add(Restrictions.Lt(Projections.Property(expr), DateTime.Now));
+            //aggiungo l'utente al database, oppure lo aggiorno
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                foreach (Appointment app in criteria.List<Appointment>())
+                    iSession.Delete(app);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
+
+    public static Appointment GetAppointment(int id)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<Appointment, object>> expr = rt => rt.Id;
+            var criteria = iSession.CreateCriteria<Appointment>();
+            criteria.Add(Restrictions.Eq("id", id));
+            return criteria.UniqueResult<Appointment>();
+        }
+    }
 }
 
 
