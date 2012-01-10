@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Menu.ascx.cs" Inherits="Menu" %>
-<link href="StyleSheet.css" rel="stylesheet" type="text/css" />
 <div id="MenuContainer" class="Horiz">
     <ul style="margin: 0px">
         <%--<li runat="server" id="LiWhoWeAre" ><a runat="server" id="AWhoWeAre" href="~/whoweare/whoweare.aspx" title="Chi siamo">
