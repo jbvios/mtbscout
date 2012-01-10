@@ -566,7 +566,11 @@ public static class Helper
 
     public static string FormatDate(DateTime date)
     {
-        return date.ToString("dddd dd MMMM yyyy alle ore hh:mm");
+        return date.ToString("dddd dd MMMM yyyy");
+    }
+    public static string FormatDateTime(DateTime date)
+    {
+        return date.ToString("dddd dd MMMM yyyy alle ore HH:mm");
     }
 }
 internal class AutoLock : IDisposable
