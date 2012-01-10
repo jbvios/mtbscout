@@ -238,3 +238,8 @@ div.MainCenter
 	left: 30px;
 	top: 3px;
 }
+table.AppointmentPosts
+{
+    empty-cells: show;
+    caption-side: top;
+}
