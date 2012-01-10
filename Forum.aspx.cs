@@ -10,10 +10,11 @@ public partial class Forum : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-         if (!Page.IsPostBack)
-         {
-             DBHelper.DeleteOldAppointments();
-         }
+        if (!Page.IsPostBack)
+        {
+            DBHelper.DeleteOldAppointments();
+        }
+        ButtonCreate.OnClientClick = string.Format("onSendPost('{0}');", Name.ClientID);
         LoadAppointments();
     }
 
@@ -70,5 +71,28 @@ public partial class Forum : System.Web.UI.Page
         btn = (Button)e.Item.FindControl("ButtonToggle");
         Panel comments = (Panel)e.Item.FindControl("CommentsPanel");
         btn.OnClientClick = string.Format("onToggle(this, '{0}');return false;", comments.ClientID);
+    }
+    protected void ButtonCreate_Click(object sender, EventArgs e)
+    {
+        if (String.IsNullOrEmpty(Message.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Date.Text))
+            return;
+        try
+        {
+            Appointment p = new Appointment();
+            p.AppointmentDate = DateTime.Parse(Date.Text);
+            p.PostingDate = DateTime.Now;
+            p.Name = Name.Text;
+            p.Message = Message.Text;
+            p.Ip = Request["REMOTE_HOST"];
+            DBHelper.SaveAppointment(p);
+            Message.Text = "";
+            Date.Text = "";
+            ClientScript.RegisterStartupScript(GetType(), "message", "alert('Appuntamento creato correttamente');", true);
+        }
+        catch (Exception ex)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}';", ex.Message), true);
+        }
+        LoadAppointments();
     }
 }
