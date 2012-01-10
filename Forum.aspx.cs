@@ -28,23 +28,31 @@ public partial class Forum : System.Web.UI.Page
 
     protected void ButtonSend_Click(object sender, EventArgs e)
     {
-        RepeaterItem item = (RepeaterItem)((Button)sender).Parent;
-        TextBox message = ((TextBox)item.FindControl("Message"));
-        TextBox name = ((TextBox)item.FindControl("Name"));
+        try
+        {
+            RepeaterItem item = (RepeaterItem)((Button)sender).Parent;
+            TextBox message = ((TextBox)item.FindControl("Message"));
+            TextBox name = ((TextBox)item.FindControl("Name"));
 
-        if (String.IsNullOrEmpty(message.Text) || string.IsNullOrEmpty(name.Text))
-            return;
-        Appointment p = DBHelper.GetAppointment(int.Parse(((Button)sender).CommandArgument));
-        
-        Post post = new Post();
-        post.Name = name.Text;
-        post.PostingDate = DateTime.Now;
-        post.Message = message.Text;
-        post.Ip = Request["REMOTE_HOST"];
-        p.AppointmentPosts.Add(post);
+            if (String.IsNullOrEmpty(message.Text) || string.IsNullOrEmpty(name.Text))
+                return;
+            Appointment p = DBHelper.GetAppointment(int.Parse(((Button)sender).CommandArgument));
 
-        DBHelper.SaveAppointment(p);
-        message.Text = "";
+            Post post = new Post();
+            post.Name = name.Text;
+            post.PostingDate = DateTime.Now;
+            post.Message = message.Text;
+            post.Ip = Request["REMOTE_HOST"];
+            p.AppointmentPosts.Add(post);
+
+            DBHelper.SaveAppointment(p);
+            message.Text = "";
+            ClientScript.RegisterStartupScript(GetType(), "message", "alert('Messaggio salvato correttamente');", true);
+        }
+        catch (Exception ex)
+        {
+            ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}';", ex.Message), true);
+        }
         LoadAppointments();
     }
     protected void Appointments_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeFile="Forum.aspx.cs" Inherits="Forum" %>
+    EnableEventValidation="false" ValidateRequest="false" CodeFile="Forum.aspx.cs"
+    Inherits="Forum" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Appuntamenti per escursioni in MTB</title>
@@ -26,16 +27,18 @@
                     <div>
                         Descrizione:
                         <%#DataBinder.Eval(Container.DataItem, "Message")%></div>
-                         <div>
-                        <asp:Button runat="server" ID="ButtonToggle" Text="Visualizza commenti" UseSubmitBehavior="False" /> <%#((Iesi.Collections.ISet)DataBinder.Eval(Container.DataItem, "AppointmentPosts")).Count%> commenti</div>
-                    <asp:Panel runat="server" ID="CommentsPanel" style="display:none">
+                    <div>
+                        <asp:Button runat="server" ID="ButtonToggle" Text="Visualizza commenti" UseSubmitBehavior="False" />
+                        <%#((Iesi.Collections.ISet)DataBinder.Eval(Container.DataItem, "AppointmentPosts")).Count%>
+                        commenti</div>
+                    <asp:Panel runat="server" ID="CommentsPanel" Style="display: none">
                         <div>
                             Risposte e commenti:</div>
                         <asp:Repeater ID="Posts" runat="server">
                             <HeaderTemplate>
-                                <table border="1" width="100%">
+                                <table border="1" width="100%" class="AppointmentPosts">
                                     <tr>
-                                        <th>
+                                        <th width="150px">
                                             Data
                                         </th>
                                         <th>
@@ -66,13 +69,15 @@
                     </asp:Panel>
                     <div style="padding: 20px; margin: 20px;">
                         <div>
-                            Scrivi qui il tuo messaggio</div>
-                        <asp:TextBox ID="Message" runat="server" Height="200px" TextMode="MultiLine" Width="100%"></asp:TextBox>
+                            Scrivi qui il tuo commento, metti il tuo nome e premi il tasto 'Invia messaggio'</div>
+                        <asp:TextBox ID="Message" runat="server" Height="100px" TextMode="MultiLine" Width="100%"></asp:TextBox>
                         <div>
-                            Firma</div>
+                            Scrivi qui il tuo nome</div>
                         <asp:TextBox ID="Name" CssClass="name" runat="server" Width="100%"></asp:TextBox>
                     </div>
-                    <asp:Button ID="ButtonSend" runat="server" Text="Invia" OnClick="ButtonSend_Click" />
+                    <div style="text-align: center; margin:20px;">
+                        <asp:Button ID="ButtonSend" runat="server" Text="Invia messaggio" OnClick="ButtonSend_Click" />
+                    </div>
                 </div>
             </ItemTemplate>
             <FooterTemplate>
