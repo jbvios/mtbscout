@@ -16,7 +16,7 @@
 			ci avviciniamo con spirito non agonistico, vivendolo piuttosto come mezzo di comunione
 			con la natura e occasione per sperimentare momenti di serena libertà, lontano da
 			strade trafficate e rumorose.</p>
-			<p>Perché Scout? Con questo termine ci vogliamo accomunare agli scout indiani, pellerossa che conoscevano alla perfezione il territorio di insediamento ed erano usati come guide dall'esercito 
+			<p>Perché Scout? Con questo termine ci vogliamo accomunare agli scout indiani, pellerossa che conoscevano molto bene il territorio di insediamento ed erano impiegati come guide dall'esercito 
                 americano; ci piace pensare a loro come incarnazione di una libertà minacciata 
                 che va difesa a tutti i costi.</p>
 		<p>
