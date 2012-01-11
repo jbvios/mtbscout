@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MTBScout.Entities;
 
-public partial class Forum : System.Web.UI.Page
+public partial class AppointmentsPage : System.Web.UI.Page
 {
     Appointment currentAppointment;
     protected void Page_Load(object sender, EventArgs e)
@@ -37,7 +37,10 @@ public partial class Forum : System.Web.UI.Page
             TextBox name = ((TextBox)item.FindControl("Name"));
 
             if (String.IsNullOrEmpty(message.Text) || string.IsNullOrEmpty(name.Text))
+            {
+                ClientScript.RegisterStartupScript(GetType(), "message", "alert('Mancano alcuni campi obbligatori');", true);
                 return;
+            }
             Appointment p = DBHelper.GetAppointment(int.Parse(((Button)sender).CommandArgument));
 
             Post post = new Post();
@@ -53,7 +56,7 @@ public partial class Forum : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}';", ex.Message), true);
+            ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}');", ex.Message), true);
         }
         LoadAppointments();
     }
@@ -93,7 +96,10 @@ public partial class Forum : System.Web.UI.Page
     protected void ButtonCreate_Click(object sender, EventArgs e)
     {
         if (String.IsNullOrEmpty(Message.Text) || string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Date.Text))
+        {
+            ClientScript.RegisterStartupScript(GetType(), "message", "alert('Mancano alcuni campi obbligatori');", true);
             return;
+        }
         try
         {
             Appointment p = new Appointment();
@@ -109,7 +115,7 @@ public partial class Forum : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}';", ex.Message), true);
+            ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}');", ex.Message), true);
         }
         LoadAppointments();
     }
