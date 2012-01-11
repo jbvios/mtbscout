@@ -20,7 +20,7 @@
             <HeaderTemplate>
             </HeaderTemplate>
             <ItemTemplate>
-                <div style="border: solid 1px blue; text-align: left; margin: 10px; padding:10px;">
+                <div style="border: solid 1px blue; text-align: left; margin: 10px; padding: 10px;">
                     <div>
                         Appuntamento creato da <b>
                             <%#DataBinder.Eval(Container.DataItem, "Name")%></b>
@@ -44,7 +44,7 @@
                             <HeaderTemplate>
                                 <table border="1" width="100%" class="AppointmentPosts">
                                     <tr>
-                                        <th width="150px">
+                                        <th>
                                             Data
                                         </th>
                                         <th>
@@ -57,7 +57,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <tr>
-                                    <td>
+                                    <td style="width: 150px">
                                         <%#DataBinder.Eval(Container.DataItem, "PostingDate")%>
                                     </td>
                                     <td>
@@ -120,18 +120,19 @@
     </div>
 
     <script type="text/javascript">
-        jQuery(function() {
-            jQuery('input.name').val(getCookie("mtbscoutuser"));
-           
+        mtb$ = jQuery.noConflict();
+        mtb$(function() {
+            mtb$('input.name').val(getCookie("mtbscoutuser"));
+
         });
         function onSendPost(id) {
-            setCookie("mtbscoutuser", jQuery('#' + id).val(), 365);
+            setCookie("mtbscoutuser", mtb$('#' + id).val(), 365);
         }
         function onCreateAppointment(sender) {
-            jQuery(sender).hide();
-            jQuery('#addAppointment').show();
+            mtb$(sender).hide();
+            mtb$('#addAppointment').show();
             try {
-                jQuery("#ctl00_ContentPanel_Date").datepicker({
+                mtb$("#ctl00_ContentPanel_Date").datepicker({
                     dateFormat: 'dd-mm-yy',
                     dayNames: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
                     dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
@@ -148,9 +149,9 @@
             }
         }
         function onToggle(sender, id) {
-            var el = jQuery('#' + id).toggle();
+            var el = mtb$('#' + id).toggle();
             var txt = el.is(":visible") ? "Nascondi commenti" : "Visualizza commenti";
-            jQuery(sender).val(txt);
+            mtb$(sender).val(txt);
         }
     </script>
 
