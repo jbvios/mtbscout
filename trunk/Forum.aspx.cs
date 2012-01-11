@@ -8,6 +8,7 @@ using MTBScout.Entities;
 
 public partial class Forum : System.Web.UI.Page
 {
+    Appointment currentAppointment;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -31,7 +32,7 @@ public partial class Forum : System.Web.UI.Page
     {
         try
         {
-            RepeaterItem item = (RepeaterItem)((Button)sender).Parent;
+            RepeaterItem item = (RepeaterItem)((Button)sender).Parent.Parent;
             TextBox message = ((TextBox)item.FindControl("Message"));
             TextBox name = ((TextBox)item.FindControl("Name"));
 
@@ -58,19 +59,36 @@ public partial class Forum : System.Web.UI.Page
     }
     protected void Appointments_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        Appointment app = (Appointment)e.Item.DataItem;
-        if (app == null)
+        currentAppointment = (Appointment)e.Item.DataItem;
+        if (currentAppointment == null)
             return;
+
+        ImageButton btnDel = (ImageButton)e.Item.FindControl("ButtonDelete");
+        btnDel.CommandArgument = currentAppointment.Id.ToString();
+        btnDel.Visible = LoginState.IsAdmin();
+
         Repeater inner = (Repeater)e.Item.FindControl("Posts");
-        inner.DataSource = app.AppointmentPosts;
+        inner.DataSource = currentAppointment.AppointmentPosts;
+        inner.ItemDataBound += new RepeaterItemEventHandler(inner_ItemDataBound);
         inner.DataBind();
         TextBox txt = (TextBox)e.Item.FindControl("Name");
         Button btn = (Button)e.Item.FindControl("ButtonSend");
-        btn.CommandArgument = app.Id.ToString();
+        btn.CommandArgument = currentAppointment.Id.ToString();
         btn.OnClientClick = string.Format("onSendPost('{0}');", txt.ClientID);
         btn = (Button)e.Item.FindControl("ButtonToggle");
         Panel comments = (Panel)e.Item.FindControl("CommentsPanel");
         btn.OnClientClick = string.Format("onToggle(this, '{0}');return false;", comments.ClientID);
+    }
+
+    void inner_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    { 
+        Post p = (Post)e.Item.DataItem;
+        if (p == null)
+            return;
+        ImageButton btn = (ImageButton)e.Item.FindControl("ButtonDelete");
+        btn.CommandArgument = currentAppointment.Id.ToString() + '.' + p.Id.ToString();
+        btn.Visible = LoginState.IsAdmin();
+        
     }
     protected void ButtonCreate_Click(object sender, EventArgs e)
     {
@@ -92,6 +110,29 @@ public partial class Forum : System.Web.UI.Page
         catch (Exception ex)
         {
             ClientScript.RegisterStartupScript(GetType(), "message", string.Format("alert('{0}';", ex.Message), true);
+        }
+        LoadAppointments();
+    }
+    protected void ButtonDelete_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string[] tokens = ((ImageButton)sender).CommandArgument.Split('.');
+            DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
+        }
+        catch 
+        {
+        }
+        LoadAppointments();
+    }
+    protected void ButtonDeleteAppointment_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            DBHelper.DeleteAppointment(int.Parse(((ImageButton)sender).CommandArgument));
+        }
+        catch 
+        {
         }
         LoadAppointments();
     }

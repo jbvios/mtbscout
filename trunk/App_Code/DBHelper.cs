@@ -499,6 +499,46 @@ public class DBHelper
             return criteria.UniqueResult<Appointment>();
         }
     }
+    public static void DeletePost(int appointmentId, int postId)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<Appointment, object>> expr = rt => rt.Id;
+            var criteria = iSession.CreateCriteria<Appointment>();
+            criteria.Add(Restrictions.Eq("id", appointmentId));
+            Appointment app = criteria.UniqueResult<Appointment>();
+            foreach (Post p in app.AppointmentPosts)
+            {
+                if (p.Id == postId)
+                {
+                    app.AppointmentPosts.Remove(p);
+                    break;
+                }
+            }
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.SaveOrUpdate(app);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
+    public static void DeleteAppointment(int appointmentId)
+    {
+        using (ISession iSession = NHSessionManager.GetSession())
+        {
+            Expression<Func<Appointment, object>> expr = rt => rt.Id;
+            var criteria = iSession.CreateCriteria<Appointment>();
+            criteria.Add(Restrictions.Eq("id", appointmentId));
+            Appointment app = criteria.UniqueResult<Appointment>();
+            using (ITransaction transaction = iSession.BeginTransaction())
+            {
+                iSession.Delete(app);
+                iSession.Flush();
+                transaction.Commit();
+            }
+        }
+    }
 }
 
 
