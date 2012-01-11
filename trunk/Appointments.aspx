@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    EnableEventValidation="false" ValidateRequest="false" CodeFile="Forum.aspx.cs"
-    Inherits="Forum" %>
+    EnableEventValidation="false" ValidateRequest="false" CodeFile="Appointments.aspx.cs"
+    Inherits="AppointmentsPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Appuntamenti per escursioni in MTB</title>
@@ -145,7 +145,7 @@
                 });
             }
             catch (e) {
-                alert(e);
+                //alert(e);
             }
         }
         function onToggle(sender, id) {
