@@ -71,7 +71,11 @@ public partial class AppointmentsPage : System.Web.UI.Page
         btnDel.Visible = LoginState.IsAdmin();
 
         Repeater inner = (Repeater)e.Item.FindControl("Posts");
-        inner.DataSource = currentAppointment.AppointmentPosts;
+        List<Post> posts = new List<Post>();
+        foreach (Post p in currentAppointment.AppointmentPosts)
+            posts.Add(p);
+        posts.Sort((a, b) => a.PostingDate.CompareTo(b.PostingDate));
+        inner.DataSource = posts;
         inner.ItemDataBound += new RepeaterItemEventHandler(inner_ItemDataBound);
         inner.DataBind();
         TextBox txt = (TextBox)e.Item.FindControl("Name");
