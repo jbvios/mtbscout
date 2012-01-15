@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MTBScout.Entities;
+using System.Web.UI.HtmlControls;
 
 public partial class AppointmentsPage : System.Web.UI.Page
 {
@@ -85,6 +86,11 @@ public partial class AppointmentsPage : System.Web.UI.Page
         btn = (Button)e.Item.FindControl("ButtonToggle");
         Panel comments = (Panel)e.Item.FindControl("CommentsPanel");
         btn.OnClientClick = string.Format("onToggle(this, '{0}');return false;", comments.ClientID);
+
+        HtmlGenericControl fbLike = (HtmlGenericControl)e.Item.FindControl("FBLike"); 
+        fbLike.Attributes["src"] = string.Format(
+           "http://www.facebook.com/widgets/like.php?href={0}",
+           HttpUtility.UrlEncode(Page.Request.Url.ToString()));
     }
 
     void inner_ItemDataBound(object sender, RepeaterItemEventArgs e)

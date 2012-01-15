@@ -37,6 +37,8 @@
                         <asp:Button runat="server" ID="ButtonToggle" Text="Visualizza commenti" UseSubmitBehavior="False" />
                         <%#((Iesi.Collections.ISet)DataBinder.Eval(Container.DataItem, "AppointmentPosts")).Count%>
                         commenti</div>
+                    <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
+                        width: 330px; height: 50px"></iframe>
                     <asp:Panel runat="server" ID="CommentsPanel" Style="display: none">
                         <div>
                             Risposte e commenti:</div>
