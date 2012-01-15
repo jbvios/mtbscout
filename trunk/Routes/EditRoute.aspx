@@ -1,5 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="EditRoute.aspx.cs" Inherits="Routes_EditRoute" %>
+    CodeFile="EditRoute.aspx.cs" Inherits="Routes_EditRoute" ValidateRequest="false"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Gestione percorsi</title>

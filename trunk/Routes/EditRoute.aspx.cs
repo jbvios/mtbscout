@@ -306,8 +306,8 @@ function getUpdateImagesButton(){{
                 Directory.CreateDirectory(imageFolder);
             foreach (UploadedImage ui in list)
                 ui.SaveTo(imageFolder);
-
-
+            //elimino una eventuale cache
+            Helper.ClearImageCache(imageFolder);
             //forzo la generazione dei thumbnails
             Helper.GetImageCache(imageFolder);
             //salvo il record
