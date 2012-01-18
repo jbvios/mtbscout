@@ -204,9 +204,9 @@ function getUpdateImagesButton(){{
 
     protected void ButtonDelete_Click(object sender, EventArgs e)
     {
+        string routeName = RouteName.Value;
         try
         {
-            string routeName = RouteName.Value;
             if (string.IsNullOrEmpty(routeName))
                 return;
             //non posso eliminare una traccia che appartiene ad un alro utente
@@ -227,6 +227,7 @@ function getUpdateImagesButton(){{
         }
         catch (Exception ex)
         {
+            Log.Add("Error deleting route '{0}': '{1}'", routeName, ex.ToString());
             ScriptManager.RegisterStartupScript(this, GetType(), "ErrorDeleting", string.Format("alert('Errore durante l'eliminazione: {0}.');", ex.Message), true);
         }
     }
@@ -254,9 +255,9 @@ function getUpdateImagesButton(){{
 
     protected void ButtonSave_Click(object sender, EventArgs e)
     {
+        string routeName = RouteName.Value;
         try
         {
-            string routeName = RouteName.Value;
             if (string.IsNullOrEmpty(routeName))
                 return;
             //non posso salvare una traccia che appartiene ad un alro utente
@@ -276,7 +277,7 @@ function getUpdateImagesButton(){{
 
             if (route == null)
                 route = new Route();
-           
+
             //assegno i dati al record
             route.Image = mainImage;
             route.Name = routeName;
@@ -329,7 +330,8 @@ function getUpdateImagesButton(){{
         }
         catch (Exception ex)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "Error", string.Format("alert('Errore durante il salvataggio: {0}.');", ex.Message), true);
+            Log.Add("Error saving route '{0}': '{1}'", routeName, ex.ToString());
+            ScriptManager.RegisterStartupScript(this, GetType(), "Error", string.Format("alert('Errore durante il salvataggio: {0}.');", ex.Message.Replace("'", "\\'")), true);
         }
 
     }

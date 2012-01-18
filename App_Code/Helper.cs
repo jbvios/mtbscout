@@ -179,7 +179,8 @@ public static class Helper
     public static void ClearImageCache(string imagesPath)
     {
         ImageCache.ClearCache(imagesPath);
-        HttpContext.Current.Cache[imagesPath] = null; 
+        if (HttpContext.Current.Cache[imagesPath] != null)
+            HttpContext.Current.Cache.Remove(imagesPath); 
     }
     public static ImageCache GetImageCache(string imagesPath)
     {
@@ -471,25 +472,38 @@ public static class Helper
     }
     public static void SendMail(string[] to, string[] cc, string[] bcc, string subject, string body, bool html)
     {
-        if (IsDevelopment())
-            return;
+        try
+        {
+            if (IsDevelopment())
+                return;
 
-        SmtpClient client = new SmtpClient("smtp.aruba.it");
+            SmtpClient client = new SmtpClient("smtp.aruba.it");
 
-        MailMessage msg = new MailMessage();
-        msg.Body = body;
-        msg.Subject = subject;
-        msg.Sender = new MailAddress("info@mtbscout.it");
-        msg.From = new MailAddress("info@mtbscout.it");
-		msg.IsBodyHtml = html;
-        foreach (string s in to)
-            msg.To.Add(new MailAddress(s));
-        foreach (string s in cc)
-            msg.CC.Add(new MailAddress(s));
-        foreach (string s in bcc)
-            msg.Bcc.Add(new MailAddress(s));
+            MailMessage msg = new MailMessage();
+            msg.Body = body;
+            msg.Subject = subject;
+            msg.Sender = new MailAddress("info@mtbscout.it");
+            msg.From = new MailAddress("info@mtbscout.it");
+            msg.IsBodyHtml = html;
+            foreach (string s in to)
+                msg.To.Add(new MailAddress(s));
+            foreach (string s in cc)
+                msg.CC.Add(new MailAddress(s));
+            foreach (string s in bcc)
+                msg.Bcc.Add(new MailAddress(s));
 
-        client.Send(msg);
+            client.Send(msg);
+        }
+        catch (Exception ex)
+        {
+            StringBuilder tos = new StringBuilder();
+            foreach (String s in to)
+            {
+                tos.Append(s);
+                tos.Append("; ");
+            }
+            Log.Add("Error sending mail '{0}' to {1} : {2}", subject, tos, ex.ToString());
+        }
     }
 
     public static void DisableAppDomainRestartOnDelete()
