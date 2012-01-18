@@ -18,6 +18,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
         }
         ButtonCreate.OnClientClick = string.Format("onSendPost('{0}');", Name.ClientID);
         LoadAppointments();
+        FBLike.Attributes["src"] = string.Format(
+           "http://www.facebook.com/widgets/like.php?href={0}",
+           HttpUtility.UrlEncode(Page.Request.Url.ToString()));
     }
 
     private void LoadAppointments()
@@ -53,6 +56,15 @@ public partial class AppointmentsPage : System.Web.UI.Page
 
             DBHelper.SaveAppointment(p);
             message.Text = "";
+            //mando una mail agli utenti registrati
+            string msg = string.Format("Ciao biker!<br/>L'utente {0} ha commentato l'appuntamento creato da {1}:<br/>{2}<br/><a target=\"appointment\" href=\"http://www.mtbscout.it/Appointments.aspx\">Visualizza pagina degli appuntamenti</a>",
+                post.Name,
+                p.Name,
+                post.Message
+                );
+            foreach (MTBUser u in DBHelper.Users)
+                if (u.SendMail)
+                    Helper.SendMail(u.EMail, null, null, "Commenti ad appuntamento", msg, true);
             ClientScript.RegisterStartupScript(GetType(), "message", "alert('Messaggio salvato correttamente');", true);
         }
         catch (Exception ex)
@@ -87,21 +99,18 @@ public partial class AppointmentsPage : System.Web.UI.Page
         Panel comments = (Panel)e.Item.FindControl("CommentsPanel");
         btn.OnClientClick = string.Format("onToggle(this, '{0}');return false;", comments.ClientID);
 
-        HtmlGenericControl fbLike = (HtmlGenericControl)e.Item.FindControl("FBLike"); 
-        fbLike.Attributes["src"] = string.Format(
-           "http://www.facebook.com/widgets/like.php?href={0}",
-           HttpUtility.UrlEncode(Page.Request.Url.ToString()));
+
     }
 
     void inner_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    { 
+    {
         Post p = (Post)e.Item.DataItem;
         if (p == null)
             return;
         ImageButton btn = (ImageButton)e.Item.FindControl("ButtonDelete");
         btn.CommandArgument = currentAppointment.Id.ToString() + '.' + p.Id.ToString();
         btn.Visible = LoginState.IsAdmin();
-        
+
     }
     protected void ButtonCreate_Click(object sender, EventArgs e)
     {
@@ -121,6 +130,16 @@ public partial class AppointmentsPage : System.Web.UI.Page
             DBHelper.SaveAppointment(p);
             Message.Text = "";
             Date.Text = "";
+
+            //mando una mail agli utenti registrati
+            string msg = string.Format("Ciao biker!<br/>L'utente {0} ha creato un nuovo appuntamento:<br/>{1}<br/><a target=\"appointment\" href=\"http://www.mtbscout.it/Appointments.aspx\">Visualizza pagina degli appuntamenti</a>",
+                p.Name,
+                p.Message
+                );
+            foreach (MTBUser u in DBHelper.Users)
+                if (u.SendMail)
+                    Helper.SendMail(u.EMail, null, null, "Nuovo appuntamento", msg, true);
+
             ClientScript.RegisterStartupScript(GetType(), "message", "alert('Appuntamento creato correttamente');", true);
         }
         catch (Exception ex)
@@ -136,7 +155,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
             string[] tokens = ((ImageButton)sender).CommandArgument.Split('.');
             DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
         }
-        catch 
+        catch
         {
         }
         LoadAppointments();
@@ -147,7 +166,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
         {
             DBHelper.DeleteAppointment(int.Parse(((ImageButton)sender).CommandArgument));
         }
-        catch 
+        catch
         {
         }
         LoadAppointments();
