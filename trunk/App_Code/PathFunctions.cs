@@ -14,7 +14,7 @@ namespace MTBScout
         public static string RoutesPage = HttpContext.Current.Server.MapPath("~\\Routes\\Route.aspx");
 		public static string EditRoutePage = HttpContext.Current.Server.MapPath("~\\Routes\\EditRoute.aspx");
         public static string RootPath = HttpContext.Current.Server.MapPath("~").TrimEnd(Path.DirectorySeparatorChar);
-        
+        public static string LogPath = HttpContext.Current.Server.MapPath("~\\Public");
         public static string GetProfileUrl(string routeFolder)
         {
             return string.Format("{0}\\Public\\Routes\\{1}\\profile.png", workingDataUrl, routeFolder);
