@@ -14,11 +14,22 @@
         <%
             
             foreach (string s in DescriptionParagraphs)
-            {%>
-        <p>
-            <%= s.Trim()%>
-        </p>
+            {
+            string s1 = s.Trim();
+            if (s1.StartsWith("<p", StringComparison.InvariantCultureIgnoreCase))
+            {
+                %>
+                <%= s1%>
+                <%
+            }
+            else
+            {
+                 %>
+                <p>
+                    <%= s1%>
+                </p>
         <%}
+            }
         %>
         <uc2:DownloadGpsTrack ID="DownloadGpsTrack1" runat="server" />
         <uc1:ImageIterator ID="ImageIterator1" runat="server" />
