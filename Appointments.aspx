@@ -2,6 +2,8 @@
     EnableEventValidation="false" ValidateRequest="false" CodeFile="Appointments.aspx.cs"
     Inherits="AppointmentsPage" %>
 
+<%@ Register src="HorizontalSpot.ascx" tagname="HorizontalSpot" tagprefix="uc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Appuntamenti per escursioni in MTB</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css"
@@ -16,8 +18,10 @@
     <div id="ContentPanel" class="ContentPanel">
         <h1>
             Appuntamenti per escursioni in MTB</h1>
+        
         <asp:Repeater ID="Appointments" runat="server" OnItemDataBound="Appointments_ItemDataBound">
             <HeaderTemplate>
+            <uc1:HorizontalSpot ID="HorizontalSpot1" runat="server" />
             </HeaderTemplate>
             <ItemTemplate>
                 <div style="border: solid 1px blue; text-align: left; margin: 10px; padding: 10px;">
@@ -117,6 +121,7 @@
                 </div>
             </div>
         </div>
+        <br />
         <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
             width: 330px; height: 50px"></iframe>
     </div>
