@@ -55,7 +55,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
             p.AppointmentPosts.Add(post);
 
             DBHelper.SaveAppointment(p);
-            message.Text = "";
+            /*message.Text = "";
             //mando una mail agli utenti registrati
             string msg = string.Format("Ciao biker!<br/>L'utente {0} ha commentato l'appuntamento creato da {1}:<br/>{2}<br/><a target=\"appointment\" href=\"http://www.mtbscout.it/Appointments.aspx\">Visualizza pagina degli appuntamenti</a>",
                 post.Name,
@@ -64,7 +64,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
                 );
             foreach (MTBUser u in DBHelper.Users)
                 if (u.SendMail)
-                    Helper.SendMail(u.EMail, null, null, "Commenti ad appuntamento", msg, true);
+                    Helper.SendMail(u.EMail, null, null, "Commenti ad appuntamento", msg, true);*/
             ClientScript.RegisterStartupScript(GetType(), "message", "alert('Messaggio salvato correttamente');", true);
         }
         catch (Exception ex)
