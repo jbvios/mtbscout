@@ -31,9 +31,13 @@
 		</p>
 		<div style="padding-top: 20px;">
 		    <div class="widget">
-		        <%--<a title="La Spaccamuli" href="/public/Routes/Route.aspx?Route=MonteBano_Spaccamuli">La Spaccamuli</a>--%>
-				<div style="padding: 20px;">
+		       <div style="padding: 20px;">
 				    <iframe width="420" height="300" src="http://www.youtube.com/embed/kXIRZKHNm7Y" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="widget">
+		       <div style="padding: 20px;">
+				    <iframe width="420" height="300" src="http://www.youtube.com/embed/1nA4ZXcnZmg" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
 			 <div class="widget">
