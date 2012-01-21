@@ -106,7 +106,7 @@
 			<p>
 				Ci riuniamo ogni domenica a Montoggio alle 9.00 (pioggia permettendo), chi volesse
 				aggregarsi a noi per escursioni o volesse chiarimenti in merito ad alcuni tracciati
-				può <a href="mailto:info@mtbscout.it">contattarci via mail</a>.</p>
+				può utilizzare la nostra <a href="Appointments.aspx">pagina degli appuntamenti</a> oppure <a href="mailto:info@mtbscout.it">contattarci via mail</a>.</p>
 		</div>
 		<div id="dummyForHomePage" />
 	</div>
