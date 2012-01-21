@@ -479,20 +479,23 @@ public static class Helper
 
             SmtpClient client = new SmtpClient("smtp.aruba.it");
 
-            MailMessage msg = new MailMessage();
-            msg.Body = body;
-            msg.Subject = subject;
-            msg.Sender = new MailAddress("info@mtbscout.it");
-            msg.From = new MailAddress("info@mtbscout.it");
-            msg.IsBodyHtml = html;
-            foreach (string s in to)
-                msg.To.Add(new MailAddress(s));
-            foreach (string s in cc)
-                msg.CC.Add(new MailAddress(s));
-            foreach (string s in bcc)
-                msg.Bcc.Add(new MailAddress(s));
+            using (MailMessage msg = new MailMessage())
+            {
+                msg.Body = body;
+                msg.Subject = subject;
+                msg.Sender = new MailAddress("info@mtbscout.it", "MTB Scout");
+                msg.From = new MailAddress("info@mtbscout.it", "MTB Scout");
 
-            client.Send(msg);
+                msg.IsBodyHtml = html;
+                foreach (string s in to)
+                    msg.To.Add(new MailAddress(s));
+                foreach (string s in cc)
+                    msg.CC.Add(new MailAddress(s));
+                foreach (string s in bcc)
+                    msg.Bcc.Add(new MailAddress(s));
+
+                client.Send(msg);
+            }
         }
         catch (Exception ex)
         {
