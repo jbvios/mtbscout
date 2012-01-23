@@ -19,8 +19,8 @@
         <h1>
             Appuntamenti per escursioni in MTB</h1>
         <p>
-            Questa pagina è pensata per essere una sorta di piazza virtuale, che utilizzeremo
-            per accordarci sui giri settimanali e non. Sebbene sia stata pensata per rispondere
+            Questa pagina vuole essere una sorta di piazza virtuale, che utilizzeremo
+            per accordarci sui giri settimanali e non. Sebbene sia nata per rispondere
             ad una esigenza del gruppo, il suo utilizzo è libero: chiunque può accedervi ed
             inserire i propri appuntamenti; a tal proposito non è necessaria alcuna registrazione
             o autenticazione, è sufficiente fornire il proprio nome.</p>
