@@ -243,6 +243,7 @@ namespace MTBScout.Entities
         public String Name { get; set; }
         public String Message { get; set; }
         public String Ip { get; set; }
+        public String UserId { get; set; }
         public DateTime PostingDate { get; set; }
     }
     public class Appointment : Entity
@@ -261,6 +262,7 @@ namespace MTBScout.Entities
         public String Name { get; set; }
         public String Message { get; set; }
         public String Ip { get; set; }
+        public String UserId { get; set; }
         public DateTime PostingDate { get; set; }
         public DateTime AppointmentDate { get; set; }
         public ISet AppointmentPosts { get; set; }
