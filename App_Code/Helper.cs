@@ -21,6 +21,7 @@ using System.Net.Mail;
 using System.Drawing.Imaging;
 using System.Text;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Summary description for Helper
@@ -69,6 +70,48 @@ public static class Helper
             }
         }
 
+    }
+    public static string GetDifficultyExplanation(string diff)
+    {
+        string sDown;
+        string sUp;
+        bool bDown;
+        bool bUp;
+        if (!Helper.GetDifficulty(diff, out sDown, out sUp, out bDown, out bUp))
+            return diff;
+
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("Salita:");
+        sb.AppendLine(DifficultyMap[sUp]);
+        if (bUp)
+            sb.AppendLine("(Significativi tratti con forti pendenze)");
+        sb.AppendLine();
+        sb.AppendLine("Discesa:");
+        sb.AppendLine(DifficultyMap[sDown]);
+        if (bDown)
+            sb.AppendLine("(Significativi tratti con forti pendenze)");
+        return sb.ToString();
+    }
+    public static bool GetDifficulty(string diff, out string sDown, out string sUp, out bool bDown, out bool bUp)
+    {
+        sDown = "";
+        sUp = "";
+
+        bDown = false;
+        bUp = false;
+
+
+        string pattern = "(?<Diff>(TC)|(MC)|(BC)|(OC)|(EC))(?<Slope>\\+?)";
+        MatchCollection mm = Regex.Matches(diff, pattern);
+        if (mm.Count != 2)
+            return false;
+        Match up = mm[0];
+        sUp = up.Groups["Diff"].Value;
+        bUp = up.Groups["Slope"].Value == "+";
+        Match down = mm[1];
+        sDown = down.Groups["Diff"].Value;
+        bDown = down.Groups["Slope"].Value == "+";
+        return true;
     }
     public static int GetActiveSessionCount()
     {
@@ -159,9 +202,9 @@ public static class Helper
         GpxParser parser = HttpContext.Current.Cache[gpxPath] as GpxParser;
         if (parser == null)
         {
-           if (!File.Exists(gpxPath))
+            if (!File.Exists(gpxPath))
                 return null;
- 			parser = new GpxParser();
+            parser = new GpxParser();
             parser.Parse(gpxPath);
 
             HttpContext.Current.Cache.Add(
@@ -180,7 +223,7 @@ public static class Helper
     {
         ImageCache.ClearCache(imagesPath);
         if (HttpContext.Current.Cache[imagesPath] != null)
-            HttpContext.Current.Cache.Remove(imagesPath); 
+            HttpContext.Current.Cache.Remove(imagesPath);
     }
     public static ImageCache GetImageCache(string imagesPath)
     {
@@ -234,58 +277,58 @@ public static class Helper
 
 
     public static void GetImageInfos(
-        string file, 
-        out DateTime creationTime, 
+        string file,
+        out DateTime creationTime,
         out double latitudeRef,
         out double latitude,
         out double longitudeRef,
         out double longitude)
     {
         Bitmap i = null;
-		try
-		{
-			i = Image.FromFile(file) as Bitmap;
+        try
+        {
+            i = Image.FromFile(file) as Bitmap;
 
-			PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
-			string s = Encoding.ASCII.GetString(piDate.Value);
+            PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
+            string s = Encoding.ASCII.GetString(piDate.Value);
 
-			if (s != null)
-			{
-				int idxStart = 0, idxEnd = 0;
-				idxEnd = s.IndexOf(":", idxStart);
-				string year = s.Substring(idxStart, idxEnd - idxStart);
+            if (s != null)
+            {
+                int idxStart = 0, idxEnd = 0;
+                idxEnd = s.IndexOf(":", idxStart);
+                string year = s.Substring(idxStart, idxEnd - idxStart);
 
-				idxStart = idxEnd + 1;
-				idxEnd = s.IndexOf(":", idxStart);
-				string month = s.Substring(idxStart, idxEnd - idxStart);
+                idxStart = idxEnd + 1;
+                idxEnd = s.IndexOf(":", idxStart);
+                string month = s.Substring(idxStart, idxEnd - idxStart);
 
-				idxStart = idxEnd + 1;
-				idxEnd = s.IndexOf(" ", idxStart);
-				string day = s.Substring(idxStart, idxEnd - idxStart);
+                idxStart = idxEnd + 1;
+                idxEnd = s.IndexOf(" ", idxStart);
+                string day = s.Substring(idxStart, idxEnd - idxStart);
 
-				idxStart = idxEnd + 1;
-				idxEnd = s.IndexOf(":", idxStart);
-				string hour = s.Substring(idxStart, idxEnd - idxStart);
+                idxStart = idxEnd + 1;
+                idxEnd = s.IndexOf(":", idxStart);
+                string hour = s.Substring(idxStart, idxEnd - idxStart);
 
-				idxStart = idxEnd + 1;
-				idxEnd = s.IndexOf(":", idxStart);
-				string minute = s.Substring(idxStart, idxEnd - idxStart);
+                idxStart = idxEnd + 1;
+                idxEnd = s.IndexOf(":", idxStart);
+                string minute = s.Substring(idxStart, idxEnd - idxStart);
 
-				idxStart = idxEnd + 1;
-				idxEnd = s.IndexOf("\0", idxStart);
-				string second = s.Substring(idxStart, idxEnd - idxStart);
+                idxStart = idxEnd + 1;
+                idxEnd = s.IndexOf("\0", idxStart);
+                string second = s.Substring(idxStart, idxEnd - idxStart);
 
-				creationTime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day), int.Parse(hour), int.Parse(minute), int.Parse(second));
-				latitudeRef = 0.0;
-				latitude = 0.0;
-				longitudeRef = 0.0;
-				longitude = 0.0;
-				return;
-			}
-		}
-		catch
-		{ 
-		}
+                creationTime = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day), int.Parse(hour), int.Parse(minute), int.Parse(second));
+                latitudeRef = 0.0;
+                latitude = 0.0;
+                longitudeRef = 0.0;
+                longitude = 0.0;
+                return;
+            }
+        }
+        catch
+        {
+        }
         finally
         {
             if (i != null)
@@ -301,52 +344,52 @@ public static class Helper
         longitude = 0.0;
     }
 
-	public static void SetCreationTime(string file, DateTime creationTime)
-	{
+    public static void SetCreationTime(string file, DateTime creationTime)
+    {
 
-		byte[] buff;
-		using (FileStream fs = File.OpenRead(file))
-		{
-			buff = new byte[(int)fs.Length];
-			fs.Read(buff, 0, (int)fs.Length);
+        byte[] buff;
+        using (FileStream fs = File.OpenRead(file))
+        {
+            buff = new byte[(int)fs.Length];
+            fs.Read(buff, 0, (int)fs.Length);
 
-		}
-		using (MemoryStream ms = new MemoryStream(buff))
-		{
-			using (Bitmap bmp = (Bitmap)Bitmap.FromStream(ms))
-			{
-				SetCreationTime(bmp, creationTime);
-				bmp.Save(file);
-			}
-		}
-	}
-	public static void SetCreationTime(
-	   Bitmap i,
-	   DateTime creationTime)
-	{
-		try
-		{
-			PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
-			//2010:12:11 14:15:19
-			string s = string.Format("{0}:{1}:{2} {3}:{4}:{5}",
-				creationTime.Year.ToString("0000"),
-				creationTime.Month.ToString("00"),
-				creationTime.Day.ToString("00"),
-				creationTime.Hour.ToString("00"),
-				creationTime.Minute.ToString("00"),
-				creationTime.Second.ToString("00"));
+        }
+        using (MemoryStream ms = new MemoryStream(buff))
+        {
+            using (Bitmap bmp = (Bitmap)Bitmap.FromStream(ms))
+            {
+                SetCreationTime(bmp, creationTime);
+                bmp.Save(file);
+            }
+        }
+    }
+    public static void SetCreationTime(
+       Bitmap i,
+       DateTime creationTime)
+    {
+        try
+        {
+            PropertyItem piDate = i.GetPropertyItem(DigitizedId);//PropertyTagExifDTDigitized
+            //2010:12:11 14:15:19
+            string s = string.Format("{0}:{1}:{2} {3}:{4}:{5}",
+                creationTime.Year.ToString("0000"),
+                creationTime.Month.ToString("00"),
+                creationTime.Day.ToString("00"),
+                creationTime.Hour.ToString("00"),
+                creationTime.Minute.ToString("00"),
+                creationTime.Second.ToString("00"));
 
-			byte[] buff = Encoding.UTF8.GetBytes(s);
-			piDate.Value = new byte[buff.Length + 1];
-			buff.CopyTo(piDate.Value, 0);
-			piDate.Value[buff.Length] = 0;
-			piDate.Len = piDate.Value.Length;
-			i.SetPropertyItem(piDate);
-		}
-		catch
-		{
-		}
-	}
+            byte[] buff = Encoding.UTF8.GetBytes(s);
+            piDate.Value = new byte[buff.Length + 1];
+            buff.CopyTo(piDate.Value, 0);
+            piDate.Value[buff.Length] = 0;
+            piDate.Len = piDate.Value.Length;
+            i.SetPropertyItem(piDate);
+        }
+        catch
+        {
+        }
+    }
     public static string GetImageTitle(string file)
     {
         using (Bitmap bmp = new Bitmap(file))
@@ -516,9 +559,9 @@ public static class Helper
         FieldInfo f = o.GetType().GetField("_dirMonSubdirs", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
         object monitor = f.GetValue(o);
         MethodInfo m = monitor.GetType().GetMethod("StopMonitoring", BindingFlags.Instance | BindingFlags.NonPublic);
-        m.Invoke(monitor, new object[] { }); 
+        m.Invoke(monitor, new object[] { });
     }
-   
+
     public static void GenerateTrackCode(GpxParser parser, HttpResponse response, bool addScriptTags)
     {
         if (addScriptTags)
@@ -631,12 +674,12 @@ public class LoginState
         return true;
     }
 
-	public static bool IsAdmin()
+    public static bool IsAdmin()
     {
         if (User == null)
-			return false;
-		return User.OpenId == "https://www.google.com/accounts/o8/id?id=AItOawnJeTkR-nPcd4YIwRRGQhCKWlMar4Xjyq8";
-	}
+            return false;
+        return User.OpenId == "https://www.google.com/accounts/o8/id?id=AItOawnJeTkR-nPcd4YIwRRGQhCKWlMar4Xjyq8";
+    }
     private const string MTBUserIdentifier = "MTBUser";
     public static MTBUser User
     {

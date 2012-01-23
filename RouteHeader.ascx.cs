@@ -56,6 +56,7 @@ public partial class RouteHeader : System.Web.UI.UserControl
 		MinHeight.InnerText = routeMinHeight + " m";
 		Cycle.InnerText = r.Cycling.ToString() + "%";
 		Difficulty.InnerText = r.Difficulty;
+        Difficulty.Attributes["title"] = Helper.GetDifficultyExplanation(r.Difficulty);
 		int votes = 0;
 		double w = DBHelper.GetMediumRank(r, out votes);
 		RankIndicator.Style.Add(HtmlTextWriterStyle.Width, Convert.ToInt16(w * 10) + "px");
