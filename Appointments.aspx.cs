@@ -12,6 +12,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
     Appointment currentAppointment;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(UserId.Value))
+            UserId.Value = Guid.NewGuid().ToString();
+
         if (!Page.IsPostBack)
         {
             DBHelper.DeleteOldAppointments();
@@ -52,6 +55,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
             post.PostingDate = DateTime.Now;
             post.Message = message.Text;
             post.Ip = Request["REMOTE_HOST"];
+            post.UserId = UserId.Value;
             p.AppointmentPosts.Add(post);
 
             DBHelper.SaveAppointment(p);
@@ -81,7 +85,8 @@ public partial class AppointmentsPage : System.Web.UI.Page
 
         ImageButton btnDel = (ImageButton)e.Item.FindControl("ButtonDelete");
         btnDel.CommandArgument = currentAppointment.Id.ToString();
-        btnDel.Visible = LoginState.IsAdmin();
+        btnDel.Attributes["OwnerId"] = LoginState.IsAdmin() ? "admin" : currentAppointment.UserId;
+        btnDel.Style[HtmlTextWriterStyle.Display] = "none";
 
         Repeater inner = (Repeater)e.Item.FindControl("Posts");
         List<Post> posts = new List<Post>();
@@ -109,8 +114,8 @@ public partial class AppointmentsPage : System.Web.UI.Page
             return;
         ImageButton btn = (ImageButton)e.Item.FindControl("ButtonDelete");
         btn.CommandArgument = currentAppointment.Id.ToString() + '.' + p.Id.ToString();
-        btn.Visible = LoginState.IsAdmin();
-
+        btn.Attributes["OwnerId"] = LoginState.IsAdmin() ? "admin" : p.UserId;
+        btn.Style[HtmlTextWriterStyle.Display] = "none";
     }
     protected void ButtonCreate_Click(object sender, EventArgs e)
     {
@@ -127,6 +132,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
             p.Name = Name.Text;
             p.Message = Message.Text;
             p.Ip = Request["REMOTE_HOST"];
+            p.UserId = UserId.Value;
             DBHelper.SaveAppointment(p);
             Message.Text = "";
             Date.Text = "";
