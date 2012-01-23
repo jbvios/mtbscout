@@ -396,17 +396,16 @@ function getUpdateImagesButton(){{
     }
     private void DifficultyFromString()
     {
-        string diff = TextBoxDifficulty.Text;
-        string pattern = "(?<Diff>(TC)|(MC)|(BC)|(OC)|(EC))(?<Slope>\\+?)";
-        MatchCollection mm = Regex.Matches(diff, pattern);
-        if (mm.Count != 2)
-            return;
-        Match up = mm[0];
-        UpdateListValue(DropDownListClimb, up.Groups["Diff"].Value);
-        CheckBoxClimb.Checked = up.Groups["Slope"].Value == "+";
-        Match down = mm[1];
-        UpdateListValue(DropDownListDown, down.Groups["Diff"].Value);
-        CheckBoxDown.Checked = down.Groups["Slope"].Value == "+";
+        string sDown;
+        string sUp;
+        bool bDown;
+        bool bUp;
+        Helper.GetDifficulty(TextBoxDifficulty.Text, out sDown, out sUp, out bDown, out bUp);
+
+        UpdateListValue(DropDownListClimb, sUp);
+        CheckBoxClimb.Checked = bUp;
+        UpdateListValue(DropDownListDown, sDown);
+        CheckBoxDown.Checked = bDown;
         UpdateClimbExplanation();
         UpdateDownExplanation();
     }

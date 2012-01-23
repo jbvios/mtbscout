@@ -48,7 +48,8 @@
 		<td>
 			Difficoltà:
 		</td>
-		<td id="Difficulty" runat="server">
+		<td>
+		<span id="Difficulty" runat="server" />
 		</td>
 	</tr>
 	<tr>
