@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Drawing;
+using System.Web.Security;
 
 public partial class Menu : System.Web.UI.UserControl
 {
@@ -14,20 +15,11 @@ public partial class Menu : System.Web.UI.UserControl
         Page.Header.Controls.Add(c);
 
 
-        if (LoginState.User != null)
-        {
-            User.Visible = true;
-            DisconnectButton.ToolTip = string.Format("Disconnetti l'utente {0}", LoginState.User.DisplayName);
-            Disconnect.Alt = DisconnectButton.ToolTip;
-        }
-        else
-        {
-            User.Visible = false;
-        }
+        SetLoginButton();
         /*if (Page.Request.Url.AbsolutePath.EndsWith("/whoweare.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiWhoWeAre);
         else*/
-		if (Page.Request.Url.AbsolutePath.EndsWith("/events.aspx", StringComparison.InvariantCultureIgnoreCase))
+        if (Page.Request.Url.AbsolutePath.EndsWith("/events.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiEvents);
         else if (Page.Request.Url.AbsolutePath.EndsWith("/Routes.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiRoutes);
@@ -37,6 +29,22 @@ public partial class Menu : System.Web.UI.UserControl
             HighLight(LiUser);
         else if (Page.Request.Url.AbsolutePath.EndsWith("/blog.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiBlog);
+    }
+
+    private void SetLoginButton()
+    {
+        if (LoginState.User != null)
+        {
+            DisconnectButton.ToolTip = string.Format("Disconnetti l'utente {0}", LoginState.User.DisplayName);
+            Disconnect.Src = "/Images/LogOff.png";
+            Disconnect.Alt = DisconnectButton.ToolTip;
+        }
+        else
+        {
+            DisconnectButton.ToolTip = "Accedi";
+            Disconnect.Src = "/Images/LogOn.png";
+            Disconnect.Alt = DisconnectButton.ToolTip;
+        }
     }
 
     private void HighLight(HtmlGenericControl c)
@@ -58,8 +66,15 @@ public partial class Menu : System.Web.UI.UserControl
     }
     protected void Disconnect_Click(object sender, EventArgs e)
     {
-        LoginState.User = null;
-        User.Visible = false;
+        if (LoginState.User != null)
+        {
+            LoginState.User = null;
+            SetLoginButton();
+        }
+        else
+        {
+            FormsAuthentication.RedirectToLoginPage();
+        }
     }
 
 }

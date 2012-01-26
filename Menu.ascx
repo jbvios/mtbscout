@@ -23,7 +23,7 @@
         
         <li id="User" runat="server">
         <asp:LinkButton title="Disconnetti" ID="DisconnectButton" runat="server" OnClick="Disconnect_Click">
-            <img id="Disconnect" runat="server" src="~/Images/LogOff.png" alt="Disconnetti" style="border: none;float:right;padding-right:15px;" />
+            <img id="Disconnect" runat="server" alt="Disconnetti" style="border: none;float:right;padding-right:15px;" />
         </asp:LinkButton></li>
     </ul>
 </div>

@@ -122,5 +122,10 @@ namespace MTBScout
 		{
 			return workingDataPath;
 		}
-	}
+
+        internal static string GetDatabasePath()
+        {
+            return HttpContext.Current.Server.MapPath("~/mdb-database/MtbScout.mdb");
+        }
+    }
 }
