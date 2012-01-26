@@ -477,7 +477,7 @@ public class DBHelper
         {
             Expression<Func<Appointment, object>> expr = rt => rt.AppointmentDate;
             var criteria = iSession.CreateCriteria<Appointment>();
-            criteria.Add(Restrictions.Lt(Projections.Property(expr), DateTime.Now - TimeSpan.FromDays(3)));
+            criteria.Add(Restrictions.Lt(Projections.Property(expr), DateTime.Now + TimeSpan.FromDays(3)));
             //aggiungo l'utente al database, oppure lo aggiorno
             using (ITransaction transaction = iSession.BeginTransaction())
             {
