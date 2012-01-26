@@ -539,6 +539,20 @@ public class DBHelper
             }
         }
     }
+
+    public static void BackupDB(int i)
+    {
+        try
+        {
+            string path = PathFunctions.GetDatabasePath();
+            if (File.Exists(path))
+                File.Copy(path, path + ".bkp" + i, true);
+        }
+        catch (Exception ex)
+        {
+            Log.Add(ex.ToString());
+        }
+    }
 }
 
 
