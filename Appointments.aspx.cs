@@ -159,11 +159,12 @@ public partial class AppointmentsPage : System.Web.UI.Page
         try
         {
             string[] tokens = ((ImageButton)sender).CommandArgument.Split('.');
-            Log.Add("deleting comment. {0}", Request["REMOTE_HOST"]);
-            //DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
+            //Log.Add("deleting comment. {0}", Request["REMOTE_HOST"]);
+            DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
         }
-        catch
+        catch(Exception ex)
         {
+            Log.Add(ex.ToString());
         }
         LoadAppointments();
     }
@@ -175,8 +176,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
 
             Log.Add("deleting appointment. {0}", Request["REMOTE_HOST"]);
         }
-        catch
+        catch (Exception ex)
         {
+            Log.Add(ex.ToString());
         }
         LoadAppointments();
     }
