@@ -28,6 +28,14 @@
             margin-right: auto;
             position: relative;
         }
+        .LoginButtons
+        {
+            width: 500px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
         .style1
         {
             text-align: center;
@@ -51,26 +59,67 @@
                 Ma cosè OpenId? E&#39; un servizio che ti permette di usare lo stesso nome e password
                 che usi nel tuo portale preferito anche per effettuare l&#39;accesso ad altri siti;
                 in questo modo si evita il proliferare di password con tutti i problemi di sicurezza
-                connessi alla gestione delle stesse. </p>
+                connessi alla gestione delle stesse.
+            </p>
             <p class="style1">
-               <strong> MTBScout NON gestisce o conserva informazioni
-                relative alle password.</strong></p>
+                <strong>MTBScout NON gestisce o conserva informazioni relative alle password.</strong></p>
             <div style="text-align: left; padding-left: 30px; padding-right: 30px;">
-                <table style="width:400px; text-align:center; margin-left:auto;margin-right:auto;">
+                <table class="LoginButtons">
                     <tr>
                         <td>
                             <div>
                                 <rp:OpenIdButton runat="server" ImageUrl="~/images/google.png" Text="Accedi con Google"
-                                    ID="googleLoginButton" Identifier="https://www.google.com/accounts/o8/id" 
-                                    OnLoggedIn="OpenIdLogin_LoggedIn" OnLoggingIn="OpenIdLogin_LoggingIn"/>
+                                    ID="googleLoginButton" Identifier="https://www.google.com/accounts/o8/id" OnLoggedIn="OpenIdLogin_LoggedIn"
+                                    OnLoggingIn="OpenIdLogin_LoggingIn" />
                             </div>
                             Accedi con Google
                         </td>
                         <td>
+                            <div style="width: 260px; height: 33px; margin-top: 10px;">
+                                <div id="fb-root">
+                                </div>
+
+                                <script>
+                                    function fbLogin() {
+                                        FB.getLoginStatus(function(response) {
+                                            if (response.status === 'connected') {
+                                                var uid = response.authResponse.userID;
+                                                var sep = (window.location.href.indexOf('?') == -1) ? '?' : '&';
+                                                window.location.href = window.location.href + sep + 'fbId=' + encodeURIComponent(uid);
+                                            }
+                                        });
+                                    }
+                                    window.fbAsyncInit = function() {
+                                        FB.init({
+                                            appId: '268710583196873',
+                                            status: true,
+                                            cookie: true,
+                                            xfbml: true,
+                                            oauth: true
+                                        });
+                                        FB.Event.subscribe('auth.login',
+                                        function(response) {
+                                            fbLogin();
+                                        });
+                                    };
+                                    (function(d) {
+                                        var js, id = 'facebook-jssdk'; if (d.getElementById(id)) { return; }
+                                        js = d.createElement('script'); js.id = id; js.async = true;
+                                        js.src = "//connect.facebook.net/en_US/all.js";
+                                        d.getElementsByTagName('head')[0].appendChild(js);
+                                    } (document));
+                                </script>
+
+                                <div class="fb-login-button" title="Accedi con Facebook" onclick="fbLogin();">
+                                    Facebook</div>
+                            </div>
+                            Accedi con Facebook
+                        </td>
+                        <td>
                             <div>
-                                <rp:OpenIdButton  runat="server" ImageUrl="~/images/yahoo.png" Text="Accedi con Yahoo!"
-                                    ID="yahooLoginButton" Identifier="https://me.yahoo.com/" 
-                                    OnLoggedIn="OpenIdLogin_LoggedIn" OnLoggingIn="OpenIdLogin_LoggingIn" />
+                                <rp:OpenIdButton runat="server" ImageUrl="~/images/yahoo.png" Text="Accedi con Yahoo!"
+                                    ID="yahooLoginButton" Identifier="https://me.yahoo.com/" OnLoggedIn="OpenIdLogin_LoggedIn"
+                                    OnLoggingIn="OpenIdLogin_LoggingIn" />
                             </div>
                             Accedi con Yahoo!
                         </td>
@@ -85,40 +134,10 @@
                             RequestNickname="Require" RequestPostalCode="Require" RequestTimeZone="Require"
                             RequiredText="Prima inserisci un indirizzo OpenID." UriFormatText="Indirizzo OpenID invalido."
                             ExampleUrl="http://tuo.nome.myopenid.com" OnLoggedIn="OpenIdLogin_LoggedIn">
-                          
                         </rp:OpenIdLogin>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="fb-root">
-        </div>
-
-        <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
-
-        <script type="text/javascript">
-            FB.init({ appId: 'your app id', status: true, cookie: true, xfbml: true });
-            FB.Event.subscribe('auth.login', function(response) {
-                if (response.session) {
-                    // A user has logged in, and a new cookie has been saved
-                    alert('true');
-                } else {
-                    // The user has logged out, and the cookie has been cleared
-                    alert('false');
-                }
-            });
-
-            function FBLogin() {
-                FB.login(function(response) {
-                    if (response.session) {
-                        // user successfully logged in
-                        alert('true');
-                    } else {
-                        alert('false');
-                    }
-                });
-            }
-        </script>
-
     </div>
 </asp:Content>
