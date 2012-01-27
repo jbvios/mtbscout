@@ -17,7 +17,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            DBHelper.DeleteOldAppointments();
+            //DBHelper.DeleteOldAppointments();
         }
         ButtonCreate.OnClientClick = string.Format("onSendPost('{0}');", Name.ClientID);
         LoadAppointments();

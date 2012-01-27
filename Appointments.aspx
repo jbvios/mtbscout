@@ -42,7 +42,7 @@
                             <%#DataBinder.Eval(Container.DataItem, "Name")%></b>
                         <%#Helper.FormatDateTime((DateTime)DataBinder.Eval(Container.DataItem, "PostingDate"))%>.
                         <asp:ImageButton OnClick="ButtonDeleteAppointment_Click" OnClientClick="return confirm('Sicuro di voler cancellare l\'appuntamento?');"
-                            runat="server" ID="ButtonDelete" ImageUrl="~/Images/recycle.png" AlternateText="Elimina"
+                            runat="server" ID="ButtonDelete" style= "display:none;" ImageUrl="~/Images/recycle.png" AlternateText="Elimina"
                             ToolTip="Elimina" /></div>
                     <div>
                         Quando: <b>
@@ -84,7 +84,7 @@
                                     </td>
                                     <td style="width: 20px">
                                         <asp:ImageButton OnClick="ButtonDelete_Click" OnClientClick="return confirm('Sicuro di voler cancellare il commento?');"
-                                            runat="server" ID="ButtonDelete" ImageUrl="~/Images/recycle.png" AlternateText="Elimina"
+                                            runat="server" ID="ButtonDelete" style= "display:none;" ImageUrl="~/Images/recycle.png" AlternateText="Elimina"
                                             ToolTip="Elimina" />
                                     </td>
                                 </tr>
