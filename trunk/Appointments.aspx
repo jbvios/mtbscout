@@ -12,6 +12,14 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
+    <style type="text/css">
+        .deleteButton
+        {
+            display: none;
+            width: 25px;
+            height: 25px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
     <div id="ContentPanel" class="ContentPanel">
@@ -19,11 +27,11 @@
         <h1>
             Appuntamenti per escursioni in MTB</h1>
         <p>
-            Questa pagina vuole essere una sorta di piazza virtuale, che utilizziamo
-            per accordarci sui giri settimanali e non. Sebbene sia nata per rispondere
-            ad una esigenza del gruppo, il suo utilizzo è libero: chiunque può accedervi ed
-            inserire i propri appuntamenti; a tal proposito non è necessaria alcuna registrazione
-            o autenticazione, è sufficiente fornire il proprio nome.</p>
+            Questa pagina vuole essere una sorta di piazza virtuale, che utilizziamo per accordarci
+            sui giri settimanali e non. Sebbene sia nata per rispondere ad una esigenza del
+            gruppo, il suo utilizzo è libero: chiunque può accedervi ed inserire i propri appuntamenti;
+            a tal proposito non è necessaria alcuna registrazione o autenticazione, è sufficiente
+            fornire il proprio nome.</p>
         <p>
             Va comunque tenuto presente che per premurarci contro eventuali utilizzi in mala
             fede registriamo l&#39;indirizzo IP di chi crea appuntamenti o invia commenti.<br />
@@ -42,8 +50,8 @@
                             <%#DataBinder.Eval(Container.DataItem, "Name")%></b>
                         <%#Helper.FormatDateTime((DateTime)DataBinder.Eval(Container.DataItem, "PostingDate"))%>.
                         <asp:ImageButton OnClick="ButtonDeleteAppointment_Click" OnClientClick="return confirm('Sicuro di voler cancellare l\'appuntamento?');"
-                            runat="server" ID="ButtonDelete" style= "display:none;" ImageUrl="~/Images/recycle.png" AlternateText="Elimina"
-                            ToolTip="Elimina" /></div>
+                            runat="server" ID="ButtonDelete" CssClass="deleteButton" ImageUrl="~/Images/recycle.png"
+                            AlternateText="Elimina" ToolTip="Cancella appuntamento" /></div>
                     <div>
                         Quando: <b>
                             <%#Helper.FormatDate((DateTime)DataBinder.Eval(Container.DataItem, "AppointmentDate"))%></b></div>
@@ -84,8 +92,8 @@
                                     </td>
                                     <td style="width: 20px">
                                         <asp:ImageButton OnClick="ButtonDelete_Click" OnClientClick="return confirm('Sicuro di voler cancellare il commento?');"
-                                            runat="server" ID="ButtonDelete" style= "display:none;" ImageUrl="~/Images/recycle.png" AlternateText="Elimina"
-                                            ToolTip="Elimina" />
+                                            runat="server" ID="ButtonDelete" CssClass="deleteButton" ImageUrl="~/Images/recycle.png"
+                                            AlternateText="Elimina" ToolTip="Cancella commento" />
                                     </td>
                                 </tr>
                             </ItemTemplate>
