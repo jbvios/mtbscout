@@ -142,9 +142,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
                 p.Name,
                 p.Message
                 );
-            foreach (MTBUser u in DBHelper.Users)
-                if (u.SendMail)
-                    Helper.SendMail(u.EMail, null, null, "Nuovo appuntamento", msg, true);
+            //foreach (MTBUser u in DBHelper.Users)
+            //    if (u.SendMail)
+             //       Helper.SendMail(u.EMail, null, null, "Nuovo appuntamento", msg, true);
 
             ClientScript.RegisterStartupScript(GetType(), "message", "alert('Appuntamento creato correttamente');", true);
         }
@@ -159,7 +159,8 @@ public partial class AppointmentsPage : System.Web.UI.Page
         try
         {
             string[] tokens = ((ImageButton)sender).CommandArgument.Split('.');
-            DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
+            Log.Add("deleting comment. {0}", Request["REMOTE_HOST"]);
+            //DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
         }
         catch
         {
@@ -170,7 +171,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
     {
         try
         {
-            DBHelper.DeleteAppointment(int.Parse(((ImageButton)sender).CommandArgument));
+            //DBHelper.DeleteAppointment(int.Parse(((ImageButton)sender).CommandArgument));
+
+            Log.Add("deleting appointment. {0}", Request["REMOTE_HOST"]);
         }
         catch
         {
