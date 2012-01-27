@@ -86,8 +86,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
         ImageButton btnDel = (ImageButton)e.Item.FindControl("ButtonDelete");
         btnDel.CommandArgument = currentAppointment.Id.ToString();
         btnDel.Attributes["OwnerId"] = LoginState.IsAdmin() ? "admin" : currentAppointment.UserId;
-        btnDel.Style[HtmlTextWriterStyle.Display] = "none";
-
+       
         Repeater inner = (Repeater)e.Item.FindControl("Posts");
         List<Post> posts = new List<Post>();
         foreach (Post p in currentAppointment.AppointmentPosts)
@@ -115,7 +114,7 @@ public partial class AppointmentsPage : System.Web.UI.Page
         ImageButton btn = (ImageButton)e.Item.FindControl("ButtonDelete");
         btn.CommandArgument = currentAppointment.Id.ToString() + '.' + p.Id.ToString();
         btn.Attributes["OwnerId"] = LoginState.IsAdmin() ? "admin" : p.UserId;
-        btn.Style[HtmlTextWriterStyle.Display] = "none";
+
     }
     protected void ButtonCreate_Click(object sender, EventArgs e)
     {
@@ -142,9 +141,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
                 p.Name,
                 p.Message
                 );
-            //foreach (MTBUser u in DBHelper.Users)
-            //    if (u.SendMail)
-             //       Helper.SendMail(u.EMail, null, null, "Nuovo appuntamento", msg, true);
+            foreach (MTBUser u in DBHelper.Users)
+                if (u.SendMail)
+                   Helper.SendMail(u.EMail, null, null, "Nuovo appuntamento", msg, true);
 
             ClientScript.RegisterStartupScript(GetType(), "message", "alert('Appuntamento creato correttamente');", true);
         }
@@ -159,8 +158,8 @@ public partial class AppointmentsPage : System.Web.UI.Page
         try
         {
             string[] tokens = ((ImageButton)sender).CommandArgument.Split('.');
-            //Log.Add("deleting comment. {0}", Request["REMOTE_HOST"]);
-            DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
+            if (LoginState.IsAdmin() || (((ImageButton)sender).Attributes["OwnerId"] == UserId.Value))
+                DBHelper.DeletePost(int.Parse(tokens[0]), int.Parse(tokens[1]));
         }
         catch(Exception ex)
         {
@@ -172,9 +171,9 @@ public partial class AppointmentsPage : System.Web.UI.Page
     {
         try
         {
-            //DBHelper.DeleteAppointment(int.Parse(((ImageButton)sender).CommandArgument));
+            if (LoginState.IsAdmin() || (((ImageButton)sender).Attributes["OwnerId"] == UserId.Value))
+                DBHelper.DeleteAppointment(int.Parse(((ImageButton)sender).CommandArgument));
 
-            Log.Add("deleting appointment. {0}", Request["REMOTE_HOST"]);
         }
         catch (Exception ex)
         {
