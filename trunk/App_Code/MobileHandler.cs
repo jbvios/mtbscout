@@ -14,12 +14,19 @@ namespace MTBScout
     [SerializableAttribute]
     struct T
     {
-        public int id;
-        public double lat;
-        public double lon;
+        public String name;
+        public int lat;
+        public int lon;
     }
     public class MobileHandler : IHttpHandler
     {
+        private static void SerializeJSON(HttpContext context, object o)
+        {
+            System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(o.GetType());
+            MemoryStream ms = new MemoryStream();
+            serializer.WriteObject(ms, o);
+            context.Response.Write(Encoding.UTF8.GetString(ms.ToArray()));
+        }
         public bool IsReusable
         {
             get { return true; }
@@ -48,19 +55,25 @@ namespace MTBScout
                                     r.Parser.MediumPoint.lon > minlon)
                                 {
                                     T t = new T();
-                                    t.id = r.Id;
-                                    t.lat = r.Parser.MediumPoint.lat;
-                                    t.lon = r.Parser.MediumPoint.lon;
+                                    t.name = r.Name;
+                                    t.lat = Convert.ToInt32(r.Parser.MediumPoint.lat * 1e6);
+                                    t.lon = Convert.ToInt32(r.Parser.MediumPoint.lon * 1e6);
                                     rr.Add(t);
                                 }
 
-                            System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(rr.GetType());
-                            MemoryStream ms = new MemoryStream();
-                            serializer.WriteObject(ms, rr);
-                            context.Response.Write(Encoding.UTF8.GetString(ms.ToArray()));
+                            SerializeJSON(context, rr);
+                            break;
+                        }
+                    case "getTrackDetail":
+                        {
+
+                            string name = context.Request.QueryString["name"];
+                            Route r = DBHelper.GetRoute(name);
+                            SerializeJSON(context, r);
                             break;
                         }
                 }
+
             }
             catch (Exception e)
             {
@@ -68,5 +81,7 @@ namespace MTBScout
             }
 
         }
+
     }
+
 }
