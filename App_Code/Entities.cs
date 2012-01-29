@@ -11,6 +11,8 @@ using NHibernate.Criterion;
 using System.IO;
 using System.Collections;
 using Iesi.Collections;
+using System.Xml;
+using System.Xml.Serialization;
 namespace MTBScout.Entities
 {
     internal class DescriptionAttribute : Attribute
@@ -21,6 +23,7 @@ namespace MTBScout.Entities
             this.Description = description;
         }
     }
+    [Serializable]
     public class Entity
     {
         public override string ToString()
@@ -61,7 +64,7 @@ namespace MTBScout.Entities
 
     }
 
-
+    [Serializable]
     public class Route : Entity
     {
         private GpxParser parser = null;
@@ -91,14 +94,29 @@ namespace MTBScout.Entities
             id = 0;
         }
 
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public string Page { get; set; }
-        public string Image { get; set; }
-        public int Cycling { get; set; }
-        public string Difficulty { get; set; }
-        public string Description { get; set; }
-        public int OwnerId { get; set; }
+        private string name;
+        public string Name { get { return name; } set { name = value; } }
+        
+        private string title;
+        public string Title { get { return title; } set { title = value; } }
+
+        private string page;
+        public string Page { get { return page; } set { page = value; } }
+        
+        private string image;
+        public string Image { get { return image; } set { image = value; } }
+
+        private int cycling;
+        public int Cycling { get { return cycling; } set { cycling = value; } }
+
+        private string difficulty;
+        public string Difficulty { get { return difficulty; } set { difficulty = value; } }
+
+        private string description;
+        public string Description { get { return description; } set { description = value; } }
+
+        private int ownerId;
+        public int OwnerId { get { return ownerId; } set { ownerId = value; } }
 
         public string GetRouteUrl(bool editMode)
         {
