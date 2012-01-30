@@ -11,13 +11,52 @@ using System.Text;
 
 namespace MTBScout
 {
-    [SerializableAttribute]
+    [Serializable]
     struct T
     {
         public String name;
         public int lat;
         public int lon;
     }
+    [Serializable]
+    class R
+    {
+        public R(Route r)
+        {
+            if (r == null)
+                return;
+            title = r.Title;
+            cycling = r.Cycling;
+            difficulty = r.Difficulty;
+            length = (float)Math.Round(r.Parser.Distance3D / 1000, 1);
+            maxHeight = Convert.ToInt32(r.Parser.MaxElevation);
+            minHeight = Convert.ToInt32(r.Parser.MinElevation);
+            rank = DBHelper.GetMediumRank(r, out votes);
+        }
+        public string title = "";
+        public int cycling = 0;
+        public string difficulty = "";
+        float length;
+        int maxHeight;
+        int minHeight;
+        double rank;
+        int votes;
+
+    }
+    [Serializable]
+    struct P
+    {
+        public P(GenericPoint gp)
+        {
+            lat = Convert.ToInt32(gp.lat * 1e6);
+            lon = Convert.ToInt32(gp.lon * 1e6);
+            ele = gp.ele;
+        }
+        public int lat;
+        public int lon;
+        public double ele;
+    }
+
     public class MobileHandler : IHttpHandler
     {
         private static void SerializeJSON(HttpContext context, object o)
@@ -69,7 +108,18 @@ namespace MTBScout
 
                             string name = context.Request.QueryString["name"];
                             Route r = DBHelper.GetRoute(name);
-                            SerializeJSON(context, r);
+                            SerializeJSON(context, new R(r));
+                            break;
+                        }
+                    case "getTrackPoints":
+                        {
+
+                            string name = context.Request.QueryString["name"];
+                            Route r = DBHelper.GetRoute(name);
+                            List<P> points = new List<P>();
+                            foreach (GenericPoint gp in r.Parser.Tracks[0].Segments[0].ReducedPoints)
+                                points.Add(new P(gp));
+                            SerializeJSON(context, points);
                             break;
                         }
                 }
@@ -77,7 +127,8 @@ namespace MTBScout
             }
             catch (Exception e)
             {
-                context.Response.Write(e.Message);
+                Log.Add(e.ToString());
+                SerializeJSON(context, e.Message);
             }
 
         }

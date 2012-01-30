@@ -23,7 +23,6 @@ namespace MTBScout.Entities
             this.Description = description;
         }
     }
-    [Serializable]
     public class Entity
     {
         public override string ToString()
@@ -64,7 +63,6 @@ namespace MTBScout.Entities
 
     }
 
-    [Serializable]
     public class Route : Entity
     {
         private GpxParser parser = null;
