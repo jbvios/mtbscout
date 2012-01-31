@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using MTBScout.Entities;
 using System.Text;
+using System.Globalization;
 
 namespace MTBScout
 {
@@ -43,7 +44,7 @@ namespace MTBScout
         int votes;
 
     }
-    [Serializable]
+   /* [Serializable]
     struct P
     {
         public P(GenericPoint gp)
@@ -55,7 +56,7 @@ namespace MTBScout
         public int lat;
         public int lon;
         public double ele;
-    }
+    }*/
 
     public class MobileHandler : IHttpHandler
     {
@@ -113,13 +114,20 @@ namespace MTBScout
                         }
                     case "getTrackPoints":
                         {
-
+                            StringBuilder sb = new StringBuilder();
                             string name = context.Request.QueryString["name"];
                             Route r = DBHelper.GetRoute(name);
-                            List<P> points = new List<P>();
                             foreach (GenericPoint gp in r.Parser.Tracks[0].Segments[0].ReducedPoints)
-                                points.Add(new P(gp));
-                            SerializeJSON(context, points);
+                            {
+                                if (sb.Length > 0)
+                                    sb.Append('-');
+                                sb.Append(Convert.ToInt32(gp.lat * 1e6));
+                                sb.Append('-');
+                                sb.Append(Convert.ToInt32(gp.lon * 1e6));
+                                sb.Append('-');
+                                sb.Append(gp.ele.ToString("0.00", CultureInfo.InvariantCulture));
+                            }
+                            context.Response.Write(sb.ToString());
                             break;
                         }
                 }
