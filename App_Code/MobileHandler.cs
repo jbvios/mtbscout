@@ -44,20 +44,7 @@ namespace MTBScout
         int votes;
 
     }
-   /* [Serializable]
-    struct P
-    {
-        public P(GenericPoint gp)
-        {
-            lat = Convert.ToInt32(gp.lat * 1e6);
-            lon = Convert.ToInt32(gp.lon * 1e6);
-            ele = gp.ele;
-        }
-        public int lat;
-        public int lon;
-        public double ele;
-    }*/
-
+   
     public class MobileHandler : IHttpHandler
     {
         private static void SerializeJSON(HttpContext context, object o)
@@ -80,6 +67,10 @@ namespace MTBScout
                 string action = context.Request.QueryString["Action"];
                 switch (action)
                 {
+                    case "getVersion":
+                        context.Response.Write('1');//version
+                        context.Response.Write('1');//OK
+                        break;
                     case "getTracks":
                         {
 
@@ -100,8 +91,8 @@ namespace MTBScout
                                     t.lon = Convert.ToInt32(r.Parser.MediumPoint.lon * 1e6);
                                     rr.Add(t);
                                 }
-                            context.Response.Write('1');//OK
                             SerializeJSON(context, rr);
+                            context.Response.Write('1');//OK
                             break;
                         }
                     case "getTrackDetail":
@@ -109,8 +100,8 @@ namespace MTBScout
 
                             string name = context.Request.QueryString["name"];
                             Route r = DBHelper.GetRoute(name);
-                            context.Response.Write('1');//OK
                             SerializeJSON(context, new R(r));
+                            context.Response.Write('1');//OK
                             break;
                         }
                     case "getTrackPoints":
@@ -128,8 +119,8 @@ namespace MTBScout
                                 sb.Append('-');
                                 sb.Append(gp.ele.ToString("0.00", CultureInfo.InvariantCulture));
                             }
-                            context.Response.Write('1');//OK
                             context.Response.Write(sb.ToString());
+                            context.Response.Write('1');//OK
                             break;
                         }
                 }
@@ -138,8 +129,8 @@ namespace MTBScout
             catch (Exception e)
             {
                 Log.Add(e.ToString());
-                context.Response.Write('0');//ERROR
                 SerializeJSON(context, e.Message);
+                context.Response.Write('0');//ERROR
             }
 
         }
