@@ -12,6 +12,8 @@ public partial class AppointmentsPage : System.Web.UI.Page
     Appointment currentAppointment;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Check.Text.Length > 0)
+            throw new ApplicationException("FuckYou!");
         if (string.IsNullOrEmpty(UserId.Value))
             UserId.Value = Guid.NewGuid().ToString();
 
