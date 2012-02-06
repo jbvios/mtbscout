@@ -144,6 +144,7 @@
         <br />
         <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
             width: 330px; height: 50px"></iframe>
+        <asp:TextBox Width="0" Height="0" runat="server" ID="Check"></asp:TextBox>
     </div>
 
     <script type="text/javascript">
