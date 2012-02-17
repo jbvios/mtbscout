@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+ï»¿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     EnableEventValidation="false" ValidateRequest="false" CodeFile="Appointments.aspx.cs"
     Inherits="AppointmentsPage" %>
 
@@ -29,15 +29,15 @@
         <p>
             Questa pagina vuole essere una sorta di piazza virtuale, che utilizziamo per accordarci
             sui giri settimanali e non. Sebbene sia nata per rispondere ad una esigenza del
-            gruppo, il suo utilizzo è libero: chiunque può accedervi ed inserire i propri appuntamenti;
-            a tal proposito non è necessaria alcuna registrazione o autenticazione, è sufficiente
+            gruppo, il suo utilizzo Ã¨ libero: chiunque puÃ² accedervi ed inserire i propri appuntamenti;
+            a tal proposito non Ã¨ necessaria alcuna registrazione o autenticazione, Ã¨ sufficiente
             fornire il proprio nome.</p>
         <p>
             Va comunque tenuto presente che per premurarci contro eventuali utilizzi in mala
             fede registriamo l&#39;indirizzo IP di chi crea appuntamenti o invia commenti.<br />
         </p>
         <p>
-            Ovviamente, chiunque volesse aggregarsi ai nostri giri è il benvenuto... enjoy All
+            Ovviamente, chiunque volesse aggregarsi ai nostri giri Ã¨ il benvenuto... enjoy All
             Mountain!</p>
         <asp:Repeater ID="Appointments" runat="server" OnItemDataBound="Appointments_ItemDataBound">
             <HeaderTemplate>
@@ -57,6 +57,13 @@
                             <%#Helper.FormatDate((DateTime)DataBinder.Eval(Container.DataItem, "AppointmentDate"))%></b></div>
                     <div style="font-size: larger; font-weight: bold; font-variant: small-caps">
                         <%#DataBinder.Eval(Container.DataItem, "Message")%></div>
+                    <div style="text-align:center;">
+                        <!-- Inizio codice ilMeteo.it -->
+                        <a href="http://www.ilmeteo.it/Liguria" title="Meteo Liguria" target="_blank">
+                            <img runat="server" id="Meteo" alt="Meteo Liguria" border="0" />
+                        </a>
+                        <!-- Fine codice ilMeteo.it -->
+                        â€‹</div>
                     <div>
                         <asp:Button runat="server" ID="ButtonToggle" Text="Visualizza commenti" UseSubmitBehavior="False" />
                         <%#((Iesi.Collections.ISet)DataBinder.Eval(Container.DataItem, "AppointmentPosts")).Count%>
@@ -170,7 +177,7 @@
             try {
                 mtb$("#ctl00_ContentPanel_Date").datepicker({
                     dateFormat: 'dd-mm-yy',
-                    dayNames: ['Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato'],
+                    dayNames: ['Domenica', 'LunedÃ¬', 'MartedÃ¬', 'MercoledÃ¬', 'GiovedÃ¬', 'VenerdÃ¬', 'Sabato'],
                     dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
                     dayNamesMin: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
                     monthNames: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],

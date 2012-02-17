@@ -104,7 +104,12 @@ public partial class AppointmentsPage : System.Web.UI.Page
         btn = (Button)e.Item.FindControl("ButtonToggle");
         Panel comments = (Panel)e.Item.FindControl("CommentsPanel");
         btn.OnClientClick = string.Format("onToggle(this, '{0}');return false;", comments.ClientID);
-
+        HtmlImage img = (HtmlImage)e.Item.FindControl("Meteo");
+        int idx = currentAppointment.AppointmentDate.DayOfYear - DateTime.Now.DayOfYear;
+        if (idx < 0 || idx > 6)
+            img.Visible = false;
+        else
+            img.Src = string.Format("http://www.ilmeteo.it/cartine2/{0}.LIG.png", idx);
 
     }
 
