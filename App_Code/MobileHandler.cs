@@ -58,7 +58,11 @@ namespace MTBScout
         {
             get { return true; }
         }
-
+        [Serializable]
+        class Test
+        {
+            public String Val = "OK";
+        }
         public void ProcessRequest(HttpContext context)
         {
 
@@ -67,6 +71,12 @@ namespace MTBScout
                 string action = context.Request.QueryString["Action"];
                 switch (action)
                 {
+                    case "test":
+                        context.Response.Write(context.Request.QueryString["callback"] + "(");
+                        SerializeJSON(context, new Test());//version
+                        context.Response.Write(");");
+                        context.Response.Write(0);
+                        break;
                     case "getVersion":
                         context.Response.Write('1');//version
                         context.Response.Write('1');//OK

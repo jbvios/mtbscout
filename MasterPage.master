@@ -21,8 +21,6 @@
 	<script type="text/javascript">
 		window.onload = function() { InitPage(); }
 	</script>
-	<%--<script type="text/javascript" src="http://localhost/webapplication1/translator.js"/>--%>
-	<script type="text/javascript" src="http://www.web-localizer.appspot.com/weblocalizer.js"/>
 	<script type="text/javascript" src="/Video/swfobject.js"></script>
 	
 	<script type="text/javascript">
@@ -51,4 +49,5 @@
 	<uc2:Footer ID="Footer1" runat="server" />
 	</form>
 </body>
+<script type="text/javascript" src="http://www.web-localizer.appspot.com/weblocalizer.js"/>
 </html>
