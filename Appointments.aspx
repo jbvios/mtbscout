@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    EnableEventValidation="false" ValidateRequest="false" CodeFile="Appointments.aspx.cs"
+    EnableEventValidation="false" CodeFile="Appointments.aspx.cs"
     Inherits="AppointmentsPage" %>
 
 <%@ Register Src="HorizontalSpot.ascx" TagName="HorizontalSpot" TagPrefix="uc1" %>
