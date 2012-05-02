@@ -33,6 +33,14 @@
             Eventi</h1>
         <div class="Event">
             <table class="Event">
+             <tr>
+                    <td class="DateColumn">
+                        <a href="Campionato2012/Campionato2012.aspx">Sabato 12 e domenica 13 maggio 2012</a>
+                    </td>
+                    <td class="EventColumn">
+                        Terza Tappa Campionato Italiano Giovanile di Società
+                    </td>
+                </tr> 
             <tr>
                     <td class="DateColumn">
                         <a href="Enduro2011/Enduro2011.aspx">Domenica 8 maggio 2011</a>

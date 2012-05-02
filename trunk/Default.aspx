@@ -30,16 +30,19 @@
 			e pubblicizzazione, principalmente attraverso questo sito.
 		</p>
 		<div style="padding-top: 20px;">
+		 <div class="widget">
+		       <div style="padding: 20px;">
+		       <a href = "Events/Campionato2012/Campionato2012.aspx" title="Terza Tappa Campionato Italiano Giovanile di Società">
+				   <img style = "width:420px; height:300px" src="Events/Campionato2012/genoacup.jpg" alt="Terza Tappa Campionato Italiano Giovanile di Società"/>
+				   </a>
+				</div>
+			</div>
 		    <div class="widget">
 		       <div style="padding: 20px;">
 				    <iframe width="420" height="300" src="http://www.youtube.com/embed/kXIRZKHNm7Y" frameborder="0" allowfullscreen></iframe>
 				</div>
 			</div>
-			<div class="widget">
-		       <div style="padding: 20px;">
-				    <iframe width="420" height="300" src="http://www.youtube.com/embed/1nA4ZXcnZmg" frameborder="0" allowfullscreen></iframe>
-				</div>
-			</div>
+			
 			 <div class="widget">
 				<div style="padding: 20px;">
 				    <iframe width="420" height="300" src="http://www.youtube.com/embed/nS9_EyzyeMs" frameborder="0" allowfullscreen></iframe>
@@ -110,4 +113,5 @@
 		</div>
 		<div id="dummyForHomePage" />
 	</div>
+    </div>
 </asp:Content>
