@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 	<head>
-		<title>Map created by GPS Visualizer</title>
+		<title>Tracciato di gara</title>
 		<base target="_top"></base>
 		<meta name="geo.position" content="44.5154355; 9.0552975" />
 		<meta name="ICBM" content="44.5154355, 9.0552975" />
@@ -27,7 +27,7 @@
 			      c. The "GV_Map" function, which contains all the geographic info for the map
 		-->
 		<div style="margin-left:0px; margin-right:0px; margin-top:0px; margin-bottom:0px;">
-			<div id="gmap_div" style="width:700px; height:400px; margin:0px; margin-right:12px; background-color:#F0F0F0; float:left; overflow:hidden;">
+			<div id="gmap_div" style="width:100%; height:100%; margin:0px; margin-right:12px; background-color:#F0F0F0; float:left; overflow:hidden;">
 				<p align="center" style="font:10px Arial;">This map was created using <a target="_blank" href="http://www.gpsvisualizer.com/">GPS Visualizer</a>'s do-it-yourself geographic utilities.<br /><br />Please wait while the map data loads...</p>
 			</div>
 				
@@ -52,7 +52,7 @@
 		
 		<!-- begin GPS Visualizer setup script (must come after maps.google.com code) -->
 		<script type="text/javascript">
-			/* Global variables used by the GPS Visualizer functions (1336366576): */
+			/* Global variables used by the GPS Visualizer functions (1336419469): */
 			gv_options = [];
 				// important variable names:
 				gv_options.map_div = 'gmap_div';  // the name of the HTML "div" tag containing the map itself; usually 'gmap_div'
@@ -60,7 +60,7 @@
 				// basic map parameters:
 				gv_options.width = 700;  // width of the map, in pixels
 				gv_options.height = 400;  // height of the map, in pixels
-				gv_options.full_screen = false;  // true|false: should the map fill the entire page (or frame)?
+				gv_options.full_screen = true;  // true|false: should the map fill the entire page (or frame)?
 				gv_options.center = [44.5154355,9.0552975];  // [latitude,longitude] - be sure to keep the square brackets
 				gv_options.zoom = 16;  // higher number means closer view; can also be 'auto'
 				gv_options.map_opacity = 1;  // number from 0 to 1
