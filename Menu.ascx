@@ -10,6 +10,9 @@
          <li runat="server" id="LiAppointments"><a runat="server" id="AAppointments" href="~/Appointments.aspx" title="Appuntamenti">Appuntamenti</a>
         </li>
         <li>|</li>
+        <li runat="server" id="LiSchool"><a runat="server" id="ASchool" href="~/School/School.aspx" title="Scuola di Mountain Bike">Scuola</a>
+        </li>
+        <li>|</li>
         <li runat="server" id="LiEvents"><a runat="server" id="AEvents" href="~/Events/Events.aspx" title="Eventi">Eventi</a>
         </li>
         <li>|</li>
