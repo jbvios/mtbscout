@@ -1,242 +1,247 @@
 ﻿body
 {
-	background-position: center top;
-	font-family: 'Comic Sans MS' , verdana, Tahoma, Arial, sans-serif;
-	color: #0000FF;
-	text-align: center;
-	background: #FFFFFF url("images/bkgnd.jpg") repeat-y fixed center top;
+    background-position: center top;
+    font-family: 'Comic Sans MS' , verdana, Tahoma, Arial, sans-serif;
+    color: #0000FF;
+    text-align: center;
+    background: #FFFFFF url("images/bkgnd.jpg") repeat-y fixed center top;
 }
 h1
 {
-	color: #0000FF;
-	text-align: center;
+    color: #0000FF;
+    text-align: center;
 }
 h2
 {
-	color: #0000FF;
-	text-align: center;
+    color: #0000FF;
+    text-align: center;
 }
 h3
 {
-	color: #0000FF;
-	text-align: center;
+    color: #0000FF;
+    text-align: center;
 }
 p
 {
-	margin-left: 20px;
-	margin-right: 20px;
-	color: Black;
-	text-align: justify;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: Black;
+    text-align: justify;
+}
+li
+{
+    text-align: left;
+    color: Black;
 }
 .widget
 {
-	background-image: url("Images/widget-bkgnd1.png");
-	width: 480px;
-	height: 350px;
-	display:inline-block;
-	overflow:hidden;
+    background-image: url("Images/widget-bkgnd1.png");
+    width: 480px;
+    height: 350px;
+    display: inline-block;
+    overflow: hidden;
 }
 .widget div div
 {
-	width: 200px;
-	height: 150px;
-	margin-top:20px;
-	overflow: hidden;
-	margin-left: auto;
-	margin-right: auto;
+    width: 200px;
+    height: 150px;
+    margin-top: 20px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
 }
 .widget div div div
 {
-	margin:0;
-	padding:0;
-	width:600px;
-	height:150px;
-	position:relative;
-	left:0px;
-	top:0px;
+    margin: 0;
+    padding: 0;
+    width: 600px;
+    height: 150px;
+    position: relative;
+    left: 0px;
+    top: 0px;
 }
 .widget div div div img
 {
-	width:200px;
-	height:150px;
-	position:absolute;
+    width: 200px;
+    height: 150px;
+    position: absolute;
 }
 td.ImageCell
 {
-	vertical-align: top;
+    vertical-align: top;
 }
 td.ImageCell div
 {
-	vertical-align: top;
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 20px;
+    vertical-align: top;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
 }
 .DeleteImage
 {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	margin-left: 30px;
-	margin-top: 50px;
-	width: 20px;
-	height: 20px;
-	z-index:100;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    margin-left: 30px;
+    margin-top: 50px;
+    width: 20px;
+    height: 20px;
+    z-index: 100;
 }
 .IteratorImage
 {
-	position: absolute;
-	border-color: blue;
-	background-color: white;
-	display: inline;
-	left: 0px;
-	top: 0px;
+    position: absolute;
+    border-color: blue;
+    background-color: white;
+    display: inline;
+    left: 0px;
+    top: 0px;
 }
 .HoverIteratorImage
 {
-	border-color: Red;
+    border-color: Red;
 }
 table.RouteData
 {
-	table-layout: auto;
-	text-align: left;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
+    table-layout: auto;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 div.HeaderContainer
 {
-	height: 160px;
-	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: #FFFFCC;
+    height: 160px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFFCC;
 }
 img.HeaderLogo
 {
-	height: 140px;
-	margin-top: 10px;
-	margin-left: 10px;
-	float: left;
+    height: 140px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
 }
 
 div.ContentPanel
 {
-	width: 980px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0px 10px 20px 10px;
-	font-size: small;
-	color: #0000FF;
-	overflow: auto;
-	background-color: #FFFFCC;
-	position: relative;
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 10px 20px 10px;
+    font-size: small;
+    color: #0000FF;
+    overflow: auto;
+    background-color: #FFFFCC;
+    position: relative;
 }
 div.FooterContainer
 {
-	width: 1000px;
-	height: 52px;
-	margin-left: auto;
-	margin-right: auto;
-	font-size: x-small;
-	font-weight: bold;
+    width: 1000px;
+    height: 52px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: x-small;
+    font-weight: bold;
 }
 div.ImageAndDesc
 {
-	padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 div.ImageAndDesc img
 {
-	border: solid 1px blue;
+    border: solid 1px blue;
 }
 .ImageWithBorder
 {
-	border: solid 1px blue;
+    border: solid 1px blue;
 }
 
 div.Horiz ul
 {
-	padding-top: 10px;
-	padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 div.Horiz ul li
 {
-	display: inline;
-	text-align: center;
-	padding-left: 10px;
-	padding-right: 10px;
+    display: inline;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 div.Horiz li.SelectedMenu
 {
-	background-color: #FFFFCC;
-	padding-bottom: 10px;
+    background-color: #FFFFCC;
+    padding-bottom: 10px;
 }
 div.Horiz
 {
-	background-color: Silver;
-	margin-left: auto;
-	margin-right: auto;
-	width: 1000px;
-	height: 40px;
-	text-align: center;
-	font-size: medium;
-	font-weight: bold;
-	text-transform: capitalize;
-	font-style: normal;
-	font-variant: small-caps;
+    background-color: Silver;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 40px;
+    text-align: center;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-style: normal;
+    font-variant: small-caps;
 }
 
 
 
 .MenuButton
 {
-	vertical-align: middle;
-	border-color: inherit;
-	border-width: thin;
-	border-style: none;
-	overflow: hidden;
+    vertical-align: middle;
+    border-color: inherit;
+    border-width: thin;
+    border-style: none;
+    overflow: hidden;
 }
 
 
 div.NewsBanner
 {
-	visibility: hidden;
-	display: none;
-	border: medium outset #FFFFFF;
-	padding: 30px;
-	background-color: #FFFFCC;
-	left: 20%;
-	width: 60%;
-	background-color: #6699FF;
+    visibility: hidden;
+    display: none;
+    border: medium outset #FFFFFF;
+    padding: 30px;
+    background-color: #FFFFCC;
+    left: 20%;
+    width: 60%;
+    background-color: #6699FF;
 }
 
 div.MainCenter
 {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
 }
 
 .ImageDiv
 {
-	margin: 10px;
-	text-align: center;
-	cursor: pointer;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
 }
 .CenterUrl
 {
-	text-align: center;
+    text-align: center;
 }
 .FbLike
 {
-	border: none;
-	overflow: hidden;
-	width: 75px;
-	height: 21px;
-	position: absolute;
-	left: 30px;
-	top: 3px;
+    border: none;
+    overflow: hidden;
+    width: 75px;
+    height: 21px;
+    position: absolute;
+    left: 30px;
+    top: 3px;
 }
 table.AppointmentPosts
 {
