@@ -52,13 +52,12 @@
         <h2>
             Il maestro</h2>
         <p>
-            Mi chiamo Marco, ho una laurea in Economia ma mi identifico maggiormente nel mio
-            diploma di ragioniere, per vivere faccio il programmatore (in pratica sono uno di
+            Mi chiamo Marco, ho una laurea in Economia e mi occupo di sviluppo software (in pratica sono uno di
             quelli che fa in modo che i computer si comportino in modo strano e sembrino difficili
-            da usare). Mi piace il lavoro che faccio, ma... be&#39;, la bici è sicuramente un&#39;altra
+            da usare). Mi piace il lavoro che faccio ma... la bici è sicuramente un&#39;altra
             cosa. E&#39; libertà, è un mezzo per sfogare le tensioni, è uno strumento per muoversi
             senza vincoli, è un modo per rimanere bambini (che ogni tanto si sbucciano un ginocchio
-            o si infangano alla grande), è una metafora che ti insegna che se vuoi ottenere
+            o si infangano fino ai capelli), è una metafora che ti insegna che se vuoi ottenere
             qualcosa ed esserne soddisfatto, non ci sono strade alternative: te la devi sudare;
             sono anche fermamente convinto che se vogliamo migliorare questa nostra società
             piuttosto disastrata, anestetizzata da shopping, calcio scommesse e grandi fratelli,
