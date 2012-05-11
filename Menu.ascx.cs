@@ -29,6 +29,10 @@ public partial class Menu : System.Web.UI.UserControl
             HighLight(LiUser);
         else if (Page.Request.Url.AbsolutePath.EndsWith("/blog.aspx", StringComparison.InvariantCultureIgnoreCase))
             HighLight(LiBlog);
+        else if (Page.Request.Url.AbsolutePath.EndsWith("/Appointments.aspx", StringComparison.InvariantCultureIgnoreCase))
+            HighLight(LiAppointments);
+        else if (Page.Request.Url.AbsolutePath.EndsWith("/School.aspx", StringComparison.InvariantCultureIgnoreCase))
+            HighLight(LiSchool);
     }
 
     private void SetLoginButton()
