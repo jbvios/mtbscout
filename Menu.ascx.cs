@@ -11,7 +11,7 @@ public partial class Menu : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        LiteralControl c = new LiteralControl("<META NAME=\"Description\" CONTENT=\"mountain bike MTB liguria montoggio casella valle GPS track scout bicicletta bike biker bikers pentemina scrivia\">");
+        LiteralControl c = new LiteralControl("<META NAME=\"Description\" CONTENT=\"Siamo un gruppo di amici uniti dalla passione per la Mountain Bike, sport a cui ci avviciniamo con spirito non agonistico, vivendolo piuttosto come mezzo di comunione con la natura e occasione per sperimentare momenti di serena libertà, lontano da strade trafficate e rumorose. Perché Scout? Con questo termine ci vogliamo accomunare agli scout indiani, pellerossa che conoscevano molto bene il territorio di insediamento ed erano impiegati come guide dall'esercito americano; ci piace pensare a loro come incarnazione di una libertà minacciata che va difesa a tutti i costi.\">");
         Page.Header.Controls.Add(c);
 
 
