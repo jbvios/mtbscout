@@ -5,21 +5,25 @@
     color: #0000FF;
     text-align: center;
     background: #FFFFFF url("images/bkgnd.jpg") repeat-y fixed center top;
+    font-size: large;
 }
 h1
 {
     color: #0000FF;
     text-align: center;
+    font-size: x-large;
 }
 h2
 {
     color: #0000FF;
     text-align: center;
+    font-size: larger;
 }
 h3
 {
     color: #0000FF;
     text-align: center;
+    font-size: large;
 }
 p
 {
@@ -27,11 +31,13 @@ p
     margin-right: 20px;
     color: Black;
     text-align: justify;
+    font-size: large;
 }
 li
 {
     text-align: left;
     color: Black;
+    font-size: large;
 }
 .widget
 {
@@ -171,6 +177,7 @@ div.Horiz ul li
     text-align: center;
     padding-left: 10px;
     padding-right: 10px;
+    font-size: medium;
 }
 div.Horiz li.SelectedMenu
 {
