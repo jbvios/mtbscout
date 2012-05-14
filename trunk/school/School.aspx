@@ -31,7 +31,7 @@
             Costi:</p>
         <ul>
             <li>lezione singola: 10 euro; </li>
-            <li>abbonamento a 10 lezioni (da effettuare entro il 15 settembre): 80 euro; </li>
+            <li>abbonamento a 10 lezioni (con scadenza 15 settembre): 80 euro; </li>
             <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
