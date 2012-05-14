@@ -65,9 +65,13 @@
             qualcosa ed esserne soddisfatto, non ci sono strade alternative: te la devi sudare;
             sono anche fermamente convinto che se vogliamo migliorare questa nostra società
             piuttosto disastrata, anestetizzata da shopping, calcio scommesse e grandi fratelli,
-            si debba partire dai giovani.</p>
+            si debba lavorare sui bambini. Sono un fervente sostenitore della bici come 
+            strumento di mobilità sostenibile (in particolare in città): ogni giorno 
+            percorro circa 25 Km per recarmi al lavoro sulla mia city bike, sono 
+            sufficientemente munito di attrezzatura anti intemperie ma ahimé non ho ancora 
+            trovato adeguate misure di difesa contro gli automobilisti nevrotici.</p>
         <p>
-            Per questa serie di motivi ho ottenuto il diploma di maestro della <a target="fci"
+            Sulla scia di questa mia passione ho ottenuto il diploma di maestro della <a target="fci"
                 href="http://www.federciclismo.it/studi/maestri_home.asp">Federazione Ciclistica
                 Italiana</a>, mi sono iscritto ad <a target="assom" href="http://www.assomaestri.org">
                     Assomaestri</a> (organizzazione che tutela, anche dal punto di vista assicurativo,
