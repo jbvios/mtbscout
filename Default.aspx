@@ -32,29 +32,9 @@
 		<div style="padding-top: 20px;">
 		 <div class="widget">
 		       <div style="padding: 20px;">
-		       <a href = "Events/Campionato2012/Campionato2012.aspx" title="Terza Tappa Campionato Italiano Giovanile di Società">
-				   <img style = "width:420px; height:300px" src="Events/Campionato2012/genoacup.jpg" alt="Terza Tappa Campionato Italiano Giovanile di Società"/>
+		       <a href = "school/School.aspx" title="Scuola di Mountain Bike">
+				   <img style = "width:200px; height:300px" src="Images/School.JPG" alt="Scuola di Mountain Bike"/>
 				   </a>
-				</div>
-			</div>
-		    <div class="widget">
-		       <div style="padding: 20px;">
-				    <iframe width="420" height="300" src="http://www.youtube.com/embed/kXIRZKHNm7Y" frameborder="0" allowfullscreen></iframe>
-				</div>
-			</div>
-			
-			 <div class="widget">
-				<div style="padding: 20px;">
-				    <iframe width="420" height="300" src="http://www.youtube.com/embed/nS9_EyzyeMs" frameborder="0" allowfullscreen></iframe>
-				</div>
-			</div>
-			<div class="widget">
-				<div style="padding: 20px;">
-					<a title="Anello dei Fieschi, video discesa Casale - Pontenero" href="/public/Routes/AnelloFieschi/AnelloFieschi.aspx">
-						<span>Anello dei Fieschi, video discesa Casale - Pontenero</span>
-						<uc2:Video ID="Video1" VideoHeight="280px" runat="server" VideoUrl="~/public/routes/AnelloFieschi/casale_pontenero.flv"
-							PreviewUrl="~/public/routes/AnelloFieschi/casale_pontenero.jpg" />
-					</a>
 				</div>
 			</div>
 			<div class="widget">
@@ -77,6 +57,27 @@
 					<span id="RouteTitle" style="padding-top: 30px;"></span>
 				</div>
 			</div>
+		    <div class="widget">
+		       <div style="padding: 20px;">
+				    <iframe width="420" height="300" src="http://www.youtube.com/embed/kXIRZKHNm7Y" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			
+			 <div class="widget">
+				<div style="padding: 20px;">
+				    <iframe width="420" height="300" src="http://www.youtube.com/embed/nS9_EyzyeMs" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="widget">
+				<div style="padding: 20px;">
+					<a title="Anello dei Fieschi, video discesa Casale - Pontenero" href="/public/Routes/AnelloFieschi/AnelloFieschi.aspx">
+						<span>Anello dei Fieschi, video discesa Casale - Pontenero</span>
+						<uc2:Video ID="Video1" VideoHeight="280px" runat="server" VideoUrl="~/public/routes/AnelloFieschi/casale_pontenero.flv"
+							PreviewUrl="~/public/routes/AnelloFieschi/casale_pontenero.jpg" />
+					</a>
+				</div>
+			</div>
+			
 			<uc1:Spot ID="Spot1" runat="server" />
 			<h3>
 				Pensare <i>All Mountain</i></h3>
