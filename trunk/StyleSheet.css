@@ -46,6 +46,7 @@ li
     height: 350px;
     display: inline-block;
     overflow: hidden;
+    font-size:small;
 }
 .widget div div
 {
