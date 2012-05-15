@@ -33,9 +33,13 @@
         </ul>
         <p>
             A questo va aggiunto il costo del tesseramento annuo alla Federazione Ciclistica 
-            Italiana (comprensivo di assicurazione) in base al tariffario in vigore.</p>
+            Italiana (comprensivo di assicurazione) in base al
+            <a target="fci" href="http://www.federciclismo.it/affiliazione/tesseramento.asp?cod=5">
+            tariffario in vigore</a>.</p>
         <p>
-            Ogni bambino essere munito di certificato medico, bici propria e <b><i>casco protettivo</i></b>; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a> o contatta
+            Ogni bambino deve essere munito di una fototessera, certificato medico (per 
+            attività sportiva <b>non agonistica fino ai 12 anni, agonistica a partire dai 13 
+            anni</b>), bici propria e <b><i>casco protettivo</i></b>; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a> o contatta
             il 338.3681001.</p>
         <h2>
             Contenuti del corso</h2>
@@ -80,7 +84,7 @@
             ogni costo, a surclassare gli altri: se riuscirò a farti divertire e trasmetterti
             solo un po&#39; del mio entusiasmo, potrò ritenermi soddisfatto.</p>
         <p>
-            Altre informazioni su di me le potrai raccogliere navigando questo sito, da me 
+            Potrai raccogliere altre informazioni su di me navigando questo sito, che ho 
             curato nella forma (sigh, si vede che non sono un grafico...) e nei contenuti. </p>
         <h2>
             Dov&#39;è la scuola?</h2>
