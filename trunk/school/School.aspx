@@ -21,12 +21,9 @@
             essere affrontati senza difficoltà.</p>
             <h3>Lezioni per i bambini</h3>
         <p>
-            Le lezioni si svolgono ogni <i><b>sabato pomeriggio</b></i> con i seguenti orari:
-        </p>
-        <ul>
-            <li>fascia di età 7-10 anni: dalle 17.00 alle 18.00</li>
-            <li>fascia di età 11-14 anni: dalle 18.00 alle 19.00</li>
-        </ul>
+            Le lezioni si svolgono ogni <i><b>sabato pomeriggio</b></i> e avranno durata di 
+            un&#39;ora, nella fascia oraria 17.00 - 19.00; i bambini verranno suddivisi su due 
+            turni in base al numero di iscritti e alla loro età.</p>
         <p>
             Costi:</p>
         <ul>
@@ -35,7 +32,10 @@
             <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
-            Ogni bambino essere munito di bici propria e <b><i>casco protettivo</i></b>; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a> o contatta
+            A questo va aggiunto il costo del tesseramento annuo alla Federazione Ciclistica 
+            Italiana (comprensivo di assicurazione) in base al tariffario in vigore.</p>
+        <p>
+            Ogni bambino essere munito di certificato medico, bici propria e <b><i>casco protettivo</i></b>; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a> o contatta
             il 338.3681001.</p>
         <h2>
             Contenuti del corso</h2>
