@@ -28,7 +28,9 @@
             Costi:</p>
         <ul>
             <li>lezione singola: 10 euro; </li>
-            <li>abbonamento a 10 lezioni (con scadenza 15 settembre): 80 euro; </li>
+            <li>abbonamento a 10 lezioni (con scadenza 15 settembre): 80 euro; chi ha effettuato 
+                l&#39;abbonamento potrà accedere ad eventuali ulteriori lezioni a condizioni 
+                vantaggiose; </li>
             <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
@@ -40,7 +42,14 @@
         <p>
             Ogni bambino deve essere munito di una fototessera, certificato medico (per 
             attività sportiva <b>non agonistica fino ai 12 anni, agonistica a partire dai 13 
-            anni</b>), bici propria e <b><i>casco protettivo</i></b>; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a> o contatta
+            anni</b>), bici propria e <b><i>casco protettivo</i></b>; la fototessera ci 
+            serve in formato digitale, se ne hai una tradizionale possiamo effettuare noi 
+            una scansione della stessa (ad esempio quella della carta d&#39;identità o di un 
+            altro documento recente, così eviti di farla appositamente); non occorre che tu 
+            vada a comprare la bici nuova a tuo figlio, fallo venire con quella che ha 
+            (purché sia in efficiente stato di funzionamento, in particolare i freni), 
+            deciderai dopo se è il caso di cambiarla in funzione del suo interessamento e 
+            della reale necessità; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a> o contatta
             il 338.3681001.</p>
         <h2>
             Contenuti del corso</h2>
@@ -61,18 +70,21 @@
         <h2>
             Il maestro</h2>
         <p>
-            Mi chiamo Marco, ho una laurea in Economia e mi occupo di sviluppo software (in pratica sono uno dei 
+            Mi chiamo 
+            <a href="http://www.linkedin.com/profile/view?id=138495946&amp;trk=tab_pro" 
+                target="marco">Marco</a>, ho una laurea in Economia e mi occupo di sviluppo software (in pratica sono uno dei 
             colpevoli se i computer si comportano in modo strano e sembrano difficili
             da usare). Mi piace il lavoro che faccio ma... la bici è sicuramente un&#39;altra
             cosa. E&#39; libertà, è un mezzo per sfogare le tensioni, è uno strumento per muoversi
             senza vincoli, è un modo per rimanere bambini (che ogni tanto si sbucciano un ginocchio
             o si infangano fino ai capelli), è una metafora che ti insegna che se vuoi ottenere
-            qualcosa ed esserne soddisfatto, non ci sono strade alternative: te la devi sudare;
+            qualcosa ed esserne soddisfatto, te la devi sudare;
             sono anche fermamente convinto che se vogliamo migliorare questa nostra società
             piuttosto disastrata, anestetizzata da shopping, calcio scommesse e grandi fratelli,
             si debba lavorare sui bambini. Sono un fervente sostenitore della bici come 
             strumento di mobilità sostenibile (in particolare in città): ogni giorno 
-            percorro circa 25 Km per recarmi al lavoro sulla mia city bike, sono 
+            percorro circa 25 Km per recarmi al lavoro sulla mia city bike (in realtà il 
+            percorso casa-lavoro è di 46 Km ma io baro, faccio un tratto in macchina...), sono 
             sufficientemente munito di attrezzatura anti intemperie ma ahimé non ho ancora 
             trovato adeguate misure di difesa contro gli automobilisti nevrotici.</p>
         <p>
