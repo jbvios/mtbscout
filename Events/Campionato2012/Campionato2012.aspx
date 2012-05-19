@@ -28,10 +28,12 @@
             rimandiamo al sito di <a target="genoabike" href="http://www.genoabike.com/media/manifestazioni/genoacup/main/genoacup00.html">
                 Genoa Bike</a>.</p>
         <iframe src="map.html" style="height:600px; width:800px"></iframe>
+        
         <p style="text-align:center">Tracciato del percorso - <a href="track.zip" >scarica la traccia GPS</a></p>
         <uc3:Video ID="Video2" runat="server" VideoUrl="..\CoppaItalia2010\CoppaItalia2010.flv"
             PreviewUrl="..\CoppaItalia2010\CoppaItalia2010.jpg" Title="Video del percorso di gara (tratto nel bosco - Coppa Italia 2010))" />
         <uc3:Video ID="Video1" runat="server" VideoUrl="..\Campionato2009\Campionato2009.flv"
             PreviewUrl="..\Campionato2009\Campionato2009.jpg" Title="Video del percorso di gara (Campionato Italiano 2009)" />
+    <uc1:ImageIterator ID="ImageIterator1" runat="server" />
     </div>
 </asp:Content>
