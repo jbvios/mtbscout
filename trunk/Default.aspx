@@ -72,8 +72,7 @@
 				<div style="padding: 20px;">
 					<a title="Anello dei Fieschi, video discesa Casale - Pontenero" href="/public/Routes/AnelloFieschi/AnelloFieschi.aspx">
 						<span>Anello dei Fieschi, video discesa Casale - Pontenero</span>
-						<uc2:Video ID="Video1" VideoHeight="280px" runat="server" VideoUrl="~/public/routes/AnelloFieschi/casale_pontenero.flv"
-							PreviewUrl="~/public/routes/AnelloFieschi/casale_pontenero.jpg" />
+						<iframe width="400" height="280" src="http://www.youtube.com/embed/Ijip_kZV--Y" frameborder="0" allowfullscreen></iframe>
 					</a>
 				</div>
 			</div>
