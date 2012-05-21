@@ -544,7 +544,7 @@ public class DBHelper
     {
         try
         {
-            string path = PathFunctions.GetDatabasePath();
+            string path = PathFunctions.DBPath;
             if (File.Exists(path))
                 File.Copy(path, path + ".bkp" + i, true);
         }
