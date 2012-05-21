@@ -21,6 +21,7 @@ public partial class ImageIterator : System.Web.UI.UserControl
 		get { return title; }
 		set { title = value; }
 	}
+    public bool HideAds { get; set; }
     public string ImagesPath { get; set; }
 	
 	//--------------------------------------------------------------------------------
@@ -51,6 +52,7 @@ public partial class ImageIterator : System.Web.UI.UserControl
 
 		if (!Page.IsPostBack)
 			DrawTable();
+        Spot1.Visible = !HideAds;
 	}
 
 	//--------------------------------------------------------------------------------
