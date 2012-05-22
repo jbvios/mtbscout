@@ -20,6 +20,11 @@
             nei percorsi della valle, magari affrontando preliminarmente gli esercizi del campo
             scuola al fine di stabilire quali di questi percorsi possano essere affrontati senza
             difficoltà.</p>
+        <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
+            width: 330px; height: 50px"></iframe>
+        <a title="Seguici su Facebook" href="http://www.facebook.com/ScuolaMtbValPentemina"
+            target="_blank">
+            <img alt="Seguici su Facebook" src="seguici-facebook.jpg" style="width: 200px; height: 50px" /></a>
         <uc1:ImageIterator ID="ImageIterator1" runat="server" HideAds="true" />
         <h3>
             Lezioni per i bambini</h3>
