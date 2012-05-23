@@ -76,7 +76,7 @@
         <h2>
             Il maestro</h2>
         <p>
-            Mi chiamo <a href="http://www.linkedin.com/profile/view?id=138495946&amp;trk=tab_pro"
+            Mi chiamo <a href="http://www.linkedin.com/pub/marco-perasso/3a/470/14a"
                 target="marco">Marco</a>, ho una laurea in Economia e mi occupo di sviluppo
             software (in pratica sono uno dei colpevoli se i computer si comportano in modo
             strano e sembrano difficili da usare). Mi piace il lavoro che faccio ma... la bici
