@@ -37,7 +37,8 @@
         <ul>
             <li>lezione singola: 10 euro; </li>
             <li>abbonamento a 10 lezioni (con scadenza 15 settembre): 80 euro; chi ha effettuato
-                l&#39;abbonamento potrà accedere ad eventuali ulteriori lezioni a condizioni vantaggiose;
+                l&#39;abbonamento potrà accedere ad eventuali ulteriori lezioni al prezzo 
+                unitario di 8 euro;
             </li>
             <li>prima lezione di prova: gratuita.</li>
         </ul>
@@ -88,8 +89,7 @@
             società piuttosto disastrata, anestetizzata da shopping, calcio scommesse e grandi
             fratelli, si debba lavorare sui bambini. Sono un fervente sostenitore della bici
             come strumento di mobilità sostenibile (in particolare in città): ogni giorno percorro
-            circa 25 Km per recarmi al lavoro sulla mia city bike (in realtà il percorso casa-lavoro
-            è di 46 Km ma io baro, faccio un tratto in macchina...), sono sufficientemente munito
+            circa 25 Km per recarmi al lavoro sulla mia city bike, sono sufficientemente munito
             di attrezzatura anti intemperie ma ahimé non ho ancora trovato adeguate misure di
             difesa contro gli automobilisti nevrotici.</p>
         <p>
@@ -117,8 +117,8 @@
             di una curva a novanta gradi, seguendo l&#39;indicazione per Gazzolo. La strada
             sale per 1 Km, quindi inizia a scendere: dopo circa 200 metri troverete il campo
             scuola alla vostra destra.</p>
-        <p>
-            <a href="Scuola di Mountain Bike Val Pentemina.pdf" target="modulo">Scarica regolamento e modulo di adesione</a>.</p>
+        <h4>
+            <a href="Scuola di Mountain Bike Val Pentemina.pdf" target="modulo">Scarica regolamento e modulo di adesione</a>.</h4>
         <h4>
             <a target="schoolmap" href="http://maps.google.it/maps/myplaces?hl=it&ll=44.52607,9.06754&spn=0.001595,0.003613&ctz=-120&t=m&layer=c&cbll=44.526057,9.067671&panoid=_4c7DHvgZ28K-rtTqtjRUA&cbp=12,207.57,,0,24.89&z=19"
                 style="color: #0000FF; text-align: left">Visualizza dove si trova il campo scuola
