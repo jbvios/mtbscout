@@ -23,10 +23,14 @@
         <h2>
             Sabato 12 e domenica 13 maggio 2012</h2>
         <p>
-            Come ogni anno, ritorna il cross country a Montoggio sul nostro collaudato tracciato
-            di 4 Km, a cui abbiamo aggiunto piccole varianti. Per dettagli sull&#39;organizzazione
-            rimandiamo al sito di <a target="genoabike" href="http://www.genoabike.com/media/manifestazioni/genoacup/main/genoacup00.html">
-                Genoa Bike</a>.</p>
+            Come ogni anno, grande festa con il cross country a Montoggio sul nostro collaudato tracciato
+            di 4 Km. Dopo un periodo molto piovoso, il tempo ci ha graziati regalandoci una bella giornata all'insegna del divertimento; 
+            i torrenti colmi d&#39;acqua hanno protestato un po&#39;, ma alla fine si è riusciti 
+            ugualmente a creare i guadi, anche se abbiamo dovuto rinunciare a quello sul 
+            Laccio.</p>
+        <p>
+            Un grazie a Michela per le belle foto e a tutti quelli che hanno collaborato per 
+            il percorso e l&#39;organizzazione.</p>
         <iframe src="map.html" style="height:600px; width:800px"></iframe>
         
         <p style="text-align:center">Tracciato del percorso - <a href="track.zip" >scarica la traccia GPS</a></p>
