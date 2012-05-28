@@ -25,6 +25,8 @@
         <a title="Seguici su Facebook" href="http://www.facebook.com/ScuolaMtbValPentemina"
             target="_blank">
             <img alt="Seguici su Facebook" src="seguici-facebook.jpg" style="width: 200px; height: 50px" /></a>
+            <br />
+            <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0" allowfullscreen></iframe>
         <uc1:ImageIterator ID="ImageIterator1" runat="server" HideAds="true" />
         <h3>
             Lezioni per i bambini</h3>
