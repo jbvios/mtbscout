@@ -38,6 +38,11 @@
 				</div>
 			</div>
 			<div class="widget">
+		       <div style="padding: 20px;">
+				    <iframe width="420" height="300" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+			<div class="widget">
 				<div style="padding: 20px;">
 					<span>Guarda i nostri percorsi registrati, scarica la traccia GPS e buon divertimento!</span>
 					<asp:UpdatePanel ID="routePreview" runat="server" ChildrenAsTriggers="true" UpdateMode="Conditional">
