@@ -22,7 +22,8 @@
 		</p>
 		<p class="CenterUrl">
 			<a href="http://www.leadermind.com/borse-bicicletta" target="_blank" title="Borse bici">
-				<img src="http://s4e9827ed94d1d.img.gostorego.com/802754/cdn/media/s4/e9/82/7e/d9/4d/1d/designeditor/theme/current/9/images/logo.png" alt="Borse bici" />
+				<img src="http://s4e9827ed94d1d.img.gostorego.com/802754/cdn/media/s4/e9/82/7e/d9/4d/1d/designeditor/theme/current/9/images/logo.png" alt="Borse bici" /><br />
+				Borse bici
 			</a>
 		</p>
 		<p class="CenterUrl">
