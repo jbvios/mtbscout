@@ -7,10 +7,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
     <div id="ContentPanel" class="ContentPanel">
+        <a target="fci" href="http://www.federciclismo.it/" title="Federazione Ciclistica Italiana">
+            <img alt="Federazione Ciclistica Italiana" style="float: left; padding: 20px; padding-left: 50px;"
+                src="Logo FCI.jpg" /></a> 
+                <a target="asso" href="http://www.assomaestri.org/" title="Assomaestri">
+                    <img style="float: right; padding: 20px; padding-right: 50px;" alt="Assomaestri"
+                        src="assomaestri.png" />
+                </a>
+        <br />
         <h1>
             Scuola di Mountain Bike Val Pentemina</h1>
-        <h3>
-            (apertura sabato 2 Giugno 2012)</h3>
+        <br />
         <p>
             La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 14 anni ed ha l&#39;obiettivo
             di avvicinarli a questo sport con spirito giocoso e <b><i>non agonistico</i></b>,
@@ -25,8 +32,9 @@
         <a title="Seguici su Facebook" href="http://www.facebook.com/ScuolaMtbValPentemina"
             target="_blank">
             <img alt="Seguici su Facebook" src="seguici-facebook.jpg" style="width: 200px; height: 50px" /></a>
-            <br />
-            <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0" allowfullscreen></iframe>
+        <br />
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
+            allowfullscreen></iframe>
         <uc1:ImageIterator ID="ImageIterator1" runat="server" HideAds="true" />
         <h3>
             Lezioni per i bambini</h3>
@@ -39,9 +47,8 @@
         <ul>
             <li>lezione singola: 10 euro; </li>
             <li>abbonamento a 10 lezioni (con scadenza 15 settembre): 80 euro; chi ha effettuato
-                l&#39;abbonamento potrà accedere ad eventuali ulteriori lezioni al prezzo 
-                unitario di 8 euro;
-            </li>
+                l&#39;abbonamento potrà accedere ad eventuali ulteriori lezioni al prezzo unitario
+                di 8 euro; </li>
             <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
@@ -79,21 +86,20 @@
         <h2>
             Il maestro</h2>
         <p>
-            Mi chiamo <a href="http://www.linkedin.com/pub/marco-perasso/3a/470/14a"
-                target="marco">Marco</a>, ho una laurea in Economia e mi occupo di sviluppo
-            software (in pratica sono uno dei colpevoli se i computer si comportano in modo
-            strano e sembrano difficili da usare). Mi piace il lavoro che faccio ma... la bici
-            è sicuramente un&#39;altra cosa. E&#39; libertà, è un mezzo per sfogare le tensioni,
-            è uno strumento per muoversi senza vincoli, è un modo per rimanere bambini (che
-            ogni tanto si sbucciano un ginocchio o si infangano fino ai capelli), è una metafora
-            che ti insegna che se vuoi ottenere qualcosa ed esserne soddisfatto, te la devi
-            sudare; sono anche fermamente convinto che se vogliamo migliorare questa nostra
-            società piuttosto disastrata, anestetizzata da shopping, calcio scommesse e grandi
-            fratelli, si debba lavorare sui bambini. Sono un fervente sostenitore della bici
-            come strumento di mobilità sostenibile (in particolare in città): ogni giorno percorro
-            circa 25 Km per recarmi al lavoro sulla mia city bike, sono sufficientemente munito
-            di attrezzatura anti intemperie ma ahimé non ho ancora trovato adeguate misure di
-            difesa contro gli automobilisti nevrotici.</p>
+            Mi chiamo <a href="http://www.linkedin.com/pub/marco-perasso/3a/470/14a" target="marco">
+                Marco</a>, ho una laurea in Economia e mi occupo di sviluppo software (in pratica
+            sono uno dei colpevoli se i computer si comportano in modo strano e sembrano difficili
+            da usare). Mi piace il lavoro che faccio ma... la bici è sicuramente un&#39;altra
+            cosa. E&#39; libertà, è un mezzo per sfogare le tensioni, è uno strumento per muoversi
+            senza vincoli, è un modo per rimanere bambini (che ogni tanto si sbucciano un ginocchio
+            o si infangano fino ai capelli), è una metafora che ti insegna che se vuoi ottenere
+            qualcosa ed esserne soddisfatto, te la devi sudare; sono anche fermamente convinto
+            che se vogliamo migliorare questa nostra società piuttosto disastrata, anestetizzata
+            da shopping, calcio scommesse e grandi fratelli, si debba lavorare sui bambini.
+            Sono un fervente sostenitore della bici come strumento di mobilità sostenibile (in
+            particolare in città): ogni giorno percorro circa 25 Km per recarmi al lavoro sulla
+            mia city bike, sono sufficientemente munito di attrezzatura anti intemperie ma ahimé
+            non ho ancora trovato adeguate misure di difesa contro gli automobilisti nevrotici.</p>
         <p>
             Sulla scia di questa mia passione ho ottenuto il diploma di maestro della <a target="fci"
                 href="http://www.federciclismo.it/studi/maestri_home.asp">Federazione Ciclistica
@@ -120,7 +126,8 @@
             sale per 1 Km, quindi inizia a scendere: dopo circa 200 metri troverete il campo
             scuola alla vostra destra.</p>
         <h4>
-            <a href="Scuola di Mountain Bike Val Pentemina.pdf" target="modulo">Scarica regolamento e modulo di adesione</a>.</h4>
+            <a href="Scuola di Mountain Bike Val Pentemina.pdf" target="modulo">Scarica regolamento
+                e modulo di adesione</a>.</h4>
         <h4>
             <a target="schoolmap" href="http://maps.google.it/maps/myplaces?hl=it&ll=44.52607,9.06754&spn=0.001595,0.003613&ctz=-120&t=m&layer=c&cbll=44.526057,9.067671&panoid=_4c7DHvgZ28K-rtTqtjRUA&cbp=12,207.57,,0,24.89&z=19"
                 style="color: #0000FF; text-align: left">Visualizza dove si trova il campo scuola
