@@ -33,8 +33,7 @@
             target="_blank">
             <img alt="Seguici su Facebook" src="seguici-facebook.jpg" style="width: 200px; height: 50px" /></a>
         <br />
-        <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
-            allowfullscreen></iframe>
+       
         <uc1:ImageIterator ID="ImageIterator1" runat="server" HideAds="true" />
         <h3>
             Lezioni per i bambini</h3>
@@ -83,6 +82,8 @@
             quali il rispetto della natura, l&#39;impegno come mezzo principe per l&#39;ottenimento
             dei risultati, la bici come mezzo ideale di mobilità sostenibile, l&#39;attività
             fisica come veicolo di benessere.</p>
+             <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
+            allowfullscreen></iframe>
         <h2>
             Il maestro</h2>
         <p>
