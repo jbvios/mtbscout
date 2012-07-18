@@ -17,6 +17,7 @@
         <br />
         <h1>
             Scuola di Mountain Bike Val Pentemina</h1>
+            <h4 style="text-align:center" >Partita IVA 02118870993</h4>
         <br />
         <p>
             La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 14 anni ed ha l&#39;obiettivo
@@ -113,8 +114,7 @@
         <p>
             Potrai raccogliere altre informazioni su di me navigando questo sito, che ho curato
             nella forma (sigh, si vede che non sono un grafico...) e nei contenuti.
-            Il mio numero di Partita Iva è
-            02118870993.</p>
+            Il mio numero di Partita IVA è 02118870993.</p>
         <h2>
             Dov&#39;è la scuola?</h2>
         <p>
