@@ -113,7 +113,8 @@
         <p>
             Potrai raccogliere altre informazioni su di me navigando questo sito, che ho curato
             nella forma (sigh, si vede che non sono un grafico...) e nei contenuti.
-        </p>
+            Il mio numero di Partita Iva è
+            02118870993.</p>
         <h2>
             Dov&#39;è la scuola?</h2>
         <p>
