@@ -8,6 +8,14 @@
 	<div id="ContentPanel" class="ContentPanel">
 		<h1>
 			Links utili</h1>
+			<p class="CenterUrl">
+			<a href="http://fuoridalsolco.wordpress.com/" target="fuorisolco" title="Palestra di pensiero">
+				<img style="width:301px; height:64px" 
+                    src="http://fuoridalsolco.files.wordpress.com/2012/07/cropped-solco3.jpg" 
+                    alt="Palestra di pensiero" /><br />
+				Palestra di pensiero
+			</a>
+		</p>
 		<p class="CenterUrl">
 			<a href="http://www.videociclismo.altervista.org" target="_blank" title="Video di ciclismo">
 				<img src="Images/bike-icon.png" alt="Video di ciclismo" /><br />
