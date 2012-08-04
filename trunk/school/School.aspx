@@ -9,15 +9,15 @@
     <div id="ContentPanel" class="ContentPanel">
         <a target="fci" href="http://www.federciclismo.it/" title="Federazione Ciclistica Italiana">
             <img alt="Federazione Ciclistica Italiana" style="float: left; padding: 20px; padding-left: 50px;"
-                src="Logo FCI.jpg" /></a> 
-                <a target="asso" href="http://www.assomaestri.org/" title="Assomaestri">
+                src="Logo FCI.jpg" /></a> <a target="asso" href="http://www.assomaestri.org/" title="Assomaestri">
                     <img style="float: right; padding: 20px; padding-right: 50px;" alt="Assomaestri"
                         src="assomaestri.png" />
                 </a>
         <br />
         <h1>
             Scuola di Mountain Bike Val Pentemina</h1>
-            <h4 style="text-align:center" >Partita IVA 02118870993</h4>
+        <h4 style="text-align: center">
+            Partita IVA 02118870993</h4>
         <br />
         <p>
             La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 14 anni ed ha l&#39;obiettivo
@@ -34,7 +34,6 @@
             target="_blank">
             <img alt="Seguici su Facebook" src="seguici-facebook.jpg" style="width: 200px; height: 50px" /></a>
         <br />
-       
         <uc1:ImageIterator ID="ImageIterator1" runat="server" HideAds="true" />
         <h3>
             Lezioni per i bambini</h3>
@@ -55,7 +54,8 @@
             A questo va aggiunto il costo del tesseramento annuo alla Federazione Ciclistica
             Italiana (comprensivo di assicurazione) in base al <a target="fci" href="http://www.federciclismo.it/affiliazione/tesseramento.asp?cod=5">
                 tariffario in vigore</a>; il tesseramento verrà effettuato presso la <a href="http://www.genoabike.com/"
-                    target="gbike">A.S.D. Genoa Bike</a>, affiliata alla F.C.I.</p>
+                    target="gbike">A.S.D. Genoa Bike</a>, affiliata alla F.C.I. - <a href="http://www.federciclismo.it/affiliazione/societa2012/dettagliosoc.asp?mcodice=06C1178"
+                        target="_blank">visualizza lista degli attuali tesserati.</a></p>
         <p>
             Ogni bambino deve essere munito di una fototessera, certificato medico (per attività
             sportiva <b>non agonistica fino ai 12 anni, agonistica a partire dai 13 anni</b>),
@@ -83,7 +83,7 @@
             quali il rispetto della natura, l&#39;impegno come mezzo principe per l&#39;ottenimento
             dei risultati, la bici come mezzo ideale di mobilità sostenibile, l&#39;attività
             fisica come veicolo di benessere.</p>
-             <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
+        <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
             allowfullscreen></iframe>
         <h2>
             Il maestro</h2>
@@ -113,8 +113,8 @@
             solo un po&#39; del mio entusiasmo, potrò ritenermi soddisfatto.</p>
         <p>
             Potrai raccogliere altre informazioni su di me navigando questo sito, che ho curato
-            nella forma (sigh, si vede che non sono un grafico...) e nei contenuti.
-            Il mio numero di Partita IVA è 02118870993.</p>
+            nella forma (sigh, si vede che non sono un grafico...) e nei contenuti. Il mio numero
+            di Partita IVA è 02118870993.</p>
         <h2>
             Dov&#39;è la scuola?</h2>
         <p>
