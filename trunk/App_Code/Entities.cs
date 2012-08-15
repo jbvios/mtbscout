@@ -258,6 +258,7 @@ namespace MTBScout.Entities
         }
         public String Name { get; set; }
         public String Message { get; set; }
+        public String FormattedMessage { get { return Message.Replace("\n", "<br/>"); } }
         public String Ip { get; set; }
         public String UserId { get; set; }
         public DateTime PostingDate { get; set; }
@@ -277,6 +278,7 @@ namespace MTBScout.Entities
         }
         public String Name { get; set; }
         public String Message { get; set; }
+        public String FormattedMessage { get { return Message.Replace("\n", "<br/>"); } }
         public String Ip { get; set; }
         public String UserId { get; set; }
         public DateTime PostingDate { get; set; }
