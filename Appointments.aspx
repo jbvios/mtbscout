@@ -56,7 +56,7 @@
                         Quando: <b>
                             <%#Helper.FormatDate((DateTime)DataBinder.Eval(Container.DataItem, "AppointmentDate"))%></b></div>
                     <div style="font-size: larger; font-weight: bold; font-variant: small-caps">
-                        <%#DataBinder.Eval(Container.DataItem, "Message")%></div>
+                        <%#DataBinder.Eval(Container.DataItem, "FormattedMessage")%></div>
                     <div style="text-align:center;">
                         <!-- Inizio codice ilMeteo.it -->
                         <a href="http://www.ilmeteo.it/Liguria" title="Meteo Liguria" target="_blank">
@@ -92,7 +92,7 @@
                                         <%#DataBinder.Eval(Container.DataItem, "PostingDate")%>
                                     </td>
                                     <td>
-                                        <%#DataBinder.Eval(Container.DataItem, "Message")%>
+                                        <%#DataBinder.Eval(Container.DataItem, "FormattedMessage")%>
                                     </td>
                                     <td>
                                         <%#DataBinder.Eval(Container.DataItem, "Name")%>
