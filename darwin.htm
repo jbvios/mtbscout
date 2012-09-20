@@ -1,0 +1,320 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Selezione naturale</title>
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        body
+        {
+            font-family: "arial";
+        }
+        input
+        {
+            width: 176px;
+        }
+        td
+        {
+            text-align: center;
+        }
+        .female
+        {
+            background-color: pink;
+        }
+        .male
+        {
+            background-color: cyan;
+        }
+        .human
+        {
+            font-family: "courier new";
+        }
+        #childs
+        {
+            font-family: "courier new";
+        }
+    </style>
+
+    <script type="text/javascript">
+        /// <reference path="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" />
+        var sCreateChilds = "Nascita dei figli";
+        var sCoupling = "Accoppiamento";
+        var sSelection = "Selezione naturale";
+        var colors = ["pink", "beige", "lightblue", "yellow", "gray"];
+        var number = 0;
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+        var def = "FUORI DAL SOLCO";
+        var childs = [];
+
+        String.prototype.replaceAt = function(index, char) {
+            return this.substr(0, index) + char + this.substr(index + char.length);
+        }
+        function getRandomChar() {
+            return possible.charAt(Math.floor(Math.random() * possible.length));
+
+        }
+        function nodarwin(obj) {
+            initValues();
+        }
+        function darwin(obj) {
+            if (obj.value == sCreateChilds) {
+                newGeneration();
+                obj.value = sSelection;
+            }
+            else if (obj.value == sCoupling) {
+                couple();
+                obj.value = sCreateChilds;
+            }
+            else if (obj.value == sSelection) {
+                naturalSelection();
+                obj.value = sCoupling;
+            }
+        }
+        function naturalSelection() {
+
+            $(".human").each(function(idx, obj) {
+                obj.value = childs[idx].value;
+            });
+            $("#childs").empty();
+            range();
+        }
+        function newGeneration() {
+            childs = [];
+            var males = $(".male");
+            males.sort(function(a, b) {
+                return Math.max(a.rating, a.partner.rating) - Math.max(b.rating, b.partner.rating);
+            });
+            for (var i = males.length - 1; i >= 0; i--) {
+                var male = males[i];
+                var sons = i * 2 + 1;
+                for (var j = 0; j < sons; j++) {
+                    var child = getChild(male.value, male.partner.value);
+                    child.rating = rate(child.value);
+                    child.bkgColor = male.style.backgroundColor;
+                    childs.push(child);
+
+                }
+            }
+
+            childs.sort(function(a, b) {
+                return b.rating - a.rating;
+            });
+
+            for (var i = 0; i < childs.length; i++) {
+                var child = childs[i];
+                var text = child.value + ' - punteggio: ' + child.rating;
+                if (i > 9)
+                    text += " (non sopravviverà)";
+                else
+                    text += " (entrerà a far parte della popolazione adulta e potrà riprodursi)";
+                $("<div></div>").appendTo($("#childs")).text(text).css("backgroundColor", child.bkgColor);
+            }
+        }
+        function getChild(male, female) {
+
+            var indexes = [];
+            var s = new String(male);
+            for (var i = 0; i < number; i++) {
+                while (indexes.length < number / 2) {
+                    var rnd = Math.floor(Math.random() * number);
+                    if (indexes.indexOf(rnd) == -1) {
+                        indexes.push(rnd);
+                        s = s.replaceAt(rnd, female[rnd]);
+                    }
+                }
+
+            }
+            rnd = Math.floor(Math.random() * number);
+            s = s.replaceAt(rnd, getRandomChar());
+            var ch = new Object();
+            ch.value = s;
+            return ch;
+        }
+        function range() {
+            var ok = false;
+            $(".human").each(function(idx, obj) {
+                var rating = rate(obj.value);
+                obj.rating = rating;
+                $("#Rating" + obj.id).text(rating);
+                if (rating == number)
+                    ok = true;
+            });
+            if (ok)
+                alert("E' stato raggiunto il punteggio massimo!");
+        }
+        function rate(s) {
+            var tgt = $("#target").val();
+            var rating = 0;
+            for (var i = 0; i < tgt.length; i++) {
+                if (tgt[i] == s[i])
+                    rating++;
+            }
+            return rating;
+        }
+        function couple() {
+            var females = $(".female");
+            var males = $(".male");
+            females.sort(function(a, b) {
+                return a.rating - b.rating;
+            });
+            males.sort(function(a, b) {
+                return a.rating - b.rating;
+            });
+
+            for (var i = 0; i < females.length; i++) {
+                var male = males[i];
+                var female = females[i];
+                male.style.backgroundColor = female.style.backgroundColor = colors[i];
+                male.partner = female;
+                female.partner = male;
+            }
+        }
+        function getRandomString() {
+            var s = "";
+            for (var i = 0; i < number; i++)
+                s += getRandomChar();
+            return s;
+        }
+        function initValues() {
+            var tgt = $("#target").val();
+            number = tgt.length;
+
+            for (var i = 0; i < number; i++)
+                if (possible.indexOf(tgt[i]) == -1) {
+                alert("Sono ammessi solo caratteri alfabetici maiuscoli");
+                $("#target").val(def);
+                $("#target").focus();
+                initValues();
+                return;
+            }
+
+            $(".human").each(function(idx, obj) { obj.value = getRandomString(); });
+            $("#darwin").val(sCoupling);
+            $("#childs").empty();
+            $("#rating").val(number);
+            range();
+        }
+        $(function() {
+            $("#target").val(def);
+            initValues();
+
+        });
+    </script>
+
+</head>
+<body>
+    <label for="target">
+        L'ambiente premia gli elementi che più assomigliano a:
+    </label>
+    <input type="text" value="FUORI DAL SOLCO" id="target" onchange="initValues();" />
+    <label for="rating">
+        Punteggio:
+    </label>
+    <input type="text" id="rating" readonly="readonly" style="width: 30px;" />
+    <table border="1px" style="table-layout: auto; border-width: 1px; margin: 10px;">
+        <thead>
+            <tr>
+                <td colspan="4">
+                    Popolazione adulta
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Maschio
+                </td>
+                <td>
+                    Punteggio
+                </td>
+                <td>
+                    Femmina
+                </td>
+                <td>
+                    Punteggio
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="Male1" class="male human" />
+                </td>
+                <td>
+                    <span id="RatingMale1"></span>
+                </td>
+                <td>
+                    <input type="text" id="Female1" class="female human" />
+                </td>
+                <td>
+                    <span id="RatingFemale1"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="Male2" class="male human" />
+                </td>
+                <td>
+                    <span id="RatingMale2"></span>
+                </td>
+                <td>
+                    <input type="text" id="Female2" class="female human" />
+                </td>
+                <td>
+                    <span id="RatingFemale2"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="Male3" class="male human" />
+                </td>
+                <td>
+                    <span id="RatingMale3"></span>
+                </td>
+                <td>
+                    <input type="text" id="Female3" class="female human" />
+                </td>
+                <td>
+                    <span id="RatingFemale3"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="Male4" class="male human" />
+                </td>
+                <td>
+                    <span id="RatingMale4"></span>
+                </td>
+                <td>
+                    <input type="text" id="Female4" class="female human" />
+                </td>
+                <td>
+                    <span id="RatingFemale4"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="Male5" class="male human" />
+                </td>
+                <td>
+                    <span id="RatingMale5"></span>
+                </td>
+                <td>
+                    <input type="text" id="Female5" class="female human" />
+                </td>
+                <td>
+                    <span id="RatingFemale5"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <input type="button" id="nodarwin" value="Selezione non cumulativa" onclick="nodarwin(this);" />
+                    <input type="button" id="darwin" onclick="darwin(this);" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        Figli (ordinati per punteggio):</div>
+    <div id="childs">
+    </div>
+</body>
+</html>
