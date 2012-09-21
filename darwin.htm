@@ -2,7 +2,7 @@
 <head>
     <title>Selezione naturale</title>
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
     <style type="text/css">
         body
@@ -33,13 +33,14 @@
         {
             font-family: "courier new";
         }
+		
     </style>
 
     <script type="text/javascript">
         /// <reference path="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" />
-        var sCreateChilds = "Nascita dei figli";
-        var sCoupling = "Accoppiamento";
-        var sSelection = "Selezione naturale";
+        var sCreateChilds = "Simula la fase di nascita dei figli";
+        var sCoupling = "Simula la fase di accoppiamento";
+        var sSelection = "Simula la fase di selezione naturale";
         var colors = ["pink", "beige", "lightblue", "yellow", "gray"];
         var number = 0;
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
@@ -54,9 +55,15 @@
 
         }
         function nodarwin(obj) {
-            initValues();
+        	initValues();
+        	$("#couplingDescription").hide();
+        	$("#childContainer").hide();
+        	$("#selectionDescription").hide();
+        	$("#nodarwinDescription").show();
+        	
         }
         function darwin(obj) {
+        	$("#nodarwinDescription").hide();
             if (obj.value == sCreateChilds) {
                 newGeneration();
                 obj.value = sSelection;
@@ -72,12 +79,15 @@
         }
         function naturalSelection() {
 
-            $(".human").each(function(idx, obj) {
-                obj.value = childs[idx].value;
-            });
+        	$(".human").each(function (idx, obj) {
+        		obj.value = childs[idx].value;
+        		obj.style.backgroundColor = null;
+        	});
             $("#childs").empty();
             range();
             $("#generation").val(parseInt($("#generation").val()) + 1);
+            $("#childContainer").hide();
+            $("#selectionDescription").show();
         }
         function newGeneration() {
             childs = [];
@@ -109,7 +119,9 @@
                 else
                     text += " (entrerà a far parte della popolazione adulta e potrà riprodursi)";
                 $("<div></div>").appendTo($("#childs")).text(text).css("backgroundColor", child.bkgColor);
-            }
+               }
+               $("#couplingDescription").hide();
+               $("#childContainer").show();
         }
         function getChild(male, female) {
 
@@ -168,7 +180,9 @@
                 male.style.backgroundColor = female.style.backgroundColor = colors[i];
                 male.partner = female;
                 female.partner = male;
-            }
+               }
+               $("#couplingDescription").show();
+               $("#selectionDescription").hide();
         }
         function getRandomString() {
             var s = "";
@@ -205,6 +219,19 @@
 
 </head>
 <body>
+<h1>Simulazione della selezione naturale</h1>
+<p>In questa simulazione abbiamo una popolazione di dieci individui, cinque maschi e cinque femmine. Ipotizziamo che la popolazione sia costante: ad ogni cambio generazionale, i genitori muoiono e lasciano posto ai figli: di questi, solo i dieci più adatti sopravvivono, per metà maschi e per metà femmine.</p>
+	<p>Per stabilire i criteri di selezione viene introdotto un individuo ideale, preso 
+		come riferimento per misurare l&#39;adattamento ambientale; quanto più ogni elemento 
+		della popolazione si avvicina al riferimento, tanto più viene premiato dalla 
+		selezione naturale. Ipotizziamo che l&#39;ambiente sia immutabile, per cui 
+		l&#39;individuo di riferimento non cambia.</p>
+	<p>Esistono due procedure: la selezione NON cumulativa, nella quale ogni generazione 
+		riparte da zero, e la selezione cumulativa (darwiniana), nella quale ogni 
+		generazione trasmette ai figli parte del codice genetico. Le mutazioni sono 
+		casuali, ma la selezione naturale è tutt&#39;altro che casuale! Chi pensa che sia 
+		difficile credere che un essere umano si sia formato per caso, sfrutta 
+		impropriamente la prima procedura per sostenere la propria argomentazione.</p>
     <label for="target">
         L'ambiente premia gli elementi che più assomigliano a:
     </label>
@@ -212,7 +239,7 @@
     <input type="text" value="FUORI DAL SOLCO" id="target" onchange="initValues();" />
     <br />
 	<label for="rating">
-        Punteggio:
+        Punteggio di riferimento:
     </label>
     <input type="text" id="rating" readonly="readonly" style="width: 30px;" />
     <label for="generation">
@@ -220,6 +247,7 @@
     </label>
     <input type="text" id="generation" readonly="readonly" style="width: 30px;" />
     <br />
+	<span>Il punteggio è un indice di adattamento all'ambiente; quanto più si avvicina al punteggio di riferimento, tanto più l'ambiente premia l'individuo.</span>
     <table border="1px" style="table-layout: auto; border-width: 1px; margin: 10px;">
         <thead>
             <tr>
@@ -315,15 +343,20 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <input type="button" id="nodarwin" value="Selezione non cumulativa" onclick="nodarwin(this);" />
-                    <input type="button" id="darwin" onclick="darwin(this);" />
+                    <input type="button" id="nodarwin" value="Simula la selezione non cumulativa" style="width:300px" onclick="nodarwin(this);" />
+                    <input type="button" id="darwin" onclick="darwin(this);" style="width:300px" />
                 </td>
             </tr>
         </tbody>
     </table>
-    <div>
-        Figli (ordinati per punteggio):</div>
+	<div>
+    <div id="childContainer" style="display:none;">
+        Di seguito leggi i figli ordinati per punteggio; il colore indica la coppia che li ha generati; ogni figlio riceve metà dei caratteri dal padre e metà dalla madre (scelti casualmente); un carattere a caso del miscuglio viene poi sostituito con un nuovo carattere, scelto a caso fra quelli ammessi, per simulare la mutazione genetica</div>
     <div id="childs">
     </div>
+	</div>
+	<div id="couplingDescription" style="display:none;">La femmina dal punteggio più alto sceglie il maschio dal punteggio più alto, lasciandogli credere che sia stato lui a scegliere (ma questo è un dettaglio trascurabile); a parità di punteggio, la scelta è casuale. I colori individuano le coppie che si sono formate.</div>
+	<div id="selectionDescription" style="display:none;">I genitori sono morti, solo dieci dei figli sono sopravvissuti (quelli con l'indice di adattamento più alto, a parità di indice vengono scelti a caso) e sono andati a sostituire i genitori.</div>
+	<div id="nodarwinDescription" style="display:none;">Ogni nuova generazione non eredita i caratteri della generazione precedente; non c'è selezione, questo processo è veramente casuale. Raggiungere il punteggio di riferimento è molto improbabile.</div>
 </body>
 </html>
