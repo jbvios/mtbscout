@@ -392,8 +392,16 @@ public static class Helper
     }
     public static string GetImageTitle(string file)
     {
-        using (Bitmap bmp = new Bitmap(file))
-            return GetImageTitle(bmp);
+        try
+        {
+            using (Bitmap bmp = new Bitmap(file))
+                return GetImageTitle(bmp);
+        }
+        catch (Exception e)
+        {
+            Log.Add(e.ToString());
+            return "";
+        }
     }
     public static string GetImageTitle(Image img)
     {
@@ -402,8 +410,9 @@ public static class Helper
             PropertyItem piDesc = img.GetPropertyItem(ImageTitleId);
             return Encoding.UTF8.GetString(piDesc.Value, 0, piDesc.Value.Length - 1);
         }
-        catch
+        catch (Exception e)
         {
+            Log.Add(e.ToString());
             return "";
         }
     }
@@ -412,20 +421,27 @@ public static class Helper
     public static void SetImageTitle(string file, string title)
     {
 
-        byte[] buff;
-        using (FileStream fs = File.OpenRead(file))
+        try
         {
-            buff = new byte[(int)fs.Length];
-            fs.Read(buff, 0, (int)fs.Length);
-
-        }
-        using (MemoryStream ms = new MemoryStream(buff))
-        {
-            using (Bitmap bmp = (Bitmap)Bitmap.FromStream(ms))
+            byte[] buff;
+            using (FileStream fs = File.OpenRead(file))
             {
-                SetImageTitle(bmp, title);
-                bmp.Save(file);
+                buff = new byte[(int)fs.Length];
+                fs.Read(buff, 0, (int)fs.Length);
+
             }
+            using (MemoryStream ms = new MemoryStream(buff))
+            {
+                using (Bitmap bmp = (Bitmap)Bitmap.FromStream(ms))
+                {
+                    SetImageTitle(bmp, title);
+                    bmp.Save(file);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Add(e.ToString());
         }
     }
     public static void SetImageTitle(Image img, string title)
@@ -444,8 +460,9 @@ public static class Helper
 
             img.SetPropertyItem(piDate);
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            Log.Add(e.ToString());
         }
 
     }
