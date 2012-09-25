@@ -38,10 +38,10 @@
 
     <script type="text/javascript">
         /// <reference path="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" />
-        var sCreateChilds = "Simula la fase di nascita dei figli";
-        var sCoupling = "Simula la fase di accoppiamento";
-        var sSelection = "Simula la fase di selezione naturale";
-        var colors = ["pink", "beige", "lightblue", "yellow", "gray"];
+        var sCreateChilds = "(B) Simula la fase di nascita dei figli";
+        var sCoupling = "(B) Simula la fase di accoppiamento";
+        var sSelection = "(B) Simula la fase di selezione naturale";
+        var colors = ["lightcoral", "lightgreen", "lightblue", "yellow", "lightgray"];
         var number = 0;
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
         var def = "FUORI DAL SOLCO";
@@ -220,18 +220,6 @@
 </head>
 <body>
 <h1>Simulazione della selezione naturale</h1>
-<p>In questa simulazione abbiamo una popolazione di dieci individui, cinque maschi e cinque femmine. Ipotizziamo che la popolazione sia costante: ad ogni cambio generazionale, i genitori muoiono e lasciano posto ai figli: di questi, solo i dieci più adatti sopravvivono, per metà maschi e per metà femmine.</p>
-	<p>Per stabilire i criteri di selezione viene introdotto un individuo ideale, preso 
-		come riferimento per misurare l&#39;adattamento ambientale; quanto più ogni elemento 
-		della popolazione si avvicina al riferimento, tanto più viene premiato dalla 
-		selezione naturale. Ipotizziamo che l&#39;ambiente sia immutabile, per cui 
-		l&#39;individuo di riferimento non cambia.</p>
-	<p>Esistono due procedure: la selezione NON cumulativa, nella quale ogni generazione 
-		riparte da zero, e la selezione cumulativa (darwiniana), nella quale ogni 
-		generazione trasmette ai figli parte del codice genetico. Le mutazioni sono 
-		casuali, ma la selezione naturale è tutt&#39;altro che casuale! Chi pensa che sia 
-		difficile credere che un essere umano si sia formato per caso, sfrutta 
-		impropriamente la prima procedura per sostenere la propria argomentazione.</p>
     <label for="target">
         L'ambiente premia gli elementi che più assomigliano a:
     </label>
@@ -343,7 +331,7 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <input type="button" id="nodarwin" value="Simula la selezione non cumulativa" style="width:300px" onclick="nodarwin(this);" />
+                    <input type="button" id="nodarwin" value="(A) Simula la selezione non cumulativa" style="width:300px" onclick="nodarwin(this);" />
                     <input type="button" id="darwin" onclick="darwin(this);" style="width:300px" />
                 </td>
             </tr>
