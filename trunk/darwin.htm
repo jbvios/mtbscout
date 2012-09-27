@@ -1,10 +1,17 @@
 ﻿<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Selezione naturale</title>
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-
-    <style type="text/css">
+	<title>Simulazione della selezione naturale</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<style type="text/css">
+		h1
+		{
+		 text-align: center;
+		}
+		h3
+		{
+		 text-align: center;
+		}
+		
         body
         {
             font-family: "arial";
@@ -35,316 +42,334 @@
         }
 		
     </style>
+	<script type="text/javascript">
+		/// <reference path="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" />
+		var sCreateChilds = "(B) Simula la fase di nascita dei figli";
+		var sCoupling = "(B) Simula la fase di accoppiamento";
+		var sSelection = "(B) Simula la fase di selezione naturale";
+		var colors = ["lightcoral", "lightgreen", "lightblue", "yellow", "lightgray"];
+		var number = 0;
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
+		var def = "FUORI DAL SOLCO";
+		var childs = [];
 
-    <script type="text/javascript">
-        /// <reference path="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" />
-        var sCreateChilds = "(B) Simula la fase di nascita dei figli";
-        var sCoupling = "(B) Simula la fase di accoppiamento";
-        var sSelection = "(B) Simula la fase di selezione naturale";
-        var colors = ["lightcoral", "lightgreen", "lightblue", "yellow", "lightgray"];
-        var number = 0;
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ";
-        var def = "FUORI DAL SOLCO";
-        var childs = [];
+		String.prototype.replaceAt = function (index, char) {
+			return this.substr(0, index) + char + this.substr(index + char.length);
+		}
+		function getRandomChar() {
+			return possible.charAt(Math.floor(Math.random() * possible.length));
 
-        String.prototype.replaceAt = function(index, char) {
-            return this.substr(0, index) + char + this.substr(index + char.length);
-        }
-        function getRandomChar() {
-            return possible.charAt(Math.floor(Math.random() * possible.length));
+		}
+		function nodarwin(obj) {
+			initValues();
+			$("#couplingDescription").hide();
+			$("#childContainer").hide();
+			$("#selectionDescription").hide();
+			$("#nodarwinDescription").show();
 
-        }
-        function nodarwin(obj) {
-        	initValues();
-        	$("#couplingDescription").hide();
-        	$("#childContainer").hide();
-        	$("#selectionDescription").hide();
-        	$("#nodarwinDescription").show();
-        	
-        }
-        function darwin(obj) {
-        	$("#nodarwinDescription").hide();
-            if (obj.value == sCreateChilds) {
-                newGeneration();
-                obj.value = sSelection;
-            }
-            else if (obj.value == sCoupling) {
-                couple();
-                obj.value = sCreateChilds;
-            }
-            else if (obj.value == sSelection) {
-                naturalSelection();
-                obj.value = sCoupling;
-            }
-        }
-        function naturalSelection() {
+		}
+		function darwin(obj) {
+			$("#nodarwinDescription").hide();
+			if (obj.value == sCreateChilds) {
+				newGeneration();
+				obj.value = sSelection;
+			}
+			else if (obj.value == sCoupling) {
+				couple();
+				obj.value = sCreateChilds;
+			}
+			else if (obj.value == sSelection) {
+				naturalSelection();
+				obj.value = sCoupling;
+			}
+		}
+		function naturalSelection() {
 
-        	$(".human").each(function (idx, obj) {
-        		obj.value = childs[idx].value;
-        		obj.style.backgroundColor = null;
-        	});
-            $("#childs").empty();
-            range();
-            $("#generation").val(parseInt($("#generation").val()) + 1);
-            $("#childContainer").hide();
-            $("#selectionDescription").show();
-        }
-        function newGeneration() {
-            childs = [];
-            var males = $(".male");
-            males.sort(function(a, b) {
-                return Math.max(a.rating, a.partner.rating) - Math.max(b.rating, b.partner.rating);
-            });
-            for (var i = males.length - 1; i >= 0; i--) {
-                var male = males[i];
-                var sons = i * 2 + 1;
-                for (var j = 0; j < sons; j++) {
-                    var child = getChild(male.value, male.partner.value);
-                    child.rating = rate(child.value);
-                    child.bkgColor = male.style.backgroundColor;
-                    childs.push(child);
+			$(".human").each(function (idx, obj) {
+				obj.value = childs[idx].value;
+				obj.style.backgroundColor = null;
+			});
+			$("#childs").empty();
+			range();
+			$("#generation").val(parseInt($("#generation").val()) + 1);
+			$("#childContainer").hide();
+			$("#selectionDescription").show();
+		}
+		function newGeneration() {
+			childs = [];
+			var males = $(".male");
+			males.sort(function (a, b) {
+				return Math.max(a.rating, a.partner.rating) - Math.max(b.rating, b.partner.rating);
+			});
+			for (var i = males.length - 1; i >= 0; i--) {
+				var male = males[i];
+				var sons = i * 2 + 1;
+				for (var j = 0; j < sons; j++) {
+					var child = getChild(male.value, male.partner.value);
+					child.rating = rate(child.value);
+					child.bkgColor = male.style.backgroundColor;
+					childs.push(child);
 
-                }
-            }
+				}
+			}
 
-            childs.sort(function(a, b) {
-                return b.rating - a.rating;
-            });
+			childs.sort(function (a, b) {
+				return b.rating - a.rating;
+			});
 
-            for (var i = 0; i < childs.length; i++) {
-                var child = childs[i];
-                var text = child.value + ' - punteggio: ' + child.rating;
-                if (i > 9)
-                    text += " (non sopravviverà)";
-                else
-                    text += " (entrerà a far parte della popolazione adulta e potrà riprodursi)";
-                $("<div></div>").appendTo($("#childs")).text(text).css("backgroundColor", child.bkgColor);
-               }
-               $("#couplingDescription").hide();
-               $("#childContainer").show();
-        }
-        function getChild(male, female) {
+			for (var i = 0; i < childs.length; i++) {
+				var child = childs[i];
+				var text = child.value + ' - punteggio: ' + child.rating;
+				if (i > 9)
+					text += " (non sopravviverà)";
+				else
+					text += " (entrerà a far parte della popolazione adulta e potrà riprodursi)";
+				$("<div></div>").appendTo($("#childs")).text(text).css("backgroundColor", child.bkgColor);
+			}
+			$("#couplingDescription").hide();
+			$("#childContainer").show();
+		}
+		function getChild(male, female) {
 
-            var indexes = [];
-            var s = new String(male);
-            for (var i = 0; i < number; i++) {
-                while (indexes.length < number / 2) {
-                    var rnd = Math.floor(Math.random() * number);
-                    if (indexes.indexOf(rnd) == -1) {
-                        indexes.push(rnd);
-                        s = s.replaceAt(rnd, female[rnd]);
-                    }
-                }
+			var indexes = [];
+			var s = new String(male);
+			for (var i = 0; i < number; i++) {
+				while (indexes.length < number / 2) {
+					var rnd = Math.floor(Math.random() * number);
+					if (indexes.indexOf(rnd) == -1) {
+						indexes.push(rnd);
+						s = s.replaceAt(rnd, female[rnd]);
+					}
+				}
 
-            }
-            rnd = Math.floor(Math.random() * number);
-            s = s.replaceAt(rnd, getRandomChar());
-            var ch = new Object();
-            ch.value = s;
-            return ch;
-        }
-        function range() {
-            var ok = false;
-            $(".human").each(function(idx, obj) {
-                var rating = rate(obj.value);
-                obj.rating = rating;
-                $("#Rating" + obj.id).text(rating);
-                if (rating == number)
-                    ok = true;
-            });
-            if (ok)
-                alert("E' stato raggiunto il punteggio massimo!");
-        }
-        function rate(s) {
-            var tgt = $("#target").val();
-            var rating = 0;
-            for (var i = 0; i < tgt.length; i++) {
-                if (tgt[i] == s[i])
-                    rating++;
-            }
-            return rating;
-        }
-        function couple() {
-            var females = $(".female");
-            var males = $(".male");
-            females.sort(function(a, b) {
-                return a.rating - b.rating;
-            });
-            males.sort(function(a, b) {
-                return a.rating - b.rating;
-            });
+			}
+			rnd = Math.floor(Math.random() * number);
+			s = s.replaceAt(rnd, getRandomChar());
+			var ch = new Object();
+			ch.value = s;
+			return ch;
+		}
+		function range() {
+			var ok = false;
+			$(".human").each(function (idx, obj) {
+				var rating = rate(obj.value);
+				obj.rating = rating;
+				$("#Rating" + obj.id).text(rating);
+				if (rating == number)
+					ok = true;
+			});
+			if (ok)
+				alert("E' stato raggiunto il punteggio massimo!");
+		}
+		function rate(s) {
+			var tgt = $("#target").val();
+			var rating = 0;
+			for (var i = 0; i < tgt.length; i++) {
+				if (tgt[i] == s[i])
+					rating++;
+			}
+			return rating;
+		}
+		function couple() {
+			var females = $(".female");
+			var males = $(".male");
+			females.sort(function (a, b) {
+				return a.rating - b.rating;
+			});
+			males.sort(function (a, b) {
+				return a.rating - b.rating;
+			});
 
-            for (var i = 0; i < females.length; i++) {
-                var male = males[i];
-                var female = females[i];
-                male.style.backgroundColor = female.style.backgroundColor = colors[i];
-                male.partner = female;
-                female.partner = male;
-               }
-               $("#couplingDescription").show();
-               $("#selectionDescription").hide();
-        }
-        function getRandomString() {
-            var s = "";
-            for (var i = 0; i < number; i++)
-                s += getRandomChar();
-            return s;
-        }
-        function initValues() {
-            var tgt = $("#target").val();
-            number = tgt.length;
+			for (var i = 0; i < females.length; i++) {
+				var male = males[i];
+				var female = females[i];
+				male.style.backgroundColor = female.style.backgroundColor = colors[i];
+				male.partner = female;
+				female.partner = male;
+			}
+			$("#couplingDescription").show();
+			$("#selectionDescription").hide();
+		}
+		function getRandomString() {
+			var s = "";
+			for (var i = 0; i < number; i++)
+				s += getRandomChar();
+			return s;
+		}
+		function initValues() {
+			var tgt = $("#target").val();
+			number = tgt.length;
 
-            for (var i = 0; i < number; i++)
-                if (possible.indexOf(tgt[i]) == -1) {
-                alert("Sono ammessi solo caratteri alfabetici maiuscoli");
-                $("#target").val(def);
-                $("#target").focus();
-                initValues();
-                return;
-            }
+			for (var i = 0; i < number; i++)
+				if (possible.indexOf(tgt[i]) == -1) {
+					alert("Sono ammessi solo caratteri alfabetici maiuscoli");
+					$("#target").val(def);
+					$("#target").focus();
+					initValues();
+					return;
+				}
 
-            $(".human").each(function(idx, obj) { obj.value = getRandomString(); });
-            $("#darwin").val(sCoupling);
-            $("#childs").empty();
-            $("#rating").val(number);
-            $("#generation").val(1);
-            range();
-        }
-        $(function() {
-            $("#target").val(def);
-            initValues();
+			$(".human").each(function (idx, obj) { obj.value = getRandomString(); });
+			$("#darwin").val(sCoupling);
+			$("#childs").empty();
+			$("#rating").val(number);
+			$("#generation").val(1);
+			range();
+		}
+		$(function () {
+			$("#target").val(def);
+			initValues();
 
-        });
-    </script>
-
+		});
+	</script>
 </head>
 <body>
-<h1>Simulazione della selezione naturale</h1>
-    <label for="target">
-        L'ambiente premia gli elementi che più assomigliano a:
-    </label>
+	<h1>
+		Simulazione della selezione naturale</h1>
+		
+	<h3>
+		di <a href="http://fuoridalsolco.wordpress.com" title="Fuori dal solco" target="_blank">
+			Fuori dal solco</a></h3>
+	<label for="target">
+		L'ambiente premia gli elementi che più assomigliano a:
+	</label>
 	<br />
-    <input type="text" value="FUORI DAL SOLCO" id="target" onchange="initValues();" />
-    <br />
+	<input type="text" value="FUORI DAL SOLCO" id="target" onchange="initValues();" />
+	<br />
 	<label for="rating">
-        Punteggio di riferimento:
-    </label>
-    <input type="text" id="rating" readonly="readonly" style="width: 30px;" />
-    <label for="generation">
-        Generazione attuale:
-    </label>
-    <input type="text" id="generation" readonly="readonly" style="width: 30px;" />
-    <br />
-	<span>Il punteggio è un indice di adattamento all'ambiente; quanto più si avvicina al punteggio di riferimento, tanto più l'ambiente premia l'individuo.</span>
-    <table border="1px" style="table-layout: auto; border-width: 1px; margin: 10px;">
-        <thead>
-            <tr>
-                <td colspan="4">
-                    Popolazione adulta
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    Maschio
-                </td>
-                <td>
-                    Punteggio
-                </td>
-                <td>
-                    Femmina
-                </td>
-                <td>
-                    Punteggio
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="Male1" class="male human" />
-                </td>
-                <td>
-                    <span id="RatingMale1"></span>
-                </td>
-                <td>
-                    <input type="text" id="Female1" class="female human" />
-                </td>
-                <td>
-                    <span id="RatingFemale1"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="Male2" class="male human" />
-                </td>
-                <td>
-                    <span id="RatingMale2"></span>
-                </td>
-                <td>
-                    <input type="text" id="Female2" class="female human" />
-                </td>
-                <td>
-                    <span id="RatingFemale2"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="Male3" class="male human" />
-                </td>
-                <td>
-                    <span id="RatingMale3"></span>
-                </td>
-                <td>
-                    <input type="text" id="Female3" class="female human" />
-                </td>
-                <td>
-                    <span id="RatingFemale3"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="Male4" class="male human" />
-                </td>
-                <td>
-                    <span id="RatingMale4"></span>
-                </td>
-                <td>
-                    <input type="text" id="Female4" class="female human" />
-                </td>
-                <td>
-                    <span id="RatingFemale4"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="Male5" class="male human" />
-                </td>
-                <td>
-                    <span id="RatingMale5"></span>
-                </td>
-                <td>
-                    <input type="text" id="Female5" class="female human" />
-                </td>
-                <td>
-                    <span id="RatingFemale5"></span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="4">
-                    <input type="button" id="nodarwin" value="(A) Simula la selezione non cumulativa" style="width:300px" onclick="nodarwin(this);" />
-                    <input type="button" id="darwin" onclick="darwin(this);" style="width:300px" />
-                </td>
-            </tr>
-        </tbody>
-    </table>
+		Punteggio di riferimento:
+	</label>
+	<input type="text" id="rating" readonly="readonly" style="width: 30px;" />
+	<label for="generation">
+		Generazione attuale:
+	</label>
+	<input type="text" id="generation" readonly="readonly" style="width: 30px;" />
+	<br />
+	<span>Il punteggio è un indice di adattamento all'ambiente; quanto più si avvicina al
+		punteggio di riferimento, tanto più l'ambiente premia l'individuo.<br />
+	</span>&nbsp;<table border="1px" style="table-layout: auto; border-width: 1px; margin: 10px;">
+		<thead>
+			<tr>
+				<td colspan="4">
+					Popolazione adulta
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					Femmina
+				</td>
+				<td>
+					Punteggio
+				</td>
+				<td>
+					Maschio
+				</td>
+				<td>
+					Punteggio
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="Male1" class="male human" />
+				</td>
+				<td>
+					<span id="RatingMale1"></span>
+				</td>
+				<td>
+					<input type="text" id="Female1" class="female human" />
+				</td>
+				<td>
+					<span id="RatingFemale1"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="Male2" class="male human" />
+				</td>
+				<td>
+					<span id="RatingMale2"></span>
+				</td>
+				<td>
+					<input type="text" id="Female2" class="female human" />
+				</td>
+				<td>
+					<span id="RatingFemale2"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="Male3" class="male human" />
+				</td>
+				<td>
+					<span id="RatingMale3"></span>
+				</td>
+				<td>
+					<input type="text" id="Female3" class="female human" />
+				</td>
+				<td>
+					<span id="RatingFemale3"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="Male4" class="male human" />
+				</td>
+				<td>
+					<span id="RatingMale4"></span>
+				</td>
+				<td>
+					<input type="text" id="Female4" class="female human" />
+				</td>
+				<td>
+					<span id="RatingFemale4"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" id="Male5" class="male human" />
+				</td>
+				<td>
+					<span id="RatingMale5"></span>
+				</td>
+				<td>
+					<input type="text" id="Female5" class="female human" />
+				</td>
+				<td>
+					<span id="RatingFemale5"></span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="button" id="nodarwin" value="(A) Simula la selezione non cumulativa"
+						style="width: 300px" onclick="nodarwin(this);" />
+					<input type="button" id="darwin" onclick="darwin(this);" style="width: 300px" />
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<div>
-    <div id="childContainer" style="display:none;">
-        Di seguito leggi i figli ordinati per punteggio; il colore indica la coppia che li ha generati; ogni figlio riceve metà dei caratteri dal padre e metà dalla madre (scelti casualmente); un carattere a caso del miscuglio viene poi sostituito con un nuovo carattere, scelto a caso fra quelli ammessi, per simulare la mutazione genetica</div>
-    <div id="childs">
-    </div>
+		<div id="childContainer" style="display: none;">
+			Di seguito leggi i figli ordinati per punteggio; il colore indica la coppia che
+			li ha generati; ogni figlio riceve metà dei caratteri dal padre e metà dalla madre
+			(scelti casualmente); un carattere a caso del miscuglio viene poi sostituito con
+			un nuovo carattere, scelto a caso fra quelli ammessi, per simulare la mutazione
+			genetica</div>
+		<div id="childs">
+		</div>
 	</div>
-	<div id="couplingDescription" style="display:none;">La femmina dal punteggio più alto sceglie il maschio dal punteggio più alto, lasciandogli credere che sia stato lui a scegliere (ma questo è un dettaglio trascurabile); a parità di punteggio, la scelta è casuale. I colori individuano le coppie che si sono formate.</div>
-	<div id="selectionDescription" style="display:none;">I genitori sono morti, solo dieci dei figli sono sopravvissuti (quelli con l'indice di adattamento più alto, a parità di indice vengono scelti a caso) e sono andati a sostituire i genitori.</div>
-	<div id="nodarwinDescription" style="display:none;">Ogni nuova generazione non eredita i caratteri della generazione precedente; non c'è selezione, questo processo è veramente casuale. Raggiungere il punteggio di riferimento è molto improbabile.</div>
+	<div id="couplingDescription" style="display: none;">
+		La femmina dal punteggio più alto sceglie il maschio dal punteggio più alto; a
+		parità di punteggio, la scelta è casuale. I colori individuano le coppie che si
+		sono formate.</div>
+	<div id="selectionDescription" style="display: none;">
+		I genitori sono morti, solo dieci dei figli sono sopravvissuti (quelli con l'indice
+		di adattamento più alto, a parità di indice vengono scelti a caso) e sono andati
+		a sostituire i genitori.</div>
+	<div id="nodarwinDescription" style="display: none;">
+		Ogni nuova generazione non eredita i caratteri della generazione precedente; non
+		c'è selezione, questo processo è veramente casuale. Raggiungere il punteggio di
+		riferimento è molto improbabile.</div>
 </body>
 </html>
