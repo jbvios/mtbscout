@@ -56,6 +56,15 @@
 		String.prototype.replaceAt = function (index, char) {
 			return this.substr(0, index) + char + this.substr(index + char.length);
 		}
+		String.prototype.contains = function (obj) {
+			return this.indexOf(obj) != -1;
+		}
+		Array.prototype.contains = function (obj) {
+			for (var i = 0; i < length; i++)
+				if (this[i] == obj)
+					return true;
+			return false;
+		}
 		function getRandomChar() {
 			return possible.charAt(Math.floor(Math.random() * possible.length));
 
@@ -136,9 +145,9 @@
 			for (var i = 0; i < number; i++) {
 				while (indexes.length < number / 2) {
 					var rnd = Math.floor(Math.random() * number);
-					if (indexes.indexOf(rnd) == -1) {
+					if (!indexes.contains(rnd)) {
 						indexes.push(rnd);
-						s = s.replaceAt(rnd, female[rnd]);
+						s = s.replaceAt(rnd, female.charAt(rnd));
 					}
 				}
 
@@ -165,7 +174,7 @@
 			var tgt = $("#target").val();
 			var rating = 0;
 			for (var i = 0; i < tgt.length; i++) {
-				if (tgt[i] == s[i])
+				if (tgt.charAt(i) == s.charAt(i))
 					rating++;
 			}
 			return rating;
@@ -201,7 +210,7 @@
 			number = tgt.length;
 
 			for (var i = 0; i < number; i++)
-				if (possible.indexOf(tgt[i]) == -1) {
+				if (!possible.contains(tgt.charAt(i))) {
 					alert("Sono ammessi solo caratteri alfabetici maiuscoli");
 					$("#target").val(def);
 					$("#target").focus();
