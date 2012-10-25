@@ -9,6 +9,7 @@ using System.IO;
 using MTBScout.Entities;
 using System.Text;
 using System.Globalization;
+using System.Net;
 
 namespace MTBScout
 {
@@ -68,6 +69,18 @@ namespace MTBScout
 
             try
             {
+                string url = context.Request.QueryString["Url"];
+                if (!string.IsNullOrEmpty(url))
+                {
+                    using (WebClient client = new WebClient())
+                    {
+                        using (StreamReader s = new StreamReader(client.OpenRead(url)))
+                        {
+                            context.Response.Write(s.ReadToEnd());
+                        }
+                    }
+                    return;
+                }
                 string action = context.Request.QueryString["Action"];
                 switch (action)
                 {
