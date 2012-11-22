@@ -84,9 +84,6 @@
 		<p class="CenterUrl">
 			<a href="http://digilander.libero.it/stedgl13/index.htm" target="_blank">Mare e Monti</a>
 		</p>
-		<a href="Mobile.axd?url=http://www.html.it/" target="a" >
-		HTML
-		</a>
 				
 	</div>
 </asp:Content>
