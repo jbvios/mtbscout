@@ -29,20 +29,6 @@
 			</a>
 		</p>
 		<p class="CenterUrl">
-			<a href="http://www.leadermind.com/borse-bicicletta" target="_blank" title="Borse bici">
-				<img src="http://s4e9827ed94d1d.img.gostorego.com/802754/cdn/media/s4/e9/82/7e/d9/4d/1d/designeditor/theme/current/9/images/logo.png" alt="Borse bici" /><br />
-				Borse bici
-			</a>
-		</p>
-		<p class="CenterUrl">
-			<a href="http://www.fotomolini.it/" target="_blank" title="Foto Molini">
-				<img src="Images/Fotomolini.gif" alt="Foto Molini" />
-			</a>
-		</p>
-		<p class="CenterUrl">
-			<a href="http://www.aquilottimtb.it/" target="_blank">Gruppo MTB Aquilotti Borgo Fornari</a>
-		</p>
-		<p class="CenterUrl">
 			<a href="http://www.gmpbike.it/" target="_blank">
 				<img src="Images/Banner_GmpBike_SeamiAvventura.png" alt="GMPBike Lissone - Se ami l'avventura" />
 			</a>
@@ -60,11 +46,6 @@
 			</a>
 		</p>
 		<p class="CenterUrl">
-			<a href="http://www.mtbclub.eu/" target="_blank">
-				<img src="Images/LogoMtbClubFreeAdventure.jpg" alt="MOUNTAIN BIKE CLUB FreeAdventure" />
-			</a>
-		</p>
-		<p class="CenterUrl">
 			<a href="http://www.amicidiriki.it/" target="_blank">
 				<img src="Images/amicidiriki.jpg" alt="Amici di Riki" />
 			</a>
@@ -73,13 +54,7 @@
 			<a href="http://www.mtb-forum.it/" target="_blank">MTB Forum - Mountain Bike Community</a>
 		</p>
 		<p class="CenterUrl">
-			<a href="http://www.peverada.it/mtb/" target="_blank">Mountain Bike Italian Links</a>
-		</p>
-		<p class="CenterUrl">
 			<a href="http://www.liguriabike.it/" target="_blank">Percorsi MTB in Liguria e Alpi</a>
-		</p>
-		<p class="CenterUrl">
-			<a href="http://www.meteo-casella.info/" target="_blank">Stazione Meteo Casella</a>
 		</p>
 		<p class="CenterUrl">
 			<a href="http://digilander.libero.it/stedgl13/index.htm" target="_blank">Mare e Monti</a>
