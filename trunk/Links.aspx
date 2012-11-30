@@ -29,7 +29,12 @@
 			</a>
 		</p>
 		<p class="CenterUrl">
-			<a href="http://www.gmpbike.it/" target="_blank">
+			<a href="http://percorsimtb.wordpress.com/" target="_blank" title="Percorsi MTB">
+				<img src="Images/logo-percorsimtb-web.jpg" alt="Percorsi MTB" />
+			</a>
+		</p>
+		<p class="CenterUrl">
+			<a href="http://www.gmpbike.it/" target="_blank" title="GMPBike Lissone - Se ami l'avventura">
 				<img src="Images/Banner_GmpBike_SeamiAvventura.png" alt="GMPBike Lissone - Se ami l'avventura" />
 			</a>
 		</p>
