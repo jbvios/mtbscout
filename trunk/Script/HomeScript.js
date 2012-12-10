@@ -9,16 +9,7 @@ function setLocation(element, x, y) {
 	style.left = x + "px";
 	style.top = y + "px";
 }
-function moveMenu() {
-	var menu = document.getElementById('MenuContainer');
-	var img = document.getElementById('MainImage_RandomImage')
-	var x = img.offsetLeft + img.offsetWidth + 10;
-	var y = img.offsetTop;
-	setLocation(menu, x, y);
-	menu.style.visibility = "visible";
-	menu.style.display = "block";
-	menu.className = "Vert";
-}
+
 function animateNewsBanner() {
 	var banner = document.getElementById('NewsBanner');
 	if (!banner)
@@ -78,12 +69,9 @@ function getMaxBannerSize() {
 	return (banner.offsetWidth * 705 / 1000);
 }
 function Init() {
-	moveMenu();
 	animateNewsBanner();
-	initsnow();
 }
 function onResize() {
-	moveMenu();
 	adjustBannerSize(getMaxBannerSize());
 }
 window.onresize = onResize;
