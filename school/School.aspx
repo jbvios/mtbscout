@@ -6,6 +6,7 @@
     <title>Scuola di Mountain Bike</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
+
     <div id="ContentPanel" class="ContentPanel">
         <a target="fci" href="http://www.federciclismo.it/" title="Federazione Ciclistica Italiana">
             <img alt="Federazione Ciclistica Italiana" style="float: left; padding: 20px; padding-left: 50px;"
@@ -18,9 +19,11 @@
             Scuola di Mountain Bike Val Pentemina</h1>
         <h4 style="text-align: center">
             Partita IVA 02118870993</h4>
+        <h3 style="background-color:Yellow; color: Red; text-align: center; font-weight: bold; font-style: oblique;">
+            La scuola è chiusa durante il periodo invernale</h3>
         <br />
         <p>
-            La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 14 anni ed ha l&#39;obiettivo
+            La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 12 anni ed ha l&#39;obiettivo
             di avvicinarli a questo sport con spirito giocoso e <b><i>non agonistico</i></b>,
             insegnando loro ad apprezzare la natura e il rispetto per l&#39;ambiente. Su appuntamento
             possono partecipare anche i principianti che intendano apprendere le tecniche di
@@ -58,15 +61,15 @@
                         target="_blank">visualizza lista degli attuali tesserati.</a></p>
         <p>
             Ogni bambino deve essere munito di una fototessera, certificato medico (per attività
-            sportiva <b>non agonistica fino ai 12 anni, agonistica a partire dai 13 anni</b>),
-            bici propria e <b><i>casco protettivo</i></b>; la fototessera ci serve in formato
-            digitale, se ne hai una tradizionale possiamo effettuare noi una scansione della
-            stessa (ad esempio quella della carta d&#39;identità o di un altro documento recente,
-            così eviti di farla appositamente); non occorre che tu vada a comprare la bici nuova
-            a tuo figlio, fallo venire con quella che ha (purché sia in efficiente stato di
-            funzionamento, in particolare i freni), deciderai dopo se è il caso di cambiarla
-            in funzione del suo interessamento e della reale necessità; per iscrizioni <a href="mailto:info@mtbscout.it">
-                scrivici una mail</a> o contatta il 338.3681001.</p>
+            sportiva <b>non agonistica</b>), bici propria e <b><i>casco protettivo</i></b>;
+            la fototessera ci serve in formato digitale, se ne hai una tradizionale possiamo
+            effettuare noi una scansione della stessa (ad esempio quella della carta d&#39;identità
+            o di un altro documento recente, così eviti di farla appositamente); non occorre
+            che tu vada a comprare la bici nuova a tuo figlio, fallo venire con quella che ha
+            (purché sia in efficiente stato di funzionamento, in particolare i freni), deciderai
+            dopo se è il caso di cambiarla in funzione del suo interessamento e della reale
+            necessità; per iscrizioni <a href="mailto:info@mtbscout.it">scrivici una mail</a>
+            o contatta il 338.3681001.</p>
         <h2>
             Contenuti del corso</h2>
         <p>
