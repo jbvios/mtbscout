@@ -64,11 +64,7 @@
                         </a>
                         <!-- Fine codice ilMeteo.it -->
                         ​</div>
-                    <div>
-                        <asp:Button runat="server" ID="ButtonToggle" Text="Visualizza commenti" UseSubmitBehavior="False" />
-                        <%#((Iesi.Collections.ISet)DataBinder.Eval(Container.DataItem, "AppointmentPosts")).Count%>
-                        commenti</div>
-                    <asp:Panel runat="server" ID="CommentsPanel" Style="display: none">
+                    <asp:Panel runat="server" ID="CommentsPanel">
                         <div>
                             Risposte e commenti:</div>
                         <asp:Repeater ID="Posts" runat="server">
@@ -191,12 +187,7 @@
                 //alert(e);
             }
         }
-        function onToggle(sender, id) {
-            var el = mtb$('#' + id).toggle();
-            var txt = el.is(":visible") ? "Nascondi commenti" : "Visualizza commenti";
-            mtb$(sender).val(txt);
-        }
+       
     </script>
 
-    </div>
 </asp:Content>

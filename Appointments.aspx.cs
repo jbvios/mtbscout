@@ -101,9 +101,6 @@ public partial class AppointmentsPage : System.Web.UI.Page
         Button btn = (Button)e.Item.FindControl("ButtonSend");
         btn.CommandArgument = currentAppointment.Id.ToString();
         btn.OnClientClick = string.Format("onSendPost('{0}');", txt.ClientID);
-        btn = (Button)e.Item.FindControl("ButtonToggle");
-        Panel comments = (Panel)e.Item.FindControl("CommentsPanel");
-        btn.OnClientClick = string.Format("onToggle(this, '{0}');return false;", comments.ClientID);
         HtmlImage img = (HtmlImage)e.Item.FindControl("Meteo");
         int idx = currentAppointment.AppointmentDate.DayOfYear - DateTime.Now.DayOfYear;
         if (idx < 0 || idx > 6)
