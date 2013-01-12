@@ -21,7 +21,7 @@
 	<script type="text/javascript">
 		window.onload = function() { InitPage(); }
 	</script>
-	<%--<script type="text/javascript" src="http://www.web-localizer.appspot.com/weblocalizer.js"/>--%>
+	<script type="text/javascript" src="http://www.jsbabel.com/js/babel.js"/>
 	<script type="text/javascript" src="/Video/swfobject.js"></script>
 	
 	<script type="text/javascript">
