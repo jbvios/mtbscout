@@ -8,222 +8,299 @@
 
 <url>
   <loc>http://www.mtbscout.it/</loc>
+  <changefreq>daily</changefreq>
   <priority>1.00</priority>
-  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.mtbscout.it/whoweare/whoweare.aspx</loc>
-  <priority>0.80</priority>
+  <loc>http://www.mtbscout.it/Default.aspx</loc>
   <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Events/Events.aspx</loc>
   <priority>0.80</priority>
-  <changefreq>daily</changefreq>
 </url>
 <url>
   <loc>http://www.mtbscout.it/Routes/Routes.aspx</loc>
-  <priority>0.80</priority>
   <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Appointments.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/School/School.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Events.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>http://www.mtbscout.it/Links.aspx</loc>
-  <priority>0.80</priority>
   <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/User/Login.aspx?ReturnUrl=%2fUser%2fUser.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Blog.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Routes/RouteContent.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/School/Scuola%20di%20Mountain%20Bike%20Val%20Pentemina.pdf</loc>
+  <lastmod>2012-06-04T09:05:56+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2012/Campionato2012.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/Enduro2011.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/CoppaItalia2010.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Antola2009/Antola2009.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/Campionato2009.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>http://www.mtbscout.it/Events/RadunoOtt2008/RadunoOtt2008.aspx</loc>
-  <priority>0.64</priority>
   <changefreq>daily</changefreq>
+  <priority>0.64</priority>
 </url>
 <url>
   <loc>http://www.mtbscout.it/Events/XCSet2008/XCSet2008.aspx</loc>
-  <priority>0.64</priority>
   <changefreq>daily</changefreq>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.mtbscout.it/Download.aspx?file=~/Events/XCGiu2007.pdf</loc>
-  <priority>0.64</priority>
+  <loc>http://www.mtbscout.it/Events/XCGiu2007.pdf</loc>
+  <lastmod>2010-04-16T13:02:26+00:00</lastmod>
   <changefreq>daily</changefreq>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.mtbscout.it/Routes/AnelloFieschi/AnelloFieschi.aspx</loc>
-  <priority>0.64</priority>
+  <loc>http://www.mtbscout.it/PayPal.htm</loc>
+  <lastmod>2010-11-20T11:21:25+00:00</lastmod>
   <changefreq>daily</changefreq>
+  <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.mtbscout.it/Routes/Banca/Banca.aspx</loc>
-  <priority>0.64</priority>
+  <loc>http://www.mtbscout.it/Events/Campionato2012/map.html</loc>
+  <lastmod>2012-05-07T20:39:56+00:00</lastmod>
   <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/Carsegli_CostaPianella/Carsegli_CostaPianella.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/Carsegli_Pentema/Carsegli_Pentema.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/Castelletto/Castelletto.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/Forti_Genova/Forti.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/GolaDiSisa_Creto/GolaDiSisa_Creto.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/MonteBano_Camponevoso/MonteBano_Camponevoso.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Routes/Orero_Vittoria/Orero_Vittoria.aspx</loc>
-  <priority>0.64</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/AnelloFieschi/AnelloFieschi.aspx</loc>
   <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/User/Subscriptions.aspx</loc>
   <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/VOLANTINOENDURO2011.pdf</loc>
+  <lastmod>2011-04-15T08:14:52+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/Comunicato%20Stampa%20Finale.pdf</loc>
+  <lastmod>2011-05-10T08:30:49+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000199NET.pdf</loc>
+  <lastmod>2011-05-10T08:18:49+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000199CAT.PDF</loc>
+  <lastmod>2011-05-10T08:26:41+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000102NET.pdf</loc>
+  <lastmod>2011-05-10T08:16:47+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000102GEN.pdf</loc>
+  <lastmod>2011-05-10T08:16:54+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000103NET.pdf</loc>
+  <lastmod>2011-05-10T08:17:00+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000103GEN.pdf</loc>
+  <lastmod>2011-05-10T08:18:22+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000104NET.pdf</loc>
+  <lastmod>2011-05-10T08:18:28+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/EN000104GEN.pdf</loc>
+  <lastmod>2011-05-10T08:18:32+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Enduro2011/map.html</loc>
+  <lastmod>2011-04-11T13:16:37+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/Esordienti1Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:58+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/EsordientiDonne1Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:59+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/Esordienti2Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:59+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/EsordientiDonne2Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:59+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/Allievi1Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:54+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/AllieviDonne1Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:55+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/Allievi2Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:54+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/AllieviDonne2Anno.pdf</loc>
+  <lastmod>2010-05-05T13:04:55+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/CoppaItalia2010/Comitati.pdf</loc>
+  <lastmod>2010-05-05T13:04:55+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Routes/Route.aspx?Route=Antola</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Antola2009/Antola.pdf</loc>
+  <lastmod>2009-07-31T09:42:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/EsordientiPrimoAnnoF.pdf</loc>
+  <lastmod>2010-04-16T21:48:52+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/EsordientiSecondoAnnoF.pdf</loc>
+  <lastmod>2010-04-16T21:49:25+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/AllieviFemminile.pdf</loc>
+  <lastmod>2010-04-16T21:43:03+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/EsordientiPrimoAnnoM.pdf</loc>
+  <lastmod>2010-04-16T21:49:10+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/EsordientiSecondoAnnoM.pdf</loc>
+  <lastmod>2010-04-16T21:49:37+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/AllieviPrimoAnno.pdf</loc>
+  <lastmod>2010-04-16T21:43:05+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/AllieviSecondoAnno.pdf</loc>
+  <lastmod>2010-04-16T21:43:19+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>http://www.mtbscout.it/Events/Campionato2009/Images.aspx</loc>
+  <changefreq>daily</changefreq>
+  <priority>0.51</priority>
 </url>
 <url>
   <loc>http://www.mtbscout.it/Events/RadunoOtt2008/Images.aspx</loc>
+  <changefreq>daily</changefreq>
   <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/Banca/map.html&amp;MapTitle=Montoggio - Casale - Costa di Lavaggio - Monte Banca - Cascinette - Serrato - Montoggio</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/Carsegli_CostaPianella/map.html&amp;MapTitle=Gazzolo - Carsegli - Sella di Gherfo - Costa Pianella - Gazzolo</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/Carsegli_Pentema/map.html&amp;MapTitle=Gazzolo - Carsegli - Sella di Gherfo - Madonna della Guardia - Pentema - Gazzolo</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/Castelletto/map.html&amp;MapTitle=Montoggio - Casale - Costa di Lavaggio - Monte Castelletto - Tiro a volo - Cascinette - Montoggio</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/Forti_Genova/map.html&amp;MapTitle=Genova Bolzaneto - Rivarolo - Righi - Forte Fratello Minore - Bolzaneto (Giro delle compressioni)</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/GolaDiSisa_Creto/map.html&amp;MapTitle=Montoggio - Sanguineto - Gola di Sisa - Creto - Acquafredda - Montoggio</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/MonteBano_Camponevoso/map.html&amp;MapTitle=Montoggio - Caiasca - Veixe - Brugosecco - Teitin - Camponevoso - Salice - Montoggio</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/Routes/Orero_Vittoria/map.html&amp;MapTitle=Pratogrande - Crocetta d&#39;Orero - Costa Fontana - Piano delle Barche - Santuario della Vittoria - Piano delle Barche - Besolagno - Pratogrande</loc>
-  <priority>0.51</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Routes.aspx</loc>
-  <priority>0.41</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Banca/Banca.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Carsegli_CostaPianella/Carsegli_CostaPianella.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Carsegli_Pentema/Carsegli_Pentema.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Castelletto/Castelletto.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Forti_Genova/Forti.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/GolaDiSisa_Creto/GolaDiSisa_Creto.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/MonteBano_Camponevoso/MonteBano_Camponevoso.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/routes/Orero_Vittoria/Orero_Vittoria.aspx</loc>
-  <priority>0.33</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/Banca/map.html&amp;MapTitle=Montoggio - Casale - Costa di Lavaggio - Monte Banca - Cascinette - Serrato - Montoggio</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/Carsegli_CostaPianella/map.html&amp;MapTitle=Gazzolo - Carsegli - Sella di Gherfo - Costa Pianella - Gazzolo</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/Carsegli_Pentema/map.html&amp;MapTitle=Gazzolo - Carsegli - Sella di Gherfo - Madonna della Guardia - Pentema - Gazzolo</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/Castelletto/map.html&amp;MapTitle=Montoggio - Casale - Costa di Lavaggio - Monte Castelletto - Tiro a volo - Cascinette - Montoggio</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/Forti_Genova/map.html&amp;MapTitle=Genova Bolzaneto - Rivarolo - Righi - Forte Fratello Minore - Bolzaneto (Giro delle compressioni)</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/GolaDiSisa_Creto/map.html&amp;MapTitle=Montoggio - Sanguineto - Gola di Sisa - Creto - Acquafredda - Montoggio</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/MonteBano_Camponevoso/map.html&amp;MapTitle=Montoggio - Caiasca - Veixe - Brugosecco - Teitin - Camponevoso - Salice - Montoggio</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.mtbscout.it/Map.aspx?MapUrl=/routes/Orero_Vittoria/map.html&amp;MapTitle=Pratogrande - Crocetta d&#39;Orero - Costa Fontana - Piano delle Barche - Santuario della Vittoria - Piano delle Barche - Besolagno - Pratogrande</loc>
-  <priority>0.26</priority>
-  <changefreq>daily</changefreq>
 </url>
 </urlset>
