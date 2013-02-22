@@ -2,7 +2,7 @@
 <asp:Panel runat="server" ID="HeaderPanel" class="HeaderContainer" 
     BackImageUrl="~/Images/Header.JPG">
     
-    <a href="/Default.aspx" title="Vai alla pagina iniziale" style="z-index: -10;">
+    <a href="/" title="Vai alla pagina iniziale" style="z-index: -10;">
         <%--    <div id="SpotLeft" style="width: 180px; height: 150px; margin-top: 15px; float: left;
             display: inline;" runat="server">
 
