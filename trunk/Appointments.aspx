@@ -33,10 +33,6 @@
             a tal proposito non è necessaria alcuna registrazione o autenticazione, è sufficiente
             fornire il proprio nome.</p>
         <p>
-            Va comunque tenuto presente che per premurarci contro eventuali utilizzi in mala
-            fede registriamo l&#39;indirizzo IP di chi crea appuntamenti o invia commenti.<br />
-        </p>
-        <p>
             Ovviamente, chiunque volesse aggregarsi ai nostri giri è il benvenuto... enjoy All
             Mountain!</p>
         <asp:Repeater ID="Appointments" runat="server" OnItemDataBound="Appointments_ItemDataBound">
