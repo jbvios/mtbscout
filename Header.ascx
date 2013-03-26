@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Header.ascx.cs" Inherits="SiteHeader" %>
-<asp:Panel runat="server" ID="HeaderPanel" class="HeaderContainer" 
-    BackImageUrl="~/Images/Header.JPG">
+<asp:Panel runat="server" ID="HeaderPanel" class="HeaderContainer" BackImageUrl="~/Images/Header.JPG">
     
     <a href="/" title="Vai alla pagina iniziale" style="z-index: -10;">
         <%--    <div id="SpotLeft" style="width: 180px; height: 150px; margin-top: 15px; float: left;
@@ -35,7 +34,7 @@
             </script>
 
         </div>--%>
-        <asp:Image ID="logo" class CssClass="HeaderLogo" runat="server" AlternateText="MTB Group Scout"
+        <asp:Image ID="logo" CssClass="HeaderLogo" runat="server" AlternateText="MTB Group Scout"
             ImageUrl="~/Images/MtbScoutLogoNew.PNG" />
             <img id = "Climb" src="/Images/ClimbTheDiscovery.png"/ 
             style=	"border: medium none;
