@@ -35,7 +35,9 @@
 	</script>
     
     <link rel="shortcut icon" href="favicon.ico" />
-    
+    <meta http-equiv="Keywords" content="mountain bike, MTB, Montoggio, Scout, bicicletta, bici, bike, escursioni, tracks, gps, 
+    ride, cross coutry, free ride, all mountain, montagna, sentieri, mountain, excursions"/>
+        
 	<asp:ContentPlaceHolder ID="head" runat="server">
 	</asp:ContentPlaceHolder>
 </head>
