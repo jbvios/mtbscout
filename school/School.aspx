@@ -20,14 +20,17 @@
         <h4 style="text-align: center">
             Partita IVA 02118870993</h4>
         <h3 style="background-color:Yellow; color: Red; text-align: center; font-weight: bold; font-style: oblique;">
-            La scuola è chiusa durante il periodo invernale</h3>
+            La scuola riapre l&#39;8 giugno, sono aperte le iscrizioni</h3>
+        <p style="background-color:Yellow; color: Red; text-align: center; font-weight: bold; font-style: oblique;">
+            <a href="mailto:info@mtbscout.it">Scrivici una mail</a> o contatta Marco al 
+            338.3681001</p>
         <br />
         <p>
             La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 12 anni ed ha l&#39;obiettivo
             di avvicinarli a questo sport con spirito giocoso e <b><i>non agonistico</i></b>,
             insegnando loro ad apprezzare la natura e il rispetto per l&#39;ambiente. Su appuntamento
-            possono partecipare anche i principianti che intendano apprendere le tecniche di
-            base del mountain biking, oppure gli escursionisti che desiderino essere accompagnati
+            possono partecipare anche gli adulti, sia principianti che intendano apprendere le tecniche di
+            base del mountain biking, sia escursionisti che desiderino essere accompagnati
             nei percorsi della valle, magari affrontando preliminarmente gli esercizi del campo
             scuola al fine di stabilire quali di questi percorsi possano essere affrontati senza
             difficoltà.</p>
@@ -47,11 +50,9 @@
         <p>
             Costi:</p>
         <ul>
-            <li>lezione singola: 10 euro; </li>
-            <li>abbonamento a 10 lezioni (con scadenza 15 settembre): 80 euro; chi ha effettuato
-                l&#39;abbonamento potrà accedere ad eventuali ulteriori lezioni al prezzo unitario
-                di 8 euro; </li>
-            <li>prima lezione di prova: gratuita.</li>
+            <li>100 euro per l'intera stagione, dall&#39;8 giugno al 15 settembre (le ultime due 
+                settimane di settembre le utilizzeremo per i recuperi di eventuali lezioni perse 
+                a causa del maltempo)<li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
             A questo va aggiunto il costo del tesseramento annuo alla Federazione Ciclistica
@@ -86,8 +87,6 @@
             quali il rispetto della natura, l&#39;impegno come mezzo principe per l&#39;ottenimento
             dei risultati, la bici come mezzo ideale di mobilità sostenibile, l&#39;attività
             fisica come veicolo di benessere.</p>
-        <iframe width="420" height="315" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
-            allowfullscreen></iframe>
         <h2>
             Il maestro</h2>
         <p>
@@ -128,22 +127,10 @@
             destra, il ponte sullo Scrivia, la caserma dei Carabinieri sulla destra, un supermercato
             sulla sinistra) quindi imboccare una strada secondaria a sinistra in corrispondenza
             di una curva a novanta gradi, seguendo l&#39;indicazione per Gazzolo. La strada
-            sale per 1 Km, quindi inizia a scendere: dopo circa 200 metri troverete il campo
-            scuola alla vostra destra.</p>
+            sale per 1 Km, quindi inizia a scendere: appena iniziata la discesa, troverete 
+            il campo scuola alla vostra sinistra.</p>
         <h4>
             <a href="Scuola di Mountain Bike Val Pentemina.pdf" target="modulo">Scarica regolamento
                 e modulo di adesione</a>.</h4>
-        <h4>
-            <a target="schoolmap" href="http://maps.google.it/maps/myplaces?hl=it&ll=44.52607,9.06754&spn=0.001595,0.003613&ctz=-120&t=m&layer=c&cbll=44.526057,9.067671&panoid=_4c7DHvgZ28K-rtTqtjRUA&cbp=12,207.57,,0,24.89&z=19"
-                style="color: #0000FF; text-align: left">Visualizza dove si trova il campo scuola
-                con Google Street View</a><br />
-            (immagini riprese <i>prima</i> che venisse preparato)</h4>
-        <iframe width="800" height="600" frameborder="0" scrolling="no" marginheight="0"
-            marginwidth="0" src="http://maps.google.it/maps?f=d&amp;source=embed&amp;saddr=Via+Roma%2FSP226&amp;daddr=Localit%C3%A0+Gazzolo&amp;geocode=FS47pwIdXwKKAA%3BFbBppwIdcV2KAA&amp;aq=0&amp;oq=Gazzolo,+mo&amp;sll=44.516736,9.051147&amp;sspn=0.012699,0.028903&amp;hl=it&amp;mra=dme&amp;mrsp=0&amp;sz=16&amp;ie=UTF8&amp;t=m&amp;ll=44.520806,9.056511&amp;spn=0.018359,0.034246&amp;z=15&amp;output=embed">
-        </iframe>
-        <br />
-        <small><a href="http://maps.google.it/maps?f=d&amp;source=embed&amp;saddr=Via+Roma%2FSP226&amp;daddr=Localit%C3%A0+Gazzolo&amp;geocode=FS47pwIdXwKKAA%3BFbBppwIdcV2KAA&amp;aq=0&amp;oq=Gazzolo,+mo&amp;sll=44.516736,9.051147&amp;sspn=0.012699,0.028903&amp;hl=it&amp;mra=dme&amp;mrsp=0&amp;sz=16&amp;ie=UTF8&amp;t=m&amp;ll=44.520806,9.056511&amp;spn=0.018359,0.034246&amp;z=15"
-            style="color: #0000FF; text-align: left">Visualizzazione ingrandita della mappa</a></small>
-        <br />
     </div>
 </asp:Content>
