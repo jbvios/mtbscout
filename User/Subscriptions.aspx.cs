@@ -10,7 +10,7 @@ using System.Globalization;
 public partial class User_Subscriptions : System.Web.UI.Page
 {
     EventSubscriptor[] subscriptors;
-    public const int SuperEnduroId = 1;
+    public const int TorrigliaId = 2;
 
     protected override void OnInit(EventArgs e)
     {
@@ -20,6 +20,8 @@ public partial class User_Subscriptions : System.Web.UI.Page
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Check.Text.Length > 0)
+            throw new ApplicationException("FuckYou!");
         //if (!LoginState.TestLogin())
         //	return;
         if (!Page.IsPostBack)
@@ -86,35 +88,34 @@ public partial class User_Subscriptions : System.Web.UI.Page
     }
     protected void ButtonSave_Click(object sender, EventArgs e)
     {
-        EventSubscriptor sbscr = new EventSubscriptor();
         DateTime dt;
         if (!ParseDate(TextBoxBirthDate.Text, out dt))
             return;
-
+        EventSubscriptor sbscr = DBHelper.LoadSubscriptor(TextBoxMail.Text);
+        if (sbscr == null)
+        {
+            sbscr = new EventSubscriptor();
+            sbscr.EMail = TextBoxMail.Text;
+            int dummy;
+            int.TryParse(SubscriptionId.Value, out dummy);
+            sbscr.Id = dummy;
+        }
         sbscr.BirthDate = dt;
-        int dummy;
-        int.TryParse(SubscriptionId.Value, out dummy);
-        sbscr.Id = dummy;
-        sbscr.EventId = SuperEnduroId;
+        sbscr.EventId = TorrigliaId;
         sbscr.UserId = 0;// LoginState.User.Id;
         sbscr.Name = TextBoxName.Text;
         sbscr.Surname = TextBoxSurname.Text;
-        sbscr.EMail = TextBoxMail.Text;
 
         sbscr.GenderNumber = (short)RadioButtonListGender.SelectedIndex;
-        if (DBHelper.ExistSubscriptor(sbscr))
-        {
-            Page.ClientScript.RegisterStartupScript(GetType(), "MessageOK", "alert('Registrazione già presente, salvataggio non effettuato.');", true);
-        }
-        else
-        {
-            DBHelper.SaveSubscriptor(sbscr);
-            //LoadSubscriptors();
+        DBHelper.SaveSubscriptor(sbscr);
+        Helper.SendMail(sbscr.EMail, null, "info@mtbscout.it", "Conferma preiscrizione Tourist Trophy Torriglia", "Ti confermiamo l'avvenuta iscrizione, grazie per esserti registrato al Tourist Trophy Torriglia. Buon divertimento!", false);
+                
+        //LoadSubscriptors();
 
-            RefreshCurrentSubscriptor();
+        RefreshCurrentSubscriptor();
 
-            Page.ClientScript.RegisterStartupScript(GetType(), "MessageOK", "alert('Informazioni salvate correttamente. Grazie per esserti registrato.');", true);
-        }
+        Page.ClientScript.RegisterStartupScript(GetType(), "MessageOK", "alert('Informazioni salvate correttamente. Grazie per esserti registrato.');", true);
+        ViewState.Clear();
     }
 
     private void RefreshCurrentSubscriptor()

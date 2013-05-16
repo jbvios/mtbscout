@@ -1,17 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeFile="Appointments.aspx.cs"
-    Inherits="AppointmentsPage" %>
+    EnableEventValidation="false" CodeFile="Appointments.aspx.cs" Inherits="AppointmentsPage" %>
 
 <%@ Register Src="HorizontalSpot.ascx" TagName="HorizontalSpot" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>Appuntamenti per escursioni in MTB</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css"
         type="text/css" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-
     <style type="text/css">
         .deleteButton
         {
@@ -53,7 +47,7 @@
                             <%#Helper.FormatDate((DateTime)DataBinder.Eval(Container.DataItem, "AppointmentDate"))%></b></div>
                     <div style="font-size: larger; font-weight: bold; font-variant: small-caps">
                         <%#DataBinder.Eval(Container.DataItem, "FormattedMessage")%></div>
-                    <div style="text-align:center;">
+                    <div style="text-align: center;">
                         <!-- Inizio codice ilMeteo.it -->
                         <a href="http://www.ilmeteo.it/Liguria" title="Meteo Liguria" target="_blank">
                             <img runat="server" id="Meteo" alt="Meteo Liguria" border="0" />
@@ -145,6 +139,10 @@
             width: 330px; height: 50px"></iframe>
         <asp:TextBox Width="0" Height="0" runat="server" ID="Check"></asp:TextBox>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 
     <script type="text/javascript">
         mtb$ = jQuery.noConflict();
