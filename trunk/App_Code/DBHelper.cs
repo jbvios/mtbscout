@@ -397,18 +397,14 @@ public class DBHelper
         }
     }
     //--------------------------------------------------------------------------------
-    public static bool ExistSubscriptor(EventSubscriptor subscriptor)
+    public static EventSubscriptor LoadSubscriptor(string email)
     {
         using (ISession iSession = NHSessionManager.GetSession())
         {
             Expression<Func<EventSubscriptor, object>> expr = rt => rt.EMail;
             var criteria = iSession.CreateCriteria<EventSubscriptor>();
-            criteria.Add(Restrictions.Eq(Projections.Property(expr), subscriptor.EMail));
-            expr = rt => rt.Name;
-            criteria.Add(Restrictions.Eq(Projections.Property(expr), subscriptor.Name));
-            expr = rt => rt.Surname;
-            criteria.Add(Restrictions.Eq(Projections.Property(expr), subscriptor.Surname));
-            return criteria.List<EventSubscriptor>().Count > 0;
+            criteria.Add(Restrictions.Eq(Projections.Property(expr), email));
+            return criteria.UniqueResult<EventSubscriptor>();
         }
     }
     //--------------------------------------------------------------------------------

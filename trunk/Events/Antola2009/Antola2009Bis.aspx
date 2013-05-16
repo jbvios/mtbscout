@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-	CodeFile="Antola2009Bis.aspx.cs" Inherits="Events_Antola2009_Antola2009" %>
+	CodeFile="Antola2009Bis.aspx.cs" Inherits="Events_Antola2009_Antola2009Bis" %>
 
 <%@ Register Src="../../DownloadGpsTrack.ascx" TagName="DownloadGpsTrack" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
