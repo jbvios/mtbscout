@@ -33,6 +33,14 @@
             Eventi</h1>
         <div class="Event">
             <table class="Event">
+            <tr>
+                    <td class="DateColumn">
+                        <a href="TouristTrophyTorriglia/TouristTrophyTorriglia.aspx">Domenica 16 giugno 2013</a>
+                    </td>
+                    <td class="EventColumn">
+                        Tourist Trophy Torriglia
+                    </td>
+                </tr> 
              <tr>
                     <td class="DateColumn">
                         <a href="Campionato2012/Campionato2012.aspx">Sabato 12 e domenica 13 maggio 2012</a>
