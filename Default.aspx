@@ -56,6 +56,27 @@
             </div>--%>
             <div class="widget">
                 <div style="padding: 20px;">
+                    <a href="Events/TouristTrophyTorriglia/TouristTrophyTorriglia.aspx" title="Tourist Trophy Torriglia">
+                        <img style="width: 200px; height: 300px" src="Events/TouristTrophyTorriglia/locandina.jpg" alt="Tourist Trophy Torriglia" />
+                    </a>
+                </div>
+            </div>
+            <div class="widget">
+                <div style="padding: 20px;">
+                    <a target ="fasce" href="http://www.montefascebike.it/manifestazioni/monte-fasce-bike-day-2013-rovegno.html" title="Quarto Monte Fasce Bike Day">
+                        <img style="width: 420px; height: 200px" src="http://www.montefascebike.it/images/stories/MFBD2013/montefascebikedayrovegno2013_new.png" alt="Quarto Monte Fasce Bike Day" />
+                    </a>
+                </div>
+            </div>
+            <div class="widget">
+                <div style="padding: 20px;">
+                    <a target ="guardia" href="http://www.bikersteamlivellato.it/index.php?option=com_content&view=article&id=89&Itemid=109" title="Quarto Tour del Monte Figogna">
+                        <img style="width: 420px; height: 300px" src="http://www.bikersteamlivellato.it/images/stories/3.png" alt="Quarto Tour del Monte Figogna" />
+                    </a>
+                </div>
+            </div>
+            <div class="widget">
+                <div style="padding: 20px;">
                     <iframe width="420" height="300" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
                         allowfullscreen></iframe>
                 </div>

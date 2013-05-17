@@ -5,11 +5,6 @@
     <title>Preiscrizione Tourist Trophy Torriglia</title>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css"
         type="text/css" />
-    <style>
-        fieldset
-        {
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
     <div id="ContentPanel" class="ContentPanel">
