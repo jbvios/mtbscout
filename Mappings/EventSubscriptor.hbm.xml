@@ -14,6 +14,6 @@
     <property name="EMail" column="EMail" type="System.String" not-null="true"/>
     <property name="BirthDate" column="BirthDate" type="System.DateTime" />
     <property name="GenderNumber" column="Gender" type="System.Int16" />
-    <property name="Group" column="Group" type="System.String" />
+    <property name="Club" column="Club" type="System.String" />
   </class>
 </hibernate-mapping>

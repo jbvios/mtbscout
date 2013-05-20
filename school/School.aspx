@@ -52,7 +52,11 @@
         <ul>
             <li>100 euro per l'intera stagione, dall&#39;8 giugno al 15 settembre (le ultime due 
                 settimane di settembre le utilizzeremo per i recuperi di eventuali lezioni perse 
-                a causa del maltempo)<li>prima lezione di prova: gratuita.</li>
+                a causa del maltempo). </li>
+                <li>
+                ci si può iscrivere anche su base mensile (mesi di giugno, luglio o agosto) al costo di 40 euro al mese: 
+                per la corretta pianificazione delle lezioni è in ogni caso preferibile comunicare l'iscrizione ad inizio corso (giugno)
+                <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
             A questo va aggiunto il costo del tesseramento annuo alla Federazione Ciclistica
@@ -100,7 +104,7 @@
             qualcosa ed esserne soddisfatto, te la devi sudare; sono anche fermamente convinto
             che se vogliamo migliorare questa nostra società piuttosto disastrata, anestetizzata
             da shopping, calcio scommesse e grandi fratelli, si debba lavorare sui bambini.
-            Sono un fervente sostenitore della bici come strumento di mobilità sostenibile (in
+            Credo fermamente nella bici come strumento di mobilità sostenibile (in
             particolare in città): ogni giorno percorro circa 25 Km per recarmi al lavoro sulla
             mia city bike, sono sufficientemente munito di attrezzatura anti intemperie ma ahimé
             non ho ancora trovato adeguate misure di difesa contro gli automobilisti nevrotici.</p>
