@@ -224,6 +224,9 @@ namespace MTBScout.Entities
 
         [Description("Nome visualizzato")]
         public string DisplayName { get { return Name + " " + Surname; } }
+        [Description("Gruppo di appartenenza")]
+        public string Group { get; set; }
+        
     }
 
     public class Rank : Entity
