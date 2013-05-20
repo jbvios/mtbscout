@@ -97,6 +97,16 @@
                                     <td>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Associazione o gruppo
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="TextBoxGroup" runat="server" Width="330px"></asp:TextBox>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <asp:Button ID="ButtonSave" runat="server" Text="Salva iscrizione" OnClick="ButtonSave_Click" />

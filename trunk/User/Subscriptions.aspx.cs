@@ -22,8 +22,6 @@ public partial class User_Subscriptions : System.Web.UI.Page
     {
         if (Check.Text.Length > 0)
             throw new ApplicationException("FuckYou!");
-        //if (!LoginState.TestLogin())
-        //	return;
         if (!Page.IsPostBack)
         {
             //CommandField bf = new CommandField();
@@ -105,7 +103,7 @@ public partial class User_Subscriptions : System.Web.UI.Page
         sbscr.UserId = 0;// LoginState.User.Id;
         sbscr.Name = TextBoxName.Text;
         sbscr.Surname = TextBoxSurname.Text;
-
+        sbscr.Group = TextBoxGroup.Text;
         sbscr.GenderNumber = (short)RadioButtonListGender.SelectedIndex;
         DBHelper.SaveSubscriptor(sbscr);
         Helper.SendMail(sbscr.EMail, null, "info@mtbscout.it", "Conferma preiscrizione Tourist Trophy Torriglia", "Ti confermiamo l'avvenuta iscrizione, grazie per esserti registrato al Tourist Trophy Torriglia. Buon divertimento!", false);
