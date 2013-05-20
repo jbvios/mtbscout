@@ -103,7 +103,7 @@ public partial class User_Subscriptions : System.Web.UI.Page
         sbscr.UserId = 0;// LoginState.User.Id;
         sbscr.Name = TextBoxName.Text;
         sbscr.Surname = TextBoxSurname.Text;
-        sbscr.Group = TextBoxGroup.Text;
+        sbscr.Club = TextBoxGroup.Text;
         sbscr.GenderNumber = (short)RadioButtonListGender.SelectedIndex;
         DBHelper.SaveSubscriptor(sbscr);
         Helper.SendMail(sbscr.EMail, null, "info@mtbscout.it", "Conferma preiscrizione Tourist Trophy Torriglia", "Ti confermiamo l'avvenuta iscrizione, grazie per esserti registrato al Tourist Trophy Torriglia. Buon divertimento!", false);
