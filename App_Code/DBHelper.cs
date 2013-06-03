@@ -355,15 +355,13 @@ public class DBHelper
         }
     }
 
-    public static EventSubscriptor[] GetSubscriptors(int userId, int eventId)
+    public static EventSubscriptor[] GetSubscriptors(int eventId)
     {
         using (ISession iSession = NHSessionManager.GetSession())
         {
             Expression<Func<EventSubscriptor, object>> expr = rt => rt.EventId;
             var criteria = iSession.CreateCriteria<EventSubscriptor>();
             criteria.Add(Restrictions.Eq(Projections.Property(expr), eventId));
-            expr = rt => rt.UserId;
-            criteria.Add(Restrictions.Eq(Projections.Property(expr), userId));
 
             return criteria.List<EventSubscriptor>().ToArray();
         }

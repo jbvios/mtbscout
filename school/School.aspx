@@ -54,8 +54,10 @@
                 settimane di settembre le utilizzeremo per i recuperi di eventuali lezioni perse 
                 a causa del maltempo). </li>
                 <li>
-                ci si può iscrivere anche su base mensile (mesi di giugno, luglio o agosto) al costo di 40 euro al mese: 
-                per la corretta pianificazione delle lezioni è in ogni caso preferibile comunicare l'iscrizione ad inizio corso (giugno)
+                    in caso di assenze pianificate, per un significativo numero di settimane, da 
+                    parte dei singoli partecipanti (vacanze, villeggiatura, ecc.) è possibile 
+                    concordare un costo ridotto: 
+                per la corretta organizzazione delle lezioni e dei tesseramenti è in ogni caso preferibile comunicare l'iscrizione ad inizio corso (giugno)
                 <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
