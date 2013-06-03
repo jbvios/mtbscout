@@ -94,13 +94,13 @@ namespace MTBScout.Entities
 
         private string name;
         public string Name { get { return name; } set { name = value; } }
-        
+
         private string title;
         public string Title { get { return title; } set { title = value; } }
 
         private string page;
         public string Page { get { return page; } set { page = value; } }
-        
+
         private string image;
         public string Image { get { return image; } set { image = value; } }
 
@@ -201,6 +201,15 @@ namespace MTBScout.Entities
         public string EMail { get; set; }
         [Description("Data di nascita")]
         public DateTime BirthDate { get; set; }
+        [Description("Data di nascita (formattata)")]
+        public string BirthDateFormatted
+        {
+            get
+            {
+                return BirthDate.ToShortDateString();
+            }
+        }
+
         [Description("Genere (numero)")]
         public Int16 GenderNumber { get; set; }
         [Description("Genere (tipo)")]
@@ -226,7 +235,7 @@ namespace MTBScout.Entities
         public string DisplayName { get { return Name + " " + Surname; } }
         [Description("Gruppo di appartenenza")]
         public string Club { get; set; }
-        
+
     }
 
     public class Rank : Entity
