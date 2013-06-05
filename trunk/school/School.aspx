@@ -6,7 +6,6 @@
     <title>Scuola di Mountain Bike</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
-
     <div id="ContentPanel" class="ContentPanel">
         <a target="fci" href="http://www.federciclismo.it/" title="Federazione Ciclistica Italiana">
             <img alt="Federazione Ciclistica Italiana" style="float: left; padding: 20px; padding-left: 50px;"
@@ -19,21 +18,22 @@
             Scuola di Mountain Bike Val Pentemina</h1>
         <h4 style="text-align: center">
             Partita IVA 02118870993</h4>
-        <h3 style="background-color:Yellow; color: Red; text-align: center; font-weight: bold; font-style: oblique;">
+        <h3 style="background-color: Yellow; color: Red; text-align: center; font-weight: bold;
+            font-style: oblique;">
             La scuola riapre l&#39;8 giugno, sono aperte le iscrizioni</h3>
-        <p style="background-color:Yellow; color: Red; text-align: center; font-weight: bold; font-style: oblique;">
-            <a href="mailto:info@mtbscout.it">Scrivici una mail</a> o contatta Marco al 
-            338.3681001</p>
+        <p style="background-color: Yellow; color: Red; text-align: center; font-weight: bold;
+            font-style: oblique;">
+            <a href="mailto:info@mtbscout.it">Scrivici una mail</a> o contatta Marco al 338.3681001</p>
         <br />
         <p>
             La scuola è rivolta principalmente ai bambini e ragazzi dai 7 ai 12 anni ed ha l&#39;obiettivo
             di avvicinarli a questo sport con spirito giocoso e <b><i>non agonistico</i></b>,
             insegnando loro ad apprezzare la natura e il rispetto per l&#39;ambiente. Su appuntamento
-            possono partecipare anche gli adulti, sia principianti che intendano apprendere le tecniche di
-            base del mountain biking, sia escursionisti che desiderino essere accompagnati
-            nei percorsi della valle, magari affrontando preliminarmente gli esercizi del campo
-            scuola al fine di stabilire quali di questi percorsi possano essere affrontati senza
-            difficoltà.</p>
+            possono partecipare anche gli adulti, sia principianti che intendano apprendere
+            le tecniche di base del mountain biking, sia escursionisti che desiderino essere
+            accompagnati nei percorsi della valle, magari affrontando preliminarmente gli esercizi
+            del campo scuola al fine di stabilire quali di questi percorsi possano essere affrontati
+            senza difficoltà.</p>
         <iframe id="FBLike" runat="server" frameborder="0" name="I1" scrolling="no" style="border: none;
             width: 330px; height: 50px"></iframe>
         <a title="Seguici su Facebook" href="http://www.facebook.com/ScuolaMtbValPentemina"
@@ -50,14 +50,13 @@
         <p>
             Costi:</p>
         <ul>
-            <li>100 euro per l'intera stagione, dall&#39;8 giugno al 15 settembre (le ultime due 
-                settimane di settembre le utilizzeremo per i recuperi di eventuali lezioni perse 
+            <li>100 euro per l'intera stagione, dall&#39;8 giugno al 15 settembre (le ultime due
+                settimane di settembre le utilizzeremo per i recuperi di eventuali lezioni perse
                 a causa del maltempo). </li>
-                <li>
-                    in caso di assenze pianificate, per un significativo numero di settimane, da 
-                    parte dei singoli partecipanti (vacanze, villeggiatura, ecc.) è possibile 
-                    concordare un costo ridotto: 
-                per la corretta organizzazione delle lezioni e dei tesseramenti è in ogni caso preferibile comunicare l'iscrizione ad inizio corso (giugno)
+            <li>in caso di assenze pianificate, per un significativo numero di settimane, da parte
+                dei singoli partecipanti (vacanze, villeggiatura, ecc.) è possibile concordare un
+                costo ridotto: per la corretta organizzazione delle lezioni e dei tesseramenti è
+                in ogni caso preferibile comunicare l'iscrizione ad inizio corso (giugno)
                 <li>prima lezione di prova: gratuita.</li>
         </ul>
         <p>
@@ -85,10 +84,10 @@
             come l&#39;equilibrio, la destrezza, l’abilità, la capacità reattiva, l’organizzazione
             spazio-temporale, la forza, la resistenza e la velocità, anche grazie all&#39;ausilio
             dei più svariati ostacoli (bascula, gimkana, piccoli salti, passaggi obbligati,
-            sottopassi, sentieri in salita, ripidoni in discesa). Non mancheranno peraltro componenti
-            teoriche, più o meno &#39;mascherate&#39; all&#39;interno dell&#39;attività ludica,
-            volte da un lato a stimolare l&#39;apprendimento di nozioni specifiche quali la
-            conoscenza del mezzo e dei comportamenti da osservare durante le escursioni per
+            sottopassi, sentieri in salita, ripidoni in discesa, whoops). Non mancheranno peraltro
+            componenti teoriche, più o meno &#39;mascherate&#39; all&#39;interno dell&#39;attività
+            ludica, volte da un lato a stimolare l&#39;apprendimento di nozioni specifiche quali
+            la conoscenza del mezzo e dei comportamenti da osservare durante le escursioni per
             la propria ed altrui sicurezza, dall&#39;altro a principi educativi più generali
             quali il rispetto della natura, l&#39;impegno come mezzo principe per l&#39;ottenimento
             dei risultati, la bici come mezzo ideale di mobilità sostenibile, l&#39;attività
@@ -97,19 +96,19 @@
             Il maestro</h2>
         <p>
             Mi chiamo <a href="http://www.linkedin.com/pub/marco-perasso/3a/470/14a" target="marco">
-                Marco</a>, ho una laurea in Economia e mi occupo di sviluppo software (in pratica
-            sono uno dei colpevoli se i computer si comportano in modo strano e sembrano difficili
-            da usare). Mi piace il lavoro che faccio ma... la bici è sicuramente un&#39;altra
+                Marco</a>, sono laureato in Economia e mi occupo di sviluppo software (in pratica
+            sono uno dei responsabili se i computer si comportano in modo strano e sembrano
+            difficili da usare). Mi piace il lavoro che faccio ma... la bici è sicuramente un&#39;altra
             cosa. E&#39; libertà, è un mezzo per sfogare le tensioni, è uno strumento per muoversi
             senza vincoli, è un modo per rimanere bambini (che ogni tanto si sbucciano un ginocchio
             o si infangano fino ai capelli), è una metafora che ti insegna che se vuoi ottenere
             qualcosa ed esserne soddisfatto, te la devi sudare; sono anche fermamente convinto
             che se vogliamo migliorare questa nostra società piuttosto disastrata, anestetizzata
             da shopping, calcio scommesse e grandi fratelli, si debba lavorare sui bambini.
-            Credo fermamente nella bici come strumento di mobilità sostenibile (in
-            particolare in città): ogni giorno percorro circa 25 Km per recarmi al lavoro sulla
-            mia city bike, sono sufficientemente munito di attrezzatura anti intemperie ma ahimé
-            non ho ancora trovato adeguate misure di difesa contro gli automobilisti nevrotici.</p>
+            Credo fermamente nella bici come strumento di mobilità sostenibile (in particolare
+            in città): ogni giorno percorro circa 25 Km per recarmi al lavoro sulla mia city
+            bike, sono sufficientemente munito di attrezzatura anti intemperie ma ahimé non
+            ho ancora trovato adeguate misure di difesa contro gli automobilisti nevrotici.</p>
         <p>
             Sulla scia di questa mia passione ho ottenuto il diploma di maestro della <a target="fci"
                 href="http://www.federciclismo.it/studi/maestri_home.asp">Federazione Ciclistica
@@ -133,8 +132,15 @@
             destra, il ponte sullo Scrivia, la caserma dei Carabinieri sulla destra, un supermercato
             sulla sinistra) quindi imboccare una strada secondaria a sinistra in corrispondenza
             di una curva a novanta gradi, seguendo l&#39;indicazione per Gazzolo. La strada
-            sale per 1 Km, quindi inizia a scendere: appena iniziata la discesa, troverete 
-            il campo scuola alla vostra sinistra.</p>
+            sale per 1 Km, quindi inizia a scendere: appena iniziata la discesa, troverete il
+            campo scuola alla vostra sinistra.</p>
+        <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0"
+            marginwidth="0" src="https://maps.google.it/maps/ms?msa=0&amp;msid=216631990246990209455.0004bf85ab8e929a5e351&amp;ie=UTF8&amp;t=m&amp;layer=c&amp;cbll=44.524856,9.064658&amp;panoid=42ytCgs_HBD-noXyPSB9_w&amp;cbp=12,356.97,,0,7.58&amp;ll=44.52508,9.064912&amp;spn=0.001973,0.003095&amp;source=embed&amp;output=svembed">
+        </iframe>
+        <br />
+        <small>Visualizza <a href="https://maps.google.it/maps/ms?msa=0&amp;msid=216631990246990209455.0004bf85ab8e929a5e351&amp;ie=UTF8&amp;t=m&amp;layer=c&amp;cbll=44.524856,9.064658&amp;panoid=42ytCgs_HBD-noXyPSB9_w&amp;cbp=12,356.97,,0,7.58&amp;ll=44.52508,9.064912&amp;spn=0.001973,0.003095&amp;source=embed"
+            style="color: #0000FF; text-align: left">Scuola di Mountain Bike Val Pentemina</a>
+            in una mappa di dimensioni maggiori</small>
         <h4>
             <a href="Scuola di Mountain Bike Val Pentemina.pdf" target="modulo">Scarica regolamento
                 e modulo di adesione</a>.</h4>
