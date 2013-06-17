@@ -56,13 +56,6 @@
             </div>--%>
             <div class="widget">
                 <div style="padding: 20px;">
-                    <a href="Events/TouristTrophyTorriglia/TouristTrophyTorriglia.aspx" title="Tourist Trophy Torriglia">
-                        <img style="width: 200px; height: 300px" src="Events/TouristTrophyTorriglia/locandina.jpg" alt="Tourist Trophy Torriglia" />
-                    </a>
-                </div>
-            </div>
-            <div class="widget">
-                <div style="padding: 20px;">
                     <iframe width="420" height="300" src="http://www.youtube.com/embed/-Y3TKKbxxJo" frameborder="0"
                         allowfullscreen></iframe>
                 </div>
