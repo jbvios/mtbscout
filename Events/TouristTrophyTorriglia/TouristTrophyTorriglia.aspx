@@ -22,6 +22,7 @@
             Tourist Trophy Torriglia</h1>
         <h2>
             Domenica 16 giugno 2013</h2>
+            <h3><a href="Tourist Trophy Torriglia.pdf" title="Classifica" target="classifica">Classifica</a></h3>
         <h3>
             Il percorso</h3>
         <p>
