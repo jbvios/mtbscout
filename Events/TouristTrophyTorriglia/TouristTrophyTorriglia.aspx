@@ -61,8 +61,6 @@
         <iframe src="map.html" style="width: 800px; height: 400px;"></iframe>
         <p class="centered">
             <a title="Scarica tracciato GPS" href="torriglia.zip">Scarica tracciato GPS</a></p>
-        <p class="centered" style="font-size: larger">
-            <a href="../../User/Subscriptions.aspx" title="Preiscrizioni">Preiscrizioni</a></p>
         <img src="locandina.jpg" />
         <a target="genoabike" title="Genoa Bike" href="http://www.genoabike.com">
             <img class="logo" alt="Genoa Bike" src="genoabike.gif" /></a> <a target="trala" title="Tra l'antola e il mare"
