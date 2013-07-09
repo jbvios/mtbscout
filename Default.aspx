@@ -16,8 +16,8 @@
                 <img alt="Chiudi" title="Chiudi" onclick="closeBanner();" src="Images/Close.png"
                     style="width: 20px; height: 20px; float: right;" />
             </div>
-            <a href="CicloturisticoPreli.pdf" target="_blank">
-                <img id="BannerImage" border="0" alt="" src="preli.JPG" style="width: 100%; height: 100%" />
+            <a href="Appointments.aspx">
+                <img id="BannerImage" border="0" alt="" src="events/antola.JPG" style="width: 100%; height: 100%" />
             </a>
         </div>--%>
         <uc1:Spot ID="Spot2" runat="server" />
@@ -139,6 +139,6 @@
         <div id="dummyForHomePage" />
     </div>
 
-    <%--<script>        animateNewsBanner();</script>--%>
+    <script>        animateNewsBanner();</script>
 
 </asp:Content>
