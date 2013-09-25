@@ -59,7 +59,7 @@ function Round(id, radius, step) {
 }
 
 function InitPage() {
-    setTimeout(function() { moveClimbHeader(); }, 50);
+    //setTimeout(function() { moveClimbHeader(); }, 50);
     //initsnow(); 
 }
 function moveClimbHeader() {

@@ -48,9 +48,11 @@ function adjustBannerSize(size) {
 	var w = wSize.W;
 	var h = wSize.H;
 	banner.style.height = size + "px";
+	
 	banner.style.top = ((h - size) / 2) + "px";
 	banner.style.position = "fixed";
-	if (size < getMaxBannerSize()) {
+	var newSize = size + 20;
+	if (newSize < getMaxBannerSize() && newSize < w && newSize < h) {
 		size += 20;
 		setTimeout("adjustBannerSize(" + size + ")", 5);
 	}
@@ -66,7 +68,7 @@ function getMaxBannerSize() {
 	var banner = document.getElementById('BannerImage');
 	if (!banner)
 		return;
-	return (banner.offsetWidth * 1000/900);
+	return (banner.offsetWidth);
 }
 function Init() {
 	animateNewsBanner();
