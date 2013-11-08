@@ -153,7 +153,7 @@ public partial class Map : System.Web.UI.Page
         }
         finally
         {
-            MapContainer.Visible = parser != null;
+           // MapContainer.Visible = parser != null;
         }
     }
 
