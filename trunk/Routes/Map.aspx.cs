@@ -54,7 +54,7 @@ public partial class Map : System.Web.UI.Page
                 string name = wp.name.Replace("'", "\\'");
                 string description = wp.description.Replace("'", "\\'");
                 string icon = hasPhoto
-                    ? "camera"
+                    ? "/Images/camera_icon.png"
                     : "";
                 string photo = hasPhoto
                     ? PathFunctions.GetUrlFromPath(Path.Combine(thumbsFolder, Path.GetFileName(wp.link)), false).Replace("'", "\\'")

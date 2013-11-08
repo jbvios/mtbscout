@@ -64,14 +64,13 @@
         GenerateMarkers();
     %>
 
-    <script type="text/javascript" src="../Script/gpsvisualizer.js">
-    </script>
 
     <script type="text/javascript">
         this.mapReady = function() {
         addMarkers();
-    }
-        
+    }  
+    </script>
+    <script type="text/javascript" src="../Script/gpsvisualizer.js">
     </script>
 
 </body>
