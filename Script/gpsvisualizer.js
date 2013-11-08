@@ -9,10 +9,10 @@ function RouteInfo(name, infoWindow) {
         window.open(map);
     };
 }
-function initialize(lat, lon) {
+function initialize() {
     var mapOptions = {
         zoom: 8,
-        center: new google.maps.LatLng(lat, lon),
+        center: new google.maps.LatLng(0, 0),
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
     map = new google.maps.Map(document.getElementById('gmap_div'),
@@ -21,9 +21,9 @@ function initialize(lat, lon) {
 
     bounds = new google.maps.LatLngBounds();
 
-    mapReady();
+    this.mapReady();
+    map.setCenter(bounds.getCenter());
     map.fitBounds(bounds);
-
 }
 function GV_Draw_Track(track, track_seg) {
     for (var i = 0; i < track_seg.length; i++) {
@@ -67,17 +67,7 @@ function GV_Draw_Marker(m) {
 
     google.maps.event.addListener(marker, 'click', obj.onDetailRequested);
 }
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(initializeLocation, initializeNoLocation);
-}
-else {
-    initializeNoLocation();
-}
 
-function initializeLocation(position) {
-    initialize(position.coords.latitude, position.coords.longitude);
-}
-function initializeNoLocation() {
-    initialize(44.403373, 8.949738);
-}
+initialize();
+
 this.mapReady = function() { }
