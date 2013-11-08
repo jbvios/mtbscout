@@ -46,7 +46,7 @@ li
     height: 350px;
     display: inline-block;
     overflow: hidden;
-    font-size:small;
+    font-size: small;
 }
 .widget div div
 {
@@ -255,4 +255,26 @@ table.AppointmentPosts
 {
     empty-cells: show;
     caption-side: top;
+}
+.mk_info_window
+{
+    background-color: #FFFFCC;
+    min-width: 500px;
+    overflow: auto;
+}
+.mk_info_window_name
+{
+    padding-bottom: 5px;
+    text-align: left;
+}
+.mk_info_window_desc
+{
+    display: inline;
+    background-color: #FFFFCC;
+}
+.mk_info_window_photo
+{
+    display: inline;
+    background-color: #FFFFCC;
+    float: left;
 }

@@ -587,15 +587,12 @@ public static class Helper
 
         if (parser != null)
         {
-            int trackIndex = 0;
             foreach (Track trk in parser.Tracks)
             {
                 response.Write(string.Format(@"
-                t = {0}; 
                 track = [];
-                trk_info[t] = track;
-                track['name'] = '{1}';
-                track['desc'] = '{2}'; 
+                track['name'] = '{0}';
+                track['desc'] = '{1}'; 
                 track['clickable'] = true;
                 track['width'] = 3; 
                 track['opacity'] = 0.9;
@@ -605,8 +602,7 @@ public static class Helper
                 track['fill_opacity'] = 0;
                 
                 trkSeg = [];
-                trk_segments[t] = trkSeg;",
-                   ++trackIndex,
+                ",
                    trk.Name,
                    trk.Description));
 
@@ -621,7 +617,7 @@ public static class Helper
                         string color = ColorProvider.GetColorString(p1.ele, parser.MinElevation, parser.MaxElevation);
                         //devo usare InvariantCulture per avere il punto come separatore dei decimali
                         response.Write(string.Format(
-                            "trkSeg.push({{ color:'{0}', points:[ [{1},{2}], [{3},{4}] ] }});\r\n",
+                            "trkSeg.push({{ color:'{0}', 'p1': {{ 'lat':{1}, 'lon': {2} }}, 'p2': {{ 'lat':{3}, 'lon': {4} }} }});\r\n",
                             color,
                             p1.lat.ToString(System.Globalization.CultureInfo.InvariantCulture),
                             p1.lon.ToString(System.Globalization.CultureInfo.InvariantCulture),
@@ -632,7 +628,7 @@ public static class Helper
                     }
                 }
 
-                response.Write("GV_Draw_Track(t);");
+                response.Write("GV_Draw_Track(track, trkSeg);");
             }
         }
         response.Write("}\r\n");

@@ -16,8 +16,8 @@
                 <img alt="Chiudi" title="Chiudi" onclick="closeBanner();" src="Images/Close.png"
                     style="width: 20px; height: 20px; float: right;" />
             </div>
-            <a href="https://www.facebook.com/pages/Proloco-di-Savignone/189039237924538">
-                <img id="BannerImage" border="0" alt="" src="Manifesto Raduno Enduro MTB.jpg" style="width: 100%; height: 100%" />
+            <a href="locandinaciclopreli.pdf" target="_blank">
+                <img id="BannerImage" border="0" alt="" src="Preli.JPG" style="width: 100%; height: 100%" />
             </a>
         </div><%----%>
         <uc1:Spot ID="Spot2" runat="server" />
