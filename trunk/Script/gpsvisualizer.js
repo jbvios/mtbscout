@@ -25,11 +25,11 @@ function initialize() {
     map.setCenter(bounds.getCenter());
     map.fitBounds(bounds);
 }
-function GV_Draw_Track(track, track_seg) {
+function GV_Draw_Track(track_seg) {
     for (var i = 0; i < track_seg.length; i++) {
         var seg = track_seg[i];
         var p1 = new google.maps.LatLng(seg.p1.lat, seg.p1.lon);
-        var p2 = new google.maps.LatLng(seg.p2.lat, seg.p2.lon)
+        var p2 = new google.maps.LatLng(seg.p2.lat, seg.p2.lon);
         bounds.extend(p1);
         bounds.extend(p2);
         var poly = new google.maps.Polyline({
@@ -70,4 +70,4 @@ function GV_Draw_Marker(m) {
 
 initialize();
 
-this.mapReady = function() { }
+this.mapReady = function() { };
