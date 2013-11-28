@@ -628,7 +628,7 @@ public static class Helper
                     }
                 }
 
-                response.Write("GV_Draw_Track(track, trkSeg);");
+                response.Write("GV_Draw_Track(trkSeg);");
             }
         }
         response.Write("}\r\n");
