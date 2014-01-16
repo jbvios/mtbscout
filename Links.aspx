@@ -3,7 +3,16 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 	<title>Links utili</title>
+	<style>
+	p
+	{
+		text-align: center;
+		border: solid 1px lightblue;
+		padding: 10px;
+	}
+</style>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPanel" runat="Server">
 	<div id="ContentPanel" class="ContentPanel">
 		<h1>
@@ -15,6 +24,18 @@
                     alt="Palestra di pensiero" /><br />
 				Palestra di pensiero
 			</a>
+		</p>
+		<p class="CenterUrl">
+			<a href="http://www.amicidiriki.it/" target="_blank" title="Amici di Riki">
+				<img src="Images/amicidiriki.jpg" alt="Amici di Riki" /><br />
+				Associazione Amici di Riki - Non lasciare che il tempo ti sfugga
+			</a>
+		</p>
+		<p class="CenterUrl">
+			<a href="http://www.globalterramaps.com/" target="_blank" title="Terra Map">
+				<img src="http://www.globalterramaps.com/BannerTerra1.png" style="width:301px; height:64px" alt="Terra Map" /><br />
+				Terra Map - GPS Offline Topo Map - Per registrare e condividere i tuoi percorsi
+				</a>
 		</p>
 		<p class="CenterUrl">
 			<a href="http://www.videociclismo.altervista.org" target="_blank" title="Video di ciclismo">
@@ -48,11 +69,6 @@
 		<p class="CenterUrl">
 			<a href="http://www.simb.com/" target="_blank">
 				<img src="Images/SIMB.jpg" alt="Scuola Italiana di Mountain Bike" />
-			</a>
-		</p>
-		<p class="CenterUrl">
-			<a href="http://www.amicidiriki.it/" target="_blank">
-				<img src="Images/amicidiriki.jpg" alt="Amici di Riki" />
 			</a>
 		</p>
 		<p class="CenterUrl">
