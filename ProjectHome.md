@@ -1,0 +1,1 @@
+The aim of this project is sharing mountain bike tracks and photos among MTB lovers
